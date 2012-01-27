@@ -1,5 +1,8 @@
-archivo
-asd
-asd
-asd
-asd
+
+Notas:
+
+Blizzard API (PHP)
+http://sourceforge.net/projects/wowarmoryapi/
+
+Blizzard Community Platform API
+http://blizzard.github.com/api-wow-docs/
