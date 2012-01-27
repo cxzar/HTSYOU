@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="1.7.0" method="upgrade">
+	<name>Widgetkit</name>
+	<author>YOOtheme</author>
+	<creationDate>December 2011</creationDate>
+	<copyright>Copyright (C) YOOtheme GmbH</copyright>
+	<license>YOOtheme Proprietary Use License (http://www.yootheme.com/license)</license>
+	<authorEmail>info@yootheme.com</authorEmail>
+	<authorUrl>http://www.yootheme.com</authorUrl>
+	<version>1.0.0 BETA 19</version>
+	<description>Widgetkit - A widget toolkit by YOOtheme (http://www.yootheme.com)</description>
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">installation/install.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">installation/uninstall.sql</file>
+		</sql>
+	</uninstall>
+	<scriptfile>installer.php</scriptfile>
+	<media destination="widgetkit" folder="media">
+		<folder>css</folder>
+		<folder>js</folder>
+		<folder>widgets</folder>
+	</media>
+	<administration>
+		<menu img="components/com_widgetkit/images/widgetkit_16.png">COM_WIDGETKIT</menu>
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB/en-GB.com_widgetkit.sys.ini</language>
+		</languages>
+		<files folder="admin">
+			<filename>README.markdown</filename>
+			<filename>widgetkit.php</filename>
+			<folder>classes</folder>
+			<folder>css</folder>
+			<folder>helpers</folder>
+			<folder>images</folder>
+			<folder>installation</folder>
+			<folder>js</folder>
+			<folder>layouts</folder>
+			<folder>language</folder>
+		</files>
+	</administration>
+	<additional>
+		<module name="mod_widgetkit" folder="additional/module">Widgetkit Module</module>
+		<module name="mod_widgetkit_twitter" folder="additional/twitter">Twitter Module</module>
+		<plugin name="widgetkit_system" folder="additional/plugin/system">System Plugin</plugin>
+		<plugin name="widgetkit_content" folder="additional/plugin/content">Content Plugin</plugin>
+		<plugin name="widgetkit_zoo" folder="additional/plugin/zoo">ZOO Plugin</plugin>
+	</additional>
+</extension>

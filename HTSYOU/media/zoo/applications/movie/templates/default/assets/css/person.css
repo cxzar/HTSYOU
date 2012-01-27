@@ -1,0 +1,102 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * person
+ */
+
+/* position headings */
+#yoo-zoo .person h3 {
+	margin-top: 0px;
+	font-size: 21px;
+	font-weight: normal;
+}
+
+/* element type: textarea */
+#yoo-zoo .person .element-textarea > * { margin: 0px 0px 10px 0px; }
+#yoo-zoo .person .element-textarea *:last-child { margin-bottom: 0px; }
+
+/* position: sidebar */
+#yoo-zoo .person div.pos-sidebar { width: 245px; }
+
+#yoo-zoo .person div.sidebar-left {
+	margin-right: 15px;
+	float: left;
+}
+
+#yoo-zoo .person div.sidebar-right {
+	margin-left: 15px;
+	float: right;
+}
+
+#yoo-zoo .person div.pos-sidebar .element {
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 1px solid #C8C8C8;
+}
+
+/* element type: rating */
+#yoo-zoo .person div.pos-sidebar div.rating { overflow: hidden; }
+#yoo-zoo .person div.pos-sidebar div.rating div.rating-container {
+	margin-right: 10px;
+	float: left;
+}
+#yoo-zoo .person div.pos-sidebar div.rating div.vote-message { line-height: 20px; }
+
+/* element type: image */
+#yoo-zoo .person div.pos-sidebar .element-image {
+	padding: 0px;
+	border: none;
+}
+
+/* title */
+#yoo-zoo .person h1.pos-title {
+	margin: 0px 0px 15px 0px;
+	font-weight: normal;
+	color: #323232;
+	font-size: 30px;
+	line-height: 30px;
+}
+
+/* position: specification */
+#yoo-zoo .person ul.pos-specification {
+	list-style: none;
+	margin: 0px 0px 20px 0px;
+	padding: 10px 0px 10px 0px;
+	border-top: 1px solid #c8c8c8;
+	border-bottom: 1px solid #c8c8c8;
+	overflow: hidden;
+}
+
+#yoo-zoo .person ul.pos-specification strong {
+	display: inline-block;
+	width: 90px;
+	color: #323232;
+}
+
+/* position: description */
+#yoo-zoo .person div.pos-description {}
+#yoo-zoo .person div.pos-description .element { margin-top: 20px; }
+#yoo-zoo .person div.pos-description .element.first { margin-top: 0px; }
+
+/* position: movie */
+#yoo-zoo .person div.pos-movie {
+	margin-top: 20px;
+	overflow: hidden;
+}
+
+/* element type: related items */
+#yoo-zoo .person div.pos-movie .element-relateditems > ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+/*
+ * comments
+ */
+ 
+#yoo-zoo div#comments {
+	padding-top: 20px;
+	border-top: 1px solid #c8c8c8;
+}

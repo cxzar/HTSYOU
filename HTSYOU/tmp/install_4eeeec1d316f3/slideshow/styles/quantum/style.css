@@ -1,0 +1,86 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * Widgetkit Slideshow: Quantum Style
+ */
+
+
+/* Navigation
+----------------------------------------------------------------------------------------------------*/
+
+.wk-slideshow-quantum .nav {
+	position: absolute;
+	z-index: 9;
+	bottom: 20px;
+	right: 30px;
+	height: 24px;
+	padding: 4px 8px 0 8px;
+	border: 1px solid rgba(255,255,255,0.35);
+	-moz-border-radius: 16px;
+	-webkit-border-radius: 16px;
+	border-radius: 16px;
+	background: rgba(255,255,255,0.15);
+	-moz-box-shadow: inset 0 0 8px rgba(255,255,255,0.25);
+	-webkit-box-shadow: inset 0 0 8px rgba(255,255,255,0.25);
+	box-shadow: inset 0 0 8px rgba(255,255,255,0.25);
+}
+
+.wk-slideshow-quantum .nav li {
+	display: inline-block;
+	margin-left: 5px;
+}
+.wk-slideshow-quantum .nav li:first-child { margin-left: 0; }
+
+.wk-slideshow-quantum .nav span {
+	width: 20px;
+	height: 20px;
+	background: url(images/nav.png) 0 0 no-repeat;
+	overflow: hidden;
+}
+.wk-slideshow-quantum .nav span:hover { background-position: 0 -40px; }
+.wk-slideshow-quantum .nav span:active { background-position: 0 -120px; }
+.wk-slideshow-quantum .nav .active span { background-position: 0 -80px; }
+
+
+/* Buttons
+----------------------------------------------------------------------------------------------------*/
+
+.wk-slideshow-quantum > div { position: relative; }
+
+.wk-slideshow-quantum > div:hover .next,
+.wk-slideshow-quantum > div:hover .prev {
+	top: 50%;
+	width: 50px;
+	height: 50px;
+	margin-top: -25px;
+	background-image: url(images/buttons.png);
+	background-repeat: no-repeat;
+}
+
+.wk-slideshow-quantum > div:hover .next { right: 30px; }
+.wk-slideshow-quantum > div:hover .prev { left: 30px; }
+
+.wk-slideshow-quantum > div:hover .next { background-position: 0 0; }
+.wk-slideshow-quantum > div:hover .next:hover { background-position: 0 -70px; }
+.wk-slideshow-quantum > div:hover .next:active { background-position: 0 -140px; }
+
+.wk-slideshow-quantum > div:hover .prev { background-position: 0 -210px; }
+.wk-slideshow-quantum > div:hover .prev:hover { background-position: 0 -280px; }
+.wk-slideshow-quantum > div:hover .prev:active { background-position: 0 -350px; }
+
+.wk-slideshow-quantum .slides {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+    -moz-box-shadow: 0 0 6px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 0 0 6px rgba(0,0,0,0.2);
+	box-shadow: 0 0 6px rgba(0,0,0,0.2);
+}
+
+
+/* IE7
+----------------------------------------------------------------------------------------------------*/
+
+.wk-ie7 .wk-slideshow-quantum .nav li,
+.wk-ie7 .wk-slideshow-quantum .nav span { display: inline; }
+.wk-ie7 .wk-slideshow-quantum .nav span { zoom: 1; }

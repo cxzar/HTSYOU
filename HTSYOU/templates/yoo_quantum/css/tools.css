@@ -1,0 +1,293 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+@import url(../warp/css/tools.css);
+
+/* Buttons (Needed for System Markup)
+----------------------------------------------------------------------------------------------------*/
+
+a.button-more,
+form.box button,
+form.short button,
+form.box input[type="button"],
+form.box input.button {
+	margin: 3px;
+	padding: 4px 10px;
+	border: none;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#system .item > .content p a.button-more { text-decoration: none; }
+
+
+/* Lists and Tables (Needed for System Markup)
+----------------------------------------------------------------------------------------------------*/
+
+/* Line */
+ul.line > li:first-child { border: none; }
+
+/* Line Bullet */
+ul.line.bullet > li {
+	padding-left: 20px;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+}
+
+ul.line.bullet > li:hover { background-position: 0 -200px; }
+
+ul.line.bullet > li:first-child { padding-top: 5px; }
+
+/* Check */
+ul.check > li {
+	padding: 4px 0 0 30px;
+	background-position: 0 0;
+	background-repeat: no-repeat;
+}
+
+/* Zebra List and Table */
+table.zebra thead th { font-size: 14px; }
+
+/* Definition Lists
+----------------------------------------------------------------------------------------------------*/
+
+dl.separator dt {	
+	position: relative;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	text-transform: uppercase;
+}
+
+/* border code because of RTL */
+dl.separator dd {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-width: 0 0 0 1px;
+	border-style: solid;
+}
+
+dl.separator dt:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: -15px;
+	width: 30px;
+}
+
+dl.separator dt:after {
+	content: "";
+	position:absolute;
+	top: -3px;
+	right: -3px;
+	width: 5px;
+	height: 5px;
+	border-radius:6px;
+}
+
+dl.separator dt:first-child:before,
+dl.separator dt:first-child:after { display: none; }
+
+
+/* Boxes
+----------------------------------------------------------------------------------------------------*/
+
+.box-content,
+.box-note,
+.box-info,
+.box-warning,
+.box-hint,
+.box-download {
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+
+/* Forms (Needed for System Markup)
+----------------------------------------------------------------------------------------------------*/
+
+form.box fieldset,
+form.short fieldset { 
+	padding: 10px 15px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+form.box fieldset legend,
+form.short fieldset legend {
+	font-size: 12px;
+	text-transform: uppercase;
+}
+
+form.box fieldset div,
+form.short fieldset div { margin-bottom: 10px; }
+
+form.box input[type="text"],
+form.short input[type="text"],
+form.box input[type="password"],
+form.short input[type="password"],
+form.box select,
+form.short select,
+form.box textarea,
+form.short textarea {
+	padding: 4px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+
+form.box input[type="text"]:focus,
+form.short input[type="text"]:focus,
+form.box input[type="password"]:focus,
+form.short input[type="password"]:focus,
+form.box select:focus,
+form.short select:focus,
+form.box textarea:focus,
+form.short textarea:focus { outline: none; }
+
+form.box textarea,
+form.short textarea { padding: 8px 10px; }
+
+
+/* Mobile Switcher (Needed for Mobile)
+----------------------------------------------------------------------------------------------------*/
+
+.mobile-switcher {
+	border: none;
+	-moz-border-radius: 20px;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+}
+
+
+/* Image Frame
+----------------------------------------------------------------------------------------------------*/
+
+img.frame {
+	max-width: 98.8%;
+	padding: 3px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}	
+
+
+/* Social Icons
+----------------------------------------------------------------------------------------------------*/
+
+.social {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.social li {
+	float: left;
+	line-height: 24px;
+}
+
+.social li a {
+	display: inline-block;
+	width: 30px;
+	height: 25px;
+	margin-left: 5px;
+	float: left;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	text-indent: 50px;
+}
+
+.social .twitter a { background-position: 0 0; }
+.social .twitter a:hover { background-position: 0 -40px; }
+
+.social .facebook a { background-position: 0 -80px; }
+.social .facebook a:hover { background-position: 0 -120px; }
+
+.social .flickr a { background-position: 0 -160px; }
+.social .flickr a:hover { background-position: 0 -200px; }
+
+.social .linkedin a { background-position: 0 -240px; }
+.social .linkedin a:hover { background-position: 0 -280px; }
+
+
+/* Mini Social Icons
+----------------------------------------------------------------------------------------------------*/
+
+.social-mini {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	overflow: hidden;
+}
+
+.social-mini li {
+	float: left;
+	margin-right: 2px;
+	line-height: 16px;
+}
+
+.social-mini li a {
+	display: inline-block;
+	width: 24px;
+	height: 16px;
+	float: left;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	text-indent: 50px;
+}
+
+.social-mini .rss a { background-position: 0 0; }
+.social-mini .rss a:hover { background-position: 0 -30px; }
+
+.social-mini .twitter a { background-position: 0 -60px; }
+.social-mini .twitter a:hover { background-position: 0 -90px; }
+
+.social-mini .facebook a { background-position: 0 -120px; }
+.social-mini .facebook a:hover { background-position: 0 -150px; }
+
+.social-mini .flickr a { background-position: 0 -180px; }
+.social-mini .flickr a:hover { background-position: 0 -210px; }
+
+.social-mini .linkedin a { background-position: 0 -240px; }
+.social-mini .linkedin a:hover { background-position: 0 -270px; }
+
+.social-mini .myspace a { background-position: 0 -300px; }
+.social-mini .myspace a:hover { background-position: 0 -330px; }
+
+.social-mini .lastfm a { background-position: 0 -360px; }
+.social-mini .lastfm a:hover { background-position: 0 -390px; }
+
+.social-mini .dribbble a { background-position: 0 -420px; }
+.social-mini .dribbble a:hover { background-position: 0 -450px; }
+
+.social-mini .digg a { background-position: 0 -480px; }
+.social-mini .digg a:hover { background-position: 0 -510px; }
+
+.social-mini .delicious a { background-position: 0 -540px; }
+.social-mini .delicious a:hover { background-position: 0 -570px; }
+
+.social-mini .deviantart a { background-position: 0 -600px; }
+.social-mini .deviantart a:hover { background-position: 0 -630px; }
+
+.social-mini .technorati a { background-position: 0 -660px; }
+.social-mini .technorati a:hover { background-position: 0 -690px; }
+
+.social-mini .stumbleupon a { background-position: 0 -720px; }
+.social-mini .stumbleupon a:hover { background-position: 0 -750px; }
+
+.social-mini .yahoo a { background-position: 0 -780px; }
+.social-mini .yahoo a:hover { background-position: 0 -810px; }
+
+.social-mini .openid a { background-position: 0 -840px; }
+.social-mini .openid a:hover { background-position: 0 -870px; }
+
+.social-mini .xing a { background-position: 0 -900px; }
+.social-mini .xing a:hover { background-position: 0 -930px; }
+
+.social-mini .forrst a { background-position: 0 -960px; }
+.social-mini .forrst a:hover { background-position: 0 -990px; }

@@ -1,0 +1,32 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+@import url(../../../warp/css/rtl.css);
+@import url(../../../css/rtl.css);
+
+/* Layout
+----------------------------------------------------------------------------------------------------*/
+
+#menubar,
+#menubar > div,
+#menubar > div > div { background-image: url(../images/rtl/menubar.png); }
+
+/* Menus
+----------------------------------------------------------------------------------------------------*/
+
+
+/* Modules
+----------------------------------------------------------------------------------------------------*/
+
+.module .badge { background-image: url(../images/rtl/module_badges.png); }
+
+/* Tools
+----------------------------------------------------------------------------------------------------*/
+
+
+/* System
+----------------------------------------------------------------------------------------------------*/
+
+#searchbox { background-image: url(../images/rtl/searchbox.png); }
+
+.breadcrumbs a,
+.breadcrumbs > span { background: url(../images/rtl/breadcrumbs.png) 0 50% no-repeat; }

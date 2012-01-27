@@ -1,0 +1,74 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+
+/* Color Red
+----------------------------------------------------------------------------------------------------*/
+
+h3,
+a,
+em,
+code,
+#footer .menu-line a,
+.menu-dropdown li.active .level1,
+.menu-dropdown .level2 a.level2:hover,
+.menu-dropdown li.current > .level2,
+.menu-dropdown a.level3:hover,
+.menu-sidebar a:hover > span,
+.menu-sidebar span:hover > span,
+#searchbox .results li.more-results,
+.breadcrumbs strong,
+a.button-more:focus,
+#system .pagination strong {
+	color: #ff3333;
+	text-shadow:
+		0 -1px 0 rgba(0,0,0,0.4),
+		0 0 4px rgba(255,51,51,0.4);
+}
+
+a:hover,
+#footer .menu-line a:hover,
+#searchbox .results li.more-results:hover {
+	color: #ff5959;
+	text-shadow: 0 0 4px rgba(255,89,89,0.4);
+}
+
+.menu-dropdown li.current .level2 span.subtitle { color: #ff3333; }
+
+::-moz-selection {
+	background: rgba(255,51,51,0.2);
+	color: #ff3333;
+}
+
+::selection {
+	background: rgba(255,51,51,0.2);
+	color: #ff3333;
+}
+
+/* Images
+----------------------------------------------------------------------------------------------------*/
+
+/* Logo */
+#logo .custom-logo { background: url(../../../../images/yootheme/logo_darkred.png) 0 0 no-repeat; }
+
+/* Menu */
+.menu-dropdown a.level3 { background-image: url(../../images/color/red/menu_level3.png); }
+
+.menu-sidebar li.parent .level1 > span { background-image: url(../../images/color/red/menu_sidebar_parent.png); }
+
+.menu-sidebar .level2 a,
+.menu-sidebar .level2 li > span { background-image: url(../../images/color/red/menu_sidebar_level2.png); }
+
+/* Tools */
+ul.line.bullet > li { background-image: url(../../images/color/red/list_line_bullet.png); }
+
+ul.check > li { background-image: url(../../images/color/red/list_check.png); }
+
+/* WidgetKit
+----------------------------------------------------------------------------------------------------*/
+
+/* Slideshow */
+.wk-slideshow-quantum .nav span {
+	width: 20px;
+	height: 20px;
+	background: url(../../images/color/red/widgetkit/nav.png) 0 0 no-repeat;
+}

@@ -1,0 +1,16 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * Custom Style Sheet -  Use this file to style your content
+ */
+ 
+/* Logo */
+#logo .custom-logo {
+	width: 250px;
+	height: 60px;
+}
+
+/* Content */
+.teaser-box { margin-top: 15px; }
+.teaser-box:first-child { margin-top: 0; }
+.teaser-box > h3 { margin-top: 5px; }

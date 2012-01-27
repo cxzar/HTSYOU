@@ -1,0 +1,98 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+@import url(../warp/css/modules.css);
+
+/* Module Badges
+----------------------------------------------------------------------------------------------------*/
+
+.module .badge {
+	top: -5px;
+	right: -5px;
+	width: 50px;
+	height: 50px;
+}
+ 
+.module .badge-hot { background-position: 0 0; }
+.module .badge-top { background-position: 0 -50px; }
+.module .badge-free { background-position: 0 -100px; }
+.module .badge-new { background-position: 0 -150px; }
+
+/* Module Icons
+----------------------------------------------------------------------------------------------------*/
+
+.module .module-title .icon {
+	top: -3px;
+	margin-right: 3px;
+}
+
+/* Module Headings
+----------------------------------------------------------------------------------------------------*/
+
+.module .module-title {
+	font-size: 20px;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+/* Module Type: Box
+----------------------------------------------------------------------------------------------------*/
+
+.mod-box {
+	padding: 15px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+/* Module Type: Glass
+----------------------------------------------------------------------------------------------------*/
+
+.mod-glass {
+	padding: 7px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.mod-glass > div {
+	padding: 15px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background-size: 100% 100%;
+}
+
+/* Module Type: Border
+----------------------------------------------------------------------------------------------------*/
+
+.mod-border {
+	padding: 7px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.mod-border > div {
+	padding: 15px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	background-size: 100% 100%;
+}
+
+/* Module Type: Line
+----------------------------------------------------------------------------------------------------*/
+
+.grid-v:first-child .mod-line,
+.grid-h:first-child .mod-line { background: none; }
+
+/* Vertical (Stack) */
+.grid-v .mod-line { padding: 25px 0 0 0; }
+
+.grid-v:first-child .mod-line { padding-top: 0; }
+
+/* Horizontal (Equal/Double) */
+div.grid-h .mod-line {
+	margin-left: 0;
+	padding: 0 20px 0 30px;
+}

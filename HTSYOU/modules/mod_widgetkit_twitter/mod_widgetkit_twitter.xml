@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0" method="upgrade" client="site">
+	<name>Widgetkit Twitter</name>
+	<author>YOOtheme</author>
+	<creationDate>May 2011</creationDate>
+	<copyright>Copyright (C) 2007 - 2011 YOOtheme GmbH</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only</license>
+	<assetsLicense>YOOtheme Proprietary Use License (http://www.yootheme.com/license)</assetsLicense>
+	<authorEmail>info@yootheme.com</authorEmail>
+	<authorUrl>http://www.yootheme.com</authorUrl>
+	<version>1.0.0</version>
+	<description>Twitter module for Widgetkit developed by YOOtheme (http://www.yootheme.com)</description>
+	<files>
+		<filename module="mod_widgetkit_twitter">mod_widgetkit_twitter.php</filename>	
+	</files>
+	<params>
+		<param name="style" type="list" default="list" label="Style" description="The overall style">
+			<option value="list">List</option>
+			<option value="single">Single</option>
+			<option value="bubbles">Bubbles</option>
+		</param>
+		<param name="from_user" type="text" default="" label="From User(s)" description="Display tweets from one user or more users (Separate with spaces)" />
+		<param name="to_user" type="text" default="" label="To User(s)" description="Display tweets to one user or more users (Separate with spaces)" />
+		<param name="ref_user" type="text" default="" label="Referencing User(s)" description="Display tweets referencing one user or more users (Separate with spaces)" />
+		<param name="hashtag" type="text" default="" label="With Hashtag" description="Display tweets containing a hashtag" />
+		<param name="word" type="text" default="" label="With Word" description="Display tweets containing a word" />
+		<param name="nots" type="textarea" rows="5" cols="30" default="" label="Not with Word" description="These words will be filtered from search (Separate with spaces)" />
+		<param name="limit" type="text" size="6" default="5" label="Limit" description="Limit number of tweets to display" />
+		<param name="image_size" type="text" default="48" label="Image Size (px)" description="Default Twitter image size is 48px" />
+		<param name="show_image" type="radio" default="1" label="Image" description="Show/Hide the image of the Twitter user">
+			<option value="0">Hide</option>
+			<option value="1">Show</option>
+		</param>
+		<param name="show_author" type="radio" default="1" label="Author" description="Show/Hide author of the tweets">
+			<option value="0">Hide</option>
+			<option value="1">Show</option>
+		</param>
+		<param name="show_date" type="radio" default="1" label="Publish Date" description="Show/Hide the publish date of the tweets">
+			<option value="0">Hide</option>
+			<option value="1">Show</option>
+		</param>
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="Module Class Suffix" />
+	</params>
+	<config>
+		<fields name="params" >
+			<fieldset name="basic">
+				<field name="style" type="list" default="list" label="Style" description="The overall style">
+					<option value="list">List</option>
+					<option value="single">Single</option>
+					<option value="bubbles">Bubbles</option>
+				</field>
+				<field name="from_user" type="text" default="" label="From User(s)" description="Display tweets from one user or more users (Separate with spaces)" />
+				<field name="to_user" type="text" default="" label="To User(s)" description="Display tweets to one user or more users (Separate with spaces)" />
+				<field name="ref_user" type="text" default="" label="Referencing User(s)" description="Display tweets referencing one user or more users (Separate with spaces)" />
+				<field name="hashtag" type="text" default="" label="With Hashtag" description="Display tweets containing a hashtag" />
+				<field name="word" type="text" default="" label="With Word" description="Display tweets containing a word" />
+				<field name="nots" type="textarea" rows="5" cols="30" default="" label="Not with Word" description="These words will be filtered from search (Separate with spaces)" />
+				<field name="limit" type="text" size="6" default="5" label="Limit" description="Limit number of tweets to display" />
+				<field name="image_size" type="text" default="48" label="Image Size (px)" description="Default Twitter image size is 48px" />
+				<field name="show_image" type="radio" default="1" label="Image" description="Show/Hide the image of the Twitter user">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>
+				</field>
+				<field name="show_author" type="radio" default="1" label="Author" description="Show/Hide author of the tweets">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>
+				</field>
+				<field name="show_date" type="radio" default="1" label="Publish Date" description="Show/Hide the publish date of the tweets">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>
+				</field>
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="Module Class Suffix" />
+			</fieldset>
+		</fields>
+	</config>
+</install>

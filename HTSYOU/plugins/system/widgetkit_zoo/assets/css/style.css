@@ -1,0 +1,60 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * ZOO layout positions
+ */
+
+/* position: media */
+.wk-slideshow .layout-article div.media-top { margin-bottom: 10px; }
+
+.wk-slideshow .layout-article div.media-left {
+	margin-right: 15px;
+	float: left;
+}
+
+.wk-slideshow .layout-article div.media-right {
+	margin-left: 15px;
+	float: right;
+}
+
+.wk-slideshow .layout-article div.media-middle,
+.wk-slideshow .layout-article div.media-bottom { margin-top: 15px; }
+
+.wk-slideshow .layout-article div.media > img,
+.wk-slideshow .layout-article div.media > a > img,
+.wk-slideshow .layout-article div.media > object,
+.wk-slideshow .layout-article div.media > embed { display: block; }
+
+/* position: title */
+.wk-slideshow .layout-article h3.title {
+	margin: 0px;
+	font-size: 20px;
+	line-height: 26px;
+	font-weight: normal;
+	letter-spacing: 0px;
+}
+
+.wk-slideshow .layout-article h3.title a { text-decoration: none; }
+
+/* position: meta */
+.wk-slideshow .layout-article p.meta {
+	margin: 0px;
+	font-size: 11px;
+	color: #969696;
+	line-height: 13px;
+	font-style: italic;
+}
+
+/* position: description */
+.wk-slideshow .layout-article div.description { margin: 10px 0px 0px 0px; }
+
+.wk-slideshow .layout-article div.description > div { margin-top: 5px; }
+.wk-slideshow .layout-article div.description > div:first-child { margin-top: 0px; }
+
+/* position: links */
+.wk-slideshow .layout-article p.links { margin: 7px 0px 0px 0px; }
+
+.wk-slideshow .layout-article p.links a:after {
+	content: " »";
+	font-size: 14px;
+}

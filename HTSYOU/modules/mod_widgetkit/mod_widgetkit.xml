@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0" method="upgrade" client="site">
+	<name>Widgetkit</name>
+	<author>YOOtheme</author>
+	<creationDate>May 2011</creationDate>
+	<copyright>Copyright (C) 2007 - 2011 YOOtheme GmbH</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only</license>
+	<assetsLicense>YOOtheme Proprietary Use License (http://www.yootheme.com/license)</assetsLicense>
+	<authorEmail>info@yootheme.com</authorEmail>
+	<authorUrl>http://www.yootheme.com</authorUrl>
+	<version>1.0.0</version>
+	<description>Widgetkit module for Widgetkit developed by YOOtheme (http://www.yootheme.com)</description>
+	<files>
+		<filename module="mod_widgetkit">mod_widgetkit.php</filename>
+		<folder>elements</folder>
+	</files>
+	<params addpath="/modules/mod_widgetkit/elements">
+		<param name="widget_id" type="widget" default="" label="Widget" description="Select a Widget to display" />
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="Module Class Suffix" />		
+	</params>
+	<config>
+		<fields name="params" >
+			<fieldset name="basic" addfieldpath="/modules/mod_widgetkit/elements">
+				<field name="widget_id" type="widget" default="" label="Widget" description="Select a Widget to display" />
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="Module Class Suffix" />
+			</fieldset>			
+		</fields>
+	</config>
+</install>

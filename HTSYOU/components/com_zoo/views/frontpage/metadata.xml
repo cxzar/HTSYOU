@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<view title="Frontpage">
+		<message></message>
+	</view>
+	<state>
+		<name>Frontpage Layout</name>
+		<description>Frontpage Layout</description>
+		<params addpath="/administrator/components/com_zoo/joomla/elements">
+			<param name="application" type="zooapplication" default="" label="Application" description="Set a Application" />
+		</params>
+	</state>
+</metadata>

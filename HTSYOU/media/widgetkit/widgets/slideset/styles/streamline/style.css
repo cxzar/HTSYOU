@@ -1,0 +1,72 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * Widgetkit Slideset: Streamline Style
+ */
+
+
+.wk-slideset-streamline { position: relative; }
+
+/* Navigation
+----------------------------------------------------------------------------------------------------*/
+
+.wk-slideset-streamline .nav {
+	position: relative;
+	top: 10px;
+	text-align: center;
+}
+
+.wk-slideset-streamline .nav li { display: inline-block; }
+.wk-slideset-streamline .nav.icon li { margin-left: 5px; }
+.wk-slideset-streamline .nav.text li { margin-left: 40px; }
+
+.wk-slideset-streamline .nav li:first-child { margin-left: 0; }
+
+.wk-slideset-streamline .nav span {
+	width: 20px;
+	height: 20px;
+	background: url(images/nav.png) 0 0 no-repeat;
+	overflow: hidden;
+}
+.wk-slideset-streamline .nav span:hover { background-position: 0 -30px; }
+.wk-slideset-streamline .nav span:active { background-position: 0 -60px; }
+.wk-slideset-streamline .nav .active span { background-position: 0 -90px; }
+
+
+/* Buttons
+----------------------------------------------------------------------------------------------------*/
+
+.wk-slideset-streamline > div { position: relative; }
+
+.wk-slideset-streamline > div .next,
+.wk-slideset-streamline > div .prev {
+	top: 50%;
+	width: 50px;
+	height: 50px;
+	margin-top: -25px;
+	background-image: url(images/buttons.png);
+	background-repeat: no-repeat;
+}
+
+.wk-slideset-streamline > div .next { right: 0; }
+.wk-slideset-streamline > div .prev { left: 0; }
+
+.wk-slideset-streamline > div .next { background-position: 0 0; }
+.wk-slideset-streamline > div .next:hover { background-position: 0 -60px; }
+.wk-slideset-streamline > div .next:active { background-position: 0 -120px; }
+
+.wk-slideset-streamline > div .prev { background-position: 0 -180px; }
+.wk-slideset-streamline > div .prev:hover { background-position: 0 -240px; }
+.wk-slideset-streamline > div .prev:active { background-position: 0 -300px; }
+
+/* Title
+----------------------------------------------------------------------------------------------------*/
+
+.wk-slideset-streamline ul.set li { border-left: 1px solid #555; }
+
+.wk-slideset-streamline ul.set li:first-child { border-left: none; }
+
+.wk-slideset-streamline li > article {
+	margin: 0 20px;
+	text-align: left;
+}

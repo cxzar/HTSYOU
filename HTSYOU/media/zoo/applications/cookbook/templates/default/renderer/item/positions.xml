@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<renderer>
+	<positions layout="full">
+		<position name="top">Top</position>
+		<position name="header">Header</position>
+		<position name="title">Title</position>
+		<position name="infobar">Infobar</position>
+		<position name="media">Media</position>
+		<position name="ingredients">Ingredients</position>
+		<position name="directions">Directions</position>
+		<position name="sidebar">Sidebar</position>
+		<position name="bottom">Bottom</position>
+	</positions>
+	<positions layout="teaser">
+		<position name="title">Title</position>
+		<position name="media">Media</position>
+		<position name="description">Description</position>
+		<position name="infobar">Infobar</position>
+		<position name="links">Links</position>
+	</positions>
+	<positions layout="related">
+		<position name="media">Media</position>
+		<position name="title">Title</position>
+	</positions>
+	<positions layout="feed">
+		<position name="description">Description</position>
+	</positions>
+	<positions layout="submission">
+		<position name="content">Content</position>
+		<position name="media">Media</position>
+		<position name="meta">Meta</position>
+	</positions>
+</renderer>

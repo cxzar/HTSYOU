@@ -1,0 +1,165 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * item
+ */
+
+/* position headings */
+#yoo-zoo .item h3 {
+	margin-top: 0px;
+	font-size: 21px;
+	font-weight: normal;
+}
+
+/* element type: textarea */
+#yoo-zoo .item .element-textarea > * { margin: 0px 0px 10px 0px; }
+#yoo-zoo .item .element-textarea *:last-child { margin-bottom: 0px; }
+
+/* position: top */
+#yoo-zoo .item div.pos-top { overflow: hidden; }
+#yoo-zoo .item div.pos-top .element { margin-bottom: 20px; }
+
+/* position: sidebar */
+#yoo-zoo .item div.pos-sidebar { width: 245px; }
+
+#yoo-zoo .item div.sidebar-left {
+	margin-right: 15px;
+	float: left;
+}
+
+#yoo-zoo .item div.sidebar-right {
+	margin-left: 15px;
+	float: right;
+}
+
+#yoo-zoo .item div.pos-sidebar .element {
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 1px solid #C8C8C8;
+}
+
+/* element type: rating */
+#yoo-zoo .item div.pos-sidebar div.rating { overflow: hidden; }
+#yoo-zoo .item div.pos-sidebar div.rating div.rating-container {
+	margin-right: 10px;
+	float: left;
+}
+#yoo-zoo .item div.pos-sidebar div.rating div.vote-message { line-height: 20px; }
+
+/* element type: image */
+#yoo-zoo .item div.pos-sidebar .element-image {
+	padding: 0px;
+	border: none;
+}
+
+/* element type: related items */
+#yoo-zoo .item div.pos-sidebar .element-relateditems > div {
+	margin-bottom: 5px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #e6e6e6;
+	overflow: hidden;
+}
+#yoo-zoo .item div.pos-sidebar .element-relateditems > div:last-child {
+	border: none;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+/* related item */
+#yoo-zoo .item div.pos-sidebar .element-relateditems div.sub-pos-media {
+	display: inline-block;
+	margin: 0px 10px 0px 0px;
+	vertical-align: middle;
+}
+
+#yoo-zoo .item div.pos-sidebar .element-relateditems div.sub-pos-media > a,
+#yoo-zoo .item div.pos-sidebar .element-relateditems div.sub-pos-media > a > img { display: block; }
+
+#yoo-zoo .item div.pos-sidebar .element-relateditems h4.sub-pos-title {
+	display: inline-block;
+	margin: 0px;
+	font-size: 12px;
+	font-weight: normal;
+	line-height: 12px;
+	color: #323232;
+}
+
+/* title */
+#yoo-zoo .item h1.pos-title {
+	margin: 0px 0px 5px 0px;
+	font-weight: normal;
+	color: #323232;
+	font-size: 30px;
+	line-height: 30px;
+}
+
+/* position: meta */
+#yoo-zoo .item p.pos-meta {
+	margin: 0px 0px 10px 0px;
+	font-style: italic;
+	color: #969696;
+}
+
+/* position: description */
+#yoo-zoo .item div.pos-description {}
+#yoo-zoo .item div.pos-description .element { margin-top: 20px; }
+#yoo-zoo .item div.pos-description .element.first { margin-top: 0px; }
+
+/* position: specification */
+#yoo-zoo .item ul.pos-specification {
+	list-style: none;
+	margin: 20px 0px 0px 0px;
+	padding: 10px 0px 10px 0px;
+	border-top: 1px solid #c8c8c8;
+	border-bottom: 1px solid #c8c8c8;
+	overflow: hidden;
+}
+
+#yoo-zoo .item ul.pos-specification strong {
+	display: inline-block;
+	width: 90px;
+	color: #323232;
+}
+
+/* spoiler warning */
+#yoo-zoo .item p.spoiler {
+	margin-top: 15px;
+	font-weight: bold;
+	color: #323232;
+	font-size: 13px;
+}
+
+#yoo-zoo .item p.spoiler span.warning { color: #c80000; }
+
+/* position: summary */
+#yoo-zoo .item div.pos-summary .element { margin-top: 20px; }
+
+/* position: bottom */
+#yoo-zoo .item div.pos-bottom .element {
+	margin-top: 20px;
+	padding-top: 20px;
+	border-top: 1px solid #c8c8c8;
+	overflow: hidden;
+}
+
+/* element type: gallery */
+#yoo-zoo .item div.pos-bottom .yoo-gallery div.thumbnails {
+	position: relative;
+	left: 50%;
+	float: left;
+}
+
+#yoo-zoo .item div.pos-bottom .yoo-gallery div.thumbnail {
+	position: relative;
+	left: -50%;
+}
+#yoo-zoo .item div.pos-bottom .plain .yoo-gallery div.thumbnail { margin-right: 10px; }
+
+/*
+ * comments
+ */
+ 
+#yoo-zoo div#comments {
+	padding-top: 20px;
+	border-top: 1px solid #c8c8c8;
+}

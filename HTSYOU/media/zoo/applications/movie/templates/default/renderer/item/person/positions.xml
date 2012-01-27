@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<renderer>
+	<positions layout="full">
+		<position name="title">Title</position>
+		<position name="specification">Specification</position>
+		<position name="description">Description</position>
+		<position name="sidebar">Sidebar</position>
+		<position name="movie">Movie</position>
+	</positions>
+	<positions layout="related">
+		<position name="media">Media</position>
+		<position name="title">Title</position>
+	</positions>
+	<positions layout="submission">
+		<position name="content">Content</position>
+	</positions>
+</renderer>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="system" method="upgrade">
+	<name>System - Widgetkit</name>
+	<author>YOOtheme</author>
+	<creationDate>May 2011</creationDate>
+	<copyright>Copyright (C) 2007 - 2011 YOOtheme GmbH</copyright>
+	<license>YOOtheme Proprietary Use License (http://www.yootheme.com/license)</license>
+	<authorEmail>info@yootheme.com</authorEmail>
+	<authorUrl>http://www.yootheme.com</authorUrl>
+	<version>1.0.0</version>
+	<description>Plugin for Widgetkit developed by YOOtheme (http://www.yootheme.com)</description>
+	<files>
+		<filename plugin="widgetkit_system">widgetkit_system.php</filename>
+	</files>
+</extension>

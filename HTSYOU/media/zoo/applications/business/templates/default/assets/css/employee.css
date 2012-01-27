@@ -1,0 +1,95 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * employee
+ */
+
+/* position headings */
+#yoo-zoo .employee h3 {
+	margin-top: 0px;
+	font-size: 21px;
+	font-weight: normal;
+}
+
+/* element type: textarea */
+#yoo-zoo .employee .element-textarea > * { margin: 0px 0px 10px 0px; }
+#yoo-zoo .employee .element-textarea *:last-child { margin-bottom: 0px; }
+
+/* position: sidebar */
+#yoo-zoo .employee div.pos-sidebar { width: 234px; }
+
+#yoo-zoo .employee div.sidebar-left {
+	margin-right: 15px;
+	float: left;
+}
+
+#yoo-zoo .employee div.sidebar-right {
+	margin-left: 15px;
+	float: right;
+}
+
+#yoo-zoo .employee div.pos-sidebar .element {
+	margin-bottom: 20px;
+	padding: 10px;
+	border: 1px solid #D2D3D4;
+}
+#yoo-zoo .employee div.pos-sidebar .element.last { margin-bottom: 0px; }
+
+#yoo-zoo .employee div.pos-sidebar .element h3 { color: #464646; }
+
+/* element type: image */
+#yoo-zoo .employee div.pos-sidebar .element-image {
+	padding: 0px;
+	border: 6px solid #F0F1F2;
+}
+
+#yoo-zoo .employee div.pos-sidebar .element-image > * {
+	display: block;
+	border: 1px solid #D2D3D4;
+	background: #ffffff;
+}
+
+/* title */
+#yoo-zoo .employee h1.pos-title {
+	margin: 0px 0px 5px 0px;
+	font-weight: normal;
+	color: #323232;
+	font-size: 30px;
+	line-height: 30px;
+}
+
+/* position: subtitle */
+#yoo-zoo .employee p.pos-subtitle {
+	margin: 0px;
+	font-size: 14px;
+	line-height: 14px;
+	font-style: italic;
+}
+
+/* position: description */
+#yoo-zoo .employee div.pos-description {}
+#yoo-zoo .employee div.pos-description .element { margin-top: 15px; }
+
+
+/* position: contact */
+#yoo-zoo .employee div.pos-contact { margin-top: 20px; }
+
+#yoo-zoo .employee div.pos-contact ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#yoo-zoo .employee div.pos-contact ul strong {
+	display: inline-block;
+	width: 80px;
+}
+
+/*
+ * comments
+ */
+ 
+#yoo-zoo div#comments {
+	padding-top: 20px;
+	border-top: 1px solid #c8c8c8;
+}

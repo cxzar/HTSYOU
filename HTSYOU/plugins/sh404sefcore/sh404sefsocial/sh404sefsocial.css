@@ -1,0 +1,38 @@
+/**
+ * SEF module for Joomla!
+ *
+ * @author      $Author: shumisha $
+ * @copyright   Yannick Gaultier - 2007-2011
+ * @package     sh404SEF-16
+ * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ * @version     $Id: sh404sefsocial.css 2198 2011-12-08 15:40:07Z silianacom-svn $
+ */
+div.sh404sef-social-buttons {
+	
+}
+
+div.sh404sef-social-buttons iframe {
+	margin-right: 3px;
+	margin-top: 3px;
+}
+
+div.sh404sef-social-buttons li {
+	list-style-type: none;
+	display: inline;
+	position: inherit;
+	bottom: 0px;
+	margin-left: 3px;
+	margin-right: 3px;
+	background: none;
+	padding: 0px;
+}
+
+a.google-page-badge,a.google-page-badge:hover,#main a.google-page-badge:hover
+	{
+	margin-left: 3px;
+	margin-right: 3px;
+	background: none;
+	text-decoration: none;
+	color: #333;
+}
+
