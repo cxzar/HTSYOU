@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: file.json.php 21518 2011-06-10 21:38:12Z chdemko $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -10,7 +9,7 @@ defined('_JEXEC') or die;
 
 jimport('joomla.filesystem.file');
 jimport('joomla.filesystem.folder');
-jimport('joomla.error.log');
+
 /**
  * File Media Controller
  *
@@ -47,7 +46,6 @@ class MediaControllerFile extends JController
 		$return		= JRequest::getVar('return-url', null, 'post', 'base64');
 
 		// Set FTP credentials, if given
-		jimport('joomla.client.helper');
 		JClientHelper::setCredentialsFromRequest('ftp');
 
 		// Make the filename safe

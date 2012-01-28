@@ -205,8 +205,8 @@ class Type {
 	   	  Returns:
 	        Array - Array of submittable element objects
  	*/
-	public function getSubmittableElements($item = null) {
-		return	array_filter($this->getElements($item), create_function('$element', 'return $element instanceof iSubmittable;'));
+	public function getSubmittableElements() {
+		return	array_filter(array_merge($this->getElements(), $this->getCoreElements()), create_function('$element', 'return $element instanceof iSubmittable;'));
 	}
 
 	/*

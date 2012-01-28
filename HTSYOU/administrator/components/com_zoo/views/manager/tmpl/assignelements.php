@@ -32,7 +32,7 @@ $this->app->document->addScript('assets:js/type.js');
 				if (isset($this->positions['positions']) && ($positions = $this->positions['positions']) && count($positions)) {
 					foreach ($positions as $position => $name) {
 						echo '<div class="position">'.$name.'</div>';
-						echo '<ul class="element-list" role="'.$position.'">';
+						echo '<ul class="element-list" data-position="'.$position.'">';
 
 						if ($this->config && isset($this->config[$position])) {
 							$i = 0;
@@ -65,7 +65,7 @@ $this->app->document->addScript('assets:js/type.js');
 		<?php
 			$elements = $this->type->getCoreElements();
 			if ($elements !== false) {
-				echo '<ul class="element-list unassigned core" role="unassigned">';
+				echo '<ul class="element-list unassigned core" data-position="unassigned">';
 				foreach ($elements as $element) {
 
 					// render partial
@@ -87,7 +87,7 @@ $this->app->document->addScript('assets:js/type.js');
 			}
 
 			if ($elements !== false) {
-				echo '<ul class="element-list unassigned" role="unassigned">';
+				echo '<ul class="element-list unassigned" data-position="unassigned">';
 				foreach ($elements as $element) {
 
 					// render partial

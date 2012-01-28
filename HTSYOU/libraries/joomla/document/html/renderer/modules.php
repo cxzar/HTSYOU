@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Document
  *
- * @copyright   Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -21,8 +21,9 @@ class JDocumentRendererModules extends JDocumentRenderer
 	/**
 	 * Renders multiple modules script and returns the results as a string
 	 *
-	 * @param   string  $name    The position of the modules to render
-	 * @param   array   $params  Associative array of values
+	 * @param   string  $position  The position of the modules to render
+	 * @param   array   $params    Associative array of values
+	 * @param   string  $content   Module content
 	 *
 	 * @return  string  The output of the script
 	 *
@@ -30,10 +31,11 @@ class JDocumentRendererModules extends JDocumentRenderer
 	 */
 	public function render($position, $params = array(), $content = null)
 	{
-		$renderer	= $this->_doc->loadRenderer('module');
-		$buffer		= '';
+		$renderer = $this->_doc->loadRenderer('module');
+		$buffer = '';
 
-		foreach (JModuleHelper::getModules($position) as $mod) {
+		foreach (JModuleHelper::getModules($position) as $mod)
+		{
 			$buffer .= $renderer->render($mod, $params, $content);
 		}
 		return $buffer;

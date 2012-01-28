@@ -3,13 +3,11 @@
  * @package     Joomla.Platform
  * @subpackage  Database
  *
- * @copyright   Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
-
-jimport('joomla.database.databasequery');
 
 /**
  * Query Building Class.
@@ -30,20 +28,22 @@ class JDatabaseQueryMySQL extends JDatabaseQuery
 	 *
 	 * @since   11.1
 	 */
-	function concatenate($values, $separator = null)
+	public function concatenate($values, $separator = null)
 	{
-		if ($separator) {
-			$concat_string = 'CONCAT_WS('.$this->quote($separator);
+		if ($separator)
+		{
+			$concat_string = 'CONCAT_WS(' . $this->quote($separator);
 
-			foreach($values as $value)
+			foreach ($values as $value)
 			{
-				$concat_string .= ', '.$value;
+				$concat_string .= ', ' . $value;
 			}
 
-			return $concat_string.')';
+			return $concat_string . ')';
 		}
-		else {
-			return 'CONCAT('.implode(',', $values).')';
+		else
+		{
+			return 'CONCAT(' . implode(',', $values) . ')';
 		}
 	}
 }

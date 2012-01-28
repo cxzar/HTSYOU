@@ -178,7 +178,7 @@ class ZooInstall {
 	protected function _getAdditionalExtensions($app, $installer) {
 
 		// init vars
-		$manifest = $app->xml->loadFile($installer->getPath('manifest'));
+		$manifest = simplexml_load_file($installer->getPath('manifest'));
 		$extensions = array();
 
 		// additional extensions

@@ -47,6 +47,7 @@ $this->app->document->addScript('assets:js/import.js');
 								$options[] = $this->app->html->_('select.option', '_category', JText::_('Category'));
 								$options[] = $this->app->html->_('select.option', '_created_by_alias', JText::_('Author Alias'));
 								$options[] = $this->app->html->_('select.option', '_created', JText::_('Created Date'));
+								$options[] = $this->app->html->_('select.option', '_tag', JText::_('Tag'));
 								$options[] = $this->app->html->_('select.option',  '</OPTGROUP>' );
 
 								$options[] = $this->app->html->_('select.option',  '<OPTGROUP>', JText::_('Elements') );

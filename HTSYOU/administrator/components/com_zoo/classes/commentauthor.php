@@ -40,7 +40,7 @@ class CommentAuthor {
 
 	public function getAvatar($size = 32) {
 		$default = JURI::root().'media/zoo/assets/images/avatar.png';
-		
+
 		if ($this->email) {
 			return '<img title="'.$this->name.'" src="http://www.gravatar.com/avatar/'.md5($this->app->string->strtolower($this->email)).'?s='.$size.'&amp;d='.$default.'" height="'.$size.'" width="'.$size.'" alt="'.$this->name.'" />';
 		} else {
@@ -51,15 +51,15 @@ class CommentAuthor {
 	public function isGuest() {
 		return empty($this->user_id);
 	}
-	
+
 	public function isJoomlaAdmin() {
 		return false;
 	}
-	
+
 	public function getUserType() {
 		return strtolower(str_replace('CommentAuthor', '', get_class($this)));
 	}
-	
+
 }
 
 /*
@@ -91,7 +91,7 @@ class CommentAuthorFacebook extends CommentAuthor {
 
 		if ($this->user_id) {
 
-			$cache 		 = $this->app->cache->create($this->app->path->path('cache:') . 'author_cache.txt', true, 604800);
+			$cache 		 = $this->app->cache->create($this->app->path->path('cache:') . '/author_cache', true, 604800);
 			$cache_check = ($cache) ? $cache->check() : false;
 			$url 		 = '';
 
@@ -119,7 +119,7 @@ class CommentAuthorFacebook extends CommentAuthor {
 		}
 	    return parent::getAvatar($size);
 	}
-	
+
 }
 
 /*
@@ -130,16 +130,16 @@ class CommentAuthorTwitter extends CommentAuthor {
 
 	public function getAvatar($size = 32) {
 		if ($this->user_id) {
-			
-			$cache 		 = $this->app->cache->create($this->app->path->path('cache:') . 'author_cache.txt', true, 604800);
+
+			$cache 		 = $this->app->cache->create($this->app->path->path('cache:') . '/author_cache', true, 604800);
 			$cache_check = ($cache) ? $cache->check() : false;
 			$url 		 = '';
-			
+
 			// try to get avatar url from cache
-			if ($cache_check) { 
+			if ($cache_check) {
 				$url = $cache->get($this->user_id);
 			}
-			
+
 			// if url is empty, try to get avatar url from twitter
 			if (empty($url)) {
 				$info = $this->app->twitter->fields($this->user_id, array('profile_image_url'));
@@ -151,7 +151,7 @@ class CommentAuthorTwitter extends CommentAuthor {
 					$cache->save();
 				}
 			}
-			
+
 			if (!empty($url)) {
 				return '<img alt="'.$this->name.'" title="'.$this->name.'" src="'.$url.'" height="'.$size.'" width="'.$size.'" />';
 			}
@@ -159,5 +159,5 @@ class CommentAuthorTwitter extends CommentAuthor {
 		}
 	    return parent::getAvatar($size);
 	}
-	
+
 }

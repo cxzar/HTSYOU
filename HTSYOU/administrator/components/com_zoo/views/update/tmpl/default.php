@@ -61,6 +61,7 @@ $this->app->document->addScript('assets:js/update.js');
 			<div class="wrapper changelog">
 				<textarea disabled="disabled" rows="20" cols="75" name="changelog"><?php echo JFilterOutput::cleanText(JFile::read($this->app->path->path('component.admin:changelog.php'))); ?></textarea>
 			</div>
+
 		</div>
 
 		<?php else :

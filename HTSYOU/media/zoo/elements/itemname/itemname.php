@@ -10,7 +10,7 @@
 	Class: ElementItemName
 		The item name element class
 */
-class ElementItemName extends Element {
+class ElementItemName extends Element implements iSubmittable {
 
 	/*
 		Function: hasValue
@@ -51,7 +51,7 @@ class ElementItemName extends Element {
 		if (!empty($this->_item)) {
 
 			$params = $this->app->data->create($params);
-			
+
 			if ($params->get('link_to_item', false) && $this->_item->getState()) {
 
 				return '<a title="'.$this->_item->name.'" href="' . $this->app->route->item($this->_item) . '">' . $this->_item->name . '</a>';
@@ -62,6 +62,50 @@ class ElementItemName extends Element {
 
 			}
 		}
+	}
+
+	/*
+		Function: renderSubmission
+			Renders the element in submission.
+
+	   Parameters:
+			$value  - AppData value
+            $params - AppData submission parameters
+
+		Returns:
+			String - html
+	*/
+	public function renderSubmission($params = array()) {
+       return '<input type="text" name="'.$this->getControlName('value').'" size="60" value="'.$this->_item->name.'" />';
+	}
+
+	/*
+		Function: validateSubmission
+			Validates the submitted element
+
+	   Parameters:
+            $value  - AppData value
+            $params - AppData submission parameters
+
+		Returns:
+			Array - cleaned value
+	*/
+	public function validateSubmission($value, $params) {
+		return array('value' => $this->app->validator->create('string', array('required' => $params->get('required')))->clean($value->get('value')));
+	}
+
+	/*
+		Function: bindData
+			Set data through data array.
+
+		Parameters:
+			$data - array
+
+		Returns:
+			Void
+	*/
+	public function bindData($data = array()) {
+		$this->_item->name = @$data['value'];
 	}
 
 }

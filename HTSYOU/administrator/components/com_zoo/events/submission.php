@@ -18,6 +18,12 @@ class SubmissionEvent {
 
 	}
 
+	public static function beforeSave($event) {
+
+		$submission = $event->getSubject();
+
+	}
+
 	public static function saved($event) {
 
 		$submission = $event->getSubject();

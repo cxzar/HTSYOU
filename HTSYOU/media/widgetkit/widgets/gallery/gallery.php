@@ -150,13 +150,26 @@ class GalleryWidgetkitHelper extends WidgetkitHelper {
 
 						// cache image
 						if ($cache && !$this['path']->path($image['cache'])) {
-							$this['image']->create($this['path']->path($image['file']))->output(array('width' => $settings['width'], 'height' => $settings['height'], 'file' => $cache.preg_replace('/^gallery\.cache:/', '', $image['cache'], 1)));
+							
+							if($settings["animated"]=="kenburns" && is_numeric($settings['width']) && is_numeric($settings['height'])){
+								
+								$this['image']->create($this['path']->path($image['file']))->output(array('width' => $settings['width']*1.2, 'height' => $settings['height']*1.2, 'file' => $cache.preg_replace('/^gallery\.cache:/', '', $image['cache'], 1)));
+							}else{
+								
+								$this['image']->create($this['path']->path($image['file']))->output(array('width' => $settings['width'], 'height' => $settings['height'], 'file' => $cache.preg_replace('/^gallery\.cache:/', '', $image['cache'], 1)));
+							}
+
 						}
 						
 						$image['cache_url'] = $this['path']->url($image['cache']);
 
 						if ($p = $this['path']->path($image['cache'])) {
-							list($image['width'], $image['height']) = @getimagesize($p);
+							if(!is_numeric($settings['width']) || !is_numeric($settings['height'])){
+								list($image['width'], $image['height']) = @getimagesize($p);
+							}else{
+								$image['width']  = $settings['width'];
+								$image['height'] = $settings['height'];
+							}
 						}
 
 						array_push($images, $image);

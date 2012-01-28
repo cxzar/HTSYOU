@@ -11,20 +11,10 @@
 .wk-slideshow-tabsbar .nav-container {
 	border: 1px solid #ddd;
 	background: #F5F5F5;
-	background: -moz-linear-gradient(
-					50% 0%,
-					#FAFAFA 0%,
-					#F5F5F5 100%
-				);
-	background: -webkit-gradient( 
-					linear,
-					50% 0%,
-					50% 100%,
-					color-stop(0%, #FAFAFA),
-					color-stop(100%, #F5F5F5)
-				);
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	background: -moz-linear-gradient(top, #FAFAFA 0%, #F5F5F5 100%);
+	background: -webkit-linear-gradient(top, #FAFAFA 0%, #F5F5F5 100%);
+	background: -o-linear-gradient(top, #FAFAFA 0%, #F5F5F5 100%);
+	border-radius: 5px 5px 0 0;
     box-shadow: 0 1px 0 #fff inset;
     text-shadow: 0 1px 0 #fff;
 }
@@ -61,8 +51,7 @@
 	border: 1px solid #ddd;
 	border-top: none;
 	background: #FFF;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-radius: 0 0 5px 5px;
 }
 
 .wk-slideshow-tabsbar .slides > li > article { padding: 15px; }

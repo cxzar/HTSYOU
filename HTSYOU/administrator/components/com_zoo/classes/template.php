@@ -94,7 +94,7 @@ class AppTemplate {
 
 			// parse xml and add global
 			if ($global) {
-				$xml = $this->app->xml->loadFile($file);
+				$xml = simplexml_load_file($file);
 				foreach ($xml->params as $param) {
 					foreach ($param->children() as $element) {
 						$type = (string) $element->attributes()->type;
@@ -165,7 +165,7 @@ class AppTemplate {
 	public function getMetaXML() {
 
 		if (empty($this->_metaxml)) {
-			$this->_metaxml = $this->app->xml->loadFile($this->app->path->path($this->resource . $this->metaxml_file));
+			$this->_metaxml = simplexml_load_file($this->app->path->path($this->resource . $this->metaxml_file));
 		}
 
 		return $this->_metaxml;

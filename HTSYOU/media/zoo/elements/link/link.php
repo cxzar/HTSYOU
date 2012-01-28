@@ -33,7 +33,6 @@ class ElementLink extends ElementRepeatable implements iRepeatSubmittable {
 		return !empty($link);
 	}
 
-
 	/*
 		Function: getText
 			Gets the link text.

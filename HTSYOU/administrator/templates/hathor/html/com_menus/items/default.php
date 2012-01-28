@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: default.php 21744 2011-07-06 08:40:23Z chdemko $
  * @package		Joomla.Administrator
  * @subpackage	Templates.hathor
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */
@@ -187,7 +186,7 @@ $saveOrder 	= ($listOrder == 'a.lft' && $listDirn == 'asc');
 						<?php if ($item->language=='*' || $item->home=='0'):?>
 							<?php echo JHtml::_('jgrid.isdefault', $item->home, $i, 'items.', ($item->language != '*' || !$item->home) && $canChange);?>
 						<?php elseif ($canChange):?>
-							<a href="<?php echo JRoute::_('index.php?option=com_menus&task=items.unsetDefault&cid[]='.$item->id.'&'.JUtility::getToken().'=1');?>">
+							<a href="<?php echo JRoute::_('index.php?option=com_menus&task=items.unsetDefault&cid[]='.$item->id.'&'.JSession::getFormToken().'=1');?>">
 								<?php echo JHtml::_('image', 'mod_languages/'.$item->image.'.gif', $item->language_title, array('title'=>JText::sprintf('COM_MENUS_GRID_UNSET_LANGUAGE', $item->language_title)), true);?>
 							</a>
 						<?php else:?>
@@ -206,7 +205,7 @@ $saveOrder 	= ($listOrder == 'a.lft' && $listDirn == 'asc');
 					<?php if ($item->language==''):?>
 						<?php echo JText::_('JDEFAULT'); ?>
 					<?php elseif ($item->language=='*'):?>
-						<?php echo JText::alt('JALL','language'); ?>
+						<?php echo JText::alt('JALL', 'language'); ?>
 					<?php else:?>
 						<?php echo $item->language_title ? $this->escape($item->language_title) : JText::_('JUNDEFINED'); ?>
 					<?php endif;?>

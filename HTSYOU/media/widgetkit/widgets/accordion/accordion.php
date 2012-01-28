@@ -113,6 +113,13 @@ class AccordionWidgetkitHelper extends WidgetkitHelper {
 		// get style
 		$style = isset($widget->settings['style']) ? $widget->settings['style'] : 'default';
 		
+		// random order
+		if(count($widget->items) && isset($widget->settings['order']) && $widget->settings['order'] =="random") {
+		   $keys = array_keys($widget->items); 
+		   shuffle($keys); 
+		   $widget->items = array_merge(array_flip($keys), $widget->items); 
+		}
+		
         return $this['template']->render("accordion:styles/$style/template", array('widget' => $widget));
 	}
     

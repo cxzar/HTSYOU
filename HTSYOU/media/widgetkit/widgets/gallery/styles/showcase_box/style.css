@@ -6,8 +6,7 @@
 
 
 .wk-gallery-showcasebox .slides-container {
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
+	border-radius: 5px 5px 0 0;
 	overflow: hidden;
 }
 
@@ -44,24 +43,12 @@
 	padding: 0 60px;
 	border: 1px solid #222;
 	background: #555;
-	background: -moz-linear-gradient(
-					50% 0%,
-					#444 0%,
-					#555 7%,
-					#444 100%
-				);
-	background: -webkit-gradient( 
-					linear,
-					50% 0%,
-					50% 100%,
-					color-stop(0%, #444),
-					color-stop(7%, #555),
-					color-stop(100%, #444)
-				);
+	background: -moz-linear-gradient(top, #444 0%, #555 7%, #444 100%);
+	background: -webkit-linear-gradient(top, #444 0%, #555 7%, #444 100%);
+	background: -o-linear-gradient(top, #444 0%, #555 7%, #444 100%);
 	box-shadow: 0 0 20px rgba(0,0,0,0.5) inset,
 				0 0 50px rgba(0,0,0,0.2) inset;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
+	border-radius: 0 0 5px 5px;
 }
 .wk-gallery-showcasebox .wk-slideset.no-buttons > div { padding: 0; }
 
@@ -75,18 +62,9 @@
 	margin: 0 3px;
 	padding: 1px;
 	background: #333;
-	background: -moz-linear-gradient(
-					50% 0%,
-					#333 80%,
-					#222 100%
-				);
-	background: -webkit-gradient( 
-					linear,
-					50% 0%,
-					50% 100%,
-					color-stop(80%, #333),
-					color-stop(100%, #222)
-				);
+	background: -moz-linear-gradient(top, #333 80%, #222 100%);
+	background: -webkit-linear-gradient(top, #333 80%, #222 100%);
+	background: -o-linear-gradient(top, #333 80%, #222 100%);
     border-radius: 5px;
 	cursor: pointer;
 }
@@ -108,35 +86,17 @@
 /* Hover */
 .wk-gallery-showcasebox .wk-slideset .set > li:hover {
 	background: #333;
-	background: -moz-linear-gradient(
-					50% 0%,
-					#333 0%,
-					#222 100%
-				);
-	background: -webkit-gradient( 
-					linear,
-					50% 0%,
-					50% 100%,
-					color-stop(0%, #333),
-					color-stop(100%, #222)
-				);
+	background: -moz-linear-gradient(top, #333 0%, #222 100%);
+	background: -webkit-linear-gradient(top, #333 0%, #222 100%);
+	background: -o-linear-gradient(top, #333 0%, #222 100%);
 	box-shadow: 0 2px 3px rgba(0,0,0,0.3);
 }
 
 .wk-gallery-showcasebox .wk-slideset .set > li:hover > div {
 	background: #666;
-	background: -moz-linear-gradient(
-					50% 0%,
-					#666 0%,
-					#555 100%
-				);
-	background: -webkit-gradient( 
-					linear,
-					50% 0%,
-					50% 100%,
-					color-stop(0%, #666),
-					color-stop(100%, #555)
-				);
+	background: -moz-linear-gradient(top, #666 0%, #555 100%);
+	background: -webkit-linear-gradient(top, #666 0%, #555 100%);
+	background: -o-linear-gradient(top, #666 0%, #555 100%);
 }
 
 .wk-gallery-showcasebox .wk-slideset .set > li:hover > div > img { opacity: 1; }
@@ -144,18 +104,9 @@
 /* Active */
 .wk-gallery-showcasebox .wk-slideset .set > li.active {
 	background: #222;
-	background: -moz-linear-gradient(
-					50% 0%,
-					#111 0%,
-					#222 100%
-				);
-	background: -webkit-gradient( 
-					linear,
-					50% 0%,
-					50% 100%,
-					color-stop(0%, #111),
-					color-stop(100%, #222)
-				);
+	background: -moz-linear-gradient(top, #111 0%, #222 100%);
+	background: -webkit-linear-gradient(top, #111 0%, #222 100%);
+	background: -o-linear-gradient(top, #111 0%, #222 100%);
 	box-shadow: 0 0 1px rgba(255,255,255,0.2);
 }
 

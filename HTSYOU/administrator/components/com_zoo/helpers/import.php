@@ -197,14 +197,6 @@ class ImportHelper extends AppHelper {
 				// store application id
 				$item_obj->application_id = $application->id;
 
-				// store categories
-				$item_obj->categories = array();
-				if (isset($item['categories'])) {
-					foreach ($item['categories'] as $category_alias) {
-						$item_obj->categories[] = $category_alias;
-					}
-				}
-
 				// store tags
 				if (isset($item['tags'])) {
 					$item_obj->setTags($item['tags']);
@@ -249,16 +241,20 @@ class ImportHelper extends AppHelper {
 				$item_objects[$alias] = $item_obj;
 
 				// save item -> category relationship
-				if (!empty($categories) && isset($item['categories'])) {
+				if (isset($item['categories'])) {
 
 					if (isset($item['config']['primary_category']) && isset($categories[$item['config']['primary_category']])) {
 						$item_obj->getParams()->set('config.primary_category', $categories[$item['config']['primary_category']]->id);
+					} else if(isset($item['config']['primary_category']) && $id = $this->app->alias->category->translateAliasToID($item['config']['primary_category'])) {
+						$item_obj->getParams()->set('config.primary_category', $id);
 					}
 
 					$item_categories = array();
 					foreach ($item['categories'] as $category_alias) {
 						if (isset($categories[$category_alias]) || $category_alias == '_root') {
 							$item_categories[] = $category_alias == '_root' ? 0 : (int) $categories[$category_alias]->id;
+						} else if($id = $this->app->alias->category->translateAliasToID($category_alias)) {
+							$item_categories[] = $id;
 						}
 					}
 
@@ -269,6 +265,7 @@ class ImportHelper extends AppHelper {
 
 				// save comments
 				if (isset($item['comments']) && is_array($item['comments'])) {
+					$comments = array();
 					foreach ($item['comments'] as $key => $comment) {
 						$comment_obj = $this->app->object->create('comment');
 						$comment_obj->item_id = $item_obj->id;
@@ -289,12 +286,12 @@ class ImportHelper extends AppHelper {
 							}
 						}
 						$comment_table->save($comment_obj);
-						$item['comments'][$key] = $comment_obj;
+						$comments[$key] = $comment_obj;
 					}
 					// sanatize parent ids
-					foreach ($item['comments'] as $key => $comment) {
-						if ($comment->parent_id && isset($item['comments'][$comment->parent_id])) {
-							$comment->parent_id = $item['comments'][$comment->parent_id]->id;
+					foreach ($comments as $key => $comment) {
+						if ($comment->parent_id && isset($comments[$comment->parent_id])) {
+							$comment->parent_id = $comments[$comment->parent_id]->id;
 							$comment_table->save($comment);
 						}
 					}
@@ -324,6 +321,8 @@ class ImportHelper extends AppHelper {
 					foreach ($relatedcategories as $relatedcategory) {
 						if (isset($categories[$relatedcategory])) {
 							$new_related_categories[] = $categories[$relatedcategory]->id;
+						} else if($id = $this->app->alias->category->translateAliasToID($relatedcategory)) {
+							$new_related_categories[] = $id;
 						}
 					}
 					$element->set('category', $new_related_categories);
@@ -364,7 +363,7 @@ class ImportHelper extends AppHelper {
 		$info['frontpage_count'] = (bool) $data->find('categories._root');
 
 		// get category count
-		$info['category_count'] = max(array(count($data->get('categories')) - ((int) $info['frontpage_count']), 0));
+		$info['category_count'] = max(array(count($data->get('categories', array())) - ((int) $info['frontpage_count']), 0));
 
 		// get types
 		foreach ($application->getTypes() as $type) {
@@ -375,7 +374,7 @@ class ImportHelper extends AppHelper {
 
 		// get item types
 		$info['items'] = array();
-		foreach ($data['items'] as $alias => $item) {
+		foreach ($data->get('items', array()) as $alias => $item) {
 			$group = $item['group'];
 			if (!isset($info['items'][$group])) {
 				$info['items'][$group]['item_count'] = 0;
@@ -490,16 +489,16 @@ class ImportHelper extends AppHelper {
 
 							// store element_data and item name
 							$item_categories = array();
-
+							$tags = array();
 							$elements = $item->getElements();
 							foreach ($assignments as $assignment => $columns) {
 								$column = current($columns);
 								switch ($assignment) {
 									case '_name':
-										$item->name = $data[$column];
+										$item->name = @$data[$column];
 										break;
 									case '_created_by_alias':
-										$item->created_by_alias = $data[$column];
+										$item->created_by_alias = @$data[$column];
 										break;
 									case '_created':
 										if (!empty($data[$column])) {
@@ -509,7 +508,11 @@ class ImportHelper extends AppHelper {
 									default:
 										if (substr($assignment, 0, 9) == '_category') {
 											foreach ($columns as $column) {
-												$item_categories[] = $data[$column];
+												$item_categories[] = @$data[$column];
+											}
+										} else if (substr($assignment, 0, 4) == '_tag') {
+											foreach ($columns as $column) {
+												$tags[] = @$data[$column];
 											}
 										} else if (isset($elements[$assignment])) {
 											switch ($elements[$assignment]->getElementType()) {
@@ -536,21 +539,23 @@ class ImportHelper extends AppHelper {
 													$elements[$assignment]->bindData($element_data);
 													break;
 												case 'gallery':
-													$data[$column] = trim($data[$column], '/\\');
+													$data[$column] = trim(@$data[$column], '/\\');
 													$elements[$assignment]->bindData(array('value' => $data[$column]));
 													break;
 												case 'image':
 												case 'download':
-													$elements[$assignment]->bindData(array('file' => $data[$column]));
+													$elements[$assignment]->bindData(array('file' => @$data[$column]));
 													break;
 												case 'googlemaps':
-													$elements[$assignment]->bindData(array('location' => $data[$column]));
+													$elements[$assignment]->bindData(array('location' => @$data[$column]));
 													break;
 											}
 										}
 										break;
 								}
 							}
+
+							$item->setTags($tags);
 
 							$item->alias = $this->app->string->sluggify($item->name);
 
@@ -571,7 +576,7 @@ class ImportHelper extends AppHelper {
 									$related_categories = array();
 									foreach ($item_categories as $category_name) {
 
-										if (!in_array($category_name, $app_categories)) {
+										if (!empty($category_name) && !in_array($category_name, $app_categories)) {
 
 											$category = $this->app->object->create('Category');
 											$category->application_id = $application->id;

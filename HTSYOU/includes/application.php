@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: application.php 22105 2011-09-20 07:21:50Z chdemko $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -57,11 +56,8 @@ final class JSite extends JApplication
 	{
 		$config = JFactory::getConfig();
 
-		jimport('joomla.language.helper');
-
 		// if a language was specified it has priority
 		// otherwise use user or default language settings
-		jimport('joomla.plugin.helper');
 		JPluginHelper::importPlugin('system', 'languagefilter');
 
 		if (empty($options['language'])) {
@@ -74,7 +70,7 @@ final class JSite extends JApplication
 		if ($this->_language_filter && empty($options['language'])) {
 			// Detect cookie language
 			jimport('joomla.utilities.utility');
-			$lang = JRequest::getString(JUtility::getHash('language'), null ,'cookie');
+			$lang = JRequest::getString(self::getHash('language'), null , 'cookie');
 			// Make sure that the user's language exists
 			if ($lang && JLanguage::exists($lang)) {
 				$options['language'] = $lang;
@@ -108,7 +104,7 @@ final class JSite extends JApplication
 
 		// One last check to make sure we have something
 		if (!JLanguage::exists($options['language'])) {
-			$lang = $config->get('language','en-GB');
+			$lang = $config->get('language', 'en-GB');
 			if (JLanguage::exists($lang)) {
 				$options['language'] = $lang;
 			}
@@ -232,7 +228,7 @@ final class JSite extends JApplication
 				if ($this->getCfg('offline') && !$user->authorise('core.login.offline')) {
 					$uri		= JFactory::getURI();
 					$return		= (string)$uri;
-					$this->setUserState('users.login.form.data',array( 'return' => $return ) );
+					$this->setUserState('users.login.form.data', array( 'return' => $return ) );
 					$file = 'offline';
 					JResponse::setHeader('Status', '503 Service Temporarily Unavailable', 'true');
 				}
@@ -257,7 +253,7 @@ final class JSite extends JApplication
 		$this->triggerEvent('onBeforeRender');
 
 		$caching = false;
-		if ($this->getCfg('caching') && $this->getCfg('caching',2) == 2 && !$user->get('id')) {
+		if ($this->getCfg('caching') && $this->getCfg('caching', 2) == 2 && !$user->get('id')) {
 			$caching = true;
 		}
 
@@ -294,6 +290,7 @@ final class JSite extends JApplication
 	 */
 	public function authorize($itemid)
 	{
+		JLog::add('JSite::authorize() is deprecated. Use JSite::authorise() instead.', JLog::WARNING, 'deprecated');
 		return $this->authorise($itemid);
 	}
 
@@ -313,7 +310,7 @@ final class JSite extends JApplication
 				$uri		= JFactory::getURI();
 				$return		= (string)$uri;
 
-				$this->setUserState('users.login.form.data',array( 'return' => $return ) );
+				$this->setUserState('users.login.form.data', array( 'return' => $return ) );
 
 				$url	= 'index.php?option=com_users&view=login';
 				$url	= JRoute::_($url, false);
@@ -365,6 +362,7 @@ final class JSite extends JApplication
 				$description = $this->getCfg('MetaDesc');
 			}
 			$rights = $this->getCfg('MetaRights');
+			$robots = $this->getCfg('robots');
 			// Lets cascade the parameters if we have menu item parameters
 			if (is_object($menu)) {
 				$temp = new JRegistry;
@@ -376,6 +374,7 @@ final class JSite extends JApplication
 			$params[$hash]->def('page_title', $title);
 			$params[$hash]->def('page_description', $description);
 			$params[$hash]->def('page_rights', $rights);
+			$params[$hash]->def('robots', $robots);
 		}
 
 		return $params[$hash];
@@ -453,7 +452,8 @@ final class JSite extends JApplication
 				$template->params = $registry;
 
 				// Create home element
-				if ($template->home == '1' && !isset($templates[0]) || $this->_language_filter && $template->home == $tag) {
+				//sqlsrv change
+				if ($template->home == 1 && !isset($templates[0]) || $this->_language_filter && $template->home == $tag) {
 					$templates[0] = clone $template;
 				}
 			}

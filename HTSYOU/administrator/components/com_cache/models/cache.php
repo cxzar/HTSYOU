@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: cache.php 21518 2011-06-10 21:38:12Z chdemko $
  * @package		Joomla.Administrator
  * @subpackage	com_cache
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -116,7 +115,6 @@ class CacheModelCache extends JModelList
 			'cachebase'		=> ($this->getState('clientId') == 1) ? JPATH_ADMINISTRATOR . '/cache' : $conf->get('cache_path', JPATH_SITE . '/cache')
 		);
 
-		jimport('joomla.cache.cache');
 		$cache = JCache::getInstance('', $options);
 
 		return $cache;

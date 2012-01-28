@@ -8,13 +8,13 @@
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
-				
+
 // init vars
 $i       = 0;
 $columns = array();
 $column  = 0;
 $row     = 0;
-$rows    = ceil(count($this->items) / $this->params->get('template.items_cols'));
+$rows    = ceil(count($this->items) / $this->params->get('template.items_cols', 1));
 
 // create columns
 foreach($this->items as $item) {
@@ -24,13 +24,13 @@ foreach($this->items as $item) {
 		if ($row >= $rows) {
 			$column++;
 			$row  = 0;
-			$rows = ceil((count($this->items) - $i) / ($this->params->get('template.items_cols') - $column));
+			$rows = ceil((count($this->items) - $i) / ($this->params->get('template.items_cols', 1) - $column));
 		}
 		$row++;
 		$i++;
 	} else {
 		// order across
-		$column = $i++ % $this->params->get('template.items_cols');
+		$column = $i++ % $this->params->get('template.items_cols', 1);
 	}
 
 	if (!isset($columns[$column])) {
@@ -43,7 +43,7 @@ foreach($this->items as $item) {
 // render columns
 $count = count($columns);
 if ($count) {
-	
+
 	echo '<div class="items items-col-'.$count.' grid-block">';
 	for ($j = 0; $j < $count; $j++) {
 		echo '<div class="grid-box width'.intval(100 / $count).'">'.$columns[$j].'</div>';

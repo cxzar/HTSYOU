@@ -6,5 +6,9 @@
 	</fields>
 	<settings>
 		<setting name="width" label="Width" type="text" default="auto" />
+		<setting name="order" label="Order" type="list" default="default">
+            <option value="default">Default</option>
+            <option value="random">Random</option>
+        </setting>
     </settings>
 </style>

@@ -16,7 +16,9 @@ class plgSystemWidgetkit_System extends JPlugin {
 	public function onAfterDispatch() {
 
 		// load widgetkit
-		require_once(JPATH_ADMINISTRATOR.'/components/com_widgetkit/widgetkit.php');
+		if (JFile::exists(JPATH_ADMINISTRATOR.'/components/com_widgetkit/widgetkit.php')) {
+			require_once(JPATH_ADMINISTRATOR.'/components/com_widgetkit/widgetkit.php');
+		}
 
 	}
 

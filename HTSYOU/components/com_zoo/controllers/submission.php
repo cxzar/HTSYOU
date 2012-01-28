@@ -19,7 +19,6 @@ class SubmissionController extends AppController {
     const PAGINATION_LIMIT = 20;
 	const TIME_BETWEEN_PUBLIC_SUBMISSIONS = 300;
 	const EDIT_DATE_FORMAT = '%Y-%m-%d %H:%M:%S';
-	const CALENDAR_DATE_FORMAT = '%Y-%m-%d';
 
     /*
        Variable: submission
@@ -183,7 +182,7 @@ class SubmissionController extends AppController {
         } catch (SubmissionControllerException $e) {
 
             // raise warning on exception
-            $this->app->error->raiseWarning(0, (string) $e);
+            $this->app->error->raiseWarning(0, (string) JText::_($e));
 
         }
     }
@@ -199,33 +198,21 @@ class SubmissionController extends AppController {
                 throw new AppControllerException('You are not allowed to edit this item.');
             }
 
-			// build new form
-			$this->form = $this->app->form->create(array('submission' => $this->submission, 'item' => $this->item, 'elements_config' => $this->elements_config))
-				->setIgnoreErrors(true)
-				->bindItem();
-
-			// bind form from sessions post data
+			// bind data from sessions post data
+			$this->errors = 0;
 			if ($post = unserialize($this->app->system->application->getUserState($this->session_form_key))) {
 
-				// remove form from session
+				// remove post data from session
 				$this->app->system->application->setUserState($this->session_form_key, null);
 
-				// bind post to form
-				$this->form
-					->setIgnoreErrors(false)
-					->bind($post);
+				// bind data
+				$this->errors = $this->_bind($post);
+
 			}
 
-            // build cancel url
+            // build pathway
             if (!empty($this->redirectTo)) {
-                $this->cancel_url = $this->app->route->mysubmissions($this->submission);
-				$text = $this->item->id ? JText::_('Edit Submission') : JText::_('Add Submission');
-				$this->pathway->addItem($text);
-            }
-
-            if ($this->submission->isInTrustedMode()) {
-                // most used tags
-                $this->lists['most_used_tags'] = $this->app->table->tag->getAll($this->application->id, null, null, 'items DESC, a.name ASC', null, 8);
+				$this->pathway->addItem($this->item->id ? JText::_('Edit Submission') : JText::_('Add Submission'));
             }
 
             // display view
@@ -234,7 +221,7 @@ class SubmissionController extends AppController {
         } catch (SubmissionControllerException $e) {
 
             // raise warning on exception
-            $this->app->error->raiseWarning(0, (string) $e);
+            $this->app->error->raiseWarning(0, (string) JText::_($e));
 
         }
 
@@ -246,30 +233,49 @@ class SubmissionController extends AppController {
         $this->app->request->checkToken() or jexit('Invalid Token');
 
         // init vars
-        $post		= $this->app->request->get('post:', 'array');
-		$db		    = $this->app->database;
-		$tzoffset   = $this->app->date->getOffset();
-		$now	    = $this->app->date->create();
-		$now->setOffset($tzoffset);
-		$msg	    = '';
-		$time_valid = true;
+        $post	  = $this->app->request->get('post:', 'array');
+		$db		  = $this->app->database;
+		$now	  = $this->app->date->create('now', $this->app->date->getOffset());
+		$msg	  = '';
 
         try {
 
             $this->_init();
 
-			// is this an item edit?
-			$edit = (bool) $this->item->id;
+			// set default values on new item
+			if (!$edit = (bool) $this->item->id) {
+
+				// set name
+				$this->item->name = JText::_('Submitted Item');
+
+				// set state
+				$this->item->state = 0;
+
+				// set created date
+				$this->item->created		  = $now->toMySQL();
+				$this->item->created_by		  = $this->user->get('id');
+				$this->item->created_by_alias = '';
+
+				// set publish up - publish down
+				$this->item->publish_up   = $now->toMySQL();
+				$this->item->publish_down = $db->getNullDate();
+
+				// set access
+				$this->item->access = $this->app->joomla->getDefaultAccess();
+
+				// set searchable
+				$this->item->searchable = 1;
+
+				// set params
+				$this->item->getParams()
+					->set('config.enable_comments', true)
+					->set('config.primary_category', 0);
+
+			}
 
             // is current user the item owner and does the user have sufficient user rights
             if ($edit && (!$this->item->canAccess($this->user) || $this->item->created_by != $this->user->id)) {
                 throw new AppControllerException('You are not allowed to make changes to this item.');
-            }
-
-            // get default category - only in none trusted mode
-            $categories = array();
-            if (!$this->submission->isInTrustedMode() && ($category = $this->submission->getForm($this->type->id)->get('category'))) {
-                $categories[] = $category;
             }
 
             // get element data from post
@@ -292,54 +298,15 @@ class SubmissionController extends AppController {
 				}
 			}
 
-			// fix publishing dates in trusted mode
-			if ($this->submission->isInTrustedMode()) {
+			$item_name = $this->item->name;
 
-				// set publish up date
-				if (isset($post['publish_up']) && empty($post['publish_up'])) {
-					$post['publish_up'] = $now->toMySQL(true);
-				}
+			$error = $this->_bind($post);
 
-				// set publish down date
-				if (isset($post['publish_down']) && (trim($post['publish_down']) == JText::_('Never') || trim($post['publish_down']) == '')) {
-					$post['publish_down'] = $db->getNullDate();
-				}
-			}
-
-            // sanatize tags
-            if (!isset($post['tags'])) {
-                $post['tags'] = array();
-            }
-
-            // build new item form and bind it with post data
-            $form = $this->app->form->create(array('submission' => $this->submission, 'item' => $this->item, 'elements_config' => $this->elements_config))
-				->bind($post);
-
-			// save item if form is valid
-            if ($form->isValid()) {
-
-                // set name
-				$name_changed = $form->getValue('name') != $this->item->name;
-                $this->item->name = $form->getValue('name');
-
-                // bind elements
-                foreach ($this->elements_config as $data) {
-                    if (($element = $this->item->getElement($data['element'])) && $field = $form->getFormField($data['element'])) {
-                        if ($field_data = $field->hasError() ? $field->getTaintedValue() : $field->getValue()) {
-                            $element->bindData($field_data);
-                        } else {
-                            $element->bindData();
-                        }
-
-                        // perform submission uploads
-                        if ($element instanceof iSubmissionUpload) {
-                            $element->doUpload();
-                        }
-                    }
-                }
+			// save item if it is valid
+            if (!$error) {
 
                 // set alias
-				if (!$edit || $name_changed) {
+				if (!$edit || $item_name != $this->item->name) {
 					$this->item->alias = $this->app->alias->item->getUniqueAlias($this->item->id, $this->app->string->sluggify($this->item->name));
 				}
 
@@ -347,100 +314,32 @@ class SubmissionController extends AppController {
                 $this->item->modified	 = $now->toMySQL();
                 $this->item->modified_by = $this->user->get('id');
 
-				// creating new item
-                if (!$edit) {
-
-					// set created date
-                    $this->item->created		  = $now->toMySQL();
-                    $this->item->created_by		  = $this->user->get('id');
-					$this->item->created_by_alias = '';
-
-					// set publish up - publish down
-					$this->item->publish_up   = $now->toMySQL();
-					$this->item->publish_down = $db->getNullDate();
-
-					// set access
-					$this->item->access = $this->app->joomla->getDefaultAccess();
-
-					// set searchable
-					$this->item->searchable = 1;
-
-					// set params
-					$this->item->getParams()
-						->set('config.enable_comments', true)
-						->set('config.primary_category', 0);
-
-                }
-
-                if ($this->submission->isInTrustedMode()) {
-
-                    // set state
-                    $this->item->state = $form->getValue('state');
-
-					// set state
-                    $this->item->access = $form->getValue('access');
-
-					// set publish up
-					if (($this->item->publish_up = $form->getValue('publish_up')) && !empty($this->item->publish_up)) {
-						$this->item->publish_up = $this->app->date->create($this->item->publish_up, $tzoffset)->toMySQL();
+				// enforce time limit on submissions
+				if (!$edit && !$this->submission->isInTrustedMode()) {
+					$timestamp = time();
+					if ($timestamp < $this->app->system->session->get('ZOO_LAST_SUBMISSION_TIMESTAMP') + SubmissionController::TIME_BETWEEN_PUBLIC_SUBMISSIONS) {
+						$this->app->system->application->setUserState($this->session_form_key, serialize($post));
+						throw new SubmissionControllerException('You are submitting too fast, please try again in a few moments.');
 					}
-
-					// set publish down
-					if (($this->item->publish_down = $form->getValue('publish_down')) && !empty($this->item->publish_down) && !($this->item->publish_down == $db->getNullDate())) {
-						$this->item->publish_down = $this->app->date->create($this->item->publish_down, $tzoffset)->toMySQL();
-					}
-
-                    // set searchable
-                    $this->item->searchable = $form->getValue('searchable');
-
-                    // set comments enabled
-                    $this->item->getParams()
-                        ->set('config.enable_comments', $form->getValue('enable_comments'));
-
-                    // set frontpage
-                    if ($form->getValue('frontpage')) {
-                        $categories[] = 0;
-                    }
-
-                    // set categories
-					$tmp_categories = $form->getValue('categories');
-					if (!empty($tmp_categories)) {
-						foreach ($form->getValue('categories') as $category) {
-							$categories[] = $category;
-						}
-					}
-
-                    // set tags
-                    $tags = $form->hasError('tags') ? $form->getTaintedValue('tags') : $form->getValue('tags');
-                    $this->item->setTags($tags);
-
-                } else {
-
-					// spam protection - user may only submit items every SubmissionController::TIME_BETWEEN_PUBLIC_SUBMISSIONS seconds
-					if (!$edit) {
-						$timestamp = $this->app->system->session->get('ZOO_LAST_SUBMISSION_TIMESTAMP');
-						$now = time();
-						if ($now < $timestamp + SubmissionController::TIME_BETWEEN_PUBLIC_SUBMISSIONS) {
-
-							$this->app->system->application->setUserState($this->session_form_key, serialize($post));
-							$time_valid = false;
-
-							throw new SubmissionControllerException('You are submitting too fast, please try again in a few moments.');
-						}
-						$this->app->system->session->set('ZOO_LAST_SUBMISSION_TIMESTAMP', $now);
-					}
-
-					// set state
-					$this->item->state = 0;
-
+					$this->app->system->session->set('ZOO_LAST_SUBMISSION_TIMESTAMP', $timestamp);
 				}
+
+				// deprecated as of version 2.5.7 call to doUpload, use before save event instead
+				foreach ($this->elements_config as $element) {
+					if (($element = $this->item->getElement($element['element'])) && $element instanceof iSubmissionUpload) {
+						$element->doUpload();
+					}
+				}
+
+				// trigger before save event
+				$this->app->event->dispatcher->notify($this->app->event->create($this->submission, 'submission:beforesave', array('item' => $this->item, 'new' => !$edit)));
 
                 // save item
                 $this->app->table->item->save($this->item);
 
-                // save category relations - only if editing in trusted mode
-				if (!$edit || $this->submission->isInTrustedMode()) {
-					$this->app->category->saveCategoryItemRelations($this->item->id, $categories);
+                // save to default category
+				if (!$edit && ($category = $this->submission->getForm($this->type->id)->get('category'))) {
+					$this->app->category->saveCategoryItemRelations($this->item->id, array($category));
 				}
 
                 // set redirect message
@@ -449,7 +348,7 @@ class SubmissionController extends AppController {
 				// trigger saved event
 				$this->app->event->dispatcher->notify($this->app->event->create($this->submission, 'submission:saved', array('item' => $this->item, 'new' => !$edit)));
 
-			// add form to session if form is not valid
+			// add post data to session if form is not valid
             } else {
 
 				$this->app->system->application->setUserState($this->session_form_key, serialize($post));
@@ -458,10 +357,14 @@ class SubmissionController extends AppController {
 
         } catch (SubmissionControllerException $e) {
 
+			$error = true;
+
             // raise warning on exception
-            $this->app->error->raiseWarning(0, (string) $e);
+            $this->app->error->raiseWarning(0, (string) JText::_($e));
 
         } catch (AppException $e) {
+
+			$error = true;
 
             // raise warning on exception
             $this->app->error->raiseWarning(0, JText::_('There was an error saving your submission, please try again later.'));
@@ -474,8 +377,7 @@ class SubmissionController extends AppController {
         }
 
         // redirect to mysubmissions
-		$link = '';
-        if ($this->redirectTo == 'mysubmissions' && $form && $form->isValid() && $time_valid) {
+        if ($this->redirectTo == 'mysubmissions' && !$error) {
             $link = $this->app->route->mysubmissions($this->submission);
         // redirect to edit form
         } else {
@@ -523,7 +425,7 @@ class SubmissionController extends AppController {
 
             // add exception details, for super administrators only
             if ($this->user->superadmin) {
-                $this->app->error->raiseWarning(0, (string) $e);
+                $this->app->error->raiseWarning(0, (string) JText::_($e));
             }
 
 		}
@@ -531,14 +433,6 @@ class SubmissionController extends AppController {
         $this->setRedirect(JRoute::_($this->app->route->mysubmissions($this->submission), false), $msg);
 
     }
-
-	public function loadtags() {
-
-		// get request vars
-		$tag = $this->app->request->getString('tag', '');
-
-		echo $this->app->tag->loadTags($this->application->id, $tag);
-	}
 
     protected function _checkConfig() {
 
@@ -558,8 +452,8 @@ class SubmissionController extends AppController {
     protected function _init() {
 
         //init vars
-        $type_id        = $this->app->request->getCmd('type_id');
-        $hash           = $this->app->request->getCmd('submission_hash');
+        $type_id          = $this->app->request->getCmd('type_id');
+        $hash             = $this->app->request->getCmd('submission_hash');
         $this->redirectTo = $this->app->request->getString('redirect');
 
         // check config
@@ -616,15 +510,7 @@ class SubmissionController extends AppController {
         $this->elements_config = array();
         foreach ($positions as $position) {
             foreach ($position as $element) {
-				if ($element_obj = $this->type->getElement($element['element'])) {
-					if (!$this->submission->isInTrustedMode()) {
-						if ($element_obj->getMetaData('trusted') == 'true') {
-							continue;
-						}
-					}
-
-					$this->elements_config[$element['element']] = $element;
-				}
+				$this->elements_config[$element['element']] = $element;
             }
         }
 
@@ -642,6 +528,34 @@ class SubmissionController extends AppController {
         }
 
     }
+
+	protected function _bind($post = array()) {
+		$errors = 0;
+		foreach ($this->elements_config as $element_data) {
+
+			try {
+
+				if (($element = $this->item->getElement($element_data['element']))) {
+
+					// get params
+					$params = $this->app->data->create(array_merge(array('trusted_mode' => $this->submission->isInTrustedMode()), $element_data));
+
+					$element->bindData($element->validateSubmission($this->app->data->create(@$post[$element->identifier]), $params));
+				}
+
+			} catch (AppValidatorException $e) {
+
+				if (isset($element)) {
+					$element->error = $e;
+					$element->bindData(@$post[$element->identifier]);
+				}
+
+				$errors++;
+			}
+
+		}
+		return $errors;
+	}
 
 }
 

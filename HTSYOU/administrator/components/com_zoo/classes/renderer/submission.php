@@ -13,7 +13,7 @@
 class SubmissionRenderer extends PositionRenderer {
 
 	protected $_item;
-    protected $_form;
+	protected $_submission;
 
 	/*
 		Function: render
@@ -28,9 +28,9 @@ class SubmissionRenderer extends PositionRenderer {
 	*/
 	public function render($layout, $args = array()) {
 
-        // set form
-		$this->_form = isset($args['form']) ? $args['form'] : null;
-		$this->_item = $this->_form->getItem();
+        // init vars
+		$this->_item = isset($args['item']) ? $args['item'] : null;
+		$this->_submission = isset($args['submission']) ? $args['submission'] : null;
 
 		return parent::render($layout, $args);
 
@@ -48,17 +48,7 @@ class SubmissionRenderer extends PositionRenderer {
 	*/
 	public function checkPosition($position) {
 		$data_array = $this->_getConfigPosition($position);
-		if (!$this->_form->getSubmission()->isInTrustedMode()) {
-			foreach($data_array as $data) {
-				if ($element = $this->_form->getItem()->getElement($data['element'])) {
-					if ($element->getMetaData('trusted') != 'true') {
-						return true;
-					}
-				}
-			}
-			return false;
-		}
-		return (bool) count($data_array);
+		return (bool) count((array) $data_array);
 	}
 
 	/* @deprecated as of version 2.5 beta use checkPosition instead */
@@ -82,56 +72,40 @@ class SubmissionRenderer extends PositionRenderer {
 		// init vars
 		$elements = array();
 		$output   = array();
-        $trusted_mode = !$this->app->user->get()->guest && $this->_form->getSubmission()->isInTrustedMode();
-		$show_tooltip = $this->_form->getSubmission()->showTooltip();
+        $trusted_mode = !$this->app->user->get()->guest && $this->_submission->isInTrustedMode();
+		$show_tooltip = $this->_submission->showTooltip();
 
 		// get style
-		$style = isset($args['style']) ? $args['style'] : 'default';
+		$style = isset($args['style']) ? $args['style'] : 'submission.block';
 
 		// store layout
 		$layout = $this->_layout;
 
 		// render elements
         foreach ($this->_getConfigPosition($position) as $data) {
-            if (($element = $this->_form->getItem()->getElement($data['element'])) && $field = $this->_form->getFormField($data['element'])) {
+            if (($element = $this->_item->getElement($data['element']))) {
 
 				if (!$element->canAccess()) {
 					continue;
 				}
 
-                if (!$trusted_mode && $element->getMetaData('trusted') == 'true') {
-                    continue;
-                }
-
-                // bind field data to elements
-                if ($field_data = $field->hasError() ? $field->getTaintedValue() : $field->getValue()) {
-
-					if (!$trusted_mode) {
-						$field_data = $this->app->submission->filterData($field_data);
-					}
-
-                    $element->bindData($field_data);
-                } else {
-                    $element->bindData();
-                }
-
                 // set params
                 $params = array_merge((array) $data, $args);
 
                 // check value
-                $elements[] = compact('element', 'params', 'field');
+                $elements[] = compact('element', 'params');
             }
         }
 
         foreach ($elements as $i => $data) {
-            $params   = array_merge(array('first' => ($i == 0), 'last' => ($i == count($elements)-1)), compact('trusted_mode', 'show_tooltip'), $data['params']);
+            $params = array_merge(array('first' => ($i == 0), 'last' => ($i == count($elements)-1)), compact('trusted_mode', 'show_tooltip'), $data['params']);
 
 			// trigger elements beforedisplay event
 			$render = true;
 			$this->app->event->dispatcher->notify($this->app->event->create($this->_item, 'element:beforesubmissiondisplay', array('render' => &$render, 'element' => $data['element'], 'params' => $params)));
 
 			if ($render) {
-				$output[$i] = parent::render("element.$style", array('element' => $data['element'], 'field' => $data['field'], 'params' => $params));
+				$output[$i] = parent::render("element.$style", array('element' => $data['element'], 'params' => $params));
 
 				// trigger elements afterdisplay event
 				$this->app->event->dispatcher->notify($this->app->event->create($this->_item, 'element:aftersubmissiondisplay', array('html' => &$output[$i], 'element' => $data['element'], 'params' => $params)));
@@ -152,7 +126,6 @@ class SubmissionRenderer extends PositionRenderer {
 
     protected function _getConfigPosition($position) {
 		$config	= $this->getConfig('item')->get($this->_item->getApplication()->getGroup().'.'.$this->_item->getType()->id.'.'.$this->_layout);
-
         return $config && isset($config[$position]) ? $config[$position] : array();
     }
 

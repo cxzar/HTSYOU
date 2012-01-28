@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: search.php 22359 2011-11-07 16:31:03Z github_bot $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -118,7 +117,7 @@ class SearchHelper
 		$params = JComponentHelper::getParams('com_search');
 		$enable_log_searches = $params->get('enabled');
 
-		$search_term = $db->getEscaped(trim($search_term));
+		$search_term = $db->escape(trim($search_term));
 
 		if (@$enable_log_searches)
 		{

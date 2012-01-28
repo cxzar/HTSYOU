@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: registration.php 22355 2011-11-07 05:11:58Z github_bot $
  * @package		Joomla.Site
  * @subpackage	com_users
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -128,7 +127,7 @@ class UsersControllerRegistration extends UsersController
 
 			// Push up to three validation messages out to the user.
 			for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++) {
-				if (JError::isError($errors[$i])) {
+				if ($errors[$i] instanceof Exception) {
 					$app->enqueueMessage($errors[$i]->getMessage(), 'warning');
 				} else {
 					$app->enqueueMessage($errors[$i], 'warning');

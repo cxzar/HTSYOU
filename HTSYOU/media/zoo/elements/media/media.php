@@ -95,7 +95,7 @@ class ElementMedia extends ElementFile implements iSubmittable {
 
 		if ($format = $this->getVideoFormat($source)) {
 
-			$width = $width && $format != 'mp3' ?  ' width="'.$width.'"' : '';
+			$width = $width ? ' width="'.$width.'"' : '';
 			$height = $height && $format != 'mp3' ?  ' height="'.$height.'"' : '';
 
 			switch ($format) {
@@ -143,8 +143,9 @@ class ElementMedia extends ElementFile implements iSubmittable {
 
 					$autoplay = $autoplay ? ' autoplay="autoplay"' : '';
 					$tag	  = $format == 'mp3' ? 'audio' : 'video';
+					$type	  = $format == 'mp3' ? ' type="audio/mp3"' : '';
 
-					return '<'.$tag.' src="'.$source.'"'.$width.$height.$autoplay.'></'.$tag.'>';
+					return '<'.$tag.' src="'.$source.'"'.$width.$height.$autoplay.$type.'></'.$tag.'>';
 
 			}
 

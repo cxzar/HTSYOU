@@ -185,10 +185,10 @@ abstract class ElementRepeatable extends Element implements Countable, SeekableI
 
 		// render layout
 		if ($layout = $this->getLayout()) {
-			return $this->renderLayout($layout, array('value' => $this->get('value')));
+			return $this->renderLayout($layout, array('value' => $this->get('value', $this->config->get('default'))));
 		}
 
-		return $this->get('value');
+		return $this->get('value', $this->config->get('default'));
 	}
 
 	/*

@@ -22,7 +22,8 @@ class FacebookHelper extends AppHelper {
 	public function client() {
 
 		// get comment params
-		$params = $this->app->parameter->create($this->app->zoo->getApplication()->getParams()->get('global.comments.'));
+		$application = $this->app->zoo->getApplication();
+		$params = $this->app->parameter->create()->loadArray($application ? $application->getParams()->get('global.comments.') : array());
 
 		if (!function_exists('curl_init')) {
 			return null;

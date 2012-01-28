@@ -226,11 +226,6 @@ class CommentController extends AppController {
 			throw new CommentControllerException('Related item does not exists.');
 		}
 
-		// check if content is empty
-		if (empty($comment->content)) {
-			throw new CommentControllerException('Please enter a comment.');
-		}
-
 		// only registered users can comment
 		if ($registered && $this->author->isGuest()) {
 			throw new CommentControllerException('LOGIN_TO_LEAVE_OMMENT');
@@ -253,6 +248,11 @@ class CommentController extends AppController {
 			$this->app->validator->create('url')->addOption('required', false)->clean($comment->url);
 		} catch (AppValidatorException $e) {
 			throw new CommentControllerException('Please enter a valid website link.');
+		}
+
+		// check if content is empty
+		if (empty($comment->content)) {
+			throw new CommentControllerException('Please enter a comment.');
 		}
 
 		// check quick multiple posts
@@ -406,6 +406,7 @@ class CommentController extends AppController {
 			} else {
 				// show notification if something went wrong.
 				$this->app->error->raiseWarning(0, JText::_('ERROR_CONNECT_TWITTER'));
+
 			}
 		}
 

@@ -24,4 +24,4 @@
 	
 	$width = $settings['width'] == "auto" ? "100%": $settings['width']."px";
 ?>
-<div id="map-<?php echo $widget_id; ?>" class="wk-map wk-map-default" style="height: <?php echo $settings['height']; ?>px; width:<?php echo $width; ?>;" data-widgetkit="googlemaps" data-options='<?php echo json_encode(array_merge($init, $settings, array("adresses"=>$adresses))); ?>'></div>
+<div id="map-<?php echo $widget_id; ?>" class="wk-map wk-map-default" style="height: <?php echo $settings['height']; ?>px; width:<?php echo $width; ?>;" data-widgetkit="googlemaps" data-options='<?php echo str_replace("'","\u0027",json_encode(array_merge($init, $settings, array("adresses"=>$adresses)))); ?>'></div>

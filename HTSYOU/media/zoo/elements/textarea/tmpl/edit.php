@@ -16,7 +16,7 @@ defined('_JEXEC') or die('Restricted access');
 
 	<?php foreach($this as $self) : ?>
 		<li class="repeatable-element">
-			<?php echo $this->_addEditor($this->index(), $this->get('value'), $params->get('trusted_mode', false)); ?>
+			<?php echo $this->_addEditor($this->index(), $this->get('value', $this->config->get('default')), $params->get('trusted_mode', false)); ?>
 		</li>
 	<?php endforeach; ?>
 

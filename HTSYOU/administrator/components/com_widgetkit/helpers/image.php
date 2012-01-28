@@ -61,7 +61,33 @@ class ImageWidgetkitHelper extends WidgetkitHelper {
 		}
 		
 		return true;
-    } 
+    }
+    
+	/*
+		Function: prepareLazyload
+			Prepare Html images for lazy loading
+
+		Returns:
+			String
+	*/
+	public function prepareLazyload($content) {
+		
+		if (stripos($content, '<img') !== false) {
+			
+			$imgs_regex = '#<img[^>]+>#im';
+            preg_match_all($imgs_regex, $content, $images);
+
+            foreach($images as $img){ $img = $img[0];
+
+            	preg_match('/src=["|\']([^"]*)["|\']/i',$img, $src);
+
+            	$tmp_img = str_replace($src[0], 'src="data:image/gif;base64,R0lGODlhAQABAJEAAAAAAP///////wAAACH5BAEHAAIALAAAAAABAAEAAAICVAEAOw==" data-'.$src[0], $img);
+            	$content = str_replace($img, $tmp_img, $content);
+            }
+        }
+
+		return $content;
+	}
 
 }
 

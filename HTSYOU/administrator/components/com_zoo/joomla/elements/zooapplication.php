@@ -56,7 +56,7 @@ class JElementZooApplication extends JElement {
 
 			// create category select
 			if ($node->attributes('categories') || @$node->attributes()->categories) {
-				$attribs = 'class="category app-'.$application->id.($value != $application->id ? ' hidden' : null).'" role="'.$control_name.'[category]"';
+				$attribs = 'class="category app-'.$application->id.($value != $application->id ? ' hidden' : null).'" data-category="'.$control_name.'[category]"';
 				$opts    = $node->attributes('frontpage') || @$node->attributes()->frontpage ? array($app->html->_('select.option', '', '&#8226;	'.JText::_('Frontpage'))) : array();
 				$cats[]  = $app->html->_('zoo.categorylist', $application, $opts, ($value == $application->id ? $control_name.'[category]' : null), $attribs, 'value', 'text', $params->get('category'));
 			}
@@ -69,7 +69,7 @@ class JElementZooApplication extends JElement {
 					$opts[] = $app->html->_('select.option', $type->id, $type->name);
 				}
 
-				$attribs = 'class="type app-'.$application->id.($value != $application->id ? ' hidden' : null).'" role="'.$control_name.'[type]"';
+				$attribs = 'class="type app-'.$application->id.($value != $application->id ? ' hidden' : null).'" data-type="'.$control_name.'[type]"';
 				$types[] = $app->html->_('select.genericlist', $opts, $control_name.'[type]', $attribs, 'value', 'text', $params->get('type'));
 			}
 		}

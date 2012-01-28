@@ -14,6 +14,7 @@
 		$nav[] = '<li><span></span></li>';
 	}
 
+	$i = 0;
 ?>
 
 <div id="showcase-<?php echo $widget_id; ?>" class="wk-slideshow-showcasebox" data-widgetkit="showcase" data-options='<?php echo json_encode($settings); ?>'>
@@ -22,9 +23,14 @@
 		<div class="slides-container">
 			<ul class="slides">
 				<?php foreach ($widget->items as $key => $item) : ?>
+				<?php 
+					/* Lazy Loading */
+					$item["content"] = ($i==$settings['index']) ? $item["content"] : $this['image']->prepareLazyload($item["content"]);
+				?>
 				<li>
 					<article class="wk-content clearfix"><?php echo $item['content']; ?></article>
 				</li>
+				<?php $i=$i+1;?>
 				<?php endforeach; ?>
 			</ul>
 			<?php if ($settings['buttons']): ?><div class="next"></div><div class="prev"></div><?php endif; ?>

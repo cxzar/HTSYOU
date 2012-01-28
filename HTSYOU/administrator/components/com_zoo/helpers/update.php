@@ -135,10 +135,8 @@ class UpdateHelper extends AppHelper {
 						// set current version
 						$version_string = $version;
 						if (!$required = count($updates) > 1) {
-							foreach ($this->app->path->files('component.admin:', false, '/\.xml$/') as $file) {
-								if (($xml = $this->app->xml->loadFile($this->app->path->path('component.admin:'.$file))) && (string) $xml->name == 'ZOO') {
-									$version_string = (string) $xml->version;
-								}
+							if (($xml = simplexml_load_file($this->app->path->path('component.admin:zoo.xml'))) && (string) $xml->name == 'ZOO') {
+								$version_string = (string) $xml->version;
 							}
 						}
 						$this->setVersion($version);
@@ -246,7 +244,7 @@ class UpdateHelper extends AppHelper {
 	public function available() {
 
 		// check for updates
-		if($xml = $this->app->xml->loadFile($this->app->path->path('component.admin:zoo.xml'))){
+		if($xml = simplexml_load_file($this->app->path->path('component.admin:zoo.xml'))){
 
 			// update check
 			if ($url = current($xml->xpath('//updateUrl'))) {

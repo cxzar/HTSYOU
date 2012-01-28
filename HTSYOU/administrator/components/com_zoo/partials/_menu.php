@@ -88,7 +88,7 @@ class ZooMenuFilter {
 		$app = App::getInstance('zoo');
 
 		if ($item->getId() == 'manager') {
-			if ($xml = $app->xml->loadFile($app->path->path('component.admin:zoo.xml'))) {
+			if (($xml = simplexml_load_file($app->path->path('component.admin:zoo.xml'))) && ((string) $xml->name == 'ZOO') || (string) $xml->name == 'com_zoo') {
 				$item->setAttribute('data-zooversion', current($xml->xpath('//version')));
 			}
 		}

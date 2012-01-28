@@ -31,6 +31,7 @@
 			<option value="puzzle">Puzzle</option>
 			<option value="boxes">Boxes</option>
 			<option value="boxesRtl">BoxesRtl</option>
+			<option value="kenburns">KenBurns</option>
 			<option value="randomSimple">RandomSimple</option>
 			<option value="randomFx">RandomFx</option>
 		</setting>
@@ -39,6 +40,7 @@
 			<option value="slide">Slide</option>
 			<option value="zoom">Zoom</option>
 			<option value="deck">Deck</option>
+			<option value="drops">Drops</option>
         </setting>
 		<setting name="slideset_buttons" label="Slideset Buttons" type="radio" default="1">
 			<option value="1">Show</option>

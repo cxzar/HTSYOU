@@ -28,4 +28,10 @@
 			<option name="Warp Item"><![CDATA[tag=[<article class="item">%s</article>]]]></option>
 		</param>
 	</params>
+    <params group="submission">
+		<param name="multiple" type="radio" default="1" label="Multiple" description="Allow users to select multiple categories">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</param>
+	</params>
 </element>

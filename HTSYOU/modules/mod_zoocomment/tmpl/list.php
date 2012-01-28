@@ -50,7 +50,7 @@ $zoo->document->addStylesheet('mod_zoocomment:tmpl/list/style.css');
 			</p>
 			<?php endif; ?>
 
-			<div class="content"><?php echo $zoo->comment->filterContentOutput($zoo->string->truncate($comment->content, CommentModuleHelper::MAX_CHARACTERS)); ?></div>
+			<div class="content"><p><?php echo $zoo->comment->filterContentOutput($zoo->string->truncate($comment->content, $zoo->get('commentsmodule.max_characters'))); ?></p></div>
 
 		</article>
 

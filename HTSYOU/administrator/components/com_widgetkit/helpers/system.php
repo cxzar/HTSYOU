@@ -115,6 +115,36 @@ class SystemWidgetkitHelper extends WidgetkitHelper {
 
 			// add assets
 			$this['template']->render('assets');
+
+			// check for updates
+			if($xmlpath = $this['path']->path('widgetkit:widgetkit.xml')){
+			
+				$xml = $this['dom']->create($xmlpath, 'xml');
+
+				// update check
+				if ($url = $xml->first('updateUrl')->text()) {
+
+					// create check url
+					$url = sprintf('%s?application=%s&version=%s&format=raw', $url, 'widgetkit_j17', urlencode($xml->first('version')->text()));
+
+					// only check once a day
+					$hash = md5($url.date('Y-m-d'));
+					if ($this['option']->get("update_check") != $hash) {
+						if ($request = $this['http']->get($url)) {
+							$this['option']->set("update_check", $hash);
+							$this['option']->set("update_data", $request['body']);
+						}
+					}
+
+					// decode response and set message
+					if (($data = json_decode($this['option']->get("update_data"))) && $data->status == 'update-available') {
+						$this->application->enqueueMessage($data->message, 'notice');
+					}
+
+				}
+				
+			}
+
 		}
 
 		// is site ?
@@ -223,16 +253,20 @@ class SystemWidgetkitHelper extends WidgetkitHelper {
 	*/
 	public function _applycontentplugins(&$text) {
 		
+		jimport('joomla.html.parameter');
+
 		if(!class_exists("plgContentWidgetkit_Content")) {
 			JPluginHelper::importPlugin('content');
 		}
 
-		$params        = null;
+		$params        = new JParameter();
 		$article       = new stdClass();
 		$wkplugin      = new plgContentWidgetkit_Content(JDispatcher::getInstance());
 		$posplugin     = new plgContentLoadmodule(JDispatcher::getInstance());
 		$article->text = $text;
-
+		
+		$posplugin->params  = $params;
+		
 		$posplugin->onContentPrepare('widgetkit', $article, $params, 0);
 		$wkplugin->onContentPrepare('widgetkit', $article, $params, 0);
 

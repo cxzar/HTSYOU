@@ -1,9 +1,8 @@
 <?php
 /**
- * version $Id: view.html.php 21946 2011-08-03 16:15:35Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	com_newsfeeds
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

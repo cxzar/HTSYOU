@@ -31,8 +31,8 @@ class TypeHelper extends AppHelper {
 			$resource = $type->getApplication()->getResource() .'types/';
 
 			$i = 2;
-			while ($this->app->path->path($resource.$tmp_identifier.'.xml')) {
-				$tmp_identifier = $type->identifier . '-' . $i;
+			while ($this->app->path->path($resource.$tmp_identifier.'.config')) {
+				$tmp_identifier = $type->identifier . '-' . $i++;
 			}
 			$type->identifier = $tmp_identifier;
 		}

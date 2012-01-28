@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 22355 2011-11-07 05:11:58Z github_bot $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -38,7 +37,17 @@ class ModulesViewModules extends JView
 			return false;
 		}
 
+		// Check if there are no matching items
+		if(!count($this->items)){
+			JFactory::getApplication()->enqueueMessage(
+				JText::_('COM_MODULES_MSG_MANAGE_NO_MODULES')
+				, 'warning'
+			);
+		}
+
 		$this->addToolbar();
+		// Include the component HTML helpers.
+		JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 		parent::display($tpl);
 	}
 

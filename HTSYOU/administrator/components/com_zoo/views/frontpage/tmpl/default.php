@@ -30,7 +30,7 @@ JFilterOutput::objectHTMLSafe($this->application, ENT_QUOTES, array('params'));
 			<div>
 				<?php
 					// parameters : areaname, content, width, height, cols, rows, show xtd buttons
-					echo $this->app->system->editor->display('description', $this->application->description, null, null, '60', '20', array('pagebreak', 'readmore', 'article')) ;
+					echo $this->app->system->editor->display('description', $this->application->description, null, null, '60', '20', array('pagebreak', 'readmore', 'article'));
 				?>
 			</div>
 		</div>

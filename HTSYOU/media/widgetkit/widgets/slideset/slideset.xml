@@ -8,6 +8,7 @@
             <option value="slide">Slide</option>
             <option value="zoom">Zoom</option>
             <option value="deck">Deck</option>
+            <option value="drops">Drops</option>
         </setting>
         <setting name="index" label="Start Index" type="text" default="0" />
         <setting name="autoplay" label="Autoplay" type="radio" default="1">

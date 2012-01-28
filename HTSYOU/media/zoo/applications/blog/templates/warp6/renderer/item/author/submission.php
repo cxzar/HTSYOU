@@ -12,18 +12,19 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 
 <fieldset class="pos-content creation-form">
-	<legend><?php echo $form->getItem()->getType()->name; ?></legend>
-	
-	<div class="element element-name required <?php echo ($form->hasError('name') ? 'error' : ''); ?>">
-		<strong><?php echo JText::_('Name'); ?></strong>
-		<input type="text" name="name" size="60" value="<?php echo $form->getTaintedValue('name'); ?>" />
-		<?php if ($form->hasError('name')) : ?>
-			<div class="error-message"><?php echo $form->getError('name'); ?></div>
-		<?php endif; ?>
-	</div>
-	
+	<legend><?php echo $item->getType()->name; ?></legend>
+
 	<?php if ($this->checkPosition('content')) : ?>
 	<?php echo $this->renderPosition('content', array('style' => 'submission.block')); ?>
 	<?php endif; ?>
-	
+
 </fieldset>
+
+<?php if ($this->checkPosition('administration')) : ?>
+<fieldset class="pos-administration creation-form">
+	<legend><?php echo JText::_('Administration'); ?></legend>
+
+	<?php echo $this->renderPosition('administration', array('style' => 'submission.block')); ?>
+
+</fieldset>
+<?php endif; ?>

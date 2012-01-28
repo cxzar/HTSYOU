@@ -343,9 +343,7 @@ div.repeat-elements p.add a {}
 }
 
 /* required */
-.creation-form .element.required strong:after {
-	content: " *";
-}
+.creation-form .element.required strong:after {	content: " *"; }
 
 /* element checkbox + radio */
 .creation-form .element > input[type='radio'],
@@ -435,7 +433,7 @@ div.repeat-elements p.add a {}
 .creation-form .element div.repeat-elements li.repeatable-element.ghost .more-options .trigger { display: none; }
 
 /* error */
-.creation-form .element-name.error input,
+.creation-form .element-itemname.error input,
 .creation-form .element-text.error input,
 .creation-form .element-textarea.error textarea,
 .creation-form .element-select.error select,
@@ -463,24 +461,6 @@ div.repeat-elements p.add a {}
 	line-height: 32px;
 	color: #f00;
 }
-
-/*
- * administration
- */
-
-.creation-form.administration {}
-
-.creation-form.administration .width60 { width: 59.999%; float: left; }
-.creation-form.administration .width40 { width: 39.999%; float: left; }
-
-/* radio */
-.creation-form.administration .element input[type='radio'] + label { margin-right: 10px; }
-
-/* select */
-.creation-form.administration .element select { width: 100%; }
-
-/* categories */
-.creation-form.administration .element select#categories { height: 155px; }
 
 /* tags */
 #tag-area {

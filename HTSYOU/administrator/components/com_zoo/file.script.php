@@ -25,15 +25,12 @@ class Com_ZOOInstallerScript {
 		require_once($installer->getPath('source').'/admin/installation/requirements.php');
 
 		$requirements = new AppRequirements();
-
-		$fulfilled = $requirements->checkRequirements();
-
-		$requirements->displayResults();
-
-		if (!$fulfilled) {
-			$installer->abort(JText::_('Component').' '.JText::_('Install').': '.JText::_('Minimum requirements not fulfilled.'));
+		if (true !== $error = $requirements->checkRequirements()) {
+			$installer->abort(JText::_('Component').' '.JText::_('Install').': '.JText::sprintf('Minimum requirements not fulfilled (%s: %s).', $error['name'], $error['info']));
 			return false;
 		}
+
+		$requirements->displayResults();
 
 		// requirements fulfilled, install the ZOO
 		require_once($installer->getPath('source').'/admin/installation/zooinstall.php');
@@ -71,8 +68,9 @@ class Com_ZOOInstallerScript {
 
 		// remove ZOO from admin menus
 		$db = JFactory::getDBO();
-		$query = 'DELETE FROM #__menu WHERE alias = "zoo" AND menutype = "main"';
-		$db->setQuery($query);
+		$db->setQuery('DELETE FROM #__menu WHERE alias = "zoo" AND menutype = "main"');
+		$db->query();
+		$db->setQuery('DELETE FROM #__assets WHERE title = "com_zoo"');
 		$db->query();
 
 	}

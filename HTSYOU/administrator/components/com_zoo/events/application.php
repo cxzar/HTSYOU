@@ -36,4 +36,11 @@ class ApplicationEvent {
 
 	}
 
+	public static function installed($event) {
+
+		$application = $event->getSubject();
+		$update = $event['update'];
+
+	}
+
 }

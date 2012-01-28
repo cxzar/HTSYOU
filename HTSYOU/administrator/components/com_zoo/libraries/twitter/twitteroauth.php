@@ -6,33 +6,6 @@
  * The first PHP Library to support OAuth for Twitter's REST API.
  */
 
-/*
-
-Copyright (c) 2009 Abraham Williams - http://abrah.am - abraham@poseurte.ch
- 
-Permission is hereby granted, free of charge, to any person
-obtaining a copy of this software and associated documentation
-files (the "Software"), to deal in the Software without
-restriction, including without limitation the rights to use,
-copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the
-Software is furnished to do so, subject to the following
-conditions:
- 
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
- 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
-
-*/
-
 /* Load OAuth lib. You can find it at http://oauth.net */
 require_once('OAuth.php');
 
@@ -49,7 +22,7 @@ class TwitterOAuth {
   /* Set timeout default. */
   public $timeout = 30;
   /* Set connect timeout. */
-  public $connecttimeout = 30; 
+  public $connecttimeout = 30;
   /* Verify SSL Cert. */
   public $ssl_verifypeer = FALSE;
   /* Respons format. */
@@ -70,8 +43,8 @@ class TwitterOAuth {
    * Set API URLS
    */
   function accessTokenURL()  { return 'https://api.twitter.com/oauth/access_token'; }
-  function authenticateURL() { return 'https://twitter.com/oauth/authenticate'; }
-  function authorizeURL()    { return 'https://twitter.com/oauth/authorize'; }
+  function authenticateURL() { return 'https://api.twitter.com/oauth/authenticate'; }
+  function authorizeURL()    { return 'https://api.twitter.com/oauth/authorize'; }
   function requestTokenURL() { return 'https://api.twitter.com/oauth/request_token'; }
 
   /**
@@ -103,7 +76,7 @@ class TwitterOAuth {
     $parameters = array();
     if (!empty($oauth_callback)) {
       $parameters['oauth_callback'] = $oauth_callback;
-    } 
+    }
     $request = $this->oAuthRequest($this->requestTokenURL(), 'GET', $parameters);
     $token = OAuthUtil::parse_parameters($request);
     $this->token = new OAuthConsumer($token['oauth_token'], $token['oauth_token_secret']);
@@ -154,7 +127,7 @@ class TwitterOAuth {
    *                "user_id" => "9436992",
    *                "screen_name" => "abraham",
    *                "x_auth_expires" => "0")
-   */  
+   */
   function getXAuthToken($username, $password) {
     $parameters = array();
     $parameters['x_auth_username'] = $username;
@@ -176,7 +149,7 @@ class TwitterOAuth {
     }
     return $response;
   }
-  
+
   /**
    * POST wrapper for oAuthRequest.
    */

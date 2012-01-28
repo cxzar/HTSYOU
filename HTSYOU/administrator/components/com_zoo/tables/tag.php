@@ -112,7 +112,7 @@ class TagTable extends AppTable {
 			$tags = array_intersect_key($tags, array_unique(array_map('strtolower',$tags)));
 
 			foreach ($tags as $tag) {
-				$tag = str_replace('.', '_', $tag);
+				$tag = str_replace(array('.', '/'), '_', $tag);
 				$values[] = sprintf("(%s, %s)", (int) $item_id, $db->Quote($tag));
 			}
 

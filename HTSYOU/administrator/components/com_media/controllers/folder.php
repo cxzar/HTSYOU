@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: folder.php 22355 2011-11-07 05:11:58Z github_bot $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -45,7 +44,7 @@ class MediaControllerFolder extends JController
 			$this->setRedirect('index.php?option=com_media&folder='.$folder);
 		}
 
-		if (!$user->authorise('core.delete','com_media'))
+		if (!$user->authorise('core.delete', 'com_media'))
 		{
 			// User is not authorised to delete
 			JError::raiseWarning(403, JText::_('JLIB_APPLICATION_ERROR_DELETE_NOT_PERMITTED'));
@@ -54,7 +53,6 @@ class MediaControllerFolder extends JController
 		else
 		{
 			// Set FTP credentials, if given
-			jimport('joomla.client.helper');
 			JClientHelper::setCredentialsFromRequest('ftp');
 
 			// Initialise variables.
@@ -90,7 +88,7 @@ class MediaControllerFolder extends JController
 					}
 					elseif (is_dir($fullPath))
 					{
-						if (count(JFolder::files($fullPath, '.', true, false, array('.svn', 'CVS','.DS_Store','__MACOSX'), array('index.html', '^\..*','.*~'))) == 0)
+						if (count(JFolder::files($fullPath, '.', true, false, array('.svn', 'CVS', '.DS_Store', '__MACOSX'), array('index.html', '^\..*', '.*~'))) == 0)
 						{
 							// Trigger the onContentBeforeDelete event.
 							$result = $dispatcher->trigger('onContentBeforeDelete', array('com_media.folder', &$object_file));
@@ -109,7 +107,7 @@ class MediaControllerFolder extends JController
 						else
 						{
 							//This makes no sense...
-							JError::raiseWarning(100, JText::sprintf('COM_MEDIA_ERROR_UNABLE_TO_DELETE_FOLDER_NOT_EMPTY',substr($fullPath, strlen(COM_MEDIA_BASE))));
+							JError::raiseWarning(100, JText::sprintf('COM_MEDIA_ERROR_UNABLE_TO_DELETE_FOLDER_NOT_EMPTY', substr($fullPath, strlen(COM_MEDIA_BASE))));
 						}
 					}
 				}
@@ -139,7 +137,7 @@ class MediaControllerFolder extends JController
 
 		if (strlen($folder) > 0)
 		{
-			if (!$user->authorise('core.create','com_media'))
+			if (!$user->authorise('core.create', 'com_media'))
 			{
 				// User is not authorised to delete
 				JError::raiseWarning(403, JText::_('JLIB_APPLICATION_ERROR_CREATE_NOT_PERMITTED'));
@@ -147,7 +145,6 @@ class MediaControllerFolder extends JController
 			}
 
 			// Set FTP credentials, if given
-			jimport('joomla.client.helper');
 			JClientHelper::setCredentialsFromRequest('ftp');
 
 			JRequest::setVar('folder', $parent);

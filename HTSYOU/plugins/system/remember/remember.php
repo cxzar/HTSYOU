@@ -1,14 +1,11 @@
 <?php
 /**
- * @version		$Id: remember.php 22265 2011-10-20 05:22:13Z github_bot $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
 defined('_JEXEC') or die;
-
-jimport('joomla.plugin.plugin');
 
 /**
  * Joomla! System Remember Me Plugin
@@ -31,7 +28,7 @@ class plgSystemRemember extends JPlugin
 		if ($user->get('guest'))
 		{
 			jimport('joomla.utilities.utility');
-			$hash = JUtility::getHash('JLOGIN_REMEMBER');
+			$hash = JApplication::getHash('JLOGIN_REMEMBER');
 
 			if ($str = JRequest::getString($hash, '', 'cookie', JREQUEST_ALLOWRAW | JREQUEST_NOTRIM))
 			{
@@ -39,7 +36,7 @@ class plgSystemRemember extends JPlugin
 
 				// Create the encryption key, apply extra hardening using the user agent string.
                 // Since we're decoding, no UA validity check is required.
-				$key = JUtility::getHash(@$_SERVER['HTTP_USER_AGENT']);
+				$key = JApplication::getHash(@$_SERVER['HTTP_USER_AGENT']);
 
 				$crypt = new JSimpleCrypt($key);
 				$str = $crypt->decrypt($str);
@@ -70,7 +67,7 @@ class plgSystemRemember extends JPlugin
 					$cookie_path = $config->get('cookie_path', '/');
 					// Clear the remember me cookie
 					setcookie(
-                        JUtility::getHash('JLOGIN_REMEMBER'), false, time() - 86400,
+                        JApplication::getHash('JLOGIN_REMEMBER'), false, time() - 86400,
                         $cookie_path, $cookie_domain
                     );
 				}

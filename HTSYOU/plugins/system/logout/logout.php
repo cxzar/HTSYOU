@@ -1,14 +1,11 @@
 <?php
 /**
- * @version		$Id: logout.php 21766 2011-07-08 12:20:23Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('JPATH_BASE') or die;
 
-jimport('joomla.plugin.plugin');
-jimport('joomla.error.error');
 jimport('joomla.utilities.utility');
 
 /**
@@ -33,8 +30,8 @@ class plgSystemLogout extends JPlugin
 		parent::__construct($subject, $config);
 		$this->loadLanguage();
 
-		$hash = JUtility::getHash('plgSystemLogout');
-		if (JFactory::getApplication()->isSite() and JRequest::getString($hash, null ,'cookie'))
+		$hash = JApplication::getHash('plgSystemLogout');
+		if (JFactory::getApplication()->isSite() and JRequest::getString($hash, null , 'cookie'))
 		{
 			// Destroy the cookie
 			$conf = JFactory::getConfig();
@@ -61,7 +58,7 @@ class plgSystemLogout extends JPlugin
 		if (JFactory::getApplication()->isSite())
 		{
 			// Create the cookie
-			$hash = JUtility::getHash('plgSystemLogout');
+			$hash = JApplication::getHash('plgSystemLogout');
 			$conf = JFactory::getConfig();
 			$cookie_domain 	= $conf->get('config.cookie_domain', '');
 			$cookie_path 	= $conf->get('config.cookie_path', '/');

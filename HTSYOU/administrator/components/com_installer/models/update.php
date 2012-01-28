@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: update.php 21518 2011-06-10 21:38:12Z chdemko $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,8 +11,6 @@ defined('_JEXEC') or die;
 
 // Import library dependencies
 jimport('joomla.application.component.modellist');
-jimport('joomla.installer.installer');
-jimport('joomla.updater.updater');
 jimport('joomla.updater.update');
 
 /**
@@ -57,10 +54,10 @@ class InstallerModelUpdate extends JModelList
 	protected function populateState($ordering = null, $direction = null)
 	{
 		$app = JFactory::getApplication('administrator');
-		$this->setState('message',$app->getUserState('com_installer.message'));
-		$this->setState('extension_message',$app->getUserState('com_installer.extension_message'));
-		$app->setUserState('com_installer.message','');
-		$app->setUserState('com_installer.extension_message','');
+		$this->setState('message', $app->getUserState('com_installer.message'));
+		$this->setState('extension_message', $app->getUserState('com_installer.extension_message'));
+		$app->setUserState('com_installer.message', '');
+		$app->setUserState('com_installer.extension_message', '');
 		parent::populateState('name', 'asc');
 	}
 
@@ -78,6 +75,11 @@ class InstallerModelUpdate extends JModelList
 		$query->select('*')->from('#__updates')->where('extension_id != 0');
 		$query->order($this->getState('list.ordering').' '.$this->getState('list.direction'));
 
+		// Filter by extension_id
+		if ($eid = $this->getState('filter.extension_id')) {
+			$query->where($db->nq('extension_id') . ' = ' . $db->q((int) $eid));
+		}
+
 		return $query;
 	}
 
@@ -88,10 +90,10 @@ class InstallerModelUpdate extends JModelList
 	 * @return	boolean Result
 	 * @since	1.6
 	 */
-	public function findUpdates($eid=0)
+	public function findUpdates($eid=0, $cache_timeout = 0)
 	{
 		$updater = JUpdater::getInstance();
-		$results = $updater->findUpdates($eid);
+		$results = $updater->findUpdates($eid, $cache_timeout);
 		return true;
 	}
 
@@ -108,6 +110,13 @@ class InstallerModelUpdate extends JModelList
 		// This may or may not mean depending on your database
 		$db->setQuery('TRUNCATE TABLE #__updates');
 		if ($db->Query()) {
+			// Reset the last update check timestamp
+			$query = $db->getQuery(true);
+			$query->update($db->nq('#__update_sites'));
+			$query->set($db->nq('last_check_timestamp').' = '.$db->q(0));
+			$db->setQuery($query);
+			$db->query();
+
 			$this->_message = JText::_('COM_INSTALLER_PURGED_UPDATES');
 			return true;
 		} else {
@@ -184,7 +193,6 @@ class InstallerModelUpdate extends JModelList
 			return false;
 		}
 
-		jimport('joomla.installer.helper');
 		$p_file = JInstallerHelper::downloadPackage($url);
 
 		// Was the package downloaded?

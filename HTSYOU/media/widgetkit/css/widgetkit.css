@@ -37,6 +37,8 @@
 /* Widget: Slideshow
 ----------------------------------------------------------------------------------------------------*/
 
+.wk-slideshow { visibility: hidden; }
+
 .wk-slideshow,
 .wk-slideshow .slides { position: relative; }
 
@@ -93,6 +95,8 @@
 
 /* Widget: Slideset
 ----------------------------------------------------------------------------------------------------*/
+
+.wk-slideset { visibility: hidden; }
 
 .wk-slideset .sets { overflow: hidden; }
 

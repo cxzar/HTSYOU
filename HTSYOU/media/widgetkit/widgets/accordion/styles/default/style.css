@@ -15,18 +15,9 @@
 	padding: 7px;
 	border: 1px solid #ddd;
 	background: #F5F5F5;
-	background: -moz-linear-gradient(
-					50% 0%,
-					#FAFAFA 0%,
-					#F5F5F5 100%
-				);
-	background: -webkit-gradient( 
-					linear,
-					50% 0%,
-					50% 100%,
-					color-stop(0%, #FAFAFA),
-					color-stop(100%, #F5F5F5)
-				);
+	background: -moz-linear-gradient(top, #FAFAFA 0%, #F5F5F5 100%);
+	background: -webkit-linear-gradient(top, #FAFAFA 0%, #F5F5F5 100%);
+	background: -o-linear-gradient(top, #FAFAFA 0%, #F5F5F5 100%);
     border-radius: 5px;
     box-shadow: 0 1px 0 #fff inset;
     text-shadow: 0 1px 0 #fff;

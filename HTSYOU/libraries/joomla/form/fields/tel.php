@@ -3,13 +3,12 @@
  * @package     Joomla.Platform
  * @subpackage  Form
  *
- * @copyright   Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
 
-jimport('joomla.form.formfield');
 JFormHelper::loadFieldClass('text');
 
 /**
@@ -18,11 +17,10 @@ JFormHelper::loadFieldClass('text');
  *
  * @package     Joomla.Platform
  * @subpackage  Form
- * @since       11.1
- *
+ * @link        http://www.w3.org/TR/html-markup/input.tel.html
  * @see         JFormRuleTel for telephone number validation
  * @see         JHtmlTel for rendering of telephone numbers
- * @link        http://www.w3.org/TR/html-markup/input.tel.html
+ * @since       11.1
  */
 class JFormFieldTel extends JFormFieldText
 {

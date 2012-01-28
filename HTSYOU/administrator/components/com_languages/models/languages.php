@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: languages.php 22355 2011-11-07 05:11:58Z github_bot $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -38,7 +37,7 @@ class LanguagesModelLanguages extends JModelList
 				'image', 'a.image',
 				'published', 'a.published',
 				'ordering', 'a.ordering',
-				'home','l.home',
+				'home', 'l.home',
 			);
 		}
 
@@ -108,11 +107,11 @@ class LanguagesModelLanguages extends JModelList
 
 		// Select all fields from the languages table.
 		$query->select($this->getState('list.select', 'a.*', 'l.home'));
-		$query->from('`#__languages` AS a');
+		$query->from($db->quoteName('#__languages').' AS a');
 
 		// Select the language home pages
 		$query->select('l.home AS home');
-		$query->join('LEFT', '`#__menu`  AS l  ON  l.language = a.lang_code AND l.home=1  AND l.language <> \'*\'' );
+		$query->join('LEFT', $db->quoteName('#__menu') . ' AS l  ON  l.language = a.lang_code AND l.home=1  AND l.language <> ' . $db->quote('*'));
 
 		// Filter on the published state.
 		$published = $this->getState('filter.published');
@@ -126,12 +125,12 @@ class LanguagesModelLanguages extends JModelList
 		// Filter by search in title
 		$search = $this->getState('filter.search');
 		if (!empty($search)) {
-			$search = $db->Quote('%'.$db->getEscaped($search, true).'%', false);
+			$search = $db->Quote('%'.$db->escape($search, true).'%', false);
 			$query->where('(a.title LIKE '.$search.')');
 		}
 
 		// Add the list ordering clause.
-		$query->order($db->getEscaped($this->getState('list.ordering', 'a.ordering')).' '.$db->getEscaped($this->getState('list.direction', 'ASC')));
+		$query->order($db->escape($this->getState('list.ordering', 'a.ordering')).' '.$db->escape($this->getState('list.direction', 'ASC')));
 
 		return $query;
 	}
@@ -187,7 +186,8 @@ class LanguagesModelLanguages extends JModelList
 	 *
 	 * @since	1.6
 	 */
-	function cleanCache() {
+	protected function cleanCache($group = null, $client_id = 0)
+	{
 		parent::cleanCache('_system', 0);
 		parent::cleanCache('_system', 1);
 		parent::cleanCache('com_languages', 0);

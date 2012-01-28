@@ -53,11 +53,11 @@ class ElementDate extends ElementRepeatable implements iRepeatSubmittable {
 	   Returns:
 	       String - html
 	*/
-	protected function _edit(){
-		$value = $this->get('value', '');
-		$value = !empty($value) ? $this->app->html->_('date', $value, $this->app->date->format(self::EDIT_DATE_FORMAT), $this->app->date->getOffset()) : '';
-
+	protected function _edit() {
 		$name = $this->getControlName('value');
+		if ($value = $this->get('value', '')) {
+			$value = $this->app->html->_('date', $value, $this->app->date->format(self::EDIT_DATE_FORMAT), $this->app->date->getOffset());
+		}
 		return $this->app->html->_('zoo.calendar', $value, $name, $name, array('class' => 'calendar-element'), true);
 	}
 
@@ -72,8 +72,7 @@ class ElementDate extends ElementRepeatable implements iRepeatSubmittable {
 			String - html
 	*/
 	public function _renderSubmission($params = array()) {
-		$name = $this->getControlName('value');
-		return $this->app->html->_('zoo.calendar', $this->get('value', ''), $name, $name, array('class' => 'calendar-element'), true);
+		return $this->_edit();
 	}
 
 	/*
@@ -88,11 +87,9 @@ class ElementDate extends ElementRepeatable implements iRepeatSubmittable {
 			Array - cleaned value
 	*/
 	public function _validateSubmission($value, $params) {
-        $value = $this->app->validator->create('date', array('required' => $params->get('required')), array('required' => 'Please choose a date.'))
+        return array('value' => $this->app->validator->create('date', array('required' => $params->get('required')), array('required' => 'Please choose a date.'))
 				->addOption('date_format', self::EDIT_DATE_FORMAT)
-				->clean($value->get('value'));
-
-		return compact('value');
+				->clean($value->get('value')));
 	}
 
 	/*

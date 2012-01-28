@@ -1,4 +1,4 @@
-<?php defined('_JEXEC') or die('Restricted access'); 
+<?php defined('_JEXEC') or die('Restricted access');
 
 $this->app->html->_('behavior.tooltip');
 
@@ -25,12 +25,12 @@ $this->app->document->addScript('assets:js/type.js');
 					foreach ($elements as $element) {
 						echo '<li class="element hideconfig">'.$this->partial('editelement', array('element' => $element)).'</li>';
 					}
-				} 
+				}
 			?>
 			</ul>
 		</fieldset>
 	</div>
-	
+
 	<div id="add-element" class="col col-right width-50">
 		<fieldset>
 			<legend><?php echo JText::_('ELEMENT_LIBRARY'); ?></legend>
@@ -40,7 +40,7 @@ $this->app->document->addScript('assets:js/type.js');
 					$html = array();
 					$html[] = '<div class="groups">';
 					foreach ($this->elements as $group => $elements) {
-						if ($i == round(count($this->elements)/2)) { 
+						if ($i == round(count($this->elements)/2)) {
 							$html[] = '</div><div class="groups">';
 						}
 						$html[] = '<div class="elements-group-name">'.JText::_($group).'</div>';
@@ -49,13 +49,13 @@ $this->app->document->addScript('assets:js/type.js');
 							$element->loadConfigAssets();
 							$html[] = '<li class="'.$element->getElementType().'" title="'.JText::_('Add element').'">'.JText::_($element->getMetaData('name')).'</li>';
 						}
-						
+
 						$html[] = '</ul>';
 						$i++;
 					}
 					$html[] = '</div>';
 					echo implode("\n", $html);
-				}			
+				}
 			?>
 		</fieldset>
 	</div>
@@ -73,7 +73,7 @@ $this->app->document->addScript('assets:js/type.js');
 
 <script type="text/javascript">
 	jQuery(function($) {
-		$('#manager-editelements').EditElements({ url: '<?php echo $this->app->link(array('controller' => $this->controller, 'group' => $this->group), false); ?>', msgNoElements: '<?php echo JText::_('NO_ELEMENTS_DEFINED'); ?>', msgDeletelog: '<?php echo JText::_('DELETE_ELEMENT'); ?>' });
+		$('#element-list').EditElements({ url: '<?php echo $this->app->link(array('controller' => $this->controller, 'group' => $this->group), false); ?>', msgNoElements: '<?php echo JText::_('NO_ELEMENTS_DEFINED'); ?>', msgDeletelog: '<?php echo JText::_('DELETE_ELEMENT'); ?>' });
 	});
 </script>
 

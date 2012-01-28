@@ -24,8 +24,8 @@ if ($this->submission->showTooltip()) {
 
 ?>
 
-<?php if ($this->form->isBound() && !$this->form->isValid()): ?>
-	<?php $msg = count($this->form->getErrors()) > 1 ? JText::_('Oops. There were errors in your submission.') : JText::_('Oops. There was an error in your submission.'); ?>
+<?php if ($this->errors): ?>
+	<?php $msg = count($this->errors) > 1 ? JText::_('Oops. There were errors in your submission.') : JText::_('Oops. There was an error in your submission.'); ?>
 	<?php $msg .= ' '.JText::_('Please take a look at all highlighted fields, correct your data and try again.'); ?>
 	<p class="message"><?php echo $msg; ?></p>
 <?php endif; ?>
@@ -34,11 +34,7 @@ if ($this->submission->showTooltip()) {
 
 	<?php
 
-		echo $fields;
-
-		if ($this->submission->isInTrustedMode()) {
-			echo $this->partial('administration');
-		}
+		echo $this->renderer->render($this->layout_path, array('item' => $this->item, 'submission' => $this->submission));
 
 	?>
 
@@ -46,8 +42,8 @@ if ($this->submission->showTooltip()) {
 
 	<div class="submit">
 		<button type="submit" id="submit-button" class="button-green"><?php echo JText::_('Submit Item'); ?></button>
-		<?php if (!empty($this->cancel_url)) : ?>
-			<a href="<?php echo JRoute::_($this->cancel_url); ?>" id="cancel-button"><?php echo JText::_('Cancel'); ?></a>
+		<?php if (!empty($this->redirectTo)) : ?>
+			<a href="<?php echo JRoute::_($this->app->route->mysubmissions($this->submission)); ?>" id="cancel-button"><?php echo JText::_('Cancel'); ?></a>
 		<?php endif; ?>
 	</div>
 

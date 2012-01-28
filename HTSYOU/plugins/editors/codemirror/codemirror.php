@@ -1,14 +1,11 @@
 <?php
 /**
- * @version		$Id: codemirror.php 21766 2011-07-08 12:20:23Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // no direct access
 defined('_JEXEC') or die;
-
-jimport('joomla.plugin.plugin');
 
 /**
  * CodeMirror Editor Plugin.
@@ -33,8 +30,8 @@ class plgEditorCodemirror extends JPlugin
 	{
 		JHtml::_('core');
 		$uncompressed	= JFactory::getApplication()->getCfg('debug') ? '-uncompressed' : '';
-		JHtml::_('script',$this->_basePath . 'js/codemirror'.$uncompressed.'.js', false, false, false, false);
-		JHtml::_('stylesheet',$this->_basePath . 'css/codemirror.css');
+		JHtml::_('script', $this->_basePath . 'js/codemirror'.$uncompressed.'.js', false, false, false, false);
+		JHtml::_('stylesheet', $this->_basePath . 'css/codemirror.css');
 
 		return '';
 	}
@@ -174,7 +171,7 @@ class plgEditorCodemirror extends JPlugin
 
 		foreach ($styleSheet as &$style)
 		{
-			$style = JURI::root(true).'/'.$this->_basePath.'/css/'.$style;
+			$style = JURI::root(true).'/'.$this->_basePath.'css/'.$style;
 		}
 
 		$options	= new stdClass;

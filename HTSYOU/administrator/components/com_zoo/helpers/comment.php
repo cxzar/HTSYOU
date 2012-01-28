@@ -357,9 +357,9 @@ class CommentHelper extends AppHelper {
 		// init vars
 		$item			  = $comment->getItem();
 		$website_name	  = $this->app->system->application->getCfg('sitename');
-		$comment_link	  = JURI::root().$this->app->route->comment($comment);
-		$item_link		  = JURI::root().$this->app->route->item($item, false);
-		$website_link	  = JURI::root().'index.php';
+		$comment_link	  = JRoute::_($this->app->route->comment($comment, false), true, -1);
+		$item_link		  = JRoute::_($this->app->route->item($item, false), true, -1);
+		$website_link	  = JRoute::_('index.php', true, -1);
 
 		// send email to $recipients
 		foreach ($recipients as $email => $name) {

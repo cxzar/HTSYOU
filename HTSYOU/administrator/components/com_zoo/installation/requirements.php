@@ -27,23 +27,17 @@ class AppRequirements {
 	var $_required_functions = array(
 		array('function' => 'imagegd', 'info' => 'Check http://www.php.net/manual/en/image.installation.php'),
 		array('function' => 'simplexml_load_string', 'info' => 'Check http://de.php.net/manual/en/function.simplexml-load-file.php'),
-		array('function' => 'simplexml_load_file', 'info' => 'Check http://de.php.net/manual/en/function.simplexml-load-string.php'),
-		array('function' => 'dom_import_simplexml', 'info' => 'Check http://de.php.net/manual/en/function.dom-import-simplexml.php')
+		array('function' => 'simplexml_load_file', 'info' => 'Check http://de.php.net/manual/en/function.simplexml-load-string.php')
 	);
 
-	var $_recommended_functions = array(
-
-    );
+	var $_recommended_functions = array();
 
 	var $_required_classes = array(
 		array('class' => 'SimpleXMLElement', 'info' => 'Check http://de.php.net/manual/en/book.simplexml.php'),
-		array('class' => 'DOMNode', 'info' => 'http://de.php.net/manual/en/book.dom.php'),
 		array('class' => 'ArrayObject', 'info' => 'Check http://de.php.net/manual/en/class.arrayobject.php')
 	);
 
-	var $_recommended_classes = array(
-
-    );
+	var $_recommended_classes = array();
 
 	function checkPHP() {
 		return !version_compare(PHP_VERSION, '5.2.7', '<');
@@ -101,7 +95,7 @@ class AppRequirements {
 
 		foreach ($this->_results as $return) {
 			if (!$return['status']) {
-				return false;
+				return $return;
 			}
 		}
 
@@ -136,11 +130,11 @@ class AppRequirements {
 
 		foreach ($this->_results as $return) {
 			if (!$return['status']) {
-				return false;
+				return $return['info'];
 			}
 		}
 
-		return true;
+		return false;
 	}
 
 	function _addResult($name, $status, $info = '') {

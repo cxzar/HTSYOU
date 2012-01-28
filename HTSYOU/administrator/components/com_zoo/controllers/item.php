@@ -194,7 +194,7 @@ class ItemController extends AppController {
 		// no types available ?
 		if (count($this->types) == 0) {
 			$this->app->error->raiseNotice(0, JText::_('Please create a type first.'));
-			$this->joomla->redirect($this->link_base.'&controller=manager');
+			$this->joomla->redirect($this->app->link(array('controller' => 'manager', 'task' => 'types', 'group' => $this->application->application_group), false));
 		}
 
 		// only one type ? then skip type selection

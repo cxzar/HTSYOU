@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: categories.php 21593 2011-06-21 02:45:51Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

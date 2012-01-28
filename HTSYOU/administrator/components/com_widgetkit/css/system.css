@@ -21,10 +21,9 @@
 #widgetkit .button-secondary {
 	padding: 3px 10px;
 	border: 1px #BBB solid;
-	background: -moz-linear-gradient(center bottom, rgb(237,237,237) 11%, rgb(255,255,255) 50%);
-	background: -webkit-gradient(linear, left bottom, left top, color-stop(0.11, rgb(237,237,237)), color-stop(0.5, rgb(255,255,255)));
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
+	background: -moz-linear-gradient(top, rgb(255,255,255) 50%, rgb(237,237,237) 89%);
+	background: -webkit-linear-gradient(top, rgb(255,255,255) 50%, rgb(237,237,237) 89%);
+	background: -o-linear-gradient(top, rgb(255,255,255) 50%, rgb(237,237,237) 89%);
 	border-radius: 10px;
 	color: #464646;
 	font-size: 11px;

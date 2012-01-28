@@ -51,7 +51,7 @@ class AppAlphaindex {
 	      YAlphaindex
  	*/
 	public function __construct($app, $path) {
-		if ($xml = $app->xml->loadFile($path)) {
+		if ($xml = simplexml_load_file($path)) {
 
 			// add other character
 			if ($xml->attributes()->other) {

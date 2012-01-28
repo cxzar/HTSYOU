@@ -46,7 +46,14 @@ $zoo->update->available();
 
 // cache writable ?
 if (!($cache_path = $zoo->path->path('cache:')) || !is_writable($cache_path)) {
-	$zoo->error->raiseError(sprintf("Zoo cache folder is not writable! Please check directory permissions (%s)", $cache_path));
+	$zoo->error->raiseNotice(0, sprintf("Zoo cache folder is not writable! Please check directory permissions (%s)", $cache_path));
+}
+
+// media folders writable ?
+foreach (array_merge(array(''), $zoo->path->dirs('media:zoo', true)) as $dir) {
+	if (!is_writable($zoo->path->path('media:zoo/'.$dir))) {
+		$zoo->error->raiseNotice(0, sprintf("Zoo media folder is not writable! Please check directory permissions (%s)", $zoo->path->path('media:zoo/'.$dir)));
+	}
 }
 
 // change application

@@ -73,8 +73,6 @@
 	padding: 10px;
 	border: 1px solid #eee;
 	background: #fff;
-	-webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-	-moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -88,8 +86,6 @@
 	width: 50%;
 	height: 20%;
 	max-width: 300px;
-	-webkit-box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-	-moz-box-shadow: 0 8px 16px rgba(0,0,0,0.6);
 	box-shadow: 0 8px 16px rgba(0,0,0,0.6);
 	-webkit-transform: skew(-15deg) rotate(-6deg);
 	-moz-transform: skew(-15deg) rotate(-6deg);

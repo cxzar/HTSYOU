@@ -1,14 +1,11 @@
 <?php
 /**
- * @version		$Id: client.php 22338 2011-11-04 17:24:53Z github_bot $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License, see LICENSE.php
  */
 
 // No direct access.
 defined('_JEXEC') or die;
-
-jimport('joomla.form.formfield');
 
 /**
  * Form Field Place class.

@@ -59,13 +59,13 @@ class AppController extends JController {
 
 		// create view
 		if (empty(self::$_views[$name])) {
-			self::$_views[$name] = new AppView(array_merge(array('name' => $name), $config));
+			self::$_views[$name] = new AppView(array_merge(array('name' => $name, 'template_path' => JPATH_COMPONENT. '/views/' . $name . '/tmpl'), $config));
 		}
 
 		// automatically pass all public class variables on to view
 		foreach (get_object_vars($this) as $var => $value) {
 			if (substr($var, 0, 1) != '_') {
-				self::$_views[$name]->$var = $value;
+				self::$_views[$name]->set($var, $value);
 			}
 		}
 

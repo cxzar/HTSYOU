@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<element type="addthis" group="Web Service" trusted="true">
+<element type="addthis" group="Web Service">
 	<name>AddThis</name>
 	<author>YOOtheme</author>
 	<creationDate>August 2011</creationDate>

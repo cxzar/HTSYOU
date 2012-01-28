@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  HTML
  *
- * @copyright   Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -31,16 +31,15 @@ abstract class JHtmlContent
 	 */
 	public static function prepare($text, $params = null, $context = 'text')
 	{
-		if ($params === null) {
+		if ($params === null)
+		{
 			$params = new JObject;
 		}
 		$article = new stdClass;
 		$article->text = $text;
 		JPluginHelper::importPlugin('content');
 		$dispatcher = JDispatcher::getInstance();
-		$results = $dispatcher->trigger(
-			'onContentPrepare', array ($context, &$article, &$params, 0)
-		);
+		$dispatcher->trigger('onContentPrepare', array($context, &$article, &$params, 0));
 
 		return $article->text;
 	}

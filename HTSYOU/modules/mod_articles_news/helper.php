@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: helper.php 21995 2011-08-22 05:21:50Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	mod_articles_news
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -49,7 +48,7 @@ abstract class modArticlesNewsHelper
 		$model->setState('filter.category_id', $params->get('catid', array()));
 
 		// Filter by language
-		$model->setState('filter.language',$app->getLanguageFilter());
+		$model->setState('filter.language', $app->getLanguageFilter());
 
 		// Set ordering
 		$ordering = $params->get('ordering', 'a.publish_up');
@@ -79,7 +78,7 @@ abstract class modArticlesNewsHelper
 				$item->linkText = JText::_('MOD_ARTICLES_NEWS_READMORE_REGISTER');
 			}
 
-			$item->introtext = JHtml::_('content.prepare', $item->introtext);
+			$item->introtext = JHtml::_('content.prepare', $item->introtext, '', 'mod_articles_news.content');
 
 			//new
 			if (!$params->get('image')) {

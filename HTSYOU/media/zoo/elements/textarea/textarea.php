@@ -200,26 +200,18 @@ class ElementTextarea extends ElementRepeatable implements iSubmittable {
 
 		$this->rewind();
 
-		return $this->config->get('repeatable') ? $this->renderLayout($this->getLayout('edit.php'), compact('params')) : $this->_addEditor(0, $this->get('value'), $params->get('trusted_mode', false));
+		return $this->config->get('repeatable') ? $this->renderLayout($this->getLayout('edit.php'), compact('params')) : $this->_addEditor(0, $this->get('value', $this->config->get('default')), $params->get('trusted_mode', false));
 
     }
 
 	protected function _addEditor($index, $value = '', $trusted_mode = true) {
-
-		// init vars
-		$default = $this->config->get('default');
-
-		// set default, if item is new
-		if ($default != '' && $this->_item != null && $this->_item->id == 0 && $index == 0 && empty($value)) {
-			$value = $default;
-		}
-
 		$html[] = '<div class="repeatable-content">';
 		if ($trusted_mode) {
-            $html[] = $this->app->system->editor->display($this->getControlName('value', $index), htmlspecialchars( $value, ENT_QUOTES, 'UTF-8' ), null, null, self::COLS, self::ROWS, array('pagebreak', 'readmore', 'article'));
+			$html[] = $this->app->editor->display($this->getControlName('value', $index), htmlspecialchars($value, ENT_QUOTES, 'UTF-8'), null, null, self::COLS, self::ROWS, array('pagebreak', 'readmore', 'article'));
         } else {
 			$html[] = $this->app->html->_('control.textarea', $this->getControlName('value', $index), $value, 'cols='.self::COLS.' rows='.self::ROWS);
-		}	$html[] = '</div>';
+		}
+		$html[] = '</div>';
 		$html[] = '<span class="delete" title="'.JText::_('Delete Element').'"></span>';
 		return implode("\n", $html);
 	}

@@ -1,21 +1,39 @@
 # Widgetkit #
 
-- Version: 1.0.0 BETA 19
-- Date: November 2011
+- Version: 1.0.0
+- Date: January 2012
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com>
 
 ## Changelog
 
+	1.0
+	+ Added random order option for accordion widget
+
+	1.0 BETA 20
+	+ Added lazy loading of images for slideshow, slideset and gallery widgets
+	+ Added restart autoplay after 30sec
+	+ Added ken burns effect
+	+ Added drops effect to slideset
+	+ Added slideset style for gallery widget
+	+ Added update notifications
+ 	+ Added support to use articles as content items (J)
+ 	# Fixed email cloaking plugin bug + accordion widget (J)
+	# Fixed google maps directions in IE8
+	# Fixed tinymce editor in WP 3.3
+	# Fixed loadmodule plugin in widgets (J)
+	# Fixed single quotes bug in maps widget
+	^ Updated mediaelement.js to version 2.6.1
+
 	1.0 BETA 19
-	# fixed parameters for ZOO plugin (J)
+	# Fixed parameters for ZOO plugin (J)
 	^ Updated mediaelement.js to version 2.4.0
 
 	1.0 BETA 18
 	^ Updated jQuery to 1.7.1 (J)
 	^ Updated mediaelement.js to version 2.3.3
 	^ Updated Widget loading, using data attributes
-
+	
 	1.0 BETA 17
 	+ Added System Check
 	# Fixed slideset stacking issue when loading

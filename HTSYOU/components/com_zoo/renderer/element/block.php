@@ -18,7 +18,7 @@ if (isset($params['showlabel']) && $params['showlabel']) {
 }
 
 // create class attribute
-$class = 'element element-'.$element->getElementType().' '.($params['first'] ? ' first' : '').($params['last'] ? ' last' : '');
+$class = 'element element-'.$element->getElementType().($params['first'] ? ' first' : '').($params['last'] ? ' last' : '');
 
 ?>
 <div class="<?php echo $class; ?>">

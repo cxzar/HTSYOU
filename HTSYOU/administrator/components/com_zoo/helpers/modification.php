@@ -73,30 +73,8 @@ class ModificationHelper extends AppHelper {
 			}
 		}
 
-		// remove empty sub folders
-		$this->removeEmptySubFolders($this->app->path->path('component.admin:'));
-		$this->removeEmptySubFolders($this->app->path->path('component.site:'));
-
 		return true;
 
-	}
-
-    /*
-		Function: removeEmptySubFolders
-			Recursevly removes empty subfolders.
-
-		Parameters:
-	      $path - Path to folder.
-
-		Returns:
-			void
-	*/
-	public function removeEmptySubFolders($path) {
-		$empty=true;
-		foreach ($this->app->filesystem->readDirectory($path) as $file) {
-			$empty &= is_dir($file) && $this->removeEmptySubFolders($file);
-		}
-		return $empty && JFolder::delete($path);
 	}
 
 }

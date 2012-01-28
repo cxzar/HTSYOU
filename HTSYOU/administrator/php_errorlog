@@ -1,0 +1,2 @@
+[27-Jan-2012 17:55:21] PHP Fatal error:  Cannot access protected property AppView::$basePath in /home/haterz14/public_html/haterz/administrator/components/com_zoo/framework/classes/controller.php on line 68
+[27-Jan-2012 18:54:14] PHP Fatal error:  Cannot access protected property AppView::$basePath in /home/haterz14/public_html/haterz/administrator/components/com_zoo/framework/classes/controller.php on line 68

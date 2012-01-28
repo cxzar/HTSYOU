@@ -1,9 +1,9 @@
 <?php
 /**
- * @package     Joomla.Platform
+ * @package    Joomla.Platform
  *
- * @copyright   Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
- * @license     GNU General Public License version 2 or later; see LICENSE
+ * @copyright  Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @license    GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
@@ -19,23 +19,23 @@ final class JPlatform
 	// Product name.
 	const PRODUCT = 'Joomla Platform';
 	// Release version.
-	const RELEASE = '11.2';
+	const RELEASE = '11.4';
 	// Maintenance version.
 	const MAINTENANCE = '0';
 	// Development STATUS.
-	const STATUS = 'Stable+Modified';
+	const STATUS = 'Stable';
 	// Build number.
 	const BUILD = 0;
 	// Code name.
-	const CODE_NAME = 'Omar';
+	const CODE_NAME = 'Brian Kernighan';
 	// Release date.
-	const RELEASE_DATE = '27-Jul-2011';
+	const RELEASE_DATE = '03-Jan-2012';
 	// Release time.
 	const RELEASE_TIME = '00:00';
 	// Release timezone.
 	const RELEASE_TIME_ZONE = 'GMT';
 	// Copyright Notice.
-	const COPYRIGHT = 'Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.';
+	const COPYRIGHT = 'Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.';
 	// Link text.
 	const LINK_TEXT = '<a href="http://www.joomla.org">Joomla!</a> is Free Software released under the GNU General Public License.';
 
@@ -63,7 +63,7 @@ final class JPlatform
 	 */
 	public static function getShortVersion()
 	{
-		return self::RELEASE.'.'.self::MAINTENANCE;
+		return self::RELEASE . '.' . self::MAINTENANCE;
 	}
 
 	/**
@@ -75,8 +75,7 @@ final class JPlatform
 	 */
 	public static function getLongVersion()
 	{
-		return self::PRODUCT.' '. self::RELEASE.'.'.self::MAINTENANCE.' '
-			. self::STATUS.' [ '.self::CODE_NAME.' ] '.self::RELEASE_DATE.' '
-			. self::RELEASE_TIME.' '.self::RELEASE_TIME_ZONE;
+		return self::PRODUCT . ' ' . self::RELEASE . '.' . self::MAINTENANCE . ' ' . self::STATUS . ' [ ' . self::CODE_NAME . ' ] '
+			. self::RELEASE_DATE . ' ' . self::RELEASE_TIME . ' ' . self::RELEASE_TIME_ZONE;
 	}
 }

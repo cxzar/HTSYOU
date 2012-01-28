@@ -25,13 +25,8 @@ $css_class = $this->application->getGroup().'-'.$this->template->name;
 	<div class="submission">
 
 		<h1 class="headline"><?php echo $page_title;?></h1>
-		
-		<?php 
-		
-			$fields = $this->renderer->render($this->layout_path, array('form' => $this->form));
-			echo $this->partial('submission', compact('fields'));
-		
-		?>
+
+		<?php echo $this->partial('submission');	?>
 
 	</div>
 

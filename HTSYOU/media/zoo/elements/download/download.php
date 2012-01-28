@@ -13,7 +13,7 @@ App::getInstance('zoo')->loader->register('ElementFile', 'elements:file/file.php
 	Class: ElementDownload
 		The file download element class
 */
-class ElementDownload extends ElementFile implements iSubmittable, iSubmissionUpload {
+class ElementDownload extends ElementFile implements iSubmittable {
 
 	/*
 	   Function: Constructor
@@ -368,17 +368,20 @@ class ElementDownload extends ElementFile implements iSubmittable, iSubmissionUp
 				->create('integer', array('required' => false), array('number' => 'The Download Limit needs to be a number.'))
 				->clean($value->get('download_limit'));
 
+		// connect to submission beforesave event
+		$this->app->event->dispatcher->connect('submission:saved', array($this, 'submissionSaved'));
+
 		return compact('file', 'download_limit');
 	}
 
 	/*
-		Function: doUpload
-			Does the actual upload during submission
+		Function: submissionSaved
+			Callback after item submission is saved
 
 		Returns:
 			void
 	*/
-    public function doUpload() {
+    public function submissionSaved() {
 
         // get the uploaded file information
         if (($userfile = $this->get('file')) && is_array($userfile)) {

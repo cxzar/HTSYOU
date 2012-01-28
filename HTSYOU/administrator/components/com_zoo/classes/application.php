@@ -102,6 +102,12 @@ class Application {
     */
 	protected $_elements_path_registered = false;
 
+	/*
+		Variable: _itemcount
+			Has the category tree been retrieved with item count?
+    */
+	protected $_itemcount = false;
+
  	/*
 		Function: Constructor
 
@@ -256,9 +262,11 @@ class Application {
 	public function getCategories($published = false, $item_count = false) {
 
 		// get categories
-		if (empty($this->_categories)) {
+		if (empty($this->_categories) || (!$this->_itemcount && $item_count)) {
 			$this->_categories = $this->app->table->category->getAll($this->id, $published, $item_count);
 		}
+
+		$this->_itemcount = $item_count || $this->_itemcount;
 
 		return $this->_categories;
 	}
@@ -277,13 +285,15 @@ class Application {
 	public function getCategoryTree($published = false, $user = null, $item_count = false) {
 
 		// get category tree
-		if (empty($this->_category_tree)) {
+		if (empty($this->_category_tree) || (!$this->_itemcount && $item_count)) {
 			// get categories and item count
 			$categories = $this->getCategories($published, $item_count);
 
 			$this->_category_tree = $this->app->tree->build($categories, 'Category');
 			$this->_category_tree[0]->application_id = $this->id;
 		}
+
+		$this->_itemcount = $item_count || $this->_itemcount;
 
 		return $this->_category_tree;
 	}
@@ -493,7 +503,7 @@ class Application {
 
 		// load xml config files
 		foreach ($this->app->path->files($this->getResource() . 'config/', false, '/\.xml$/i') as $file) {
-			if (($file = $this->app->path->path($this->getResource() . 'config/' . $file)) && ($xml = $this->app->xml->loadFile($file))) {
+			if (($file = $this->app->path->path($this->getResource() . 'config/' . $file)) && ($xml = simplexml_load_file($file))) {
 				if ($xml->getName() == 'config') {
 					$forms[(string) $xml->name] = $this->app->parameterform->create($file);
 				}
@@ -554,7 +564,7 @@ class Application {
 	public function getMetaXML() {
 
 		if (empty($this->_metaxml)) {
-			$this->_metaxml = $this->app->xml->loadFile($this->getMetaXMLFile());
+			$this->_metaxml = simplexml_load_file($this->getMetaXMLFile());
 		}
 
 		return $this->_metaxml;

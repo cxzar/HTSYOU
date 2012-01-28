@@ -169,7 +169,7 @@ class DefaultController extends AppController {
 		}
 
 	 	// set metadata
-		$this->app->document->setTitle($this->_buildPageTitle($title));
+		$this->app->document->setTitle($this->app->zoo->buildPageTitle($title));
 		if ($this->joomla->getCfg('MetaAuthor')) $this->app->document->setMetadata('author', $this->item->getAuthor());
 		if ($description = $this->item->getParams()->get('metadata.description')) $this->app->document->setDescription($description);
 		foreach (array('keywords', 'author', 'robots') as $meta) {
@@ -242,8 +242,7 @@ class DefaultController extends AppController {
 		$catid   = $this->params->get('category');
 		foreach ($this->category->getPathway() as $cat) {
 			if (!$catid || $addpath) {
-				$link = $this->app->route->category($cat);
-				$this->pathway->addItem($cat->name, $link);
+				$this->pathway->addItem($cat->name, $this->app->route->category($cat));
 			}
 			if ($catid && $catid == $cat->id) {
 				$addpath = true;
@@ -256,7 +255,7 @@ class DefaultController extends AppController {
 			$title = $this->category->getParams()->get('metadata.title');
 			$title = empty($title) ? $this->category->name : $title;
 		}
-		if (($menu = $this->app->object->create('JSite')->getMenu()->getActive()) && (@$menu->query['view'] == 'category' || @$menu->query['view'] == 'frontpage') && $this->app->parameter->create($menu->params)->get('category_id') == $category_id) {
+		if (($menu = $this->app->object->create('JSite')->getMenu()->getActive()) && (@$menu->query['view'] == 'category' || @$menu->query['view'] == 'frontpage') && $this->app->parameter->create($menu->params)->get('category') == $category_id) {
 			if ($page_title = $this->app->parameter->create($menu->params)->get('page_title')) {
 				$title = $page_title;
 			}
@@ -264,7 +263,7 @@ class DefaultController extends AppController {
 
 		// set page title
 		if ($title) {
-			$this->app->document->setTitle($this->_buildPageTitle($title));
+			$this->app->document->setTitle($this->app->zoo->buildPageTitle($title));
 		}
 
 	 	// set metadata
@@ -396,7 +395,7 @@ class DefaultController extends AppController {
 		}
 
 	 	// set metadata
-		$this->app->document->setTitle($this->_buildPageTitle($this->tag));
+		$this->app->document->setTitle($this->app->zoo->buildPageTitle($this->tag));
 
 		// create pathway
 		$this->pathway->addItem(JText::_('Tags').': '.$this->tag, JRoute::_($this->app->route->tag($this->application->id, $this->tag)));
@@ -450,7 +449,7 @@ class DefaultController extends AppController {
 
 		// set title
 		if ($feed_title) {
-			$this->app->document->setTitle($this->_buildPageTitle(html_entity_decode($this->getView()->escape($feed_title))));
+			$this->app->document->setTitle($this->app->zoo->buildPageTitle(html_entity_decode($this->getView()->escape($feed_title))));
 		}
 
 		// set feed link
@@ -520,14 +519,9 @@ class DefaultController extends AppController {
 		return $text;
 	}
 
+	// @deprecated as of 2.5.7
 	protected function _buildPageTitle($title) {
-		$dir = $this->app->system->application->getCfg('sitename_pagetitles', 0);
-		if ($dir == 1) {
-			return JText::sprintf('JPAGETITLE', $this->app->system->application->getCfg('sitename'), $title);
-		} else if ($dir == 2) {
-			return JText::sprintf('JPAGETITLE', $title, $this->app->system->application->getCfg('sitename'));
-		}
-		return $title;
+		return $this->app->zoo->buildPageTitle($title);
 	}
 
 }

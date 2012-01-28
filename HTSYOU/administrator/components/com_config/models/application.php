@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: application.php 21518 2011-06-10 21:38:12Z chdemko $
  * @package		Joomla.Administrator
  * @subpackage	com_config
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -56,6 +55,16 @@ class ConfigModelApplication extends JModelForm
 		// Prime the asset_id for the rules.
 		$data['asset_id'] = 1;
 
+		// Get the text filter data
+		$params = JComponentHelper::getParams('com_config');
+		$data['filters'] = JArrayHelper::fromObject($params->get('filters'));
+
+		// If no filter data found, get from com_content (update of 1.6/1.7 site)
+		if (empty($data['filters'])) {
+			$contentParams = JComponentHelper::getParams('com_content');
+			$data['filters'] = JArrayHelper::fromObject($contentParams->get('filters'));
+		}
+
 		// Check for data in the session.
 		$app	= JFactory::getApplication();
 		$temp	= $app->getUserState('com_config.config.global.data');
@@ -80,8 +89,7 @@ class ConfigModelApplication extends JModelForm
 		// Save the rules
 		if (isset($data['rules']))
 		{
-			jimport('joomla.access.rules');
-			$rules	= new JRules($data['rules']);
+			$rules	= new JAccessRules($data['rules']);
 
 			// Check that we aren't removing our Super User permission
 			// Need to get groups from database, since they might have changed
@@ -109,6 +117,32 @@ class ConfigModelApplication extends JModelForm
 				return false;
 			}
 			unset($data['rules']);
+		}
+
+		// Save the text filters
+		if (isset($data['filters']))
+		{
+			$registry = new JRegistry();
+			$registry->loadArray(array('filters' => $data['filters']));
+
+			$extension = JTable::getInstance('extension');
+
+			// Get extension_id
+			$extension_id = $extension->find(array('name' => 'com_config'));
+
+			if ($extension->load((int) $extension_id))
+			{
+				$extension->params = (string) $registry;
+				if (!$extension->check() || !$extension->store()) {
+					JError::raiseNotice('SOME_ERROR_CODE', $extension->getError());
+				}
+			}
+			else
+			{
+				$this->setError(JText::_('COM_CONFIG_ERROR_CONFIG_EXTENSION_NOT_FOUND'));
+				return false;
+			}
+			unset($data['filters']);
 		}
 
 		// Get the previous configuration.
@@ -213,9 +247,6 @@ class ConfigModelApplication extends JModelForm
 	 */
 	function removeroot()
 	{
-		// Include client helper
-		jimport('joomla.client.helper');
-
 		// Get the previous configuration.
 		$prev = new JConfig();
 		$prev = JArrayHelper::fromObject($prev);

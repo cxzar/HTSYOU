@@ -12,13 +12,13 @@ defined('_JEXEC') or die('Restricted access');
 ?>
 
 <fieldset class="pos-content creation-form">
-	<legend><?php echo $form->getItem()->getType()->name; ?></legend>
+	<legend><?php echo $item->getType()->name; ?></legend>
 	
-	<div class="element element-name required <?php echo ($form->hasError('name') ? 'error' : ''); ?>">
+	<div class="element element-name required <?php echo (null ? 'error' : ''); ?>">
 		<strong><?php echo JText::_('Name'); ?></strong>
-		<input type="text" name="name" size="60" value="<?php echo $form->getTaintedValue('name'); ?>" />
-		<?php if ($form->hasError('name')) : ?>
-			<div class="error-message"><?php echo $form->getError('name'); ?></div>
+		<input type="text" name="name" size="60" value="<?php echo null; ?>" />
+		<?php if (null) : ?>
+			<div class="error-message"><?php echo null; ?></div>
 		<?php endif; ?>
 	</div>
 	

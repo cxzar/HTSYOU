@@ -1,11 +1,11 @@
 <?php
 /**
- * @version		$Id: profile.php 21766 2011-07-08 12:20:23Z eddieajau $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 defined('JPATH_BASE') or die;
+
 jimport('joomla.utilities.date');
 
 /**
@@ -42,7 +42,7 @@ class plgUserProfile extends JPlugin
 	function onContentPrepareData($context, $data)
 	{
 		// Check we are manipulating a valid form.
-		if (!in_array($context, array('com_users.profile','com_users.user', 'com_users.registration', 'com_admin.profile'))) {
+		if (!in_array($context, array('com_users.profile', 'com_users.user', 'com_users.registration', 'com_admin.profile'))) {
 			return true;
 		}
 
@@ -71,10 +71,19 @@ class plgUserProfile extends JPlugin
 				// Merge the profile data.
 				$data->profile = array();
 
+				JForm::addFormPath(dirname(__FILE__).'/profiles');
+				$form = JForm::getInstance('plg_user_profile.form', 'profile');
 				foreach ($results as $v)
 				{
 					$k = str_replace('profile.', '', $v[0]);
-					$data->profile[$k] = $v[1];
+					if ($form->getField($k, 'profile')->multiple)
+					{
+						$data->profile[$k] = json_decode($v[1], true);
+					}
+					else
+					{
+						$data->profile[$k] = $v[1];
+					}
 				}
 			}
 
@@ -146,7 +155,8 @@ class plgUserProfile extends JPlugin
 		}
 
 		// Check we are manipulating a valid form.
-		if (!in_array($form->getName(), array('com_admin.profile','com_users.user', 'com_users.registration','com_users.profile'))) {
+		$name = $form->getName();
+		if (!in_array($name, array('com_admin.profile', 'com_users.user', 'com_users.profile', 'com_users.registration'))) {
 			return true;
 		}
 
@@ -154,100 +164,50 @@ class plgUserProfile extends JPlugin
 		JForm::addFormPath(dirname(__FILE__).'/profiles');
 		$form->loadFile('profile', false);
 
-		// Toggle whether the address1 field is required.
-		if ($this->params->get('register-require_address1', 1) > 0) {
-			$form->setFieldAttribute('address1', 'required', $this->params->get('register-require_address1') == 2, 'profile');
-		}
-		else {
-			$form->removeField('address1', 'profile');
-		}
+		$fields = array(
+			'address1',
+			'address2',
+			'city',
+			'region',
+			'country',
+			'postal_code',
+			'phone',
+			'website',
+			'favoritebook',
+			'aboutme',
+			'tos',
+			'dob',
+		);
 
-		// Toggle whether the address2 field is required.
-		if ($this->params->get('register-require_address2', 1) > 0) {
-			$form->setFieldAttribute('address2', 'required', $this->params->get('register-require_address2') == 2, 'profile');
-		}
-		else {
-			$form->removeField('address2', 'profile');
-		}
-
-		// Toggle whether the city field is required.
-		if ($this->params->get('register-require_city', 1) > 0) {
-			$form->setFieldAttribute('city', 'required', $this->params->get('register-require_city') == 2, 'profile');
-		}
-		else {
-			$form->removeField('city', 'profile');
-		}
-
-		// Toggle whether the region field is required.
-		if ($this->params->get('register-require_region', 1) > 0) {
-			$form->setFieldAttribute('region', 'required', $this->params->get('register-require_region') == 2, 'profile');
-		}
-		else {
-			$form->removeField('region', 'profile');
-		}
-
-		// Toggle whether the country field is required.
-		if ($this->params->get('register-require_country', 1) > 0) {
-			$form->setFieldAttribute('country', 'required', $this->params->get('register-require_country') == 2, 'profile');
-		}
-		else {
-			$form->removeField('country', 'profile');
-		}
-
-		// Toggle whether the postal code field is required.
-		if ($this->params->get('register-require_postal_code', 1) > 0) {
-			$form->setFieldAttribute('postal_code', 'required', $this->params->get('register-require_postal_code') == 2, 'profile');
-		}
-		else {
-			$form->removeField('postal_code', 'profile');
-		}
-
-		// Toggle whether the phone field is required.
-		if ($this->params->get('register-require_phone', 1) > 0) {
-			$form->setFieldAttribute('phone', 'required', $this->params->get('register-require_phone') == 2, 'profile');
-		}
-		else {
-			$form->removeField('phone', 'profile');
-		}
-
-		// Toggle whether the website field is required.
-		if ($this->params->get('register-require_website', 1) > 0) {
-			$form->setFieldAttribute('website', 'required', $this->params->get('register-require_website') == 2, 'profile');
-		}
-		else {
-			$form->removeField('website', 'profile');
-		}
-
-		// Toggle whether the favoritebook field is required.
-		if ($this->params->get('register-require_favoritebook', 1) > 0) {
-			$form->setFieldAttribute('favoritebook', 'required', $this->params->get('register-require_favoritebook') == 2, 'profile');
-		}
-		else {
-			$form->removeField('favoritebook', 'profile');
-		}
-
-		// Toggle whether the aboutme field is required.
-		if ($this->params->get('register-require_aboutme', 1) > 0) {
-			$form->setFieldAttribute('aboutme', 'required', $this->params->get('register-require_aboutme') == 2, 'profile');
-		}
-		else {
-			$form->removeField('aboutme', 'profile');
-		}
-
-		// Toggle whether the tos field is required.
-		if ($this->params->get('register-require_tos', 1) > 0) {
-			$form->setFieldAttribute('tos', 'required', $this->params->get('register-require_tos') == 2, 'profile');
-		}
-		else {
-			$form->removeField('tos', 'profile');
-		}
-
-		// Toggle whether the dob field is required.
-		if ($this->params->get('register-require_dob', 1) > 0) {
-			$form->setFieldAttribute('dob', 'required', $this->params->get('register-require_dob') == 2, 'profile');
-		}
-		else {
-			$form->removeField('dob', 'profile');
+		foreach ($fields as $field) {
+			// Case using the users manager in admin
+			if ($name == 'com_users.user') {
+				// Remove the field if it is disabled in registration and profile
+				if ($this->params->get('register-require_' . $field, 1) == 0 &&
+					$this->params->get('profile-require_' . $field, 1) == 0) {
+					$form->removeField('address1', 'profile');
+				}
+			}
+			// Case registration
+			elseif ($name == 'com_users.registration') {
+				// Toggle whether the field is required.
+				if ($this->params->get('register-require_' . $field, 1) > 0) {
+					$form->setFieldAttribute($field, 'required', ($this->params->get('register-require_' . $field) == 2) ? 'required' : '', 'profile');
+				}
+				else {
+					$form->removeField($field, 'profile');
+				}
+			}
+			// Case profile in site or admin
+			elseif ($name == 'com_users.profile' || $name == 'com_admin.profile') {
+				// Toggle whether the field is required.
+				if ($this->params->get('profile-require_' . $field, 1) > 0) {
+					$form->setFieldAttribute($field, 'required', ($this->params->get('profile-require_' . $field) == 2) ? 'required' : '', 'profile');
+				}
+				else {
+					$form->removeField($field, 'profile');
+				}
+			}
 		}
 
 		return true;
@@ -264,7 +224,7 @@ class plgUserProfile extends JPlugin
 				//Sanitize the date
 				if (!empty($data['profile']['dob'])) {
 					$date = new JDate($data['profile']['dob']);
-					$data['profile']['dob'] = $date->toFormat('%Y-%m-%d');
+					$data['profile']['dob'] = $date->format('%Y-%m-%d');
 				}
 
 				$db = JFactory::getDbo();
@@ -280,9 +240,18 @@ class plgUserProfile extends JPlugin
 				$tuples = array();
 				$order	= 1;
 
+				JForm::addFormPath(dirname(__FILE__).'/profiles');
+				$form = JForm::getInstance('plg_user_profile.form', 'profile');
 				foreach ($data['profile'] as $k => $v)
 				{
-					$tuples[] = '('.$userId.', '.$db->quote('profile.'.$k).', '.$db->quote($v).', '.$order++.')';
+					if ($form->getField($k, 'profile')->multiple)
+					{
+						$tuples[] = '('.$userId.', '.$db->quote('profile.'.$k).', '.$db->quote(json_encode($v)).', '.$order++.')';
+					}
+					else
+					{
+						$tuples[] = '('.$userId.', '.$db->quote('profile.'.$k).', '.$db->quote($v).', '.$order++.')';
+					}
 				}
 
 				$db->setQuery('INSERT INTO #__user_profiles VALUES '.implode(', ', $tuples));

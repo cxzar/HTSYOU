@@ -78,11 +78,10 @@ class AppExporterZoo2 extends AppExporter {
 				$data[$attribute] = $item->$attribute;
 			}
 		}
-		if (!$this->app->user->get($item->created_by)) {
-			return;
+		if ($user = $this->app->user->get($item->created_by)) {
+			$data['author'] = $user->username;
 		}
 
-		$data['author'] = $this->app->user->get($item->created_by)->username;
 		$data['tags']	= $item->getTags();
 
 		// store item content, metadata, config params

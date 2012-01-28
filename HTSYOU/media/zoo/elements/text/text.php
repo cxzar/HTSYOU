@@ -26,7 +26,7 @@ class ElementText extends ElementRepeatable implements iRepeatSubmittable {
 			String - Search data
 	*/
 	protected function _getSearchData() {
-		return $this->get('value');
+		return $this->get('value', $this->config->get('default'));
 	}
 
 	/*

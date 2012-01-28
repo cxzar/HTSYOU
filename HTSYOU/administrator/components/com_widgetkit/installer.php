@@ -84,18 +84,26 @@ class InstallerScript {
 		return $this->install($parent);
 	}
 
-	public function preflight($type, $parent) {}
+	public function preflight($type, $parent) {
+
+		// remove ZOO from admin menus
+		$db = JFactory::getDBO();
+		$db->setQuery('DELETE FROM #__menu WHERE alias = "comwidgetkit" AND menutype = "main"');
+		$db->query();
+		$db->setQuery('DELETE FROM #__assets WHERE title = "widgetkit"');
+		$db->query();
+
+	}
 
 	public function postflight($type, $parent) {}
 
 	protected function getAdditionalExtensions($installer) {
 
 		// init vars
-		$manifest   = simplexml_load_file($installer->getPath('manifest'));
 		$extensions = array();
 
 		// additional extensions
-		if ($additional = $manifest->xpath('additional/*')) {
+		if (($manifest = simplexml_load_file($installer->getPath('manifest'))) && ($additional = $manifest->xpath('additional/*'))) {
 			foreach ($additional as $data) {
 				$extensions[] = new AdditionalExtension($installer, $data);
 			}

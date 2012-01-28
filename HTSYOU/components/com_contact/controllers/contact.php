@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: contact.php 21991 2011-08-18 15:43:40Z infograf768 $
  * @package		Joomla.Site
  * @subpackage	Contact
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -63,14 +62,14 @@ class ContactControllerContact extends JControllerForm
 			return false;
 		}
 
-		$validate = $model->validate($form,$data);
+		$validate = $model->validate($form, $data);
 
 		if ($validate === false) {
 			// Get the validation messages.
 			$errors	= $model->getErrors();
 			// Push up to three validation messages out to the user.
 			for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++) {
-				if (JError::isError($errors[$i])) {
+				if ($errors[$i] instanceof Exception) {
 					$app->enqueueMessage($errors[$i]->getMessage(), 'warning');
 				} else {
 					$app->enqueueMessage($errors[$i], 'warning');
@@ -89,7 +88,7 @@ class ContactControllerContact extends JControllerForm
 		$results	= $dispatcher->trigger('onValidateContact', array(&$contact, &$data));
 
 		foreach ($results as $result) {
-			if (JError::isError($result)) {
+			if ($result instanceof Exception) {
 				return false;
 			}
 		}
@@ -154,7 +153,7 @@ class ContactControllerContact extends JControllerForm
 			//If we are supposed to copy the sender, do so.
 
 			// check whether email copy function activated
-			if ( array_key_exists('contact_email_copy',$data)  ) {
+			if ( array_key_exists('contact_email_copy', $data)  ) {
 				$copytext		= JText::sprintf('COM_CONTACT_COPYTEXT_OF', $contact->name, $sitename);
 				$copytext		.= "\r\n\r\n".$body;
 				$copysubject	= JText::sprintf('COM_CONTACT_COPYSUBJECT_OF', $subject);

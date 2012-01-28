@@ -246,6 +246,13 @@ class ManagerController extends AppController {
 				$this->app->type->setUniqueIndentifier($type);	// set unique identifier
 				$type->name       .= sprintf(' (%s)', JText::_('Copy')); // set copied name
 
+				// give elements a new unique id
+				$elements = array();
+				foreach ($type->elements as $element) {
+					$elements[$this->app->utility->generateUUID()] = $element;
+				}
+				$type->elements = $elements;
+
 				// save copied type
 				$type->save();
 
@@ -566,16 +573,14 @@ class ManagerController extends AppController {
 		$this->app->toolbar->cancel('types');
 		$this->app->zoo->toolbarHelp();
 
-		// for template, module, plugin
-		if ($this->template) {
-			$this->path = $this->application->getPath().'/templates/'.$this->template;
-		}
+		// for template
+		$this->path = $this->application->getPath().'/templates/'.$this->template;
 
 		// get renderer
 		$renderer = $this->app->renderer->create('submission')->addPath($this->path);
 
 		// get positions and config
-		$this->config    = $renderer->getConfig('item')->get($this->group.'.'.$type.'.'.$this->layout);
+		$this->config = $renderer->getConfig('item')->get($this->group.'.'.$type.'.'.$this->layout);
 
 		$prefix = 'item.';
 		if ($renderer->pathExists('item'.DIRECTORY_SEPARATOR.$type)) {

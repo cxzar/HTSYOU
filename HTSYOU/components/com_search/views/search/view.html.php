@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: view.html.php 21593 2011-06-21 02:45:51Z dextercowley $
  * @package		Joomla.Site
  * @subpackage	com_search
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -160,13 +159,13 @@ class SearchViewSearch extends JView
 
 				$result = &$results[$i];
 				if ($result->created) {
-					$created = JHtml::_('date',$result->created, JText::_('DATE_FORMAT_LC3'));
+					$created = JHtml::_('date', $result->created, JText::_('DATE_FORMAT_LC3'));
 				}
 				else {
 					$created = '';
 				}
 
-				$result->text		= JHtml::_('content.prepare', $result->text);
+				$result->text		= JHtml::_('content.prepare', $result->text, '', 'com_search.search');
 				$result->created	= $created;
 				$result->count		= $i + 1;
 			}

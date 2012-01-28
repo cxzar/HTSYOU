@@ -298,4 +298,21 @@ class ZooHelper extends AppHelper {
 		return $this->_version;
 	}
 
+    /*
+		Function: buildPageTitle
+			Build page title from Joomla configuration.
+
+		Returns:
+			String - title
+	*/
+	public function buildPageTitle($title) {
+		$dir = $this->app->system->application->getCfg('sitename_pagetitles', 0);
+		if ($dir == 1) {
+			return JText::sprintf('JPAGETITLE', $this->app->system->application->getCfg('sitename'), $title);
+		} else if ($dir == 2) {
+			return JText::sprintf('JPAGETITLE', $title, $this->app->system->application->getCfg('sitename'));
+		}
+		return $title;
+	}
+
 }

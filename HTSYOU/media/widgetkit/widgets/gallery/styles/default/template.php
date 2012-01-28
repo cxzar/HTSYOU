@@ -10,17 +10,17 @@ $widget_id = $widget->id.'-'.uniqid();
 $settings  = $widget->settings;
 $images    = $this['gallery']->images($widget);
 
+$i = 0;
 ?>
 
 <?php if (count($images)) : ?>
-<div id="gallery-<?php echo $widget_id; ?>" class="wk-slideshow wk-gallery-default" data-widgetkit="slideshow" data-options='<?php echo json_encode($settings); ?>'>
+<div id="gallery-<?php echo $widget_id; ?>" class="wk-slideshow wk-slideshow-default" data-widgetkit="slideshow" data-options='<?php echo json_encode($settings); ?>'>
 	<div>
 		<ul class="slides">
 
 			<?php foreach ($images as $image) : ?>
             
 				<?php
-				
 					$navigation[] = '<li><span></span></li>';
 					$captions[]   = '<li>'.(strlen($image['caption']) ? $image['caption']:"").'</li>';
 					$lightbox     = '';
@@ -33,6 +33,8 @@ $images    = $this['gallery']->images($widget);
 					/* Prepare Image */
 					$content = '<img src="'.$image['cache_url'].'" width="'.$image['width'].'" height="'.$image['height'].'" alt="'.$image['filename'].'" />';
 					
+					/* Lazy Loading */				
+					$content = ($i==$settings['index']) ? $content : $this['image']->prepareLazyload($content);
 				?>
 
 				<?php if ($settings['lightbox'] || $image['link']) : ?>
@@ -40,7 +42,8 @@ $images    = $this['gallery']->images($widget);
 				<?php else : ?>		
 					<li><?php echo $content; ?></li>
 				<?php endif; ?>
-			
+				
+				<?php $i=$i+1;?>
 			<?php endforeach; ?>
 			
 		</ul>

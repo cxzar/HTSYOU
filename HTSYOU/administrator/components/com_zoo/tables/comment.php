@@ -41,27 +41,31 @@ class CommentTable extends AppTable {
 			Boolean.
 	*/
 	public function save($object) {
-	
+
 		// auto update all comments of a joomla user, if name/email changed
-		if ($object->user_id 
-			&& ($row = $this->first(array('conditions' => array('user_id = ?', $object->user_id)))) 
+		if ($object->user_id
+			&& ($row = $this->first(array('conditions' => array('user_id = ?', $object->user_id))))
 			&& ($row->author != $object->author || $row->email != $object->email)) {
 
 			// get database
-			$db = $this->database;		
-		
+			$db = $this->database;
+
 			$query = "UPDATE ".$this->name
 				." SET author = ".$db->quote($object->author).", email = ".$db->quote($object->email)
 				." WHERE user_id = ".$object->user_id;
 			$db->query($query);
 		}
 
+		$old_state = '';
+		if ($object->id) {
+			$old_state = $this->get($object->id, true)->state;
+		}
 		$new = !(bool) $object->id;
-				
+
 		$result = parent::save($object);
 
 		// trigger save event
-		$this->app->event->dispatcher->notify($this->app->event->create($object, 'comment:saved', compact('new')));
+		$this->app->event->dispatcher->notify($this->app->event->create($object, 'comment:saved', compact('new', 'old_state')));
 
 		return $result;
 	}
@@ -86,21 +90,21 @@ class CommentTable extends AppTable {
 		} else {
 			$conditions = array("item_id = ? AND state = ?", $item_id, Comment::STATE_APPROVED);
 		}
-		
+
 		return $this->all(compact('conditions', 'order'));
 	}
 
 	/*
 		Function: getLastComment
 			Retrieve last comment by ip address and author (optional)
-											
+
 		Parameters:
 			$ip - IP address
 			$author - The author
-										
+
 		Returns:
 			Comment
-	*/		
+	*/
 	public function getLastComment($ip, CommentAuthor $author = null) {
 
 		// set query options
@@ -111,20 +115,54 @@ class CommentTable extends AppTable {
 		} else {
 			$conditions = array("ip = '?'", $ip);
 		}
-	
+
 		return $this->first(compact('conditions', 'order'));
+	}
+
+	public function getLatestComments($application, $categories, $limit) {
+
+		// get database
+		$db = $this->database;
+
+		// get date
+		$date = $this->app->date->create();
+		$now  = $db->Quote($date->toMySQL());
+		$null = $db->Quote($db->getNullDate());
+
+		// build where condition
+		$where   = array('i.application_id = '.(int) $application->id);
+		$where[] = 'c.state = ' . Comment::STATE_APPROVED;
+		$where[] = " i.state = 1";
+		$where[] = " (i.publish_up = ".$null." OR i.publish_up <= ".$now.")";
+		$where[] = " (i.publish_down = ".$null." OR i.publish_down >= ".$now.")";
+		$where[] = is_array($categories) ? "ci.category_id IN (".implode(",", $categories).")" : "ci.category_id = " . $categories;
+
+		// build query options
+		$options = array(
+			'select'     => 'c.*, i.application_id',
+			'from'       => $this->name.' AS c'
+							. ' JOIN '.ZOO_TABLE_ITEM.' AS i ON c.item_id = i.id'
+							. ' LEFT JOIN '.ZOO_TABLE_CATEGORY_ITEM.' AS ci ON i.id = ci.item_id',
+			'conditions' => array(implode(' AND ', $where)),
+			'order'      => 'c.created DESC',
+			'group'		 => 'c.id',
+			'offset' 	 => 0,
+			'limit'		 => $limit);
+
+		// query comment table
+		return $this->all($options);
 	}
 
 	/*
 		Function: getApprovedCommentCount
 			Retrieve approved comments by author
-											
+
 		Parameters:
 			$author - Author
-										
+
 		Returns:
 			Int
-	*/		
+	*/
 	public function getApprovedCommentCount(CommentAuthor $author) {
 
 		// set query options
@@ -133,31 +171,31 @@ class CommentTable extends AppTable {
 		} else {
 			$conditions = array("state = ? AND user_id = '0' AND author = '?' AND email = '?'", Comment::STATE_APPROVED, $author->name, $author->email);
 		}
-		
+
 		return $this->count(compact('conditions'));
 	}
-	
+
 	/*
 		Function: delete
 			delete comment with id <$comment_id>
-														
+
 		Parameters:
 			$object - comment object
-										
+
 		Returns:
 			true, if comment is deleted
 			false, otherwise
-	*/	
-	public function delete($object) {		
-		
+	*/
+	public function delete($object) {
+
 		// get database
-		$db = $this->database;		
+		$db = $this->database;
 
 		$old_parent = $object->id;
 		$new_parent = $object->parent_id;
-		
+
 		parent::delete($object);
-		
+
 		$query = "UPDATE ".$this->name
 			." SET parent_id = ".$new_parent
 			." WHERE parent_id = ".$old_parent;

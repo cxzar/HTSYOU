@@ -31,7 +31,7 @@ $css_class = $this->application->getGroup().'-'.$this->template->name;
 		
 		<?php 
 		
-			$fields = $this->renderer->render($this->layout_path, array('form' => $this->form));
+			$fields = null;
 			echo $this->partial('submission', compact('fields'));
 		
 		?>

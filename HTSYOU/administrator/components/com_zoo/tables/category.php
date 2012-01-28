@@ -123,24 +123,20 @@ class CategoryTable extends AppTable {
 	*/
 	public function getById($ids, $published = false){
 
+		$ids = array_filter((array) $ids);
 		if (empty($ids)) {
 			return array();
 		}
-
-		if (!is_array($ids)) {
-			$ids = array($ids);
-		}
-
-		$ids = array_filter($ids, create_function('$id', 'return !empty($id);'));
-
-		$objects = array_intersect_key($this->_objects, array_flip($ids));
-
-		$ids = array_flip(array_diff_key(array_flip($ids), $objects));
+		$ids = array_combine($ids, $ids);
+		$objects = array_intersect_key($this->_objects, $ids);
+		$ids = array_diff_key($ids, $objects);
 
 		if (!empty($ids)) {
 			$where = "id IN (".implode(",", $ids).")" . ($published == true ? " AND published = 1" : "");
-			$objects = array_diff_key($this->all(array('conditions' => $where, 'order' => 'ordering')), $objects);
+			$objects += $this->all(array('conditions' => $where));
 		}
+
+		usort($objects, create_function('$a, $b', 'if($a->ordering == $b->ordering){ return 0; } return ($a->ordering < $b->ordering) ? -1 : 1;'));
 
 		return $objects;
 	}

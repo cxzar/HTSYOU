@@ -37,6 +37,7 @@
 			<option value="puzzle">Puzzle</option>
 			<option value="boxes">Boxes</option>
 			<option value="boxesRtl">BoxesRtl</option>
+			<option value="kenburns">KenBurns</option>
 			<option value="randomSimple">RandomSimple</option>
 			<option value="randomFx">RandomFx</option>
 		</setting>

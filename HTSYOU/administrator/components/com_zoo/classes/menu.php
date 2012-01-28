@@ -50,7 +50,7 @@ class AppMenu extends AppTree {
 		if (func_num_args()) {
 
 			// parse html
-			if ($xml = $this->app->xml->loadString($html)) {
+			if ($xml = simplexml_load_string($html)) {
 
 				foreach (func_get_args() as $callback) {
 					if (is_callable($callback)) {

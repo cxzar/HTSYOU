@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: view.html.php 21320 2011-05-11 01:01:37Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -56,6 +55,14 @@ class TemplatesViewTemplates extends JView
 		if (count($errors = $this->get('Errors'))) {
 			JError::raiseError(500, implode("\n", $errors));
 			return false;
+		}
+
+		// Check if there are no matching items
+		if(!count($this->items)) {
+			JFactory::getApplication()->enqueueMessage(
+				JText::_('COM_TEMPLATES_MSG_MANAGE_NO_TEMPLATES')
+				, 'warning'
+			);
 		}
 
 		$this->addToolbar();

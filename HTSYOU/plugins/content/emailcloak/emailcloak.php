@@ -1,14 +1,11 @@
 <?php
 /**
- * @version		$Id: emailcloak.php 21322 2011-05-11 01:10:29Z dextercowley $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
 // No direct access.
 defined('_JEXEC') or die;
-
-jimport('joomla.plugin.plugin');
 
 /**
  * Email cloack plugin class.
@@ -29,6 +26,11 @@ class plgContentEmailcloak extends JPlugin
 	 */
 	public function onContentPrepare($context, &$row, &$params, $page = 0)
 	{
+		// Don't run this plugin when the content is being indexed
+		if ($context == 'com_finder.indexer') {
+			return true;
+		}
+
 		if (is_object($row)) {
 			return $this->_cloak($row->text, $params);
 		}

@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: view.feed.php 21589 2011-06-20 17:38:33Z chdemko $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: router.php 22363 2011-11-08 12:09:34Z github_bot $
  * @package		Joomla.Site
  * @subpackage	Application
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -31,7 +30,7 @@ class JRouterSite extends JRouter
 		$vars = array();
 
 		// Get the application
-		$app = JFactory::getApplication();
+		$app = JApplication::getInstance('site');
 
 		if ($app->getCfg('force_ssl') == 2 && strtolower($uri->getScheme()) != 'https') {
 			//forward to https
@@ -88,7 +87,7 @@ class JRouterSite extends JRouter
 
 		//Add the suffix to the uri
 		if ($this->_mode == JROUTER_MODE_SEF && $route) {
-			$app = JFactory::getApplication();
+			$app = JApplication::getInstance('site');
 
 			if ($app->getCfg('sef_suffix') && !(substr($route, -9) == 'index.php' || substr($route, -1) == '/')) {
 				if ($format = $uri->getVar('format', 'html')) {
@@ -119,7 +118,7 @@ class JRouterSite extends JRouter
 	protected function _parseRawRoute(&$uri)
 	{
 		$vars	= array();
-		$app	= JFactory::getApplication();
+		$app	= JApplication::getInstance('site');
 		$menu	= $app->getMenu(true);
 
 		//Handle an empty URL (special case)
@@ -166,7 +165,7 @@ class JRouterSite extends JRouter
 	protected function _parseSefRoute(&$uri)
 	{
 		$vars	= array();
-		$app	= JFactory::getApplication();
+		$app	= JApplication::getInstance('site');
 		$menu	= $app->getMenu(true);
 		$route	= $uri->getPath();
 
@@ -199,33 +198,52 @@ class JRouterSite extends JRouter
 		 * Parse the application route
 		 */
 		$segments	= explode('/', $route);
-		if (count($segments) > 1 && $segments[0] == 'component') {
+		if (count($segments) > 1 && $segments[0] == 'component')
+		{
 			$vars['option'] = 'com_'.$segments[1];
 			$vars['Itemid'] = null;
 			$route = implode('/', array_slice($segments, 2));
-		} else {
+		}
+		else
+		{
 			//Need to reverse the array (highest sublevels first)
 			$items = array_reverse($menu->getMenu());
 
-			$found = false;
-			$route_lowercase = JString::strtolower($route);
+			$found 				= false;
+			$route_lowercase 	= JString::strtolower($route);
+			$lang_tag 			= JFactory::getLanguage()->getTag();
+
 			foreach ($items as $item) {
+				//sqlsrv  change
+				if(isset($item->language)){
+					$item->language = trim($item->language);
+				}
 				$length = strlen($item->route); //get the length of the route
-				if ($length > 0 && JString::strpos($route_lowercase.'/', $item->route.'/') === 0 && $item->type != 'menulink') {
-					$route = substr($route, $length);
-					if ($route) {
-						$route = substr($route, 1);
+				if ($length > 0 && JString::strpos($route_lowercase.'/', $item->route.'/') === 0 && $item->type != 'menulink' && ($item->language == '*' || $item->language == $lang_tag)) {
+					// We have exact item for this language
+					if ($item->language == $lang_tag) {
+						$found = $item;
+						break;
 					}
-					$found = true;
-					break;
+					// Or let's remember an item for all languages
+					elseif (!$found) {
+						$found = $item;
+					}
 				}
 			}
-			if (!$found)
-			{
-				$item = $menu->getDefault(JFactory::getLanguage()->getTag());
+
+			if (!$found) {
+				$found = $menu->getDefault($lang_tag);
 			}
-			$vars['Itemid'] = $item->id;
-			$vars['option'] = $item->component;
+			else {
+				$route = substr($route, strlen($found->route));
+				if ($route) {
+					$route = substr($route, 1);
+				}
+			}
+
+			$vars['Itemid'] = $found->id;
+			$vars['option'] = $found->component;
 		}
 
 		// Set the active menu item
@@ -233,7 +251,7 @@ class JRouterSite extends JRouter
 			$menu->setActive( $vars['Itemid']);
 		}
 
-		//Set the variables
+		// Set the variables
 		$this->setVars($vars);
 
 		/*
@@ -298,7 +316,7 @@ class JRouterSite extends JRouter
 			return;
 		}
 
-		$app	= JFactory::getApplication();
+		$app	= JApplication::getInstance('site');
 		$menu	= $app->getMenu();
 
 		/*
@@ -378,7 +396,7 @@ class JRouterSite extends JRouter
 
 		// Process the pagination support
 		if ($this->_mode == JROUTER_MODE_SEF) {
-			$app = JFactory::getApplication();
+			$app = JApplication::getInstance('site');
 
 			if ($start = $uri->getVar('start')) {
 				$uri->delVar('start');
@@ -394,7 +412,7 @@ class JRouterSite extends JRouter
 		// Make sure any menu vars are used if no others are specified
 		if (($this->_mode != JROUTER_MODE_SEF) && $uri->getVar('Itemid') && count($uri->getQuery(true)) == 2) {
 
-			$app	= JFactory::getApplication();
+			$app	= JApplication::getInstance('site');
 			$menu	= $app->getMenu();
 
 			// Get the active menu item
@@ -414,7 +432,7 @@ class JRouterSite extends JRouter
 		$route = $uri->getPath();
 
 		if ($this->_mode == JROUTER_MODE_SEF && $route) {
-			$app = JFactory::getApplication();
+			$app = JApplication::getInstance('site');
 
 			if ($limitstart = $uri->getVar('limitstart')) {
 				$uri->setVar('start', (int) $limitstart);
@@ -431,7 +449,7 @@ class JRouterSite extends JRouter
 		$uri = parent::_createURI($url);
 
 		// Set URI defaults
-		$app	= JFactory::getApplication();
+		$app	= JApplication::getInstance('site');
 		$menu	= $app->getMenu();
 
 		// Get the itemid form the URI

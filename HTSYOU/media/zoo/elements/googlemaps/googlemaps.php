@@ -85,9 +85,9 @@ class ElementGooglemaps extends Element implements iSubmittable {
 		}
 
 		// get geocode cache
-		$cache = $this->app->cache->create($this->app->path->path('cache:') . '/geocode_cache.txt');
+		$cache = $this->app->cache->create($this->app->path->path('cache:') . '/geocode_cache');
 		if (!$cache->check()) {
-			return "<div class=\"alert\"><strong>Cache not writeable please update the file permissions! (geocode_cache.txt)</strong></div>\n";
+			return "<div class=\"alert\"><strong>Cache not writeable please update the file permissions! (geocode_cache)</strong></div>\n";
 		}
 
 		// get map center coordinates

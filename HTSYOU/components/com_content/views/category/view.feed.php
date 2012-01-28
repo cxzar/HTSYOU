@@ -1,7 +1,6 @@
 <?php
 /**
- * @version		$Id: view.feed.php 21589 2011-06-20 17:38:33Z chdemko $
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -26,7 +25,7 @@ class ContentViewCategory extends JView
 		$doc	= JFactory::getDocument();
 		$params = $app->getParams();
 		$feedEmail	= (@$app->getCfg('feed_email')) ? $app->getCfg('feed_email') : 'author';
-
+		$siteEmail	= $app->getCfg('mailfrom');
 		// Get some data from the model
 		JRequest::setVar('limit', $app->getCfg('feed_limit'));
 		$category	= $this->get('Category');

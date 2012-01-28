@@ -96,7 +96,8 @@ class InstallHelper extends AppHelper {
 			throw new InstallHelperException('No valid xml file found in the directory');
 		}
 
-		if (($group = $this->getGroup($manifest)) && empty($group)) {
+		$group = $this->getGroup($manifest);
+		if (empty($group)) {
 			throw new InstallHelperException('No app group in application.xml specified.');
 		}
 
@@ -126,6 +127,12 @@ class InstallHelper extends AppHelper {
 			throw new InstallHelperException('Unable to write to folder: ' . $write_directory);
 		}
 
+		$applications = $this->app->zoo->getApplicationGroups();
+		$application = isset($applications[$group]) ? $applications[$group] : null;
+
+		// trigger installed event
+		$this->app->event->dispatcher->notify($this->app->event->create($application, 'application:installed', compact('update')));
+
 		return $update ? 2 : 1;
 	}
 
@@ -140,7 +147,7 @@ class InstallHelper extends AppHelper {
 	public function findManifest($path) {
 		$path = rtrim($path, "\\/") . '/';
 		foreach ($this->app->filesystem->readDirectoryFiles($path, $path, '/\.xml$/', false) as $file) {
-			if (($xml = $this->app->xml->loadFile($file)) && $this->isManifest($xml)) {
+			if (($xml = simplexml_load_file($file)) && $this->isManifest($xml)) {
 				return $xml;
 			}
 		}

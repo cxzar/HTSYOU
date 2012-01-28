@@ -36,6 +36,7 @@
 
 	}
 
+	$i = 0;
 ?>
 
 <div id="slideset-<?php echo $widget_id;?>" class="wk-slideset wk-slideset-default" data-widgetkit="slideset" data-options='<?php echo json_encode($settings); ?>'>
@@ -44,6 +45,10 @@
 			<?php foreach ($sets as $set => $items) : ?>
 				<ul class="set">
 					<?php foreach ($items as $item) : ?>
+					<?php 
+						/* Lazy Loading */
+						$item["content"] = ($i==$settings['index']) ? $item["content"] : $this['image']->prepareLazyload($item["content"]);
+					?>
 					<li>
 						<article class="wk-content"><?php echo $item['content']; ?></article>
 						<?php if($settings['title']): ?>
@@ -52,6 +57,7 @@
 					</li>
 					<?php endforeach; ?>
 				</ul>
+				<?php $i=$i+1;?>
 			<?php endforeach; ?>
 		</div>
 		<?php if ($settings['buttons']): ?><div class="next"></div><div class="prev"></div><?php endif; ?>

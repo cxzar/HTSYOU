@@ -48,7 +48,7 @@ class Update25BETA implements iUpdate {
 			$files = $app->path->files($application->getResource() . 'types', false, '/\.xml$/');
 			foreach ($files as $file) {
 				$path = $app->path->path($application->getResource() . 'types/').'/';
-				if ($xml_data = $app->data->create(json_encode($app->xml->loadFile($path.$file)))) {
+				if ($xml_data = $app->data->create(json_encode(simplexml_load_file($path.$file)))) {
 					$data = array();
 					$data['name'] = $xml_data['@attributes']['name'];
 					foreach ($xml_data['params']['param'] as $param) {
@@ -120,7 +120,7 @@ class Update25BETA implements iUpdate {
 		$items = $app->database->queryObjectList('SELECT id, application_id, elements, type FROM '.ZOO_TABLE_ITEM);
 		foreach ($items as $item) {
 			$application = $app->table->application->get($item->application_id);
-			if ($xml_data = $app->xml->loadString($item->elements)) {
+			if ($xml_data = simplexml_load_string($item->elements)) {
 				$element_data = array();
 				foreach ($xml_data as $xml_element) {
 					if ($element_type = $xml_element->getName()) {
@@ -152,25 +152,28 @@ class Update25BETA implements iUpdate {
 		// sanatize item order
 		foreach ($app->table->application->all() as $application) {
 
-			$item_order = $application->getParams()->get('global.config.item_order');
-			if (is_string($item_order)) {
-			$application->getParams()->set('global.config.item_order', $app->itemorder->convert($item_order));
-			$app->table->application->save($application);
-			}
+			try {
 
-			$item_order = $application->getParams()->get('config.item_order');
-			if (is_string($item_order)) {
-				$application->getParams()->set('config.item_order', $app->itemorder->convert($item_order));
-				$app->table->application->save($application);
-			}
-
-			foreach ($application->getCategories() as $category) {
-				$item_order = $category->getParams()->get('config.item_order');
+				$item_order = $application->getParams()->get('global.config.item_order');
 				if (is_string($item_order)) {
-					$category->getParams()->set('config.item_order', $app->itemorder->convert($item_order));
-					$app->table->category->save($category);
+				$application->getParams()->set('global.config.item_order', $app->itemorder->convert($item_order));
+				$app->table->application->save($application);
 				}
-			}
+
+				$item_order = $application->getParams()->get('config.item_order');
+				if (is_string($item_order)) {
+					$application->getParams()->set('config.item_order', $app->itemorder->convert($item_order));
+					$app->table->application->save($application);
+				}
+
+				foreach ($application->getCategories() as $category) {
+					$item_order = $category->getParams()->get('config.item_order');
+					if (is_string($item_order)) {
+						$category->getParams()->set('config.item_order', $app->itemorder->convert($item_order));
+						$app->table->category->save($category);
+					}
+				}
+			} catch (AppException $e) {}
 
 		}
 
@@ -187,7 +190,7 @@ class Update25BETA implements iUpdate {
 		$app->loader->register('AdditionalExtension', 'component.admin:installation/zooinstall.php');
 		$parent = new JInstaller();
 		foreach ($xml as $data) {
-			$data = $app->xml->loadString($data);
+			$data = simplexml_load_string($data);
 			$ext = new AdditionalExtension($app, $parent, $data);
 			$ext->uninstall();
 		}

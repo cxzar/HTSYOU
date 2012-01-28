@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: contact.php 22338 2011-11-04 17:24:53Z github_bot $
  * @package		Joomla.Site
  * @subpackage	com_contact
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -11,9 +10,8 @@
 defined('_JEXEC') or die;
 
 jimport('joomla.application.component.modelform');
-jimport('joomla.application.component.modelitem');
 jimport('joomla.event.dispatcher');
-jimport('joomla.plugin.helper');
+
 /**
  * @package		Joomla.Site
  * @subpackage	com_contact
@@ -118,9 +116,24 @@ class ContactModelContact extends JModelForm
 				$db = $this->getDbo();
 				$query = $db->getQuery(true);
 
-				$query->select($this->getState('item.select', 'a.*') . ','
-				. ' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(\':\', a.id, a.alias) ELSE a.id END as slug, '
-				. ' CASE WHEN CHAR_LENGTH(c.alias) THEN CONCAT_WS(\':\', c.id, c.alias) ELSE c.id END AS catslug ');
+				//sqlsrv changes
+				$case_when = ' CASE WHEN ';
+				$case_when .= $query->charLength('a.alias');
+				$case_when .= ' THEN ';
+				$a_id = $query->castAsChar('a.id');
+				$case_when .= $query->concatenate(array($a_id, 'a.alias'), ':');
+				$case_when .= ' ELSE ';
+				$case_when .= $a_id.' END as slug';
+
+				$case_when1 = ' CASE WHEN ';
+				$case_when1 .= $query->charLength('c.alias');
+				$case_when1 .= ' THEN ';
+				$c_id = $query->castAsChar('c.id');
+				$case_when1 .= $query->concatenate(array($c_id, 'c.alias'), ':');
+				$case_when1 .= ' ELSE ';
+				$case_when1 .= $c_id.' END as catslug';
+
+				$query->select($this->getState('item.select', 'a.*') . ','.$case_when.','.$case_when1);
 				$query->from('#__contact_details AS a');
 
 				// Join on category table.
@@ -136,8 +149,7 @@ class ContactModelContact extends JModelForm
 
 				// Filter by start and end dates.
 				$nullDate = $db->Quote($db->getNullDate());
-				$nowDate = $db->Quote(JFactory::getDate()->toMySQL());
-
+				$nowDate = $db->Quote(JFactory::getDate()->toSql());
 
 				// Filter by published state.
 				$published = $this->getState('filter.published');
@@ -224,9 +236,24 @@ class ContactModelContact extends JModelForm
 
 		$query	= $db->getQuery(true);
 		if ($pk) {
+			//sqlsrv changes
+			$case_when = ' CASE WHEN ';
+			$case_when .= $query->charLength('a.alias');
+			$case_when .= ' THEN ';
+			$a_id = $query->castAsChar('a.id');
+			$case_when .= $query->concatenate(array($a_id, 'a.alias'), ':');
+			$case_when .= ' ELSE ';
+			$case_when .= $a_id.' END as slug';
+
+			$case_when1 = ' CASE WHEN ';
+			$case_when1 .= $query->charLength('cc.alias');
+			$case_when1 .= ' THEN ';
+			$c_id = $query->castAsChar('cc.id');
+			$case_when1 .= $query->concatenate(array($c_id, 'cc.alias'), ':');
+			$case_when1 .= ' ELSE ';
+			$case_when1 .= $c_id.' END as catslug';
 			$query->select('a.*, cc.access as category_access, cc.title as category_name, '
-			. ' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(\':\', a.id, a.alias) ELSE a.id END as slug, '
-			. ' CASE WHEN CHAR_LENGTH(cc.alias) THEN CONCAT_WS(\':\', cc.id, cc.alias) ELSE cc.id END AS catslug ');
+			.$case_when.','.$case_when1);
 
 			$query->from('#__contact_details AS a');
 
@@ -272,17 +299,40 @@ class ContactModelContact extends JModelForm
 
 				//get the content by the linked user
 				$query	= $db->getQuery(true);
-				$query->select('id, title, state, access, created');
-				$query->from('#__content');
-				$query->where('created_by = '.(int)$result->user_id);
-				$query->where('access IN ('. $groups.')');
-				$query->order('state DESC, created DESC');
+				$query->select('a.id');
+				$query->select('a.title');
+				$query->select('a.state');
+				$query->select('a.access');
+				$query->select('a.created');
+
+				// SQL Server changes
+				$case_when = ' CASE WHEN ';
+				$case_when .= $query->charLength('a.alias');
+				$case_when .= ' THEN ';
+				$a_id = $query->castAsChar('a.id');
+				$case_when .= $query->concatenate(array($a_id, 'a.alias'), ':');
+				$case_when .= ' ELSE ';
+				$case_when .= $a_id.' END as slug';
+				$case_when1 = ' CASE WHEN ';
+				$case_when1 .= $query->charLength('c.alias');
+				$case_when1 .= ' THEN ';
+				$c_id = $query->castAsChar('c.id');
+				$case_when1 .= $query->concatenate(array($c_id, 'c.alias'), ':');
+				$case_when1 .= ' ELSE ';
+				$case_when1 .= $c_id.' END as catslug';
+				$query->select($case_when1 . ',' . $case_when);
+
+				$query->from('#__content as a');
+				$query->leftJoin('#__categories as c on a.catid=c.id');
+				$query->where('a.created_by = '.(int)$result->user_id);
+				$query->where('a.access IN ('. $groups.')');
+				$query->order('a.state DESC, a.created DESC');
 				// filter per language if plugin published
 				if (JFactory::getApplication()->getLanguageFilter()) {
-					$query->where('language='.$db->quote(JFactory::getLanguage()->getTag()).' OR language ="*"');
+					$query->where('a.language='.$db->quote(JFactory::getLanguage()->getTag()).' OR a.language='.$db->quote('*'));
 				}
 				if (is_numeric($published)) {
-					$query->where('state IN (1,2)');
+					$query->where('a.state IN (1,2)');
 				}
 				$db->setQuery($query, 0, 10);
 				$articles = $db->loadObjectList();
@@ -290,7 +340,7 @@ class ContactModelContact extends JModelForm
 
 				//get the profile information for the linked user
 				require_once JPATH_ADMINISTRATOR.'/components/com_users/models/user.php';
-				$userModel = JModel::getInstance('User','UsersModel',array('ignore_request' => true));
+				$userModel = JModel::getInstance('User', 'UsersModel', array('ignore_request' => true));
 					$data = $userModel->getItem((int)$result->user_id);
 
 				JPluginHelper::importPlugin('user');

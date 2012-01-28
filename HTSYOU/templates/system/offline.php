@@ -1,8 +1,7 @@
 <?php
 /**
- * @version		$Id: offline.php 22183 2011-09-30 09:04:32Z infograf768 $
  * @package		Joomla.Site
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -22,7 +21,9 @@ $app = JFactory::getApplication();
 <body>
 <jdoc:include type="message" />
 	<div id="frame" class="outline">
-		<img src="images/joomla_logo_black.jpg" alt="Joomla! Logo" />
+		<?php if ($app->getCfg('offline_image')) : ?>
+		<img src="<?php echo $app->getCfg('offline_image'); ?>" alt="<?php echo $app->getCfg('sitename'); ?>" />
+		<?php endif; ?>
 		<h1>
 			<?php echo $app->getCfg('sitename'); ?>
 		</h1>

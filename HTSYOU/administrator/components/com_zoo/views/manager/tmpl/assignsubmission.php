@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
@@ -27,24 +27,22 @@ $this->app->document->addScript('assets:js/type.js');
 		<fieldset>
 		<legend><?php echo JText::_('Positions'); ?></legend>
 
-			<?php	
+			<?php
 				$elements  = $this->type->getSubmittableElements();
 				$count	   = count($elements);
 				$positions = $this->positions['positions'];
 				if (count($positions)) {
 					foreach ($positions as $position => $name) {
 						echo '<div class="position">'.$name.'</div>';
-						echo '<ul class="element-list" role="'.$position.'">';
-						
+						echo '<ul class="element-list" data-position="'.$position.'">';
+
 						if ($this->config && isset($this->config[$position])) {
-							$i = 0;
 							foreach ($this->config[$position] as $data) {
 								if (isset($elements[$data['element']])) {
 									$element = $elements[$data['element']];
 									unset($elements[$data['element']]);
-									
-									// render partial
-									echo $this->partial('assignsubmittableelement', array('element' => $element, 'data' => $data, 'position' => $position, 'index' => $i++));
+
+									echo $this->partial('assignsubmittableelement', array('element' => $element, 'data' => $data));
 								}
 							}
 						}
@@ -64,24 +62,21 @@ $this->app->document->addScript('assets:js/type.js');
 
 		<fieldset>
 		<legend><?php echo JText::_('Submittable Elements'); ?></legend>
-		
+
 		<?php
 			if ($count <= 0) {
 				echo '<i>'.JText::_('There are no elements to assign').'</i>';
 			}
-			
-			if ($elements !== false) {
-				$i = 0;
-                echo '<ul class="element-list unassigned" role="unassigned">';
-				foreach ($elements as $element) {
 
-					// render partial
-					echo $this->partial('assignsubmittableelement', array('element' => $element, 'data' => array(), 'position' => 'unassigned', 'index' => $i++));
+			if ($elements !== false) {
+                echo '<ul class="element-list" data-position="unassigned">';
+				foreach ($elements as $element) {
+					echo $this->partial('assignsubmittableelement', array('element' => $element, 'data' => array()));
 				}
 				echo '</ul>';
-			} 
+			}
 		?>
-		
+
 		</fieldset>
 
 	</div>

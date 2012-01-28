@@ -154,7 +154,7 @@ class ElementRating extends Element {
 
 		// init vars
 		$max_stars  = $this->config->get('stars');
-		$allow_vote = $this->config->get('allow_vote');
+		$allow_vote = $this->config->get('allow_vote', $this->app->joomla->getDefaultAccess());
 
 		$db   = $this->app->database;
 		$user = $this->app->user->get();
@@ -172,7 +172,7 @@ class ElementRating extends Element {
 			));
 		}
 
-		if (in_array($vote, $stars) && isset($_SERVER['REMOTE_ADDR']) && ($ip = $_SERVER['REMOTE_ADDR'])) {
+		if (in_array($vote, $stars) && ($ip = $this->app->useragent->ip())) {
 
 			// check if ip already exists
 			$query = 'SELECT *'

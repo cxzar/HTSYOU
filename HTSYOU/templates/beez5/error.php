@@ -1,8 +1,7 @@
 <?php
 /**
- * @version		$Id: error.php 17282 2010-05-26 15:24:49Z infograf768 $
  * @package		Joomla.Site
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -33,12 +32,12 @@ if(!$templateparams->get('html5', 0)): ?>
 
 
 		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/system.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez5/css/position.css" type="text/css" media="screen,projection" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez5/css/layout.css" type="text/css" media="screen,projection" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez5/css/print.css" type="text/css" media="Print" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez5/css/beez5.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/position.css" type="text/css" media="screen,projection" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/layout.css" type="text/css" media="screen,projection" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/print.css" type="text/css" media="Print" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/beez5.css" type="text/css" />
 <?php
-	$files = JHtml::_('stylesheet','templates/beez5/css/general.css',null,false,true);
+	$files = JHtml::_('stylesheet', 'templates/'.$this->template.'/css/general.css', null, false, true);
 	if ($files):
 		if (!is_array($files)):
 			$files = array($files);
@@ -51,13 +50,13 @@ if(!$templateparams->get('html5', 0)): ?>
 	endif;
 ?>
 		<?php if ($this->direction == 'rtl') : ?>
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez5/css/template_rtl.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/template_rtl.css" type="text/css" />
 		<?php endif; ?>
 		<!--[if lte IE 6]>
-			<link href="<?php echo $this->baseurl ?>/templates/beez5/css/ieonly.css" rel="stylesheet" type="text/css" />
+			<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/ieonly.css" rel="stylesheet" type="text/css" />
 		<![endif]-->
 		<!--[if IE 7]>
-			<link href="<?php echo $this->baseurl ?>/templates/beez5/css/ie7only.css" rel="stylesheet" type="text/css" />
+			<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/ie7only.css" rel="stylesheet" type="text/css" />
 		<![endif]-->
 
 
@@ -114,7 +113,7 @@ if(!$templateparams->get('html5', 0)): ?>
 						</ul>
 						<div id="line"></div>
 					<div id="header-image">
-					<img src="<?php echo $this->baseurl ?>/templates/beez5/images/fruits.jpg"  alt="<?php echo JText::_('TPL_BEEZ5_LOGO'); ?>" />
+					<img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/images/fruits.jpg"  alt="<?php echo JText::_('TPL_BEEZ5_LOGO'); ?>" />
 					</div>
 
 		<?php if(!$templateparams->get('html5', 0)): ?>

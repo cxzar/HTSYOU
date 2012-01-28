@@ -2403,6 +2403,7 @@ div.col.width-60 { min-width: 660px; }
 
 div.element label,
 div.element input,
+div.element select,
 div.element button {
 	float: none;
 	clear: none;
@@ -2592,7 +2593,7 @@ fieldset.panelform #item-order { float: left; }
 
 #update-default .changelog textarea { width: 100% }
 
-#update-default .wrapper{
+#update-default .wrapper {
 	padding: 5px;
 	box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
 	border: 1px #fff solid;

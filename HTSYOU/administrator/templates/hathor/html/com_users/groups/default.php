@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: default.php 21595 2011-06-21 02:51:29Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	Templates.hathor
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  * @since		1.6
  */

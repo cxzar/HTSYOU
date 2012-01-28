@@ -44,6 +44,6 @@ if (isset($all_categories[$params->get('category', 0)])) {
 
 if (count($categories)) {
 
-	include(JModuleHelper::getLayoutPath('mod_zoocategory', $params->get('theme', 'default')));
+	include(JModuleHelper::getLayoutPath('mod_zoocategory', $params->get('theme', 'list')));
 
 }

@@ -267,7 +267,7 @@
 		$('#item-edit').EditItem();
 		$('#name-edit').AliasEdit({ edit: <?php echo (int) $this->item->id; ?> });
 		$('#name-edit').find('input[name="name"]').focus();
-		$('#tag-area').Tag({ addButtonText: '<?php echo JText::_('Add Tag'); ?>' });
+		$('#tag-area').Tag({ url: 'index.php?option=com_zoo&controller=item&format=raw&task=tags', addButtonText: '<?php echo JText::_('Add Tag'); ?>' });
 	});
 </script>
 

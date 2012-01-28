@@ -14,6 +14,18 @@ defined('_JEXEC') or die('Restricted access');
 Changelog
 ------------
 
+2.5.3
+# minor css fix for list style
+
+2.5.2
+^ cleanup in bubbles style
+
+2.5.1
+# fixed problems with showing comments from unpublished items
+
+2.5.0
+^ initial 2.5 release
+
 2.4.4
 ^ changed paths
 

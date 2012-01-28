@@ -1,8 +1,7 @@
 <?php
 /**
- * @version		$Id: error.php 17282 2010-05-26 15:24:49Z infograf768 $
  * @package		Joomla.Site
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -36,12 +35,12 @@ $this->direction = $doc->direction;
 
 
 		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/system.css" type="text/css" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/position.css" type="text/css" media="screen,projection" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/layout.css" type="text/css" media="screen,projection" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/print.css" type="text/css" media="Print" />
-		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/<?php echo htmlspecialchars($color); ?>.css" type="text/css" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/position.css" type="text/css" media="screen,projection" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/layout.css" type="text/css" media="screen,projection" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/print.css" type="text/css" media="Print" />
+		<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/<?php echo htmlspecialchars($color); ?>.css" type="text/css" />
 <?php
-	$files = JHtml::_('stylesheet','templates/beez_20/css/general.css',null,false,true);
+	$files = JHtml::_('stylesheet', 'templates/'.$this->template.'/css/general.css', null, false, true);
 	if ($files):
 		if (!is_array($files)):
 			$files = array($files);
@@ -53,18 +52,18 @@ $this->direction = $doc->direction;
 		endforeach;
 	endif;
 ?>
-		 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/<?php echo htmlspecialchars($color); ?>.css" type="text/css" />
+		 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/<?php echo htmlspecialchars($color); ?>.css" type="text/css" />
 		<?php if ($this->direction == 'rtl') : ?>
-			<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/template_rtl.css" type="text/css" />
-			<?php if (file_exists(JPATH_SITE . '/templates/beez_20/css/' . $color . '_rtl.css')) :?>
-				<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/beez_20/css/<?php echo $color ?>_rtl.css" type="text/css" />
+			<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/template_rtl.css" type="text/css" />
+			<?php if (file_exists(JPATH_SITE . '/templates/'.$this->template.'/css/' . $color . '_rtl.css')) :?>
+				<link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/<?php echo $color ?>_rtl.css" type="text/css" />
 			<?php endif; ?>
 		<?php endif; ?>
 		<!--[if lte IE 6]>
-			<link href="<?php echo $this->baseurl ?>/templates/beez_20/css/ieonly.css" rel="stylesheet" type="text/css" />
+			<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/ieonly.css" rel="stylesheet" type="text/css" />
 		<![endif]-->
 		<!--[if IE 7]>
-			<link href="<?php echo $this->baseurl ?>/templates/beez_20/css/ie7only.css" rel="stylesheet" type="text/css" />
+			<link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template; ?>/css/ie7only.css" rel="stylesheet" type="text/css" />
 		<![endif]-->
 
 

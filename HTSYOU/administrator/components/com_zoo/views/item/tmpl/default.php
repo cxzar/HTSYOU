@@ -110,19 +110,16 @@ $this->app->document->addScript('assets:js/item.js');
 				$alt = '';
 				if ( $now->toUnix() <= $publish_up->toUnix() && $row->state == 1 ) {
 					$img = 'publish_y.png';
-					$alt = JText::_( 'Published' );
-				} else if ( ( $now->toUnix() <= $publish_down->toUnix() || $row->publish_down == $nullDate ) && $row->state == 1 ) {
+					$alt = JText::_('Published');
+				} else if (($now->toUnix() <= $publish_down->toUnix() || $row->publish_down == $nullDate) && $row->state == 1 ) {
 					$img = 'publish_g.png';
-					$alt = JText::_( 'Published' );
-				} else if ( $now->toUnix() > $publish_down->toUnix() && $row->state == 1 ) {
+					$alt = JText::_('Published');
+				} else if ($now->toUnix() > $publish_down->toUnix() && $row->state == 1) {
 					$img = 'publish_r.png';
-					$alt = JText::_( 'Expired' );
-				} else if ( $row->state == 0 ) {
+					$alt = JText::_('Expired');
+				} else if ($row->state == 0) {
 					$img = 'publish_x.png';
-					$alt = JText::_( 'Unpublished' );
-				} else if ( $row->state == -1 ) {
-					$img = 'disabled.png';
-					$alt = JText::_( 'Archived' );
+					$alt = JText::_('Unpublished');
 				}
 
 				if ($row->searchable == 0) {

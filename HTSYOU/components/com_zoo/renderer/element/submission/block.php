@@ -24,12 +24,12 @@ $label .= '</strong>';
 
 // create error
 $error = '';
-if ($field->hasError()) {
-    $error = '<p class="error-message">'.(string) $field->getError().'</p>';
+if (@$element->error) {
+    $error = '<p class="error-message">'.(string) $element->error.'</p>';
 }
 
 // create class attribute
-$class = 'element element-'.$element->getElementType().($params->get('first') ? ' first' : '').($params->get('last') ? ' last' : '').($params->get('required') ? ' required' : '').($field->hasError() ? ' error' : '');
+$class = 'element element-'.$element->getElementType().($params->get('first') ? ' first' : '').($params->get('last') ? ' last' : '').($params->get('required') ? ' required' : '').(@$element->error ? ' error' : '');
 
 $element->loadAssets();
 

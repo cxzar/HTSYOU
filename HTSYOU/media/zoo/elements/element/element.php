@@ -415,7 +415,7 @@ abstract class Element {
 
 		$data = array();
 		$type = $this->getElementType();
-		$xml  = $this->app->xml->loadFile($this->app->path->path("elements:$type/$type.xml"));
+		$xml  = simplexml_load_file($this->app->path->path("elements:$type/$type.xml"));
 
 		if (!$xml) {
 			return false;
@@ -520,15 +520,10 @@ interface iSubmittable {
     public function validateSubmission($value, $params);
 }
 
+// deprecated as of version 2.5.7
 interface iSubmissionUpload {
 
-    /*
-		Function: doUpload
-			Does the actual upload during submission
-
-		Returns:
-			void
-	*/
+	// deprecated as of version 2.5.7 use beforeSubmissionSave callback instead
     public function doUpload();
 }
 

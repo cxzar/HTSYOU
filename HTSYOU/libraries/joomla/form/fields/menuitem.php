@@ -3,19 +3,16 @@
  * @package     Joomla.Platform
  * @subpackage  Form
  *
- * @copyright   Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
 defined('JPATH_PLATFORM') or die;
 
-jimport('joomla.html.html');
-jimport('joomla.form.formfield');
-jimport('joomla.form.helper');
 JFormHelper::loadFieldClass('groupedlist');
 
 // Import the com_menus helper.
-require_once realpath(JPATH_ADMINISTRATOR.'/components/com_menus/helpers/menus.php');
+require_once realpath(JPATH_ADMINISTRATOR . '/components/com_menus/helpers/menus.php');
 
 /**
  * Supports an HTML grouped select list of menu item grouped by menu
@@ -56,27 +53,33 @@ class JFormFieldMenuItem extends JFormFieldGroupedList
 		$items = MenusHelper::getMenuLinks($menuType, 0, 0, $published, $language);
 
 		// Build group for a specific menu type.
-		if ($menuType) {
+		if ($menuType)
+		{
 			// Initialize the group.
 			$groups[$menuType] = array();
 
 			// Build the options array.
-			foreach($items as $link) {
+			foreach ($items as $link)
+			{
 				$groups[$menuType][] = JHtml::_('select.option', $link->value, $link->text, 'value', 'text', in_array($link->type, $disable));
 			}
 		}
-
 		// Build groups for all menu types.
-		else {
+		else
+		{
 			// Build the groups arrays.
-			foreach($items as $menu)
+			foreach ($items as $menu)
 			{
 				// Initialize the group.
 				$groups[$menu->menutype] = array();
 
 				// Build the options array.
-				foreach($menu->links as $link) {
-					$groups[$menu->menutype][] = JHtml::_('select.option', $link->value, $link->text, 'value', 'text', in_array($link->type, $disable));
+				foreach ($menu->links as $link)
+				{
+					$groups[$menu->menutype][] = JHtml::_(
+						'select.option', $link->value, $link->text, 'value', 'text',
+						in_array($link->type, $disable)
+					);
 				}
 			}
 		}

@@ -65,35 +65,17 @@
 /* Hover */
 .wk-slideshow-showcasebuttons .wk-slideset .set > li:hover {
 	background: #ccc;
-	background: -moz-linear-gradient(
-					50% 0%,
-					#ddd 0%,
-					#bbb 100%
-				);
-	background: -webkit-gradient( 
-					linear,
-					50% 0%,
-					50% 100%,
-					color-stop(0%, #ddd),
-					color-stop(100%, #bbb)
-				);
+	background: -moz-linear-gradient(top, #ddd 0%, #bbb 100%);
+	background: -webkit-linear-gradient(top, #ddd 0%, #bbb 100%);
+	background: -o-linear-gradient(top, #ddd 0%, #bbb 100%);
 	box-shadow: 0 2px 3px rgba(0,0,0,0.10);
 }
 
 .wk-slideshow-showcasebuttons .wk-slideset .set > li:hover > div {
 	background: #fff;
-	background: -moz-linear-gradient(
-					50% 0%,
-					#fff 0%,
-					#ebebeb 100%
-				);
-	background: -webkit-gradient( 
-					linear,
-					50% 0%,
-					50% 100%,
-					color-stop(0%, #fff),
-					color-stop(100%, #ebebeb)
-				);
+	background: -moz-linear-gradient(top, #fff 0%, #ebebeb 100%);
+	background: -webkit-linear-gradient(top, #fff 0%, #ebebeb 100%);
+	background: -o-linear-gradient(top, #fff 0%, #ebebeb 100%);
 }
 
 /* Active */

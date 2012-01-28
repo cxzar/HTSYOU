@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: discover.php 22359 2011-11-07 16:31:03Z github_bot $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,7 +11,6 @@ defined('_JEXEC') or die;
 
 // Import library dependencies
 require_once dirname(__FILE__) . '/extension.php';
-jimport('joomla.installer.installer');
 
 /**
  * Installer Manage Model
@@ -35,11 +33,11 @@ class InstallerModelDiscover extends InstallerModel
 	protected function populateState($ordering = null, $direction = null)
 	{
 		$app = JFactory::getApplication();
-		$this->setState('message',$app->getUserState('com_installer.message'));
-		$this->setState('extension_message',$app->getUserState('com_installer.extension_message'));
-		$app->setUserState('com_installer.message','');
-		$app->setUserState('com_installer.extension_message','');
-		parent::populateState('name','asc');
+		$this->setState('message', $app->getUserState('com_installer.message'));
+		$this->setState('extension_message', $app->getUserState('com_installer.extension_message'));
+		$app->setUserState('com_installer.message', '');
+		$app->setUserState('com_installer.extension_message', '');
+		parent::populateState('name', 'asc');
 	}
 
 	/**
@@ -104,7 +102,7 @@ class InstallerModelDiscover extends InstallerModel
 	{
 		$app = JFactory::getApplication();
 		$installer = JInstaller::getInstance();
-		$eid = JRequest::getVar('cid',0);
+		$eid = JRequest::getVar('cid', 0);
 		if (is_array($eid) || $eid) {
 			if (!is_array($eid)) {
 				$eid = array($eid);

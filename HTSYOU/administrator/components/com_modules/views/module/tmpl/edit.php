@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: edit.php 22078 2011-09-14 22:30:09Z dextercowley $
  * @package		Joomla.Administrator
  * @subpackage	com_modules
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 

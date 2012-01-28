@@ -18,15 +18,11 @@ $zoo = App::getInstance('zoo');
 // load zoo frontend language file
 $zoo->system->language->load('com_zoo');
 
-// init vars
-$path = dirname(__FILE__);
+// register module path
+$zoo->path->register(dirname(__FILE__), 'mod_zoocomment');
 
-//register base path
-$zoo->path->register($path, 'mod_zoocomment');
-
-// register helpers
-$zoo->path->register($path, 'helpers');
-$zoo->loader->register('CommentModuleHelper', 'helpers:helper.php');
+// set max characters
+$zoo->set('commentsmodule.max_characters', 140);
 
 // init vars
 $application = $zoo->table->application->get($params->get('application', 0));
@@ -46,12 +42,12 @@ if ($params->get('subcategories')) {
 }
 
 // get latest comments
-$comments = $zoo->commentmodule->getLatestComments($application, $category, $params->get('count', 10));
+$comments = $zoo->table->comment->getLatestComments($application, $category, $params->get('count', 10));
 
 // load template
 
 if (!empty($comments)) {
 
-	include(JModuleHelper::getLayoutPath('mod_zoocomment', $params->get('theme', 'list-v')));
+	include(JModuleHelper::getLayoutPath('mod_zoocomment', $params->get('theme', 'list')));
 
 }

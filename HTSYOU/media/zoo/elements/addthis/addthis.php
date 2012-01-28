@@ -73,7 +73,7 @@ class ElementAddthis extends Element implements iSubmittable {
 			Array - cleaned value
 	*/
 	public function validateSubmission($value, $params) {
-		return array('value' => $value->get('value'));
+		return array('value' => (bool) $value->get('value'));
 	}
 
 }

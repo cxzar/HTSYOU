@@ -16,7 +16,9 @@ class BlogApplication extends Application {
 			Void
 	*/
 	public function dispatch() {
-		$this->app->path->register($this->getTemplate()->getPath().'/classes', 'classes');
+		if ($template = $this->getTemplate()) {
+			$this->app->path->register($template->getPath().'/classes', 'classes');
+		}
 		parent::dispatch();
 	}
 

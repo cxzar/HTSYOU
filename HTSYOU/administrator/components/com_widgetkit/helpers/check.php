@@ -90,7 +90,6 @@ class CheckWidgetkitHelper extends WidgetkitHelper {
                 'message' => 'No GD library available.'
             );
         }
-
     }
 
 }

@@ -3,7 +3,7 @@
  * @package     Joomla.Platform
  * @subpackage  Registry
  *
- * @copyright   Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE
  */
 
@@ -48,7 +48,8 @@ class JRegistryFormatJSON extends JRegistryFormat
 	public function stringToObject($data, $options = array('processSections' => false))
 	{
 		// Fix legacy API.
-		if (is_bool($options)) {
+		if (is_bool($options))
+		{
 			$options = array('processSections' => $options);
 
 			// Deprecation warning.
@@ -56,10 +57,13 @@ class JRegistryFormatJSON extends JRegistryFormat
 		}
 
 		$data = trim($data);
-		if ((substr($data, 0, 1) != '{') && (substr($data, -1, 1) != '}')) {
+		if ((substr($data, 0, 1) != '{') && (substr($data, -1, 1) != '}'))
+		{
 			$ini = JRegistryFormat::getInstance('INI');
 			$obj = $ini->stringToObject($data, $options);
-		} else {
+		}
+		else
+		{
 			$obj = json_decode($data);
 		}
 		return $obj;

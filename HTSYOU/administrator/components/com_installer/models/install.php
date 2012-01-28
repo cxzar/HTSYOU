@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: install.php 21518 2011-06-10 21:38:12Z chdemko $
  * @package		Joomla.Administrator
  * @subpackage	com_installer
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -13,8 +12,6 @@ defined('_JEXEC') or die;
 // Import library dependencies
 
 jimport('joomla.application.component.model');
-jimport('joomla.installer.installer');
-jimport('joomla.installer.helper');
 
 /**
  * Extension Manager Install Model
@@ -54,10 +51,10 @@ class InstallerModelInstall extends JModel
 		// Initialise variables.
 		$app = JFactory::getApplication('administrator');
 
-		$this->setState('message',$app->getUserState('com_installer.message'));
-		$this->setState('extension_message',$app->getUserState('com_installer.extension_message'));
-		$app->setUserState('com_installer.message','');
-		$app->setUserState('com_installer.extension_message','');
+		$this->setState('message', $app->getUserState('com_installer.message'));
+		$this->setState('extension_message', $app->getUserState('com_installer.extension_message'));
+		$app->setUserState('com_installer.message', '');
+		$app->setUserState('com_installer.extension_message', '');
 
 		// Recall the 'Install from Directory' path.
 		$path = $app->getUserStateFromRequest($this->_context.'.install_directory', 'install_directory', $app->getCfg('tmp_path'));
@@ -73,7 +70,6 @@ class InstallerModelInstall extends JModel
 	 */
 	function install()
 	{
-		jimport('joomla.client.helper');
 		$this->setState('action', 'install');
 
 		// Set FTP credentials, if given.

@@ -17,6 +17,7 @@
 		$nav[] = '<li><span></span></li>';
 	}
 
+	$i = 0;
 ?>
 
 <?php if (count($images)) : ?>
@@ -29,12 +30,13 @@
 				<?php foreach ($images as $image) : ?>
 				
 					<?php
-					
 						$captions[]   = '<li>'.(strlen($image['caption']) ? $image['caption']:"").'</li>';
 	
 						/* Prepare Image */
 						$content = '<img src="'.$image['cache_url'].'" width="'.$image['width'].'" height="'.$image['height'].'" alt="'.$image['filename'].'" />';
-						
+
+						/* Lazy Loading */
+						$content = ($i==$settings['index']) ? $content : $this['image']->prepareLazyload($content);
 					?>
 
 					<?php if ($image['link']) : ?>
@@ -43,6 +45,7 @@
 						<li><?php echo $content; ?></li>
 					<?php endif; ?>
 				
+				<?php $i=$i+1;?>
 				<?php endforeach; ?>
 
 			</ul>
@@ -59,10 +62,8 @@
 					<?php foreach ($items as $thumb) : ?>
 					
 					<?php
-	
 						/* Prepare Image */
 						$content = '<img src="'.$thumb['cache_url'].'" width="'.$thumb['width'].'" height="'.$thumb['height'].'" alt="'.$thumb['filename'].'" />';
-						
 					?>
 					
 					<li>

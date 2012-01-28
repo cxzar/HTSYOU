@@ -14,6 +14,55 @@ defined('_JEXEC') or die('Restricted access');
 Changelog
 ------------
 
+2.5.8
+# elements will receive new identifier on type copy
++ added application:installed event
+^ updated German translation
+# fixed Norwegian translation
++ category submission: added param to allow for single or multiple selection
++ updated MediaElement.js to 2.6.4
+# text and textarea element now show default value, without having to edit the item
+
+2.5.7
+^ it is now possible to assign item core elements to submissions
++ added a few item core elements (mainly for item submissions)
++ beforesave event (submission)
++ new option to display date in Blog App + Warp 6 theme
+# fixed problems with page title on category view
+^ submission errors are now being translated
+# fixed problem with Blog application if no template is selected
+# minor css fixes
+^ update to comments module
+# consistent ordering of items related categories
++ Norwegian translation (Thanks to Yngve Rodli)
+# fixed bug with adding images into textarea editor (submission) (J1.7)
+
+2.5.6
+# fixed bug with twitter connect
+^ cleanup of some javascripts
++ reintroduced the index.html files in ZOO folders (hello JED ;-) )
++ updated MediaElement.js to 2.6.1
+# it is now possible to change the width of the audio player
+
+2.5.5
+# fixed bug with Twitter and Facebook connect
+# fixed bug with changing menu item types
+^ change for Joomla 2.5 compatibility
++ you can now import into existing categories (JSON import)
+^ disallow "/" character in tags
+^ improved consistency with category links
+# fixed a redirect on item view
+
+2.5.4
+^ improved error message if ZOO minimum requirements are not met
+^ improved consistency with item links
++ updated MediaElement.js to 2.5.0
++ added tags to CSV import
+# fixed problems with showing comments from unpublished items (Comments module)
+# links in notification mails are now SEOed
+# fixed bug with email notifications on comments
+# fixed compatibility issue with Rockettheme Mission Control admin template
+
 2.5.3
 + ZOO automatically checks for updates now
 # fixed bug with ordering by rating element

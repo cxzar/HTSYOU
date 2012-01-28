@@ -16,7 +16,7 @@ $form->layout_path = $this->path;
 $form->selectable_types = $element->config->get('selectable_types', array());
 
 ?>
-<li class="element hideconfig" role="<?php echo $element->identifier; ?>">
+<li class="element hideconfig" data-element="<?php echo $element->identifier; ?>">
 	<div class="element-icon edit-element edit-event" title="<?php echo JText::_('Edit element'); ?>"></div>
 	<div class="element-icon delete-element delete-event" title="<?php echo JText::_('Delete element'); ?>"></div>
 	<div class="name sort-event" title="<?php echo JText::_('Drag to sort'); ?>"><?php echo $element->config->get('name'); ?>

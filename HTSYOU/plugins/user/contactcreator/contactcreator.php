@@ -1,6 +1,5 @@
 <?php
 /**
- * @version	$Id: contactcreator.php 22359 2011-11-07 16:31:03Z github_bot $
  *
  * Contact Creator
  * A tool to automatically create and synchronise contacts with a user
@@ -10,8 +9,6 @@
 
 // No direct access.
 defined('_JEXEC') or die;
-
-jimport('joomla.plugins.plugin');
 
 /**
  * Class for Contact Creator
@@ -87,9 +84,9 @@ class plgUserContactCreator extends JPlugin
 
 		if (!empty($autowebpage)) {
 			// search terms
-			$search_array = array('[name]', '[username]','[userid]','[email]');
+			$search_array = array('[name]', '[username]', '[userid]', '[email]');
 			// replacement terms, urlencoded
-			$replace_array = array_map('urlencode', array($user['name'], $user['username'],$user['id'],$user['email']));
+			$replace_array = array_map('urlencode', array($user['name'], $user['username'], $user['id'], $user['email']));
 			// now replace it in together
 			$contact->webpage = str_replace($search_array, $replace_array, $autowebpage);
 		}

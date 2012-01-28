@@ -54,7 +54,7 @@ class JElementZooSubmission extends JElement {
                         $type_options[] = $app->html->_('select.option', $type->id, $type->name);
                     }
 
-                    $attribs = 'class="type submission-'.$submission->id.' app-'.$application->id.'" role="'.$control_name.'[type]"';
+                    $attribs = 'class="type submission-'.$submission->id.' app-'.$application->id.'" data-control="'.$control_name.'[type]"';
                     $types[] = $app->html->_('select.genericlist', $type_options, $control_name.'[type]', $attribs, 'value', 'text', $params->get('type'));
                 }
             }
@@ -64,7 +64,7 @@ class JElementZooSubmission extends JElement {
                 continue;
             }
 
-			$attribs = 'class="submission app-'.$application->id.'" role="'.$control_name.'[submission]"';
+			$attribs = 'class="submission app-'.$application->id.'" data-control="'.$control_name.'[submission]"';
 			$submissions[] = $app->html->_('select.genericlist', $submission_options, $control_name.'[submission]', $attribs, 'value', 'text', $params->get('submission'));
 		}
 

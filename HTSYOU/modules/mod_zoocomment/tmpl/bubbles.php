@@ -19,11 +19,9 @@ $zoo->document->addScript('mod_zoocomment:mod_zoocomment.js');
 $is_ie7 = strpos(strtolower($_SERVER['HTTP_USER_AGENT']), 'msie 7') !== false;
 if ($is_ie7) $zoo->document->addStylesheet('mod_zoocomment:tmpl/bubbles/iehacks.css');
 
-$count = count($comments);
-$table = $zoo->table->item;
 ?>
 
-<?php if ($count) : ?>
+<?php if ($count = count($comments)) : ?>
 
 <section class="zoo-comments-bubbles grid-block">
 
@@ -32,12 +30,11 @@ $table = $zoo->table->item;
 		<?php // set author name
 			$author = $comment->getAuthor();
 			$author->name = $author->name ? $author->name : JText::_('COM_ZOO_ANONYMOUS');
-			$item = $table->get($comment->item_id);
 		?>
 
 		<article class="grid-box <?php echo 'width'.intval(100 / $count); ?> <?php if ($author->isJoomlaAdmin()) echo 'comment-byadmin'; ?>">
 
-			<p class="content match-height"><?php echo $zoo->comment->filterContentOutput($zoo->string->truncate($comment->content, CommentModuleHelper::MAX_CHARACTERS)); ?></p>
+			<p class="content match-height"><?php echo $zoo->comment->filterContentOutput($zoo->string->truncate($comment->content, $zoo->get('commentsmodule.max_characters'))); ?></p>
 
 			<?php if ($params->get('show_avatar', 1) || $params->get('show_author', 1 || $params->get('show_meta', 1))) : ?>
 			<p class="meta">
@@ -64,14 +61,14 @@ $table = $zoo->table->item;
 					| <a class="permalink" href="<?php echo JRoute::_($zoo->route->comment($comment)); ?>">#</a>
 				</span>
 				<?php endif; ?>
-				
+
 			</p>
 			<?php endif; ?>
 
 		</article>
 
 	<?php $i++; endforeach; ?>
-	
+
 </section>
 
 <?php else : ?>

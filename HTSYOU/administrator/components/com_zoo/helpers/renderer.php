@@ -75,7 +75,7 @@ class AppRenderer {
 
 	public function  __construct($app, $path = null) {
 		$this->_layout_paths = array();
-		$this->_path = $path ? $path : $app->object->create('PathHelper', array($this->app));
+		$this->_path = $path ? $path : $app->object->create('PathHelper', array($app));
 	}
 
 	/*
@@ -132,7 +132,7 @@ class AppRenderer {
 			// init vars
 			$parts = explode($this->_separator, $layout);
 			$this->_layout = preg_replace('/[^A-Z0-9_\.-]/i', '', array_pop($parts));
-			$this->_layout_paths[$layout] = $this->_path->path('default:'.implode('/', $parts).'/'.$this->_layout.$this->_extension);
+			$this->_layout_paths[$layout] = $this->_path->path(implode('/', $parts).'/'.$this->_layout.$this->_extension);
 		}
 
 		return $this->_layout_paths[$layout];
@@ -175,7 +175,7 @@ class AppRenderer {
 		$layouts = array();
 
 		// find layouts in path(s)
-		$layouts = $this->_path->files("default:$dir", false, '/' . preg_quote($this->_extension) . '$/i');
+		$layouts = $this->_path->files("$dir", false, '/' . preg_quote($this->_extension) . '$/i');
 
 		return array_map(create_function('$layout', 'return basename($layout, "'.$this->_extension.'");'), $layouts);
 	}
@@ -194,8 +194,8 @@ class AppRenderer {
 		$parts    = explode($this->_separator, $layout);
 		$name     = array_pop($parts);
 
-		if ($file = $this->_path->path('default:'.implode(DIRECTORY_SEPARATOR, $parts).'/'.$this->_metafile)) {
-			if ($xml = $this->app->xml->loadFile($file)) {
+		if ($file = $this->_path->path(implode(DIRECTORY_SEPARATOR, $parts).'/'.$this->_metafile)) {
+			if ($xml = simplexml_load_file($file)) {
 				foreach ($xml->children() as $child) {
 					$attributes = $child->attributes();
 					if ($child->getName() == 'layout' && (string) $attributes->name == $name) {
@@ -236,7 +236,7 @@ class AppRenderer {
 			Array
 	*/
 	protected function _getPath($dir = '') {
-		return $this->_path->path('default:'.$dir);
+		return $this->_path->path($dir);
 	}
 
 }
@@ -271,7 +271,7 @@ abstract class PositionRenderer extends AppRenderer {
 		$path   = implode('/', $parts);
 
 		// parse positions xml
-		if ($xml = $this->app->xml->loadFile(JPath::find($this->_getPath($path), $this->_xml_file))) {
+		if ($xml = simplexml_load_file($this->_getPath($path.'/'.$this->_xml_file))) {
 			foreach ($xml->children() as $pos) {
 				if ((string) $pos->attributes()->layout == $layout) {
 					$positions['name'] = $layout;
@@ -313,7 +313,7 @@ abstract class PositionRenderer extends AppRenderer {
 		// config file
 		if (empty($this->_config)) {
 
-			if ($file = $this->_path->path('default:'.$dir.'/'.$this->_config_file)) {
+			if ($file = $this->_path->path($dir.'/'.$this->_config_file)) {
 				$content = JFile::read($file);
 			} else {
 				$content = null;

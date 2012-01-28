@@ -1,9 +1,8 @@
 <?php
 /**
- * @version		$Id: framework.php 22383 2011-11-14 01:52:45Z github_bot $
  * @package		Joomla.Site
  * @subpackage	Application
- * @copyright	Copyright (C) 2005 - 2011 Open Source Matters, Inc. All rights reserved.
+ * @copyright	Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
  * @license		GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -24,7 +23,7 @@ defined('_JEXEC') or die;
 if (!file_exists(JPATH_CONFIGURATION.'/configuration.php') || (filesize(JPATH_CONFIGURATION.'/configuration.php') < 10) || file_exists(JPATH_INSTALLATION.'/index.php')) {
 
 	if (file_exists(JPATH_INSTALLATION.'/index.php')) {
-		header('Location: '.substr($_SERVER['REQUEST_URI'],0,strpos($_SERVER['REQUEST_URI'],'index.php')).'installation/index.php');
+		header('Location: '.substr($_SERVER['REQUEST_URI'], 0, strpos($_SERVER['REQUEST_URI'], 'index.php')).'installation/index.php');
 		exit();
 	} else {
 		echo 'No configuration file found and no installation code available. Exiting...';
@@ -36,13 +35,17 @@ if (!file_exists(JPATH_CONFIGURATION.'/configuration.php') || (filesize(JPATH_CO
 // Joomla system startup.
 //
 
-// Import the cms version library if necessary.
-if (!class_exists('JVersion')) {
-    require JPATH_ROOT.'/includes/version.php';
-}
-
 // System includes.
 require_once JPATH_LIBRARIES.'/import.php';
+
+// Force library to be in JError legacy mode
+JError::$legacy = true;
+JError::setErrorHandling(E_NOTICE, 'message');
+JError::setErrorHandling(E_WARNING, 'message');
+JError::setErrorHandling(E_ERROR, 'message', array('JError', 'customErrorPage'));
+
+// Botstrap the CMS libraries.
+require_once JPATH_LIBRARIES.'/cms.php';
 
 // Pre-Load configuration.
 ob_start();
@@ -104,14 +107,7 @@ if (JDEBUG) {
 //
 
 jimport('joomla.application.menu');
-jimport('joomla.user.user');
 jimport('joomla.environment.uri');
-jimport('joomla.filter.filterinput');
-jimport('joomla.filter.filteroutput');
-jimport('joomla.html.html');
 jimport('joomla.utilities.utility');
-jimport('joomla.event.event');
 jimport('joomla.event.dispatcher');
-jimport('joomla.language.language');
-jimport('joomla.utilities.string');
 jimport('joomla.utilities.arrayhelper');
