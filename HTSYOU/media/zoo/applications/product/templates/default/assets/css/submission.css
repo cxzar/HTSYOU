@@ -1,0 +1,36 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * mysubmissions + submission
+ */
+
+#yoo-zoo .mysubmissions > h1.headline,
+#yoo-zoo .submission > h1.headline {
+	margin: 0px;
+	font-weight: bold;
+	color: #505050;
+	font-size: 21px;
+	line-height: 32px;
+}
+
+/*
+ * submission
+ */
+
+#yoo-zoo div.submission fieldset {
+	margin: 25px 0 0 0;
+	padding: 20px;
+	border-color: #c8cbcd;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
+
+#yoo-zoo div.submission fieldset:first-child { margin-top: 10px; }
+
+#yoo-zoo div.submission fieldset legend {
+	margin-left: -5px;
+	padding: 0 5px 0 5px;
+	font-size: 18px;
+	color: #505050;
+}

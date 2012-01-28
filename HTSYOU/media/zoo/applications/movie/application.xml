@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<application>
+	<name>Movie Database</name>
+	<group>movie</group>
+	<version>2.5.0</version>
+	<creationDate>August 2011</creationDate>
+	<author>YOOtheme</author>
+	<authorEmail>info@yootheme.com</authorEmail>
+	<authorUrl>http://www.yootheme.com</authorUrl>
+    <copyright>Copyright (C) YOOtheme GmbH</copyright>
+    <license><![CDATA[
+			YOOtheme License (<a href="http://www.yootheme.com/license" target="_blank">http://www.yootheme.com/license</a>)
+			]]>
+	</license>
+	<description><![CDATA[   <a href="http://joomlana.net" target="_blank"><img src="http://joomlana.net/Joomlana%20Enterprise.png" width="360" height="115" alt="Joomlana.net" /></a><br/>
+				This is the movie database app for ZOO 2.0 developed by YOOtheme.
+				<br /><strong>NOTE:</strong> The icon of this app is copyrighted by YOOtheme. Re-use is strictly prohibited.
+				]]>
+	</description>
+	<params group="application-config">
+		<param name="items_per_page" type="text" size="3" default="15" label="Items Per Page" description="Number of items to show on a page" />
+		<param name="item_order" type="zooitemorder" default="_itemname" label="Item Order" description="ITEM_ORDER" />
+		<param name="alpha_index" type="list" default="2" label="Alpha Index" description="ALPHA_INDEX_DESCRIPTION">
+			<option value="1">Only Categories</option>
+			<option value="2">Only Items</option>
+			<option value="3">Both</option>
+		</param>
+		<param name="show_feed_link" type="zoofeed" default="0" label="Show Feed Link" description="DISPLAY_FEED_LINKS" />
+	</params>
+	<params group="category-config">
+		<param name="items_per_page" type="textglobal" size="3" default="15" label="Items Per Page" description="Number of items to show on a page" />
+		<param name="item_order" type="zooitemorderglobal" default="_itemname" label="Item Order" description="ITEM_ORDER" />
+		<param name="show_feed_link" type="zoofeedglobal" default="0" label="Show Feed Link" description="DISPLAY_FEED_LINKS" />
+	</params>
+	<params group="application-content">
+		<param name="title" type="text" label="Title" description="Set a frontpage title." />
+		<param name="subtitle" type="text" label="Subtitle" description="Set a frontpage subtitle." />
+		<param name="image" type="zooimage" label="Image" description="Choose a frontpage image." />
+	</params>
+	<params group="category-content">
+		<param name="teaser_description" type="textarea" label="Teaser Description" description="Set a teaser description for this category. It will be displayed in the parent category." />
+		<param name="teaser_image" type="zooimage" label="Teaser Image" description="Choose a teaser image for this category. It will be displayed in the parent category." />
+		<param name="image" type="zooimage" label="Image" description="Choose a category image." />
+	</params>
+	<params group="item-content">
+	</params>
+</application>

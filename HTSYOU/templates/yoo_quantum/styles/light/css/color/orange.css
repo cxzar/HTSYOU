@@ -1,0 +1,57 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+
+/* Color Orange
+----------------------------------------------------------------------------------------------------*/
+
+h3,
+a,
+em,
+code,
+#footer .menu-line a,
+.menu-dropdown li.active .level1,
+.menu-dropdown .level2 a.level2:hover,
+.menu-dropdown li.current > .level2,
+.menu-dropdown a.level3:hover,
+.menu-sidebar a:hover > span,
+.menu-sidebar span:hover > span,
+#searchbox .results li.more-results,
+.breadcrumbs strong,
+a.button-more:focus,
+#system .pagination strong {
+	color: #ef8d00;
+	text-shadow: none;
+}
+
+a:hover,
+#footer .menu-line a:hover,
+#searchbox .results li.more-results:hover { color: #ba3900; }
+
+.menu-dropdown li.current .level2 span.subtitle { color: #ef8d00; }
+
+::-moz-selection {
+	background: rgba(239,141,0,0.2);
+	color: #ef8d00;
+}
+
+::selection {
+	background: rgba(239,141,0,0.2);
+	color: #ef8d00;
+}
+
+/* Images
+----------------------------------------------------------------------------------------------------*/
+
+/* Logo */
+#logo .custom-logo { background: url(../../../../../../images/yootheme/logo_lightorange.png) 0 0 no-repeat; }
+
+/* Menu */
+.menu-dropdown a.level3 { background-image: url(../../images/color/orange/menu_level3.png); }
+
+.menu-sidebar .level2 a,
+.menu-sidebar .level2 li > span { background-image: url(../../images/color/orange/menu_sidebar_level2.png); }
+
+/* Tools */
+ul.line.bullet > li { background-image: url(../../images/color/orange/list_line_bullet.png); }
+
+ul.check > li { background-image: url(../../images/color/orange/list_check.png); }

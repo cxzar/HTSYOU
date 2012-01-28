@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout name="article">
+		<name>Article</name>
+		<description>This is the article layout to render an item in the widgetkit themes.</description>
+	</layout>
+	<layout name="image">
+		<name>Image</name>
+		<description>This is the image layout to render an item image in the widgetkit themes.</description>
+	</layout>
+	<layout name="article2">
+		<name>Article 2</name>
+		<description>This is an alternative layout to render an item in the widgetkit themes.</description>
+	</layout>
+</metadata>

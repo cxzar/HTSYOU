@@ -1,0 +1,200 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/* General
+----------------------------------------------------------------------------------------------------*/
+
+#system form.submission small { margin: 0 0 20px 0; }
+
+#system form.submission div.submit { margin-top: 0; }
+
+/* Item
+----------------------------------------------------------------------------------------------------*/
+
+#system > h1.title {
+	font-size: 28px;
+	text-transform: uppercase;
+}
+
+#system .item > header h1.title {
+	line-height: 26px;
+	font-size: 24px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#system .item time + h1.title,
+#system .item time + h1.title + p.meta { margin-left: 50px; }
+
+#system .item > header {
+	position: relative;
+	padding: 0 0 15px 0;
+}
+
+#system .item > header .meta { 
+	margin-top: 0;
+	margin-bottom: 0;
+	line-height: 18px;
+}
+
+#system .item > header time {
+	position: absolute;
+	left: 3px;
+	top: 3px;
+	width: 28px;
+	height: 30px;
+	padding: 8px 4px 0 4px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	line-height: 12px;
+	font-size: 16px;
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+}
+
+#system .item > header time .month {
+	font-size: 10px;
+	text-transform: uppercase;
+}
+
+#system .item > .content p a { text-decoration: underline; }
+
+#system .item > .links {
+	margin-top: 18px;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+#system .item > .links a {
+	padding-left: 18px;
+	text-decoration: underline;
+	line-height: 13px;
+}
+
+#system .item > .links a:hover { background-position: 0 -37px; }
+
+#system .item > .links a:after {
+	content: "";
+	font-size: 14px;
+}
+
+/* Items
+----------------------------------------------------------------------------------------------------*/
+
+#system .items .item { margin-top: 44px; }
+#system .items .item:first-child { margin-top: 0; }
+
+
+/* Pagination
+----------------------------------------------------------------------------------------------------*/
+
+#system .pagination a { text-decoration: none; }
+#system .pagination a:hover { text-decoration: underline; }
+#system .pagination strong { font-weight: bold; }
+
+#system .pagination a,
+#system .pagination strong {
+	padding: 0 4px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	line-height: 25px;
+	font-size: 12px;
+	overflow: hidden;
+}
+
+#system .pagination > *:first-child { margin-left: 0; }
+
+#system .pagination a.previous,
+#system .pagination a.next {
+	width: 18px;
+	border: none;
+	box-shadow: none;
+	text-indent: 50px;
+}
+#system .pagination a.previous { background-position: 2px 6px; }
+#system .pagination a.previous:hover { background-position: 2px -24px; }
+#system .pagination a.next { background-position: 2px -55px; }
+#system .pagination a.next:hover { background-position: 2px -85px; }
+
+#system .pagination a.first,
+#system .pagination a.last { display: none; }
+
+
+/* Search Box
+----------------------------------------------------------------------------------------------------*/
+
+#searchbox {
+	width: 90px;
+	height: 31px;
+	padding: 0 30px;
+}
+
+#searchbox input {
+	height: 30px;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	font-size: 13px;
+}
+
+#searchbox.filled button {
+	margin: 3px 3px 0 0;
+	width: 24px;
+	height: 24px;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+/* Search Results */
+#searchbox .results {
+	top: 46px;
+	right: 0px;
+	width: 300px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+#searchbox .results li.results-header {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+#searchbox .results li.more-results { border: none; }
+
+#searchbox .results li.result { line-height: 16px; }
+
+#searchbox .results li.result h3 { font-weight: bold; }
+
+#searchbox .results li.results-header + li.result { border-top: none; }
+
+/* Breadcrumbs
+----------------------------------------------------------------------------------------------------*/
+
+#breadcrumbs {
+	margin-bottom: 30px;
+	padding: 0 15px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+
+.breadcrumbs a,
+.breadcrumbs > span,
+.breadcrumbs strong { padding: 7px 22px 7px 0; }
+
+.breadcrumbs a:hover,
+.breadcrumbs > span:hover { text-decoration: underline; }
+
+
+/* Latest Comments
+----------------------------------------------------------------------------------------------------*/
+
+.comments-list > article:first-child {
+	padding-top: 5px;
+	border: none;
+}
+

@@ -1,0 +1,12 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * itemprint
+ */
+
+#yoo-zoo a.element-print-button {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	background: url(../images/printer.png) 0 0 no-repeat;
+}

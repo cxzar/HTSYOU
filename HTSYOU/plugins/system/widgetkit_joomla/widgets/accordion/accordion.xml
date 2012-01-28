@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget>
+	<params>
+		<param name="catid" type="category" default="0" label="Category" description="A content category which items are used for the YOOaccordion" />
+		<param name="subcategories" type="radio" default="0" label="Include Subcategories" description="Include Subcategories">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="order" type="list" default="o_asc" label="Ordering" description="Ordering options">
+			<option value="ordering">Article Order</option>
+			<option value="rdate">Latest first</option>
+			<option value="date">Latest last</option>
+			<option value="alpha">Alphabetical</option>
+			<option value="ralpha">Reverse Alphabetical</option>
+			<option value="hits">Most Hits</option>
+			<option value="rhits">Least Hits</option>
+			<option value="random">Random</option>
+	  	</param>
+		<param name="readmore" type="list" default="0" label="Read More" description="Show/Hide the Read More button">
+			<option value="0">Hide</option>
+			<option value="1">Show</option>
+		</param>
+		<param name="items" type="text" default="4" label="No. of Items" description="Maximum no of items to display" />
+	</params>
+</widget>

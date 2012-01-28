@@ -1,0 +1,202 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+@import url(../warp/css/rtl.css);
+
+/* Layout
+----------------------------------------------------------------------------------------------------*/
+
+#menubar,
+#menubar > div,
+#menubar > div > div { background-image: url(../images/rtl/menubar.png); }
+
+.hassearch #menubar { background-position: 0 -120px; }
+
+.hassearch #menubar > div {
+	padding-left: 200px;
+	padding-right: 30px;
+	background-position: 100% -60px;
+}
+
+#menu {
+	margin-left: 0;
+	margin-right: -19px;
+}
+
+#search {
+	left: 12px;
+	right: auto;
+}
+
+#footer { text-align: right; }
+
+#totop-scroller { left: 0; right: auto; }
+
+/* Menus
+----------------------------------------------------------------------------------------------------*/
+
+/* Mega Drop-Down Menu */
+
+.menu-dropdown .dropdown { 
+	left: auto;
+	right: -8px;
+}
+
+.menu-dropdown .level1 .level1 span.icon {
+	margin-left: 0;
+	margin-right: -5px;
+}
+
+.menu-dropdown .level1 .level1 span.icon + span,
+.menu-dropdown .level1 .level1 span.icon + span + span {
+	margin-left: 0;
+	margin-right: 25px;
+}
+
+.menu-dropdown li.level2 .level2 span.icon {
+	margin-left: 4px;
+	margin-right: -8px;
+}
+
+.menu-dropdown li.level2 .level2 span.icon + span,
+.menu-dropdown li.level2 .level2 span.icon + span + span { 
+	margin-left: 0;
+	margin-right: 32px;
+}
+
+.menu-dropdown a.level3 {
+	padding-right: 20px;
+	padding-left: 5px;
+	background-position: 100% -2px;
+}
+
+.menu-dropdown a.level3:hover { background-position: 100% -82px; }
+
+.menu-dropdown li.current > .level3 { background-position: 100% -161px; } 
+
+/* Sidebar/Accordion Menu */
+.menu-sidebar a,
+.menu-sidebar li > span {
+	padding-right: 15px;
+	padding-left: 10px;
+}
+
+.menu-sidebar li.parent .level1 > span { background-position: 0 8px; }
+.menu-sidebar li.parent.active .level1 > span { background-position: 0 -102px; }
+
+.menu-sidebar .level2 a,
+.menu-sidebar .level2 li > span { background-position: 2% 0 ; }
+
+.menu-sidebar .level2 a:hover,
+.menu-sidebar .level2 li > span:hover { background-position: 2% -80px; }
+
+.menu-sidebar .level2 a.active,
+.menu-sidebar .level2 li > span.active { background-position: 2% -160px; }
+
+.menu-sidebar span.icon {
+	margin-right: 0;
+	margin-left: 4px;
+}
+
+/* Line Menu */
+.menu-line li {
+	margin-left: 0;
+	padding-left: 0;
+	margin-right: 10px;
+	padding-right: 11px;
+	background-position: 100% 50%;
+}
+
+.menu-line li:first-child {
+	margin-right: 0;
+	padding-right: 0;
+}
+
+/* Modules
+----------------------------------------------------------------------------------------------------*/
+
+.module .badge {
+	right: auto;
+	left: -5px;
+	background-image: url(../images/rtl/module_badges.png);
+}
+
+div.grid-h .mod-line {
+	margin-right: 0;
+	padding: 0 30px 0 20px;
+	background-position: 100% 0;
+}
+
+/* Tools
+----------------------------------------------------------------------------------------------------*/
+
+/* Line Bullet */
+ul.line.bullet > li {
+	padding-right: 20px;
+	padding-left: 0;
+	background-position: 100% 0;
+}
+
+ul.line.bullet > li:hover { background-position: 100% -200px; }
+
+/* Check List */
+ul.check > li {
+	padding-left: 0;
+	padding-right: 30px;
+	background-position: 100% 0;
+}
+
+/* Definition Lists */
+dl.separator dd { border-width: 0 1px 0 0; }
+
+dl.separator dt:before {
+	right: auto;
+	left: -15px;
+}
+
+dl.separator dt:after {
+	right: auto;
+	left: -3px;
+}
+
+/* System
+----------------------------------------------------------------------------------------------------*/
+
+/* Item */
+time + h1.title, time + h1.title + p.meta { margin-right: 50px!important; }
+
+#system .item > header time { right: 3px; left: auto; }
+
+#system .item > .links { margin-right: 15px; }
+
+#system .item > .links a {
+	padding-right: 18px;
+	padding-left: 0;
+	background-position: 100% 3px;
+}
+
+#system .item > .links a:hover { background-position: 100% -37px; }
+
+/* Pagination */
+#system .pagination a.previous { background-position: 2px -55px; }
+#system .pagination a.previous:hover { background-position: 2px -85px; }
+#system .pagination a.next { background-position: 2px 6px; }
+#system .pagination a.next:hover { background-position: 2px -25px; }
+
+/* Search Box */
+#searchbox { background-image: url(../images/rtl/searchbox.png); }
+
+#searchbox.filled button {
+	margin-left: 3px;
+	margin-right: 0;	
+}
+
+/* Breadcrumbs */
+.breadcrumbs a,
+.breadcrumbs > span,
+.breadcrumbs strong {
+	padding-right: 0;
+	padding-left: 22px;
+}
+
+.breadcrumbs a,
+.breadcrumbs > span { background: url(../images/rtl/breadcrumbs.png) 0 50% no-repeat; }

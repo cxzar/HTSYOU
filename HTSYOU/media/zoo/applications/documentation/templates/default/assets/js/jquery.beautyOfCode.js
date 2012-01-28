@@ -1,0 +1,17 @@
+/*
+ Licensed to the Apache Software Foundation (ASF) under one
+ or more contributor license agreements.
+
+ Copyright 2010 Lars Corneliussen,
+ Site: http://startbigthinksmall.wordpress.com/2009/05/28/beautyofcode-jquery-plugin-for-syntax-highlighter-2-0-by-alex-gorbatchev/
+ Source: https://bitbucket.org/larscorneliussen/beautyofcode/
+
+ Version: 0.2
+*/
+jQuery.beautyOfCode={settings:{autoLoad:!0,baseUrl:"http://alexgorbatchev.com.s3.amazonaws.com/pub/sh/2.1.364/",scripts:"scripts/",styles:"styles/",theme:"Default",brushes:["Xml","JScript","CSharp","Plain"],config:{},defaults:{},ready:function(){jQuery.beautyOfCode.beautifyAll()}},init:function(a){a=jQuery.extend({},jQuery.beautyOfCode.settings,a);if(!a.config.clipboardSwf)a.config.clipboardSwf=a.baseUrl+a.scripts+"clipboard.swf";jQuery(document).ready(function(){if(a.autoLoad){jQuery.beautyOfCode.utils.loadCss(a.baseUrl+
+a.styles+"shCore.css");jQuery.beautyOfCode.utils.loadCss(a.baseUrl+a.styles+"shTheme"+a.theme+".css","shTheme");var b=[];b.push(a.baseUrl+a.scripts+"shCore.js");jQuery.each(a.brushes,function(d,c){b.push(a.baseUrl+a.scripts+"shBrush"+c+".js")});jQuery.beautyOfCode.utils.loadAllScripts(b,function(){a&&a.config&&jQuery.extend(SyntaxHighlighter.config,a.config);a&&a.defaults&&jQuery.extend(SyntaxHighlighter.defaults,a.defaults);a.ready()})}else a.ready()})},beautifyAll:function(){jQuery("pre").filter(function(){if(jQuery(this).attr("class"))return jQuery(this).attr("class").match(/(brush:|language-)/)}).beautifyCode()},
+utils:{loadScript:function(a,b){jQuery.ajax({url:a,complete:function(){b()},type:"GET",dataType:"script",cache:!0})},loadAllScripts:function(a,b){!a||a.length==0?b():jQuery.beautyOfCode.utils.loadScript(a[0],function(){jQuery.beautyOfCode.utils.loadAllScripts(a.slice(1,a.length),b)})},loadCss:function(a,b){var d=jQuery("head")[0];if(a&&d){var c=document.createElement("link");c.setAttribute("rel","stylesheet");c.setAttribute("href",a);if(b)c.id=b;d.appendChild(c)}},addCss:function(a,b){var d=jQuery("head")[0];
+if(a&&d){var c=document.createElement("style");c.setAttribute("type","text/css");if(b)c.id=b;c.styleSheet?c.styleSheet.cssText=a:jQuery(c).text(a);d.appendChild(c)}},addCssForBrush:function(a,b){if(!a.isCssInitialized)jQuery.beautyOfCode.utils.addCss(b.Style),a.isCssInitialized=!0},parseParams:function(a){var b=jQuery.map(a,jQuery.trim),d={},c=function(a,b){for(var c=RegExp("^"+a+"\\[([^\\]]+)\\]$","gi"),d=null,h=0;h<b.length;h++)if((d=c.exec(b[h]))!=null)return d[1];return null},a=function(a){var e=
+c("boc-"+a,b);e&&(d[a]=e)};a("class-name");a("first-line");a("tab-size");(a=c("boc-highlight",b))&&(d.highlight=jQuery.map(a.split(","),jQuery.trim));a=function(a){jQuery.inArray("boc-"+a,b)!=-1?d[a]=!0:jQuery.inArray("boc-no-"+a,b)!=-1&&(d[a]=!1)};a("smart-tabs");a("ruler");a("gutter");a("toolbar");a("collapse");a("auto-links");a("light");a("wrap-lines");a("html-script");return d}}};
+jQuery.fn.beautifyCode=function(a,b){this.each(function(d,c){var g=jQuery(c),e=g.attr("class").replace(/.+?(brush:|language-)/,"$1").replace("language-","").split(" "),f=a?a:e[1],e=jQuery.beautyOfCode.utils.parseParams(e),e=jQuery.extend({},SyntaxHighlighter.defaults,b,e);if(e["html-script"]=="true")highlighter=new SyntaxHighlighter.HtmlScript(f);else if(f=SyntaxHighlighter.utils.findBrush(f))highlighter=new f;else return;jQuery.beautyOfCode.utils.addCssForBrush(f,highlighter);highlighter.highlight(g.html(),
+e);highlighter.source=c;g.replaceWith(highlighter.div)})};

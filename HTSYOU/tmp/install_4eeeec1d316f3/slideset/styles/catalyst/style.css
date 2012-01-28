@@ -1,0 +1,81 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+/*
+ * Widgetkit Slideset: Catalyst Style
+ */
+
+
+/* Navigation
+----------------------------------------------------------------------------------------------------*/
+
+.wk-slideset-catalyst .nav { text-align: center; }
+
+.wk-slideset-catalyst .nav li { display: inline-block; }
+.wk-slideset-catalyst .nav.icon li { margin-left: 5px; }
+.wk-slideset-catalyst .nav.text li { margin-left: 40px; }
+
+.wk-slideset-catalyst .nav li:first-child { margin-left: 0; }
+
+.wk-slideset-catalyst .nav.icon span {
+	width: 18px;
+	height: 19px;
+	background: url(images/nav.png) 0 0 no-repeat;
+	overflow: hidden;
+}
+
+.wk-slideset-catalyst .nav.icon span:hover{ background-position: 0 -30px; }
+.wk-slideset-catalyst .nav.icon span:active { background-position: 0 -60px; }
+.wk-slideset-catalyst .nav.icon .active span { background-position: 0 -90px; }
+
+
+/* Buttons
+----------------------------------------------------------------------------------------------------*/
+
+.wk-slideset-catalyst > div { position: relative; }
+
+.wk-slideset-catalyst > div:hover .next,
+.wk-slideset-catalyst > div:hover .prev {
+	top: 50%;
+	width: 50px;
+	height: 50px;
+	margin-top: -25px;
+	background: url(images/buttons.png) 0 50px no-repeat;
+}
+.wk-slideset-catalyst > div:hover .prev {
+	left: 30px;
+	background-position: 0 0;
+}
+.wk-slideset-catalyst > div:hover .prev:hover { background-position: 0 -60px; }
+.wk-slideset-catalyst > div:hover .prev:active { background-position: 0 -120px; }
+.wk-slideset-catalyst > div:hover .next {
+	right: 30px;
+	background-position: 0 -180px;
+}
+.wk-slideset-catalyst > div:hover .next:hover { background-position: 0 -240px; }
+.wk-slideset-catalyst > div:hover .next:active { background-position: 0 -300px; }
+
+/* Title
+----------------------------------------------------------------------------------------------------*/
+
+.wk-slideset-catalyst ul.set li { 
+	margin: 10px 0;
+	background: url(images/separator.png) 0 0 repeat-y;
+}
+
+.wk-slideset-catalyst ul.set li:first-child { background: none; }
+
+.wk-slideset-catalyst article { 
+	margin: 0 20px;
+	text-align: left;
+}
+
+.wk-slideset-catalyst article + strong.title { font-weight: normal; }
+
+.wk-slideset-catalyst article h4 { margin: 7px 0; }
+.wk-slideset-catalyst article p { margin: 0; }
+
+
+/* IE7 Fixes */
+.wk-ie7 .wk-slideset-catalyst .nav li,
+.wk-ie7 .wk-slideset-catalyst .nav span { display: inline; }
+.wk-ie7 .wk-slideset-catalyst .nav span { zoom: 1; }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<renderer>
+	<positions layout="article">
+		<position name="title">Title</position>
+		<position name="media">Media</position>
+		<position name="meta">Meta</position>
+		<position name="description">Description</position>
+		<position name="links">Links</position>
+		<position name="caption">Caption</position>
+	</positions>
+	<positions layout="image">
+		<position name="media">Media</position>
+		<position name="caption">Caption</position>
+	</positions>
+	<positions layout="article2">
+		<position name="title">Title</position>
+		<position name="media">Media</position>
+		<position name="meta">Meta</position>
+		<position name="description">Description</position>
+		<position name="links">Links</position>
+		<position name="caption">Caption</position>
+	</positions>
+</renderer>

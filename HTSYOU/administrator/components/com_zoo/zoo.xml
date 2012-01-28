@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="2.5" method="upgrade">
+	<name>com_zoo</name>
+	<author>YOOtheme</author>
+	<creationDate>January 2012</creationDate>
+	<updateUrl>http://www.yootheme.com/updates</updateUrl>
+	<copyright>Copyright (C) YOOtheme GmbH</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only</license>
+	<assetsLicense>YOOtheme Proprietary Use License (http://www.yootheme.com/license)</assetsLicense>
+	<authorEmail>info@yootheme.com</authorEmail>
+	<authorUrl>http://www.yootheme.com</authorUrl>
+	<version>2.5.8</version>
+	<description>ZOO component for Joomla 1.7 developed by YOOtheme (http://www.yootheme.com)</description>
+	<languages folder="site/language">
+		<language tag="en-GB">en-GB.com_zoo.ini</language>
+	</languages>
+	<install>
+		<sql>
+			<file driver="mysql" charset="utf8">installation/install.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file driver="mysql" charset="utf8">installation/uninstall.sql</file>
+		</sql>
+	</uninstall>
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>router.php</filename>
+		<filename>zoo.php</filename>
+        <folder>assets</folder>
+		<folder>controllers</folder>
+		<folder>partials</folder>
+		<folder>renderer</folder>
+		<folder>sef_ext</folder>
+		<folder>views</folder>
+	</files>
+	<media destination="zoo" folder="media">
+		<folder>assets</folder>
+		<folder>elements</folder>
+		<folder>libraries</folder>
+	</media>
+	<administration>
+		<menu img="components/com_zoo/assets/images/zoo_16.png">ZOO</menu>
+		<languages folder="admin/language">
+			<language tag="en-GB">en-GB.com_zoo.ini</language>
+			<language tag="en-GB">en-GB.com_zoo.sys.ini</language>
+		</languages>
+		<files folder="admin">
+			<filename>index.html</filename>
+			<filename>changelog.php</filename>
+			<filename>config.php</filename>
+			<filename>zoo.php</filename>
+			<folder>assets</folder>
+			<folder>classes</folder>
+			<folder>controllers</folder>
+			<folder>events</folder>
+			<folder>framework</folder>
+			<folder>helpers</folder>
+			<folder>installation</folder>
+			<folder>joomla</folder>
+			<folder>libraries</folder>
+			<folder>partials</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>
+	</administration>
+	<additional>
+		<module name="mod_zooitem" folder="additional/zooitem">ZOO Item Module</module>
+		<module name="mod_zoocomment" folder="additional/zoocomment">ZOO Comment Module</module>
+		<module name="mod_zootag" folder="additional/zootag">ZOO Tag Module</module>
+		<module name="mod_zoocategory" folder="additional/zoocategory">ZOO Category Module</module>
+		<module name="mod_zooquickicon" folder="additional/zooquickicon" client="administrator">ZOO Quick Icons</module>
+		<plugin name="zoosearch" folder="additional/zoosearch" group="search">ZOO Search Plugin</plugin>
+		<plugin name="zooshortcode" folder="additional/zooshortcode" group="content">ZOO Shortcode Plugin</plugin>
+		<plugin name="zooevent" folder="additional/zooevent" group="system">ZOO Event Plugin</plugin>
+	</additional>
+	<scriptfile>file.script.php</scriptfile>
+</extension>
