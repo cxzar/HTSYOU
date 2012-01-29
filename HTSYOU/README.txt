@@ -10,7 +10,7 @@
     * This is a simple and powerful web server application and it requires a server with PHP and MySQL to run it. 
 	More details here: http://www.joomla.org/about-joomla.html
 
-3- Is Joomla for you?
+3- Is Joomla for you? motherfucker?
     * Joomla its the right solution for any content web project: http://docs.joomla.org/Joomla_Is_it_for-me%3F
     * See Features - http://docs.joomla.org/Joomla_Core_Features
     * Try out our online demo: http://demo.joomla.org/
