@@ -185,6 +185,7 @@ include($this['path']->path('layouts:template.config.php'));
 		</div>
 		
 	</div>
+	<!--Ejemplo de notas para explicar las funciones del nuevo código-->
 	<?php endif; ?>
 	
 	<?php echo $this->render('footer'); ?>
