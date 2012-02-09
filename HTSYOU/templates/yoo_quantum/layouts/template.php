@@ -15,11 +15,9 @@ include($this['path']->path('layouts:template.config.php'));
 
 <head>
 <?php echo $this['template']->render('head'); ?>
-<script type="text/javascript" src="http://static.wowhead.com/widgets/power.js"></script>
-<script src="http://us.battle.net/d3/static/js/tooltips.js"></script>
 </head>
 
-<body id="page" class="page <?php echo $this['config']->get('body_classes'); ?>">
+<body id="page" class="page <?php echo $this['config']->get('body_classes'); ?>" data-config='<?php echo $this['config']->get('body_config','{}'); ?>'>
 
 	<?php if ($this['modules']->count('absolute')) : ?>
 	<div id="absolute">
