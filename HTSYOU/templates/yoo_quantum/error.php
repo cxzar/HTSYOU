@@ -23,7 +23,7 @@ $message = $this->error->get('message');
 // set 404 messages
 if ($error == '404') {
 	$title   = JText::_('TPL_WARP_404_PAGE_TITLE');
-	$message = JText::sprintf('TPL_WARP_404_PAGE_MESSAGE', $warp['system']->url, $warp['config']->get('site_name'));
+	$message = JText::sprintf('TPL_WARP_404_PAGE_MESSAGE', JURI::root(false), $warp['config']->get('site_name'));
 }
 
 // render error layout

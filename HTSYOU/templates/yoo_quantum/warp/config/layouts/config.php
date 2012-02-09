@@ -10,9 +10,10 @@
 $config = $this['system']->config;
 
 // get config xml
-$xml = $this['dom']->create($this['path']->path('template:config.xml'), 'xml');
+$xml     = $this['dom']->create($this['path']->path('template:config.xml'), 'xml');
+$warpxml = $this['dom']->create($this['path']->path('warp:warp.xml'), 'xml');
 
-echo '<ul id="config">';
+echo '<ul id="config" data-warpversion="'.($warpxml->first('version')->text()).'">';
 
 // render fields
 foreach ($xml->find('fields') as $fields) {

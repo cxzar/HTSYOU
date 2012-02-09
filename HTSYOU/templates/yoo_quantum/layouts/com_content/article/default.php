@@ -9,10 +9,16 @@
 // no direct access
 defined('_JEXEC') or die;
 
+// get view
+$menu = JSite::getMenu()->getActive();
+$view = is_object($menu) && isset($menu->query['view']) ? $menu->query['view'] : null;
+
 JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 
 // Create shortcuts to some parameters.
 $params		= $this->item->params;
+$images		= json_decode($this->item->images);
+$urls		= json_decode($this->item->urls);
 $canEdit	= $this->item->params->get('access-edit');
 $user		= JFactory::getUser();
 
@@ -24,7 +30,7 @@ $user		= JFactory::getUser();
 	<h1 class="title"><?php echo $this->escape($this->params->get('page_heading')); ?></h1>
 	<?php endif; ?>
 
-	<article class="item">
+	<article class="item"<?php if ($view != 'article') printf(' data-permalink="%s"', JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catslug), true, -1)); ?>>
 
 		<?php if ($params->get('show_title')) : ?>
 		<header>
@@ -116,7 +122,24 @@ $user		= JFactory::getUser();
 		<?php
 		
 			if ($params->get('access-view')) {
+
+				if (isset($urls) AND ((!empty($urls->urls_position) AND ($urls->urls_position=='0')) OR ($params->get('urls_position')=='0' AND empty($urls->urls_position) ))
+					OR (empty($urls->urls_position) AND (!$params->get('urls_position')))) {
+						echo $this->loadTemplate('links');
+				}
+
+				if (isset($images->image_fulltext) and !empty($images->image_fulltext)) {
+					$imgfloat = (empty($images->float_fulltext)) ? $params->get('float_fulltext') : $images->float_fulltext;
+					$class = (htmlspecialchars($imgfloat) != 'none') ? ' class="size-auto align-'.htmlspecialchars($imgfloat).'"' : ' class="size-auto"';
+					$title = ($images->image_fulltext_caption) ? ' title="'.htmlspecialchars($images->image_fulltext_caption).'"' : '';
+					echo '<img'.$class.$title.' src="'.htmlspecialchars($images->image_fulltext).'" alt="'.htmlspecialchars($images->image_fulltext_alt).'" />';
+				}
+
 				echo $this->item->text;
+			
+				if (isset($urls) AND ((!empty($urls->urls_position)  AND ($urls->urls_position=='1')) OR ( $params->get('urls_position')=='1') )) {
+					echo $this->loadTemplate('links');
+				}
 			
 			// optional teaser intro text for guests
 			} elseif ($params->get('show_noauth') == true AND $user->get('guest')) {

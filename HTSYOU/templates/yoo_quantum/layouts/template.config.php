@@ -17,6 +17,7 @@ $maininner_width = intval($this['config']->get('template_width'));
 $sidebar_a_width = intval($this['config']->get('sidebar-a_width'));
 $sidebar_b_width = intval($this['config']->get('sidebar-b_width'));
 $rtl             = $this['config']->get('direction') == 'rtl';
+$body_config	 = array();
 
 // set widths
 if ($this['modules']->count('sidebar-a')) {
@@ -101,6 +102,13 @@ $body_classes .= $this['modules']->count('search') ? 'hassearch ' : '';
 $body_classes .= $this['config']->get('page_class');
 
 $this['config']->set('body_classes', $body_classes);
+
+// add social buttons
+$body_config['twitter'] = (int) $this['config']->get('twitter', 0);
+$body_config['plusone'] = (int) $this['config']->get('plusone', 0);
+$body_config['facebook'] = (int) $this['config']->get('facebook', 0);
+
+$this['config']->set('body_config', json_encode($body_config));
 
 // add javascripts
 $this['asset']->addFile('js', 'js:warp.js');

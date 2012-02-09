@@ -2,8 +2,8 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 1.7//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.7/template-install.dtd">
 <extension version="1.7" type="template" client="site">
 	<name>yoo_quantum</name>
-	<version>1.0.7</version>
-	<creationDate>August 2011</creationDate>
+	<version>1.0.12</version>
+	<creationDate>February 2012</creationDate>
 	<author>YOOtheme</author>
 	<authorEmail>info@yootheme.com</authorEmail>
 	<authorUrl>http://www.yootheme.com</authorUrl>
@@ -62,7 +62,7 @@
 		<position>mobile-footer</position>
 	</positions>
 	<config>
-		<fields name="params" addfieldpath="/templates/yoo_quantum/warp/systems/joomla.1.7/config/elements">	
+		<fields name="params" addfieldpath="/templates/yoo_quantum/warp/systems/joomla/config/elements">	
 			<fieldset name="basic">		
 		    	<field name="config" type="config" label="Config" description="" default="" />			
 			</fieldset>

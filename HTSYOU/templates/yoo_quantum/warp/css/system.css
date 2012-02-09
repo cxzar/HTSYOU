@@ -60,6 +60,12 @@
 
 #system .item > *:last-child { margin-bottom: 0; }
 
+#system .item .socialbuttons { margin-top: 15px; }
+#system .item .socialbuttons > div {
+	margin-right: 10px;
+	float: left;
+}
+
 
 /* Items
 ----------------------------------------------------------------------------------------------------*/
@@ -333,7 +339,7 @@
 }
 
 .tagcloud li {
-	display: inline;
+	display: inline-block;
 	line-height: 20px;
 	vertical-align: middle;
 }

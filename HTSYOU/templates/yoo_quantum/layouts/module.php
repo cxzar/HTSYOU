@@ -104,6 +104,8 @@ switch ($style) {
 		$title_template = '<h3 class="module-title">%s</h3>';
 }
 
+$style.=" ".$suffix;
+
 // set badge if exists
 if ($badge) {
 	$badge = '<div class="badge badge-'.$badge.'"></div>';

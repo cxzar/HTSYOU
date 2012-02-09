@@ -4,6 +4,8 @@
 
 	$(document).bind('ready', function() {
 
+		var config = $('body').data('config') || {};
+		
 		// Accordion menu
 		$('.menu-sidebar').accordionMenu({ mode:'slide' });
 
@@ -15,6 +17,9 @@
 
 		// Fix Browser Rounding
 		$('.grid-block').matchWidth('.grid-h');
+
+		// Social buttons
+		$('article[data-permalink]').socialButtons(config);
 
 		// Match height of div tags
 		var matchHeight = function() {

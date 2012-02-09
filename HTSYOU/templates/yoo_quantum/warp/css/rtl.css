@@ -157,6 +157,12 @@ div.box-download {
 	margin-left: 15px;
 }
 
+#system .item .socialbuttons > div {
+	margin-right: 0;
+	margin-left: 10px;
+	float: right;
+}
+
 /* Pagination */
 #system .pagination a,
 #system .pagination strong {

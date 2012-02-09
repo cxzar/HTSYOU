@@ -1,11 +1,56 @@
 # Warp Theme Framework #
 
-- Version: 6.0.12
-- Date: November 2011
+- Version: 6.1.6
+- Date: February 2012
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com/warp>
 
 ## Changelog
+
+	6.1.6
+	+ Added CSS for pagebreak navigation (J)
+	# Added old Webkit gradients to mobile theme for Android support
+	# Fixed facebook social button conflict with facebook connect
+	^ Updated overrides according to Joomla 2.5.1 (J25)
+
+	6.1.5
+	+ Added Joomla 2.5 support
+	^ Changed tag cloud CSS
+
+	6.1.4
+	# Fixed com_contact overrides (J17)
+	# Fixed com_weblinks overrides (J17)
+	# Fixed com_newsfeed overrides (J17)
+	# Fixed Facebook social button popup
+	# Fixed invalid markup on config site
+	# Fixed ajax search, showing articles marked as draft (WP)
+
+	6.1.3
+	+ Added facebook to the social buttons
+	# Fixed article ordering (J)
+	# Fixed absolute position CSS
+	# Fixed bug in com_contact override (J17)
+
+	6.1.2
+	# Fixed form background colors in menus administration (WP)
+	^ Changed system directory names from joomla.1.7 > joomla and wordpress.3.0 > wordpress
+
+	6.1.1
+	# Fixed bug in contact form (J17)
+
+	6.1.0
+	+ Added system check
+	+ Added social buttons support in articles
+	+ Added auto detecting of styles and module layouts
+	+ Show Warp version number in theme administration
+	+ Output of custom module class suffixes (J)
+	+ Added overrides for com_newsfeed, com_weblinks and com_contact (J17) 
+	+ Added support for post-thumbnails (WP) 
+	^ Updated Apple touch icon
+	^ Updated jQuery to 1.7.1 (J)
+
+	6.0.13
+	^ Updated overrides according to Joomla 1.7.3 (J17)
 
 	6.0.12
 	^ Updated jQuery to 1.7 (J)

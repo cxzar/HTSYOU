@@ -11,11 +11,12 @@ defined('_JEXEC') or die;
 
 // Create a shortcut for params.
 $params		= &$this->item->params;
+$images		= json_decode($this->item->images);
 $canEdit	= $this->item->params->get('access-edit');
 
 ?>
 
-<article class="item">
+<article class="item" data-permalink="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($this->item->slug, $this->item->catid), true, -1); ?>">
 
 	<?php if ($params->get('show_title')) : ?>
 	<header>
@@ -91,7 +92,20 @@ $canEdit	= $this->item->params->get('access-edit');
 
 	?>
 
-	<div class="content clearfix"><?php echo $this->item->introtext; ?></div>
+	<div class="content clearfix">
+		<?php
+		
+			if (isset($images->image_intro) and !empty($images->image_intro)) {
+				$imgfloat = (empty($images->float_intro)) ? $params->get('float_intro') : $images->float_intro;
+				$class = (htmlspecialchars($imgfloat) != 'none') ? ' class="size-auto align-'.htmlspecialchars($imgfloat).'"' : ' class="size-auto"';
+				$title = ($images->image_intro_caption) ? ' title="'.htmlspecialchars($images->image_intro_caption).'"' : '';
+				echo '<img'.$class.$title.' src="'.htmlspecialchars($images->image_intro).'" alt="'.htmlspecialchars($images->image_intro_alt).'" />';
+			}
+			
+			echo $this->item->introtext;
+		
+		?>
+	</div>
 
 	<?php if ($params->get('show_readmore') && $this->item->readmore) : ?>
 	<p class="links">
