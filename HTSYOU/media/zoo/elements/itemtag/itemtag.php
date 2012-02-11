@@ -79,21 +79,6 @@ class ElementItemTag extends Element implements iSubmittable{
 	}
 
 	/*
-		Function: load tags
-			Callback to load tags.
-
-		Returns:
-			Void
-	*/
-	public function tags() {
-
-		// get request vars
-		$tag = $this->app->request->getString('tag', '');
-
-		echo $this->app->tag->loadTags($this->_item->getApplication()->id, $tag);
-	}
-
-	/*
 		Function: loadAssets
 			Load elements css/js assets.
 
@@ -133,8 +118,7 @@ class ElementItemTag extends Element implements iSubmittable{
 		$html[] = '</div>';
 
 		// init vars
-		$link = $this->app->link(array('controller' => 'default', 'task' => 'callelement', 'format' => 'raw', 'item_id' => $this->_item->id, 'element' => $this->identifier, 'method' => 'tags'), false);
-
+		$link = $this->app->link(array('controller' => 'submission', 'task' => 'loadtags', 'format' => 'raw'), false);
 		$this->app->document->addScriptDeclaration("jQuery(function($) { $('#tag-area').Tag({url: '".$link."', inputName: '".$this->getControlName('value', true)."'}); });");
 
 		return implode("\n", $html);

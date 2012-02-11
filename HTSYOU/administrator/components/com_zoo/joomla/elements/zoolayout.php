@@ -45,7 +45,7 @@ class JElementZooLayout extends JElement {
 		foreach ($layouts as $layout => $layout_name) {
 			$text	   = $layout_name;
 			$val	   = $layout;
-			$options[] = $app->html->_('select.option', $val, JText::_($text));
+			$options[] = $app->html->_('select.option', $val, $text);
 		}
 
 		return $app->html->_('select.genericlist', $options, $control_name.'['.$name.']', $class, 'value', 'text', $value, $control_name.$name);

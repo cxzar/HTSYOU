@@ -22,7 +22,7 @@ class JElementTemplate extends JElement {
 		$options = array();
 
 		if (is_dir($path)) {
-			foreach (JFolder::files($path, '^([-_A-Za-z]*)\.php$') as $tmpl) {
+			foreach (JFolder::files($path, '^([-_A-Za-z0-9]+)\.php$') as $tmpl) {
 				$tmpl = basename($tmpl, '.php');
 				$options[] = $app->html->_('select.option', $tmpl, ucwords($tmpl));
 			}

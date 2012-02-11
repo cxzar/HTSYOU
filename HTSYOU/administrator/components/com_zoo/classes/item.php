@@ -565,8 +565,7 @@ class Item {
 	public function isPublished() {
 
 		// get dates
-		$date = $this->app->date->create();
-		$now  = $date->toMySQL();
+		$now  = $this->app->date->create()->toMySQL();
 		$null = $this->app->database->getNullDate();
 
 		return $this->state == 1

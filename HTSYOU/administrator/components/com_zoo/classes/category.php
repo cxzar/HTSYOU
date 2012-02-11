@@ -184,14 +184,14 @@ class Category {
 	}
 
 	/*
-    	Function: addChildren
-    	  Add children.
+    	Function: addChild
+    	  Add child.
 
 	   Returns:
 	      Category
  	*/
-	public function addChild($category) {
-		$this->_children[] = $category;
+	public function addChild($child) {
+		$this->_children[$child->id] = $child;
 		return $this;
 	}
 

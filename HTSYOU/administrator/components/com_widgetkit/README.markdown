@@ -1,11 +1,23 @@
 # Widgetkit #
 
-- Version: 1.0.0
-- Date: January 2012
+- Version: 1.0.1
+- Date: February 2012
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com>
 
 ## Changelog
+
+	1.0.1
+	+ Added slideshow screen style
+	+ Added gallery screen style
+	+ Added loading widgets within lightbox (#wk-ID as href)
+	+ Added swipe effect for slideshow and gallery
+	+ Added support for new youtu.be urls in lightbox
+	+ Added responsive lightbox for images
+ 	# Fixed Deck slidset effect in Safari
+	# Fixed caption (ZOO image element)
+	^ Updated slideset default style CSS
+	^ Updated mediaelement.js to version 2.6.5
 
 	1.0
 	+ Added random order option for accordion widget
@@ -33,7 +45,7 @@
 	^ Updated jQuery to 1.7.1 (J)
 	^ Updated mediaelement.js to version 2.3.3
 	^ Updated Widget loading, using data attributes
-	
+
 	1.0 BETA 17
 	+ Added System Check
 	# Fixed slideset stacking issue when loading

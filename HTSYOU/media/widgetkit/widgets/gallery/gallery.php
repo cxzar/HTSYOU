@@ -150,11 +150,11 @@ class GalleryWidgetkitHelper extends WidgetkitHelper {
 
 						// cache image
 						if ($cache && !$this['path']->path($image['cache'])) {
-							
-							if($settings["animated"]=="kenburns" && is_numeric($settings['width']) && is_numeric($settings['height'])){
+														
+							if (isset($settings['animated']) && $settings['animated'] == 'kenburns' && is_numeric($settings['width']) && is_numeric($settings['height'])){
 								
-								$this['image']->create($this['path']->path($image['file']))->output(array('width' => $settings['width']*1.2, 'height' => $settings['height']*1.2, 'file' => $cache.preg_replace('/^gallery\.cache:/', '', $image['cache'], 1)));
-							}else{
+								$this['image']->create($this['path']->path($image['file']))->output(array('width' => $settings['width'] * 1.2, 'height' => $settings['height'] * 1.2, 'file' => $cache.preg_replace('/^gallery\.cache:/', '', $image['cache'], 1)));
+							} else {
 								
 								$this['image']->create($this['path']->path($image['file']))->output(array('width' => $settings['width'], 'height' => $settings['height'], 'file' => $cache.preg_replace('/^gallery\.cache:/', '', $image['cache'], 1)));
 							}

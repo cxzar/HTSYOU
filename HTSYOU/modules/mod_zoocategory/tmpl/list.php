@@ -12,18 +12,4 @@ defined('_JEXEC') or die('Restricted access');
 // include css
 $zoo->document->addStylesheet('mod_zoocategory:tmpl/list/style.css');
 
-$count = count($categories);
-
-?>
-
-<?php if ($count) : ?>
-
-<ul class="zoo-category-list">
-	<?php foreach ($categories as $category) : ?>
-		<?php echo $zoo->categorymodule->render($category, $params, 2); ?>
-	<?php endforeach; ?>
-</ul>
-
-<?php else : ?>
-<?php echo JText::_('COM_ZOO_NO_CATEGORIES_FOUND'); ?>
-<?php endif; ?>
+echo $zoo->categorymodule->render($category, $params, 0, false, 'class="zoo-category-list"', true);

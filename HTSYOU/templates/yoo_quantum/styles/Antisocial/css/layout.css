@@ -1,0 +1,11 @@
+/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+
+@import url(../../../css/layout.css);
+
+/* Blocks
+----------------------------------------------------------------------------------------------------*/
+
+/* Toolbar */
+
+#block-header,
+#block-main { padding: 15px 0; }

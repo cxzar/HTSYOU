@@ -72,9 +72,9 @@ class ElementItemCategory extends Element implements iSubmittable {
 			String - html
 	*/
 	public function renderSubmission($params = array()) {
-		$selected = isset($this->_categories) ? $this->_categories : $this->_item->getRelatedCategoryIds();
-		$multiple = $params->get('multiple', true) ? ' multiple="multiple"' : '';
-		return $this->app->html->_('zoo.categorylist', $this->_item->getApplication(), array(), $this->getControlName('value', true), 'size="15"'.$multiple, 'value', 'text', $selected);
+		if ($layout = $this->getLayout('submission.php')) {
+            return $this->renderLayout($layout, compact('params'));
+        }
 	}
 
 	/*
@@ -89,11 +89,14 @@ class ElementItemCategory extends Element implements iSubmittable {
 			Array - cleaned value
 	*/
 	public function validateSubmission($value, $params) {
+		$primary = (int) $value->get('primary');
 		$value = (array) $value->get('value');
 
 		if (!$params->get('multiple', true) && count($value) > 1) {
 			$value = array(array_shift($value));
 		}
+
+		$primary = !$params->get('primary', false) || empty($primary) || !in_array($primary, $value) ? @$value[0] : $primary;
 
 		$categories = array_keys($this->_item->getApplication()->getCategories());
 		foreach ($value as $id) {
@@ -105,7 +108,7 @@ class ElementItemCategory extends Element implements iSubmittable {
 		// connect to submission aftersave event
 		$this->app->event->dispatcher->connect('submission:saved', array($this, 'aftersubmissionsave'));
 
-        return compact('value');
+        return compact('value', 'primary');
 	}
 
 	/*
@@ -136,6 +139,7 @@ class ElementItemCategory extends Element implements iSubmittable {
 	*/
 	public function bindData($data = array()) {
 		$this->_categories = @$data['value'];
+		$this->_item->getParams()->set('config.primary_category', @$data['primary']);
 	}
 
 }

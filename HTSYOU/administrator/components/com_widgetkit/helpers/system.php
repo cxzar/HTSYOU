@@ -105,13 +105,13 @@ class SystemWidgetkitHelper extends WidgetkitHelper {
 			$task = $this['request']->get('task', 'string');
 
 			// get version
-			$version = ($path = $this['path']->path('widgetkit:widgetkit.xml')) && ($xml = simplexml_load_file($path)) ? (string) $xml->version[0] : '';
+			$this["version"] = ($path = $this['path']->path('widgetkit:widgetkit.xml')) && ($xml = simplexml_load_file($path)) ? (string) $xml->version[0] : '';
 
 			// trigger event
 			$this['event']->trigger('admin');
 
 			// execute task
-			echo $this['template']->render($task ? 'task' : 'dashboard', compact('task', 'version'));
+			echo $this['template']->render($task ? 'task' : 'dashboard', compact('task'));
 
 			// add assets
 			$this['template']->render('assets');
@@ -151,7 +151,8 @@ class SystemWidgetkitHelper extends WidgetkitHelper {
 		if ($this->application->isSite() && is_a($this->document, 'JDocumentHTML')) {
 
 			$this['asset']->addString("js", 'window["WIDGETKIT_URL"]="'.$this['path']->url("widgetkit:").'";');
-
+			$this['asset']->addString("js", 'function wk_ajax_render_url(widgetid){ return "'.JRoute::_("index.php?option=com_widgetkit&tmpl=raw&id=").'"+widgetid}');
+			
 			// set direction
 			$this->options->set('direction', $this->document->direction);
 

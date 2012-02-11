@@ -22,25 +22,32 @@ class CommentEvent {
 
 		$comment = $event->getSubject();
 		$app = $comment->app;
+		$new = (bool) @$event['new'];
 
 		// init vars
 		$params = $app->parameter->create($comment->getItem()->getApplication()->getParams()->get('global.comments.'));
 
 		// send email to admins
-		if ($event['new'] && $comment->state != Comment::STATE_SPAM && ($recipients = $params->get('email_notification', ''))) {
+		if ($new && $comment->state != Comment::STATE_SPAM && ($recipients = $params->get('email_notification', ''))) {
 			$app->comment->sendNotificationMail($comment, array_flip(explode(',', $recipients)), 'mail.comment.admin.php');
 		}
 
 		// send email notification to subscribers
-		if ((($event['new'] && $comment->state == Comment::STATE_APPROVED) || ($comment->state != $event['old_state'] && $comment->state == Comment::STATE_APPROVED)) && $params->get('email_reply_notification', false)) {
+		if ((($new && $comment->state == Comment::STATE_APPROVED) || ($comment->state != $event['old_state'] && $comment->state == Comment::STATE_APPROVED)) && $params->get('email_reply_notification', false)) {
 			$app->comment->sendNotificationMail($comment, $comment->getItem()->getSubscribers(), 'mail.comment.reply.php');
 		}
+
+		JPluginHelper::importPlugin('content');
+		JDispatcher::getInstance()->trigger('onContentAfterSave', array($comment->app->component->self->name.'.comment', &$comment, $new));
 
 	}
 
 	public static function deleted($event) {
 
 		$comment = $event->getSubject();
+
+		JPluginHelper::importPlugin('content');
+		JDispatcher::getInstance()->trigger('onContentAfterDelete', array($comment->app->component->self->name.'.comment', &$comment));
 
 	}
 
@@ -55,6 +62,9 @@ class CommentEvent {
 				$app->comment->sendNotificationMail($comment, $comment->getItem()->getSubscribers(), 'mail.comment.reply.php');
 			}
 		}
+
+		JPluginHelper::importPlugin('content');
+		JDispatcher::getInstance()->trigger('onContentChangeState', array($comment->app->component->self->name.'.comment', array($comment->id), $comment->state));
 
 	}
 

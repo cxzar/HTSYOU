@@ -121,7 +121,7 @@ class SubmissionController extends AppController {
                 $this->types[$type->id]['name'] = $type->name;
 
                 $options = array($this->app->html->_('select.option', '', '- '.JText::_('not submittable').' -'));
-                $this->types[$type->id]['select_layouts'] = $this->app->html->_('zoo.layoutList', $this->application, $type->id, 'submission', $options, 'params[form]['.$type->id.'][layout]', '', 'value', 'text', $form->get('layout'));
+                $this->types[$type->id]['select_layouts'] = $this->app->html->_('zoo.layoutlist', $this->application, $type->id, 'submission', $options, 'params[form]['.$type->id.'][layout]', '', 'value', 'text', $form->get('layout'));
 
                 $options = array($this->app->html->_('select.option', '', '- '.JText::_('uncategorized').' -'));
                 $this->types[$type->id]['select_categories'] = $this->app->html->_('zoo.categorylist', $this->application, $options, 'params[form]['.$type->id.'][category]', 'size="1"', 'value', 'text', $form->get('category'));

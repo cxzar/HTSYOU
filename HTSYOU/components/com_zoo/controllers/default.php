@@ -73,23 +73,20 @@ class DefaultController extends AppController {
 		$args    = $this->app->request->getVar('args', array(), 'default', 'array');
 		$item_id = (int) $this->app->request->getInt('item_id', 0);
 
+		// get user
+		$user = $this->app->user->get();
+
 		// get item
 		$item = $this->app->table->item->get($item_id);
 
 		// raise warning when item can not be accessed
-		if (empty($item->id) || !$item->canAccess($this->app->user->get())) {
+		if (empty($item->id) || !$item->canAccess($user)) {
 			$this->app->error->raiseError(500, JText::_('Unable to access item'));
 			return;
 		}
 
 		// raise warning when item is not published
-		$nulldate     = $this->app->database->getNullDate();
-		$date         = $this->app->date->create()->toUnix();
-		$publish_up   = $this->app->date->create($item->publish_up);
-		$publish_down = $this->app->date->create($item->publish_down);
-		if ($item->state != 1 || !(
-		   ($item->publish_up == $nulldate || $publish_up->toUnix() <= $date) &&
-		   ($item->publish_down == $nulldate || $publish_down->toUnix() >= $date))) {
+		if (!$item->isPublished()) {
 			$this->app->error->raiseError(404, JText::_('Item not published'));
 			return;
 		}

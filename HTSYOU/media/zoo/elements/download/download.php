@@ -369,19 +369,19 @@ class ElementDownload extends ElementFile implements iSubmittable {
 				->clean($value->get('download_limit'));
 
 		// connect to submission beforesave event
-		$this->app->event->dispatcher->connect('submission:saved', array($this, 'submissionSaved'));
+		$this->app->event->dispatcher->connect('submission:beforesave', array($this, 'submissionBeforeSave'));
 
 		return compact('file', 'download_limit');
 	}
 
 	/*
-		Function: submissionSaved
-			Callback after item submission is saved
+		Function: submissionBeforeSave
+			Callback before item submission is saved
 
 		Returns:
 			void
 	*/
-    public function submissionSaved() {
+    public function submissionBeforeSave() {
 
         // get the uploaded file information
         if (($userfile = $this->get('file')) && is_array($userfile)) {

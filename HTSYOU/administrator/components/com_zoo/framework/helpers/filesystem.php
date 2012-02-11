@@ -404,6 +404,7 @@ class FilesystemHelper extends AppHelper {
 		$mimes['iff'][] = 'image/x-iff';
 		$mimes['iges'][] = 'model/iges';
 		$mimes['igs'][] = 'model/iges';
+		$mimes['igs'][] = 'application/iges';
 		$mimes['ilbm'][] = 'image/x-ilbm';
 		$mimes['iso'][] = 'application/x-cd-image';
 		$mimes['it'][] = 'audio/x-it';

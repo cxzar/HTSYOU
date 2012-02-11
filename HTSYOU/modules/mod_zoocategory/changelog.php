@@ -14,6 +14,10 @@ defined('_JEXEC') or die('Restricted access');
 Changelog
 ------------
 
+2.5.0
++ added War6 Sidebar Style
+^ changes to renderer
+
 2.4.2
 ^ changed paths
 

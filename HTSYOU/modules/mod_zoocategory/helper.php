@@ -12,32 +12,41 @@
 */
 class CategoryModuleHelper extends AppHelper {
 
-    public function render($category, $params, $level, $flat = false) {
+    public function render($category, $params, $level = 0, $flat = false, $attribs = null, $expanded = false) {
 
 		// init vars
-		$max_depth = $params->get('depth', 0);
-
-		if ($menu_item = $params->get('menu_item')) {
-			$url = $this->app->link(array('task' => 'category', 'category_id' => $category->id, 'Itemid' => $menu_item));
-		} else {
-			$url = JRoute::_($this->app->route->category($category));
+		$menu_item = $params->get('menu_item');
+		$max_depth = (int) $params->get('depth', 0);
+		if (!$current_id = (int) $this->app->request->getInt('category_id', $this->app->system->application->getParams()->get('category'))) {
+			if ($item = $this->app->table->item->get((int) $this->app->request->getInt('item_id', $this->app->system->application->getParams()->get('item_id', 0)))) {
+				$current_id = $item->getPrimaryCategoryId();
+			}
 		}
 
-		$result   = array();
-		$result[] = '<li>';
-		$result[] = '<a href="'.$url.'">'.$category->name.'</a>';
-		if ($flat) $result[] = '</li>';
-		if ((!$max_depth || $max_depth >= $level) && ($children = $category->getChildren()) && !empty($children)) {
+		$result = array("<ul $attribs>");
+		foreach ($category->getChildren($flat ? true : false) as $category) {
 
-			if (!$flat) $result[] = '<ul class="level'.$level.'">';
-			foreach ($children as $child) {
-				$result[] = $this->render($child, $params, $level+1, $flat);
+			$path = array_reverse($category->getPath());
+			$depth = count(array_slice($path, array_search($params->get('category', 0), $path))) - 1;
+			if ($max_depth && $max_depth < $depth) {
+				continue;
 			}
 
-			if (!$flat) $result[] = '</ul>';
-		}
+			$current = $current_id == $category->id;
+			$active = $current || in_array($current_id, array_keys($category->getChildren(true)));
+			$parent = $category->hasChildren() && !($max_depth && $max_depth < $depth + 1);
+			$url = $menu_item ? $this->app->link(array('task' => 'category', 'category_id' => $category->id, 'Itemid' => $menu_item)) : $this->app->route->category($category);
+			$class = 'class="'.($flat ? '' : 'level'.$level).($parent ? ' parent' : '').($current ? ' current' : '').($active ? ' active' : '').'"';
 
-		if (!$flat) $result[] = '</li>';
+			$result[] = "<li $class>";
+			$result[] = "<a href=\"$url\"$class><span>{$category->name}</span></a>";
+			if (!$flat && ($active || $expanded) && $parent) {
+				$result[] = $this->render($category, $params, $level+1, $flat, 'class="level'.($level+1).'"', $expanded);
+			}
+			$result[] = '</li>';
+
+		}
+		$result[] = '</ul>';
 
 		return implode("\n", $result);
 	}

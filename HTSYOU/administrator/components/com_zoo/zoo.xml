@@ -9,7 +9,7 @@
 	<assetsLicense>YOOtheme Proprietary Use License (http://www.yootheme.com/license)</assetsLicense>
 	<authorEmail>info@yootheme.com</authorEmail>
 	<authorUrl>http://www.yootheme.com</authorUrl>
-	<version>2.5.8</version>
+	<version>2.5.10</version>
 	<description>ZOO component for Joomla 1.7 developed by YOOtheme (http://www.yootheme.com)</description>
 	<languages folder="site/language">
 		<language tag="en-GB">en-GB.com_zoo.ini</language>
@@ -72,6 +72,7 @@
 		<module name="mod_zoocategory" folder="additional/zoocategory">ZOO Category Module</module>
 		<module name="mod_zooquickicon" folder="additional/zooquickicon" client="administrator">ZOO Quick Icons</module>
 		<plugin name="zoosearch" folder="additional/zoosearch" group="search">ZOO Search Plugin</plugin>
+		<plugin name="zoosmartsearch" folder="additional/zoosmartsearch" group="finder">ZOO Smart Search Plugin</plugin>
 		<plugin name="zooshortcode" folder="additional/zooshortcode" group="content">ZOO Shortcode Plugin</plugin>
 		<plugin name="zooevent" folder="additional/zooevent" group="system">ZOO Event Plugin</plugin>
 	</additional>

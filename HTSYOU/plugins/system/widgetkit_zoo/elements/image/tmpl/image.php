@@ -11,16 +11,17 @@ defined('_JEXEC') or die('Restricted access');
 
 $target = $target ? 'target="_blank"' : '';
 $rel	= $rel ? 'data-lightbox="' . $rel .'"' : '';
-$title  = $title ? ' title="'.$title.'"' : '';
+$title  = $title ? ' title="'.htmlentities($title).'"' : '';
 
 $link_enabled = !empty($url);
-$lightbox = $this->get('lightbox_image') && $link_enabled;
+$lightbox = !$params->get('link_to_item') && $this->get('lightbox_image') && $link_enabled;
 
 $overlay = $spotlight = '';
 if ($this->get('spotlight_effect', false)) {
-	if ($this->get('spotlight_effect') != 'default' && $this->get('caption')) {
+	if ($this->get('spotlight_effect') != 'default') {
+		$caption = $this->get('caption') ? $this->get('caption') : basename($this->get('file'));
 		$spotlight = 'data-spotlight="effect:'.$this->get('spotlight_effect').';"';
-		$overlay = '<div class="overlay">'.$this->get('caption').'</div>';
+		$overlay = '<div class="overlay">'.$caption.'</div>';
 	} else {
 		$spotlight = 'data-spotlight="on"';
 	}

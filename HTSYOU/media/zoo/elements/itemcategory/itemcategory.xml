@@ -33,5 +33,9 @@
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>
 		</param>
+		<param name="primary" type="radio" default="0" label="Primary Category" description="Allow users to select primary category">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</param>
 	</params>
 </element>

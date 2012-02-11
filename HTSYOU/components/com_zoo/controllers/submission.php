@@ -434,6 +434,14 @@ class SubmissionController extends AppController {
 
     }
 
+	public function loadtags() {
+
+		// get request vars
+		$tag = $this->app->request->getString('tag', '');
+
+		echo $this->app->tag->loadTags($this->application->id, $tag);
+	}
+
     protected function _checkConfig() {
 
         if (!$this->application || !$this->submission) {

@@ -27,6 +27,7 @@
 			<option value="sliceUp">SliceUp</option>
 			<option value="sliceDown">SliceDown</option>
 			<option value="sliceUpDown">SliceUpDown</option>
+			<option value="swipe">Swipe</option>
 			<option value="fold">Fold</option>
 			<option value="puzzle">Puzzle</option>
 			<option value="boxes">Boxes</option>

@@ -23,18 +23,26 @@ class ItemEvent {
 		$item = $event->getSubject();
 		$new = $event['new'];
 
+		JPluginHelper::importPlugin('content');
+		JDispatcher::getInstance()->trigger('onContentAfterSave', array($item->app->component->self->name.'.item', &$item, $new));
+
 	}
 
 	public static function deleted($event) {
 
 		$item = $event->getSubject();
 
+		JPluginHelper::importPlugin('content');
+		JDispatcher::getInstance()->trigger('onContentAfterDelete', array($item->app->component->self->name.'.item', &$item));
 	}
 
 	public static function stateChanged($event) {
 
 		$item = $event->getSubject();
 		$old_state = $event['old_state'];
+
+		JPluginHelper::importPlugin('content');
+		JDispatcher::getInstance()->trigger('onContentChangeState', array($item->app->component->self->name.'.item', array($item->id), $item->state));
 
 	}
 

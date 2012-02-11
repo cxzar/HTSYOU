@@ -61,7 +61,7 @@ class CategoryHelper extends AppHelper {
 		$query_string = '(%s,' . (int) $item_id.')';
 		$category_strings = array();
 		foreach ($categories as $category) {
-			if ($category !== '' && $category !== null) {
+			if (is_numeric($category)) {
 				$category_strings[] = sprintf($query_string, $category);
 			}
 		}

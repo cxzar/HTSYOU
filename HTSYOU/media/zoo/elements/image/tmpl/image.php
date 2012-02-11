@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 
 $target = $target ? 'target="_blank"' : '';
 $rel	= $rel ? 'rel="' . $rel .'"' : '';
-$title  = $title ? ' title="'.$title.'"' : '';
+$title  = $title ? ' title="'.htmlspecialchars($title, ENT_QUOTES, 'UTF-8').'"' : '';
 
 $link_enabled = !empty($url);
 

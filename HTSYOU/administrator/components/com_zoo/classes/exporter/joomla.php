@@ -6,15 +6,15 @@
 * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
 */
 
-class AppExporterJoomla17 extends AppExporter {
+class AppExporterJoomla extends AppExporter {
 
 	public function __construct() {
 		parent::__construct();
-		$this->_name = 'Joomla 1.7';
+		$this->_name = 'Joomla';
 	}
 
 	public function isEnabled() {
-		return $this->app->joomla->isVersion('1.7');
+		return !$this->app->joomla->isVersion('1.5');
 	}
 
 	public function export() {

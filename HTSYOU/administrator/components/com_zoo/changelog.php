@@ -14,6 +14,21 @@ defined('_JEXEC') or die('Restricted access');
 Changelog
 ------------
 
+2.5.10
+# fixed build problem with Finder plugin (SmartSearch)
+# fixed tag autocompletion
+
+2.5.9
++ added option to select primary category (frontend submission)
++ added MIME TYPE "application/iges"
++ added sunburst style to syntaxhighlighter (Documentation app - Choose in app template settings)
++ added War6 Sidebar Style (Category Module)
+^ changes to renderer (Category Module)
++ added Finder plugin (SmartSearch)
++ item, category and comments save, delete and stateChanged events now trigger Joomla content plugin events (J2.5)
+# Fixed Joomla Exporter (J2.5)
+# Fixed Image Frontend Submission
+
 2.5.8
 # elements will receive new identifier on type copy
 + added application:installed event

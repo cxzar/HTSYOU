@@ -2,14 +2,14 @@
 <extension type="component" version="1.7.0" method="upgrade">
 	<name>Widgetkit</name>
 	<author>YOOtheme</author>
-	<creationDate>January 2012</creationDate>
+	<creationDate>February 2012</creationDate>
 	<updateUrl>http://www.yootheme.com/updates</updateUrl>
 	<copyright>Copyright (C) YOOtheme GmbH</copyright>
 	<license>YOOtheme Proprietary Use License (http://www.yootheme.com/license)</license>
 	<authorEmail>info@yootheme.com</authorEmail>
 	<authorUrl>http://www.yootheme.com</authorUrl>
-	<version>1.0.0</version>
-	<description><![CDATA[<a href="http://joomlana.net" target="_blank"><img src="http://joomlana.net/Joomlana%20Enterprise.png" width="360" height="115" alt="Joomlana.net" /></a><br/>]]>Widgetkit - A widget toolkit by YOOtheme (http://www.yootheme.com)</description>
+	<version>1.0.1</version>
+	<description>Widgetkit - A widget toolkit by YOOtheme (http://www.yootheme.com)</description>
 	<install>
 		<sql>
 			<file driver="mysql" charset="utf8">installation/install.sql</file>
@@ -26,6 +26,9 @@
 		<folder>js</folder>
 		<folder>widgets</folder>
 	</media>
+	<files folder="site">
+		<filename>widgetkit.php</filename>
+	</files>
 	<administration>
 		<menu img="components/com_widgetkit/images/widgetkit_16.png">COM_WIDGETKIT</menu>
 		<languages folder="admin">

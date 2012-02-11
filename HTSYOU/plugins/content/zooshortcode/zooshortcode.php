@@ -25,6 +25,11 @@ class plgContentZooshortcode extends JPlugin {
 
 	protected function _prepareContent(&$article, &$params, $page = 0) {
 
+		// simple performance check to determine whether text should be processed further
+		if (strpos($article->text, 'zooitem') === false && strpos($article->text, 'zoocategory') === false) {
+			return true;
+		}
+
 		// load ZOO config
 		jimport('joomla.filesystem.file');
 		if (!JFile::exists(JPATH_ADMINISTRATOR.'/components/com_zoo/config.php') || !JComponentHelper::getComponent('com_zoo', true)->enabled) {
@@ -34,11 +39,6 @@ class plgContentZooshortcode extends JPlugin {
 
 		// Get the ZOO App instance
 		$this->app = App::getInstance('zoo');
-
-		// simple performance check to determine whether bot should process further
-		if (strpos($article->text, 'zooitem') === false && strpos($article->text, 'zoocategory') === false) {
-			return true;
-		}
 
 		$this->_doReplacement($article, 'item');
 		$this->_doReplacement($article, 'category');

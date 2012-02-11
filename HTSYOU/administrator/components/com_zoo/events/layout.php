@@ -31,7 +31,7 @@ class LayoutEvent {
 			foreach ($app->path->dirs('plugins:'.$plugin_type) as $plugin) {
 				if ($app->path->path("plugins:$plugin_type/$plugin/renderer")) {
 					$resource = "plugins:$plugin_type".(!$app->joomla->isVersion('1.5') ? '/'.$plugin : '')."/$plugin.xml";
-					$name = ($xml = simplexml_load_file($app->path->path($resource))) && $xml->getName() == 'install' ? (string) $xml->name : $plugin;
+					$name = ($xml = simplexml_load_file($app->path->path($resource))) && ($xml->getName() == 'install' || $xml->getName() == 'extension') ? (string) $xml->name : $plugin;
 					$name = preg_replace('/^\w* - (.*)/i', '$1', $name);
 					$extensions[$name] = array('type' => 'plugin', 'name' => $name, 'path' => $app->path->path("plugins:$plugin_type/$plugin"));
 				}

@@ -8,7 +8,10 @@
 /* Navigation
 ----------------------------------------------------------------------------------------------------*/
 
-.wk-slideset-default .nav { text-align: center; }
+.wk-slideset-default .nav {
+	margin-top: 10px;
+	text-align: center;
+}
 
 .wk-slideset-default .nav li { display: inline-block; }
 .wk-slideset-default .nav.icon li { margin-left: 5px; }
@@ -25,6 +28,15 @@
 .wk-slideset-default .nav.icon span:hover { background-position: 0 -30px; }
 .wk-slideset-default .nav.icon span:active { background-position: 0 -45px; }
 .wk-slideset-default .nav.icon .active span { background-position: 0 -15px; }
+
+.wk-slideset-default .nav.text span { padding: 0 11px; }
+.wk-slideset-default .nav.text .active span {
+	padding: 0 10px;
+	border: 1px solid rgba(0,0,0,0.1);
+	border-radius: 4px;
+	background: rgba(0,0,0,0.05);
+	
+}
 
 
 /* Buttons

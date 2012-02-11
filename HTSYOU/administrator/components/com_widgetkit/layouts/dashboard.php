@@ -14,7 +14,7 @@
 	<?php endif; ?>
 	
 	<div class="dashboard">
-		<ul id="tabs" data-wkversion="<?php echo $version;?>">
+		<ul id="tabs" data-wkversion="<?php echo $this->widgetkit["version"];?>">
 			<?php $this['event']->trigger('dashboard'); ?>
 		</ul>
 	</div>

@@ -28,22 +28,12 @@ $zoo->path->register($path, 'mod_zoocategory');
 $zoo->path->register($path, 'helpers');
 $zoo->loader->register('CategoryModuleHelper', 'helpers:helper.php');
 
-$application = $zoo->table->application->get($params->get('application', 0));
-
-// is application ?
-if (empty($application)) {
+if (!$application = $zoo->table->application->get($params->get('application', 0))) {
 	return null;
 }
 
 // set one or multiple categories
-$categories = array();
-$all_categories = $application->getCategoryTree(true);
-if (isset($all_categories[$params->get('category', 0)])) {
-	$categories = $all_categories[$params->get('category', 0)]->getChildren();
-}
-
-if (count($categories)) {
-
+$categories = $application->getCategoryTree(true);
+if (($category = $categories[$params->get('category', 0)]) && $category->hasChildren()) {
 	include(JModuleHelper::getLayoutPath('mod_zoocategory', $params->get('theme', 'list')));
-
 }

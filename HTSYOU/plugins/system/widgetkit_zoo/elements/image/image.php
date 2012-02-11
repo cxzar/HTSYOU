@@ -10,7 +10,7 @@
 	Class: ElementImage
 		The image element class
 */
-class ElementImage extends Element implements iSubmittable, iSubmissionUpload {
+class ElementImage extends Element implements iSubmittable {
 
 	/*
 		Function: hasValue
@@ -235,6 +235,9 @@ class ElementImage extends Element implements iSubmittable, iSubmissionUpload {
 			$result['rel'] = $this->app->validator->create('string', array('required' => false))->clean($value->get('rel'));
 		}
 
+		// connect to submission beforesave event
+		$this->app->event->dispatcher->connect('submission:beforesave', array($this, 'submissionBeforeSave'));
+
 		return $result;
 	}
 
@@ -247,13 +250,13 @@ class ElementImage extends Element implements iSubmittable, iSubmissionUpload {
     }
 
 	/*
-		Function: doUpload
-			Does the actual upload during submission
+		Function: submissionBeforeSave
+			Callback before item submission is saved
 
 		Returns:
 			void
 	*/
-    public function doUpload() {
+    public function submissionBeforeSave() {
 
         // get the uploaded file information
         if (($userfile = $this->get('file')) && is_array($userfile)) {

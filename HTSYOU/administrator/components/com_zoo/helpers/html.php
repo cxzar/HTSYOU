@@ -195,14 +195,6 @@ class HTMLHelper extends AppHelper {
 
         return $this->_('select.genericlist', $options, $name, $attribs, $key, $text, $selected, $idtag, $translate);
 
-
-		// create options
-		foreach ($application->getTemplates() as $template) {
-			$options[] = $this->_('select.option', $template->name, $template->getMetadata('name'));
-		}
-
-		return $this->_('select.genericlist', $options, $name, $attribs, $key, $text, $selected, $idtag, $translate);
-
 	}
 
  	/*

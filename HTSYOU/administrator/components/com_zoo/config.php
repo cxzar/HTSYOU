@@ -78,8 +78,19 @@ $zoo->loader->register('Submission', 'classes:submission.php');
 $zoo->event->register('ApplicationEvent');
 $zoo->event->dispatcher->connect('application:init', array('ApplicationEvent', 'init'));
 
+$zoo->event->register('ItemEvent');
+$zoo->event->dispatcher->connect('item:saved', array('ItemEvent', 'saved'));
+$zoo->event->dispatcher->connect('item:deleted', array('ItemEvent', 'deleted'));
+$zoo->event->dispatcher->connect('item:stateChanged', array('ItemEvent', 'stateChanged'));
+
+$zoo->event->register('CategoryEvent');
+$zoo->event->dispatcher->connect('category:saved', array('CategoryEvent', 'saved'));
+$zoo->event->dispatcher->connect('category:deleted', array('CategoryEvent', 'deleted'));
+$zoo->event->dispatcher->connect('category:stateChanged', array('CategoryEvent', 'stateChanged'));
+
 $zoo->event->register('CommentEvent');
 $zoo->event->dispatcher->connect('comment:saved', array('CommentEvent', 'saved'));
+$zoo->event->dispatcher->connect('comment:deleted', array('CommentEvent', 'deleted'));
 $zoo->event->dispatcher->connect('comment:stateChanged', array('CommentEvent', 'stateChanged'));
 
 $zoo->event->register('SubmissionEvent');
