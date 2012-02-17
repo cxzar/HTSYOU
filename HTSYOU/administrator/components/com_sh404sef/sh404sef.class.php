@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2009-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: sh404sef.class.php 2136 2011-11-14 18:32:05Z silianacom-svn $
+ * @version     $Id: sh404sef.class.php 2253 2012-01-23 11:12:43Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -57,9 +57,11 @@ function shSortURL($string) {
     $shNewString = '';
     $ret = 'index.php?';
     foreach ($shVars as $key => $value) {
-      if (strtolower($key) != 'option') { // option is always first parameter
+      if (strtolower($key) != 'option') {
+        // option is always first parameter
         if( is_array($value) ) {
-          foreach($value as $k=>$v) {  // fix for arrays, thanks doorknob
+          foreach($value as $k=>$v) {
+            // fix for arrays, thanks doorknob
             $shNewString .= '&'.$key.'[' . $k . ']='.$v;
           }
         } else {
@@ -262,12 +264,14 @@ function shGuessLanguageAndRedirect( $queryString) {
     $sessionExists = shLookupSession();
     $reqLang = shGetUrlVar( $queryString, 'lang', '');
     $targetLang = '';
-    if (empty($cookieLang)) {  // this is really first visit (or visitor does not accept cookie)
+    if (empty($cookieLang)) {
+      // this is really first visit (or visitor does not accept cookie)
       $discoveredLang = shGetParamUserLanguage();
       if ( $discoveredLang != $reqLang)
       $targetLang = $discoveredLang;
     }
-    if (!empty($targetLang)) { // 303 redirect to same URL in preferred language
+    if (!empty($targetLang)) {
+      // 303 redirect to same URL in preferred language
       $queryString = shSetURLVar( 'index.php?'.$queryString, 'lang', $targetLang);
       $target = JRoute::_( $queryString);
       _log('Redirecting (303) to user language |cookie = '.$cookieLang. '|session='.$sessionExists.'|req='.$reqLang.'|target='.$targetLang);
@@ -329,14 +333,14 @@ function shGetDefaultLang() {
 }
 
 function shGetDefaultLanguageSef() {
-  
+
   static $sef = '';
-  
+
   if(empty( $sef)) {
     $code = shGetDefaultLang();
     $sef = shGetIsoCodeFromName($code);
   }
-  
+
   return $sef;
 }
 
@@ -413,7 +417,8 @@ function shGetActiveLanguages() {
       } else $shKind = '';
       break;
   }
-  if (empty($shKind)) {  // not multilingual
+  if (empty($shKind)) {
+    // not multilingual
     $shActiveLanguages = shGetFrontEndActiveLanguages();
   }
   return $shActiveLanguages;
@@ -579,7 +584,8 @@ function shIncludeLanguageFile() {
 }
 
 
-function shGETGarbageCollect() {  // V 1.2.4.m moved to main component from plugins
+function shGETGarbageCollect() {
+  // V 1.2.4.m moved to main component from plugins
   // builds up a string using all remaining GET parameters, to be appended to the URL without any sef transformation
   // those variables passed litterally must be removed from $string as well, so that they are not stored in DB
   global $shGETVars;
@@ -600,7 +606,8 @@ function shGETGarbageCollect() {  // V 1.2.4.m moved to main component from plug
   return $ret;
 }
 
-function shRebuildNonSefString( $string) { // V 1.2.4.m moved to main component from plugins
+function shRebuildNonSefString( $string) {
+  // V 1.2.4.m moved to main component from plugins
   // rebuild a non-sef string, removing all GET vars that were not turned into SEF
   // as we do not want to store them in DB
 
@@ -609,7 +616,8 @@ function shRebuildNonSefString( $string) { // V 1.2.4.m moved to main component 
   if (!$sefConfig->shAppendRemainingGETVars || empty($shRebuildNonSef)) return $string;
   $shNewString = '';
   if (!empty($shRebuildNonSef)) {
-    foreach ($shRebuildNonSef as $param) {  // need to sort, and still place option in first pos.
+    foreach ($shRebuildNonSef as $param) {
+      // need to sort, and still place option in first pos.
       if (strpos($param, 'sh404SEF_title=') !== false)
       $param = str_replace('sh404SEF_title=', 'title=', $param);
       $shNewString .= $param;
@@ -627,7 +635,8 @@ function shRemoveFromGETVarsList( $paramName) {
   if (!empty($paramName)) {
     if (isset($shGETVars[$paramName])) {
       $shValue = $shGETVars[$paramName];
-      if( is_array($shValue) ) {  // array handling, fix provided by VinhCV
+      if( is_array($shValue) ) {
+        // array handling, fix provided by VinhCV
         foreach ($shValue as $value){
           $shRebuildNonSef[] = '&'.$paramName.'[]='.$value;
         }
@@ -641,7 +650,8 @@ function shRemoveFromGETVarsList( $paramName) {
   }
 }
 
-function shAddToGETVarsList( $paramName, $paramValue) {  // V 1.2.4.m
+function shAddToGETVarsList( $paramName, $paramValue) {
+  // V 1.2.4.m
   global $shGETVars, $shRebuildNonSef;
   if (empty( $paramName)) return;
   $shGETVars[$paramName] = $paramValue;
@@ -669,9 +679,11 @@ function shComputeItemidString( $nonSefUrl, &$title, $shLangName) {
 
   $shHomePageFlag = shIsHomepage ($nonSefUrl);
 
-  if (!$shHomePageFlag) {  // we may have found that this is homepage, so we msut return an empty string
+  if (!$shHomePageFlag) {
+    // we may have found that this is homepage, so we msut return an empty string
     // do something about that Itemid thing
-    if (!preg_match( '/Itemid=[0-9]+/i', $nonSefUrl)) { // if no Itemid in non-sef URL
+    if (!preg_match( '/Itemid=[0-9]+/i', $nonSefUrl)) {
+      // if no Itemid in non-sef URL
       // V 1.2.4.t moved back here
       $shCurrentItemid = JRequest::getInt( 'Itemid');
       if ($sefConfig->shInsertGlobalItemidIfNone && !empty($shCurrentItemid)) {
@@ -692,12 +704,13 @@ function shComputeItemidString( $nonSefUrl, &$title, $shLangName) {
     }
 
   }
-  
+
   return $shItemidString;
 }
 
 function shFinalizePlugin( $string, $title, &$shAppendString, $shItemidString,
-$limit, $limitstart, $shLangName, $showall = null) { // V 1.2.4.s
+$limit, $limitstart, $shLangName, $showall = null) {
+  // V 1.2.4.s
   global $shGETVars;
   if(empty($shItemidString)) {
     $shItemidString = shComputeItemidString($string, $title, $shLangName);
@@ -725,7 +738,8 @@ function shInitializePlugin($lang, &$shLangName, &$shLangIso, $option) {
   $shLangIso = (shTranslateUrl($option, $shLangName)) ?
   (isset($lang) ? $lang : shGetIsoCodeFromName( Sh404sefFactory::getPageInfo()->shMosConfig_locale))
   : (isset($configDefaultLanguage) ? shGetIsoCodeFromName($configDefaultLanguage) : shGetIsoCodeFromName( Sh404sefFactory::getPageInfo()->shMosConfig_locale));
-  if (strpos($shLangIso, '_') !== false) {   //11/08/2007 14:30:16 mambo compat
+  if (strpos($shLangIso, '_') !== false) {
+    //11/08/2007 14:30:16 mambo compat
     $shTemp = explode( '_', $shLangIso);
     $shLangIso = $shTemp[0];
   }
@@ -741,7 +755,8 @@ function shInitializePlugin($lang, &$shLangName, &$shLangIso, $option) {
   shFileExists(sh404SEF_ABS_PATH.'components/'.$option.'/'.str_replace('com_', '',$option).'.php'));
 }
 
-function shLoadPluginLanguage ( $pluginName, $language, $defaultString, $path = '') {  // V 1.2.4.m
+function shLoadPluginLanguage ( $pluginName, $language, $defaultString, $path = '') {
+  // V 1.2.4.m
   global $sh_LANG;
 
   // load the Language File
@@ -757,7 +772,8 @@ function shLoadPluginLanguage ( $pluginName, $language, $defaultString, $path = 
   else return $language;
 }
 
-function shInsertIsoCodeInUrl($compName, $shLang = null) {  // V 1.2.4.m
+function shInsertIsoCodeInUrl($compName, $shLang = null) {
+  // V 1.2.4.m
 
   $sefConfig = & Sh404sefFactory::getConfig();
 
@@ -771,12 +787,13 @@ function shInsertIsoCodeInUrl($compName, $shLang = null) {  // V 1.2.4.m
   return !in_array($compName, $sefConfig->notInsertIsoCodeList);
 }
 
-function shTranslateUrl ($compName, $shLang = null) {  // V 1.2.4.m  // V 1.2.4.q added $shLang param
+function shTranslateUrl ($compName, $shLang = null) {
+  // V 1.2.4.m  // V 1.2.4.q added $shLang param
 
   // temporarily disable ability to not translate
   // until 1.7+ multi-lingual options are sorted out
   return true;
-  
+
   $sefConfig = & Sh404sefFactory::getConfig();
 
   $shLang = empty($shLang) ? Sh404sefFactory::getPageInfo()->shMosConfig_locale : $shLang;
@@ -883,13 +900,13 @@ function shGetDefaultDisplayNum($menuItemid, $url, $fromSession = false, $includ
     $menuItem = $menu->getItem($menuItemid);  // load menu item from DB
     if (empty($menuItem)) return $ret;  // if none, default
     jimport( 'joomla.html.parameter');
-    
+
     // Load the parameters. Merge Global and Menu Item params into new object
     $currentOption = JRequest::getCmd('option');
-		$params = new JParameter( $menuItem->params );  // get params from menu item
-		if(!empty($currentOption)) {
-		  $params->merge($app->getParams());
-		}
+    $params = new JParameter( $menuItem->params );  // get params from menu item
+    if(!empty($currentOption)) {
+      $params->merge($app->getParams());
+    }
 
     // layout = blog and frontpage
     if ( ($option =='com_content' && $layout == 'blog')
@@ -991,7 +1008,8 @@ function shAddSefUrlToDBAndCache( $nonSefUrl, $sefString, $rank, $urlType) {
       break;
   }
   $query = '';
-  if ($urlType == sh404SEF_URLTYPE_AUTO) {  // before adding a full sef, we must check it does not already exists as a 404
+  if ($urlType == sh404SEF_URLTYPE_AUTO) {
+    // before adding a full sef, we must check it does not already exists as a 404
     $query = 'SELECT id, newurl FROM #__sh404sef_urls where oldurl='.$database->Quote($sefString)
     .' AND ( newurl= \'\' OR newurl=\''.addslashes(urldecode($nonSefUrl)).'\')';
     _log('Querying for 404 : '.$query);
@@ -1006,7 +1024,7 @@ function shAddSefUrlToDBAndCache( $nonSefUrl, $sefString, $rank, $urlType) {
       }
       $query = 'UPDATE #__sh404sef_urls SET '.  // V 1.2.4.q
         "newurl='".addslashes(urldecode($nonSefUrl))."', rank='".$rank."', dateadd='".$dateAdd.'\' '
-        ."WHERE oldurl = ".$database->Quote($sefString);
+      ."WHERE oldurl = ".$database->Quote($sefString);
     } else {
       // another option: sef exists, but with another non-sef: that's a duplicate
       // need to check that
@@ -1194,7 +1212,7 @@ function shRedirect( $url, $msg='', $redirKind = '301', $msgType='message' ) {
         break;
       default:
         $redirHeader = 'HTTP/1.1 301 Moved Permanently';
-        break;
+      break;
     }
     header( 'Cache-Control: no-cache');  // prevent Firefox5+ and IE9+ to consider this a cacheable redirect
     header( $redirHeader );
@@ -1317,7 +1335,8 @@ function shSefRelToAbs($string, $shLanguageParam, &$uri, &$originalUri) {
     }
   }
   // return unmodified anchors
-  if (JString::substr( $string, 0, 1) == '#') {  // V 1.2.4.t
+  if (JString::substr( $string, 0, 1) == '#') {
+    // V 1.2.4.t
     return $string;
   }
   // Quick fix for shared SSL server : if https, switch to non sef
@@ -1369,7 +1388,8 @@ function shSefRelToAbs($string, $shLanguageParam, &$uri, &$originalUri) {
   $shRebuildNonSef = array();
   $shComponentType = '';  // V w initialize var to avoid notices
 
-  if ($pageInfo->homeLink) {  // now check URL against our homepage, so as to always return / if homepage
+  if ($pageInfo->homeLink) {
+    // now check URL against our homepage, so as to always return / if homepage
     $v1 = JString::ltrim(str_replace($pageInfo->getDefaultLiveSite(), '', $string), '/');
     // V 1.2.4.m : remove anchor if any
     $v2 = explode( '#', $v1);
@@ -1382,12 +1402,13 @@ function shSefRelToAbs($string, $shLanguageParam, &$uri, &$originalUri) {
     }
     $v1 = str_replace('&amp;', '&', shSortURL($v1));
     // V 1.2.4.t check also without pagination info
-    if (strpos( $v1, 'limitstart=0') !== false) {  // the page has limitstart=0
+    if (strpos( $v1, 'limitstart=0') !== false) {
+      // the page has limitstart=0
       $stringNoPag = shCleanUpPag($v1);  // remove paging info to be sure this is not homepage
     } else {
       $stringNoPag = null;
     }
-    if ($v1 == $pageInfo->homeLink 
+    if ($v1 == $pageInfo->homeLink
     || $v1 == $pageInfo->allLangHomeLink
     || $v1 == 'index.php?'.$shLangString
     || $stringNoPag == $pageInfo->homeLink
@@ -1395,7 +1416,8 @@ function shSefRelToAbs($string, $shLanguageParam, &$uri, &$originalUri) {
     )  {
       $shTemp = $v1 == $pageInfo->homeLink || shIsDefaultLang($shLanguage) ? '' : shGetIsoCodeFromName($shLanguage) . '/';
 
-      if (!empty($sefConfig->shForcedHomePage)) { // V 1.2.4.t
+      if (!empty($sefConfig->shForcedHomePage)) {
+        // V 1.2.4.t
         $shTmp = $shTemp.$shAnchor;
         $ret = shFinalizeURL($sefConfig->shForcedHomePage.(empty($shTmp) ? '' : '/'.$shTmp));
         if (empty($uri))  // if no URI, append remaining vars directly to the string
@@ -1455,7 +1477,8 @@ function shSefRelToAbs($string, $shLanguageParam, &$uri, &$originalUri) {
       extract($URI->querystring, EXTR_REFS);
     }
 
-    if (empty($option)) {// V 1.2.4.r protect against empty $option : we won't know what to do
+    if (empty($option)) {
+      // V 1.2.4.r protect against empty $option : we won't know what to do
       $pageInfo->shMosConfig_locale = $shOrigLang;
       _log('Returning shSefRelToAbs 3 with '.$shOrigString);
       return $shOrigString;
@@ -1524,7 +1547,8 @@ function shSefRelToAbs($string, $shLanguageParam, &$uri, &$originalUri) {
           $urlVars = is_array($URI->querystring) ? array_map('urldecode', $URI->querystring): $URI->querystring;
           $sefstring = $sef_ext->create($string, $urlVars, $shAppendString, $shLanguage, $shOrigString, $originalUri); // V 1.2.4.s added original string
         }
-      } else if (($urlType == sh404SEF_URLTYPE_NONE || $urlType == sh404SEF_URLTYPE_404)) {  // not found but no $limit or $limitstart
+      } else if (($urlType == sh404SEF_URLTYPE_NONE || $urlType == sh404SEF_URLTYPE_404)) {
+        // not found but no $limit or $limitstart
         $sefstring = shGetIsoCodeFromName($shLanguage).'/';
         shAddSefUrlToDBAndCache( $string, $sefstring, 0, sh404SEF_URLTYPE_AUTO); // create it
       }
@@ -1541,7 +1565,8 @@ function shSefRelToAbs($string, $shLanguageParam, &$uri, &$originalUri) {
       return $ret;
     }
 
-    if (isset($option) && !($option=='com_content' && @$task == 'edit') && (strtolower($option) != 'com_sh404sef')) { // V x 29/08/2007 23:19:48
+    if (isset($option) && !($option=='com_content' && @$task == 'edit') && (strtolower($option) != 'com_sh404sef')) {
+      // V x 29/08/2007 23:19:48
       // check also that option = com_content, otherwise, breaks some comp
       switch ($shComponentType) {
         case Sh404sefClassBaseextplugin::TYPE_SKIP : {
@@ -1570,7 +1595,8 @@ function shSefRelToAbs($string, $shLanguageParam, &$uri, &$originalUri) {
             if (count($uriVars) > 0) {
               foreach($uriVars as $key => $value) {
                 if( is_array($value) ) {
-                  foreach($value as $k=>$v) {  // fix for arrays, thanks doorknob
+                  foreach($value as $k=>$v) {
+                    // fix for arrays, thanks doorknob
                     $sefstring .= $key.'[' . $k. '],'. $v . '/';
                   }
                 } else {
@@ -1706,7 +1732,8 @@ function shSefRelToAbs($string, $shLanguageParam, &$uri, &$originalUri) {
                 $urlType = Sh404sefHelperCache::getNonSefUrlFromCache($shSefString, $dburl);
                 $newMaxRank = 0; // V 1.2.4.s
                 $shDuplicate = false;
-                if ($sefConfig->shRecordDuplicates || $urlType == sh404SEF_URLTYPE_NONE) {  // V 1.2.4.q + V 1.2.4.s+t
+                if ($sefConfig->shRecordDuplicates || $urlType == sh404SEF_URLTYPE_NONE) {
+                  // V 1.2.4.q + V 1.2.4.s+t
                   $sql = "SELECT newurl, rank, dateadd FROM #__sh404sef_urls WHERE oldurl = "
                   .$database->Quote($shSefString)." ORDER BY rank ASC";
                   $database->setQuery($sql);
@@ -1787,7 +1814,8 @@ function shSefRelToAbs($string, $shLanguageParam, &$uri, &$originalUri) {
   }
   $ret = ($shComponentType == Sh404sefClassBaseextplugin::TYPE_DEFAULT) ? shFinalizeURL($ret) : $ret;  // V w 27/08/2007 13:21:28
   _log('(3) shSefRelToAbs return string after shFinalize: ' . $ret);
-  if (empty($uri) || $shComponentType == Sh404sefClassBaseextplugin::TYPE_SKIP) {  // we don't have a uri : we must be doing a redirect from non-sef to sef or similar
+  if (empty($uri) || $shComponentType == Sh404sefClassBaseextplugin::TYPE_SKIP) {
+    // we don't have a uri : we must be doing a redirect from non-sef to sef or similar
     $ret .= $shAppendString;  // append directly to url
     _log('(4) shSefRelToAbs return string after appendString: ' . $ret);
   } else {
@@ -1845,7 +1873,8 @@ function shAddPaginationInfo( $limit, $limitstart, $showall, $iteration, $url, $
   if (!empty($limit) && is_numeric( $limit)) {
     $pagenum = intval($limitstart/$limit);
     $pagenum++;
-  } else if (!isset($limit) && !empty($limitstart)) {  // only limitstart
+  } else if (!isset($limit) && !empty($limitstart)) {
+    // only limitstart
     if (strpos( $url, 'option=com_content') !== false && strpos( $url, 'view=article') !== false) {
       $pagenum = intval($limitstart+1);   // multipage article
     }
@@ -1875,7 +1904,8 @@ function shAddPaginationInfo( $limit, $limitstart, $showall, $iteration, $url, $
   // V 1.2.4.t special processing to replace page number by headings
   $shPageNumberWasReplaced = false;
   if (  strpos($url, 'option=com_content') !== false
-  && strpos($url, 'view=article') !== false && !empty($limitstart) ) {  // this is multipage article - limitstart instead of limit in J1.5
+  && strpos($url, 'view=article') !== false && !empty($limitstart) ) {
+    // this is multipage article - limitstart instead of limit in J1.5
     if ( $sefConfig->shMultipagesTitle ) {
       parse_str($url, $shParams);
       if (!empty($shParams['id'])) {
@@ -1887,7 +1917,8 @@ function shAddPaginationInfo( $limit, $limitstart, $showall, $iteration, $url, $
           JError::RaiseError( 500, $database->stderr());
         }
         $contentText = $contentElement->introtext.$contentElement->fulltext;
-        if (!empty($contentElement) && ( strpos( $contentText, 'class="system-pagebreak' ) !== false )) { // search for mospagebreak tags
+        if (!empty($contentElement) && ( strpos( $contentText, 'class="system-pagebreak' ) !== false )) {
+          // search for mospagebreak tags
           // copied over from pagebreak plugin
           // expression to search for
           $regex = '#<hr([^>]*)class=(\"|\')system-pagebreak(\"|\')([^>]*)\/>#iU';
@@ -1895,13 +1926,14 @@ function shAddPaginationInfo( $limit, $limitstart, $showall, $iteration, $url, $
           $shMatches = array();
           preg_match_all( $regex, $contentText, $shMatches, PREG_SET_ORDER );
           // adds heading or title to <site> Title
-          if (empty($limitstart)) {  // if first page use heading of first mospagebreak
+          if (empty($limitstart)) {
+            // if first page use heading of first mospagebreak
             /* if ( $shMatches[0][2] ) {
              parse_str( html_entity_decode( $shMatches[0][2] ), $args );
-             if ( @$args['heading'] ) {
-             $shPageTitle = stripslashes( $args['heading'] );
-             }
-             }*/
+            if ( @$args['heading'] ) {
+            $shPageTitle = stripslashes( $args['heading'] );
+            }
+            }*/
           } else {  // for other pages use title of mospagebreak
             if ( $limitstart > 0 && $shMatches[$limitstart-1][1] ) {
               $args = JUtility::parseAttributes( $shMatches[$limitstart-1][0] );
@@ -1915,7 +1947,8 @@ function shAddPaginationInfo( $limit, $limitstart, $showall, $iteration, $url, $
             }
           }
         }
-        if (!empty($shPageTitle)) { // found a heading, we should use that as a Title
+        if (!empty($shPageTitle)) {
+          // found a heading, we should use that as a Title
           $location .= $shSeparator.titleToLocation($shPageTitle);
         }
         $shPageNumberWasReplaced = true;  // always set the flag, otherwise we'll a Page-1 added
@@ -1928,7 +1961,8 @@ function shAddPaginationInfo( $limit, $limitstart, $showall, $iteration, $url, $
   }
   // maybe this is a multipage with "showall=1"
   if ( strpos($url, 'option=com_content') !== false
-  && strpos($url, 'view=article') !== false && strpos($url, 'showall=1') !== false ) {  // this is multipage article with showall
+  && strpos($url, 'view=article') !== false && strpos($url, 'showall=1') !== false ) {
+    // this is multipage article with showall
     $tempTitle = JText::_( 'All Pages' );
     $location .= $shSeparator. titleToLocation( $tempTitle);
     $shPageNumberWasReplaced = true;  // always set the flag, otherwise we'll a Page-1 added
@@ -1962,7 +1996,8 @@ function shAddPaginationInfo( $limit, $limitstart, $showall, $iteration, $url, $
   }
 
   // add default index file
-  if ($sefConfig->addFile){ // V 1.2.4.t
+  if ($sefConfig->addFile){
+    // V 1.2.4.t
     if ((empty($shSuffix)
     || (!empty($shSuffix) && JString::subStr( $location, -$suffixLength) != $shSuffix) ) )
     $location .= (JString::substr($location, -1) == '/' ? '':'/').$sefConfig->addFile;
@@ -1986,7 +2021,7 @@ function shCheckVMCookieRedirect() {
 
 /*
  * 404SEF SUPPORT FUNCTIONS
- */
+*/
 
 // @TODO: deprecate this function, we don't need sef_ext.php file
 // to perform decoding
@@ -2191,60 +2226,61 @@ function getMenuTitle($option, $task, $id = null, $string = null, $shLanguage = 
 
 }
 
-function shIsSearchEngine() {  // return true if user agant is a search engine
+function shIsSearchEngine() {
+  // return true if user agant is a search engine
   static $isSearchEngine = null;
   static $searchEnginesAgents = array(
      'B-l-i-t-z-B-O-T'
-     ,'Baiduspider'
-     ,'BlitzBot'
-     ,'btbot'
-     ,'DiamondBot'
-     ,'Exabot'
-     ,'FAST Enterprise Crawler'
-     ,'FAST-WebCrawler/'
-     ,'g2Crawler'
-     ,'genieBot'
-     ,'Gigabot'
-     ,'Girafabot'
-     ,'Googlebot'
-     ,'ia_archiver'
-     ,'ichiro'
-     ,'Mediapartners-Google'
-     ,'Mnogosearch'
-     ,'msnbot'
-     ,'MSRBOT'
-     ,'Nusearch Spider'
-     ,'SearchSight'
-     ,'Seekbot'
-     ,'sogou spider'
-     ,'Speedy Spider'
-     ,'Ask Jeeves/Teoma'
-     ,'VoilaBot'
-     ,'Yahoo!'
-     ,'Slurp'
-     ,'YahooSeeker'
-     ,'YandexBot'
-     );
-     //return true;
-     if (!is_null ($isSearchEngine)) {
-       return $isSearchEngine;
-     }
-     else {
-       $isSearchEngine = false;
-       $useragent = empty($_SERVER['HTTP_USER_AGENT']) ? '' : strtolower($_SERVER['HTTP_USER_AGENT']);
-       if (!empty($useragent)) {
-         $remoteConfig = Sh404sefHelperUpdates::getRemoteConfig( $forced = false);
-         $remotes = empty($remoteConfig->config['searchenginesagents']) ? array() : $remoteConfig->config['searchenginesagents'];
-         $agents = array_unique( array_merge( $searchEnginesAgents, $remotes));
-         foreach ($agents as $agent) {
-           if (strpos($useragent, strtolower($agent)) !== false ) {
-             $isSearchEngine = true;
-             return true;
-           }
-         }
-       }
-       return $isSearchEngine;
-     }
+  ,'Baiduspider'
+  ,'BlitzBot'
+  ,'btbot'
+  ,'DiamondBot'
+  ,'Exabot'
+  ,'FAST Enterprise Crawler'
+  ,'FAST-WebCrawler/'
+  ,'g2Crawler'
+  ,'genieBot'
+  ,'Gigabot'
+  ,'Girafabot'
+  ,'Googlebot'
+  ,'ia_archiver'
+  ,'ichiro'
+  ,'Mediapartners-Google'
+  ,'Mnogosearch'
+  ,'msnbot'
+  ,'MSRBOT'
+  ,'Nusearch Spider'
+  ,'SearchSight'
+  ,'Seekbot'
+  ,'sogou spider'
+  ,'Speedy Spider'
+  ,'Ask Jeeves/Teoma'
+  ,'VoilaBot'
+  ,'Yahoo!'
+  ,'Slurp'
+  ,'YahooSeeker'
+  ,'YandexBot'
+  );
+  //return true;
+  if (!is_null ($isSearchEngine)) {
+    return $isSearchEngine;
+  }
+  else {
+    $isSearchEngine = false;
+    $useragent = empty($_SERVER['HTTP_USER_AGENT']) ? '' : strtolower($_SERVER['HTTP_USER_AGENT']);
+    if (!empty($useragent)) {
+      $remoteConfig = Sh404sefHelperUpdates::getRemoteConfig( $forced = false);
+      $remotes = empty($remoteConfig->config['searchenginesagents']) ? array() : $remoteConfig->config['searchenginesagents'];
+      $agents = array_unique( array_merge( $searchEnginesAgents, $remotes));
+      foreach ($agents as $agent) {
+        if (strpos($useragent, strtolower($agent)) !== false ) {
+          $isSearchEngine = true;
+          return true;
+        }
+      }
+    }
+    return $isSearchEngine;
+  }
 }
 
 // J 1.5 specific functions
@@ -2253,11 +2289,13 @@ function shFetchLinkFromMenu($Itemid) {
 
 }
 
-function shRemoveSlugs( $vars, $removeWhat = true) {  // remove slugs from a J! 1.5 non-sef style vars array
+function shRemoveSlugs( $vars, $removeWhat = true) {
+  // remove slugs from a J! 1.5 non-sef style vars array
   if (!empty($vars)) {
     foreach($vars as $k => $v) {
       $m = is_string( $v) ? explode(':', $v) : null; // tracker #14107, thanks 3dentech
-      if (!empty( $m) && !empty($m[1]) && is_numeric($m[0])) { // an integer followed by : followed by something
+      if (!empty( $m) && !empty($m[1]) && is_numeric($m[0])) {
+        // an integer followed by : followed by something
         $vars[$k]= $removeWhat === 'removeId' ? $m[1] : $m[0];  // depending on params, either keep id or slug
       } else {
         // use the raw value, for arrays for instance
@@ -2265,10 +2303,12 @@ function shRemoveSlugs( $vars, $removeWhat = true) {  // remove slugs from a J! 
       }
     }
     // fix some problems in incoming URLs
-    if (!empty($vars['Itemid'])) {  // sometimes we get doubles : ?Itemid=xx?Itemid=xx
+    if (!empty($vars['Itemid'])) {
+      // sometimes we get doubles : ?Itemid=xx?Itemid=xx
       $vars['Itemid'] = intval($vars['Itemid']);
     }
-    if (!empty($vars['view'])) {    // some links have view=article;
+    if (!empty($vars['view'])) {
+      // some links have view=article;
       $vars['view'] = str_replace('article;', 'article', $vars['view']);
       // view is set but no option : use default controller (com_content)
       if (empty($vars['option']))
@@ -2281,13 +2321,15 @@ function shRemoveSlugs( $vars, $removeWhat = true) {  // remove slugs from a J! 
   return $vars;
 }
 
-function shNormalizeNonSefUri( & $uri, $menu = null, $removeSlugs = true) {  // put back a J!1.5 non-sef url to J! 1.0.x format
+function shNormalizeNonSefUri( & $uri, $menu = null, $removeSlugs = true) {
+  // put back a J!1.5 non-sef url to J! 1.0.x format
   // Get the route
   $route = $uri->getPath();
   //Get the query vars
   $vars = $uri->getQuery(true);
   // fix some problems in incoming URLs
-  if (!empty($vars['Itemid'])) {  // sometimes we get doubles : ?Itemid=xx?Itemid=xx
+  if (!empty($vars['Itemid'])) {
+    // sometimes we get doubles : ?Itemid=xx?Itemid=xx
     $vars['Itemid'] = intval($vars['Itemid']);
     $uri->setQuery($vars);
   }
@@ -2297,7 +2339,8 @@ function shNormalizeNonSefUri( & $uri, $menu = null, $removeSlugs = true) {  // 
     if (empty($menu))
     $menu = & JFactory::getApplication()->getMenu();
     $shItem = $menu->getItem($vars['Itemid']);
-    if (!empty($shItem)) {  // we found the menu item
+    if (!empty($shItem)) {
+      // we found the menu item
       $url = $shItem->link.'&Itemid='.$shItem->id;
       $uri = new JURI($url);  // rebuild $uri based on this new url
       $uri->setPath($route);
@@ -2311,7 +2354,8 @@ function shNormalizeNonSefUri( & $uri, $menu = null, $removeSlugs = true) {  // 
   $uri->setQuery($vars);
 }
 
-function shNormalizeNonSefUrl($url){  // returns non-sef url with slugs removed + a few fixes
+function shNormalizeNonSefUrl($url){
+  // returns non-sef url with slugs removed + a few fixes
 
   $uri = new JURI($url);
   shNormalizeNonSefUri($uri);
@@ -2378,7 +2422,8 @@ function shSetJfLanguage( $requestlang) {
 function shCheckRedirect ($dest, $incomingUrl) {
 
   $sefConfig = & Sh404sefFactory::getConfig();
-  if (!empty($dest) && $dest != $incomingUrl) {  // redirect to alias
+  if (!empty($dest) && $dest != $incomingUrl) {
+    // redirect to alias
     if ($dest == sh404SEF_HOMEPAGE_CODE) {
       if (!empty($sefConfig->shForcedHomePage)) {
         $dest = shFinalizeURL($sefConfig->shForcedHomePage);
@@ -2470,7 +2515,7 @@ function shInsertContent( $pageTitle, $shIntroText) {
 function shGetJFMenu($lang, $getOriginals=true,  $currentLangMenuItems=false){
 
   die('Deprecated code, should not be called');
-  
+
   static $instance;
 
   if (!isset($instance)){
@@ -2626,85 +2671,17 @@ function shShouldRedirectFromNonSef( $pageInfo) {
 
   die( 'voluntary die in ' . __METHOD__ . ' of class ' . __CLASS__);
 
-  $sefConfig = & Sh404sefFactory::getConfig();
-  $shouldRedirect =  true;
-
-  // first condition: component should not be set to "skip"
-  $queryVars = $pageInfo->URI->getQueryVars();
-  if(!empty( $queryVars['option'])) {
-    $shOption = str_replace('com_', '', $queryVars['option']);
-    if(!empty( $shOption) && in_array($shOption, $sefConfig->skip)) {
-      $shouldRedirect =  false;
-    }
-  }
-
-  $method = JRequest::getMethod();
-  $shouldRedirect = $shouldRedirect && $sefConfig->shRedirectNonSefToSef
-  && (!empty($pageInfo->URI->url))
-  && strpos( $pageInfo->URI->url, 'index2.php') === false
-  && strpos( $pageInfo->URI->url, 'tmpl=component') === false
-  && strpos( $pageInfo->URI->url, 'no_html=1') === false
-  && ( empty($_SERVER['HTTP_X_REQUESTED_WITH']) || (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest'))
-  && empty($_POST)
-  && $method != 'POST';
-
-  return $shouldRedirect;
 }
 
 function shCheckCustomRedirects( $path, $pageInfo) {
 
   die( 'voluntary die in ' . __METHOD__ . ' of class ' . __CLASS__);
    
-  $sefConfig = & Sh404sefFactory::getConfig();
-  $db = &JFactory::getDBO();
-
-  $incomingUrl = $path;
-  $queryString = '';
-  if (!empty($pageInfo->URI->querystring)) {
-    $tmp = array();
-    foreach($pageInfo->URI->querystring as $k => $v)
-    $tmp[] = $k.'='.$v;
-    $queryString = implode( '&', $tmp);
-    $incomingUrl .= '?'. $queryString;
-  }
-  $query = 'SELECT alias, newurl FROM #__sh404sef_aliases WHERE alias = ' . $db->Quote($incomingUrl);
-  $query .= $path == $incomingUrl ? '' : ' or alias = ' . $db->Quote( $path) . ' order by ' . $db->nameQuote( 'alias') . ' DESC';
-  $db->setQuery($query);
-  $dest = $db->loadObject();
-  // append query string if some params were added to the alias
-  if (!empty( $dest) && !empty( $dest->newurl) && !empty( $queryString) && $dest->alias != $incomingUrl) {
-    $dest->newurl .= strpos( $dest->newurl, '?') !== false ? '&' . $queryString : '?' . $queryString;
-  }
-  if(!empty( $dest)) {
-    shCheckRedirect( $dest->newurl, $incomingUrl );
-  }
-
-  // now check shurls
-  if ($sefConfig->enablePageId) {
-    $query = 'SELECT newurl FROM #__sh404sef_pageids WHERE pageid = ' . $db->Quote($incomingUrl);
-    $query .= $path == $incomingUrl ? '' : ' or pageid = ' . $db->Quote( $path) . ' order by ' . $db->nameQuote( 'pageid') . ' DESC';
-    $db->setQuery($query);
-    $dest = $db->loadResult();
-    // check on $dest: if empty, prevent loop
-    if(!empty( $dest)) {
-      $queryString = empty( $queryString) ? '' : (strpos( $dest, '?') !== false ? '&' : '?') . $queryString;
-      shCheckRedirect( $dest . $queryString, $incomingUrl );
-    }
-  }
-
 }
 
 function shCheckAlias( $incomingUrl) {
 
   die( 'voluntary die in ' . __METHOD__ . ' of class ' . __CLASS__);
-
-  $sefConfig = & Sh404sefFactory::getConfig();
-  $db = &JFactory::getDBO();
-
-  $query = 'SELECT newurl FROM #__sh404sef_aliases WHERE alias = ' . $db->Quote($incomingUrl);
-  $db->setQuery($query);
-  $dest = $db->loadResult();
-  shCheckRedirect( $dest, $incomingUrl );
 
 }
 

@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: com_content.php 2078 2011-09-01 07:02:30Z silianacom-svn $
+ * @version     $Id: com_content.php 2314 2012-02-11 17:55:36Z silianacom-svn $
  *
  *  This module must set $shCustomTitleTag, $shCustomDescriptionTag, $shCustomKeywordsTag,$shCustomLangTag, $shCustomRobotsTag according to specific component output
  *
@@ -47,6 +47,13 @@ $shLangIso = shLoadPluginLanguage( 'com_content', $shLangIso, 'COM_SH404SEF_CREA
 
 global 	$shCustomTitleTag, $shCustomDescriptionTag, $shCustomKeywordsTag,
 $shCustomLangTag, $shCustomRobotsTag, $shCanonicalTag;
+
+// special case for 404
+if(!empty($shPageInfo->httpStatus) && $shPageInfo->httpStatus == 404) {
+  $shCustomTitleTag = '404';
+  $shCustomRobotsTag = 'noindex, follow';
+  return;
+}
 
 // add no follow to print pages
 $shCustomRobotsTag = ($tmpl == 'component' && !empty( $print) ) ? 'noindex, nofollow' : $shCustomRobotsTag;

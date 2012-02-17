@@ -5,7 +5,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: cp.css 2134 2011-11-13 17:27:03Z silianacom-svn $
+ * @version     $Id: cp.css 2245 2012-01-10 19:37:41Z silianacom-svn $
  */
 #sbox-btn-close {
 	display: none;
@@ -283,4 +283,31 @@ div.hasAnalyticsTip {
 /*div.current input, div.current textarea, div.current select*/
 div.sh404sef-analytics select#accountId, div.sh404sef-analytics input#accountId, div.sh404sef-analytics textarea#accountId {
 	float: none;
+}
+
+#sh-message-box ul{
+  color: #0055BB;
+  background-position: 4px top;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+  list-style: none;
+  padding: 10px;
+  border-top: 3px solid #84A7DB;
+  border-bottom: 3px solid #84A7DB;
+  background-color: #C3D2E5;
+  background-image: url(../images/notice-info.png);
+}
+
+#sh-error-box ul{
+  color: #c00;
+  background-position: 4px top;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+  list-style: none;
+  padding: 10px;
+  border-top: 3px solid #84A7DB;
+  border-bottom: 3px solid #84A7DB;
+  background-color: #E6C0C0;
+  background-image: url(../images/notice-alert.png);
+  border-color: #DE7A7B;
 }

@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: shCache.php 2050 2011-06-30 13:52:38Z silianacom-svn $
+ * @version     $Id: shCache.php 2309 2012-02-11 15:11:39Z silianacom-svn $
  *
  */
 
@@ -206,7 +206,7 @@ $shURLCacheCreationDate = '.$now.';'."\n";
       }
       if (SH404SEF_URL_CACHE_TTL && mt_rand(1, SH404SEF_URL_CACHE_WRITES_TO_CHECK_TTL) == 1) { // probability = 1/SH404SEF_WRITES_TO_CLEAN_LOGS
         if (!empty($shURLCacheCreationDate)){  // if we have a valid creation date, check  TTL
-          if (($now-$shURLCacheCreationDate) > SH404SEF_URL_CACHE_TTL*86400) { // cache must be cleared
+          if (($now-$shURLCacheCreationDate) > SH404SEF_URL_CACHE_TTL*3600) { // cache must be cleared
             $GLOBALS['shURLDiskCache'] = array();
             unlink($shURLCacheFileName);
             $shURLCacheCreationDate = $now;

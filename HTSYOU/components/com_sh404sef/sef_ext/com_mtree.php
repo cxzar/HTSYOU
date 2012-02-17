@@ -5,7 +5,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: com_mtree.php 2050 2011-06-30 13:52:38Z silianacom-svn $
+ * @version     $Id: com_mtree.php 2306 2012-02-11 14:17:29Z silianacom-svn $
  * Based on mosets.com extension for SEF Advance by Lee Cher Yeong <mtree@mosets.com>
  */
 
@@ -136,18 +136,18 @@ if (!function_exists('shMTGetCustomFieldById')) {
 if (!function_exists('shGetLimits')) {
   function shGetLimits( &$limit, &$limitstart, $string ) {
     // limit
-    $temp = split('&limit=', $string);
+    $temp = explode('&limit=', $string);
     if (count($temp) >= 2) {
-      $temp = split("&", $temp[1]);
+      $temp = explode("&", $temp[1]);
       $limit = $temp[0];
     } else {
       $limit = '';
     }
 
     // limitstart
-    $temp = split('&limitstart=', $string);
+    $temp = explode('&limitstart=', $string);
     if (count($temp) >= 2) {
-      $temp = split("&", $temp[1]);
+      $temp = explode("&", $temp[1]);
       $limitstart = $temp[0];
     } else {
       $limitstart = '';

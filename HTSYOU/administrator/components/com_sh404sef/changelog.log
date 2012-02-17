@@ -1,7 +1,104 @@
                               sh404sef3 changelog                               
 
-                        (2011-12-13 18:46 - build #1226)                        
+                        (2012-02-13 16:27 - build #1269)                        
 
+
+
+--------------------------------------------------------------------------------
+ [ 2012-02-13 ] Version 3.4.6.1269	
+--------------------------------------------------------------------------------
+
+
+    [new]    Added 301 auto-redirect to protect against pages of your site
+             which have been Facebook-liked using old method, that can
+             generate fb_xd_fragment and fb_xd_bust duplicate content issue
+             Tracker #95
+    [new]    Implemented channelUrl for Facebook like/send button, to protect
+             against fb_xd_fragment and fb_xd_bust SEO issues
+             Tracker #95
+    [new]    You can now select exactly which social button to display on a a
+             tag by tag basis, using 'type' attribute in
+             {sh404sef_social_buttons} tags
+
+    [chg]    Updated Spanish translation by Hertak
+    [chg]    Simple title and better robots meta on 404 page
+    [chg]    Don't show Open graph data on 404 pages
+    [chg]    Removed Virtuemart 1.x plugin
+    [chg]    Better detection of item category, when displaying social
+             buttons, will work also when article is displayed inside a module
+             Tracker #103
+    [chg]    Replaced deprecated function in Mosets Tree plugin
+             Tracker #97
+    [chg]    Updated Russian translation (Alex Smirnov)
+    [chg]    Updated Romanian translation (Valentin Barbu)
+    [chg]    Updated Italian translation (Andrea Castrovilli)
+    [chg]    Updated German translation (Jürgen Hörmann)
+    [chg]    Updated Bulgarian translation (Kiril Yoviev)
+    [chg]    Cleaned up all language files, key deduplication, ready to upload
+             to translation server
+
+    [bug]    Prevent creating useless links to 404 page, when site is crawled
+    [bug]    Outbound links images are not inserted into page if site is in
+             root dir
+             Tracker #96
+    [bug]    file cache TTL is multiplied by 86400 seconds (a day) instead of
+             3600 (an hour)
+             Tracker #98
+    [bug]    A shurl is created for homepage on multilingual sites
+             Tracker #105
+    [bug]    Infinite redirect loop when site is accessed by crawlers on
+             multilingual sites when autoredirect from non-sef to sef is on
+             Tracker #104
+
+
+--------------------------------------------------------------------------------
+ [ 2012-01-24 ] Version 3.4.5.1255
+--------------------------------------------------------------------------------
+
+
+    [new]    Added canonical tag handling for J! 2.5 new com_finder "Smart
+             search"
+    [new]    Workaround for issue in J! 2.5: cannot use categories model from
+             outside of com_content
+
+    [chg]    Moved some of the social buttons javascript links to end of body
+             instead of end of document head
+             Tracker #385
+    [chg]    Added a check to handle name conflict between Mighty Touch and
+             JomSocial, avoiding fatal errors
+             Tracker #393
+    [chg]    Changed default layout for Twitter and G+, to use shURls and hide
+             clicks count
+             Tracker #81
+    [chg]    Can now modify URLs in a case-sensitive manner
+             Tracker #379
+    [chg]    Updated Dutch translation by Gerard van Enschut
+             Tracker #88
+    [chg]    Update to Swedish translation, by JokrSolutions
+    [chg]    Added a check in case user enters a space as an alias to an URL
+             Tracker #87
+
+    [bug]    May generate loop redirects when adding aliases identical to
+             original url, except for the letter case
+    [bug]    Custom canonical URL is not saved if it is the only custom meta
+             data for an url
+             Tracker #94
+    [bug]    Kunena plugin: new post from category doesn't have a distinct URL
+             Tracker #93
+    [bug]    Rewriting prefix is lost when redirecting incoming url to the
+             same with correct case
+             Tracker #91
+    [bug]    Open graph fb:admins tag should use "property" field, not "name"
+    [bug]    When "Use default" is selected as Object type option for specific
+             urls, the Opengraph data object type is not inserted
+             Tracker #395
+    [bug]    Batch-modifying page title or description would erase other meta
+             data previously set, if any
+             Tracker #86
+    [bug]    Added test to avoid duplicating records when Apply and Save
+             button are pressed in sequence when adding custom meta data to a
+             URL
+             Tracker #85
 
 
 --------------------------------------------------------------------------------

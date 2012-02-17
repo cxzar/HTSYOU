@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: shPageRewrite.php 2220 2011-12-13 16:57:39Z silianacom-svn $
+ * @version     $Id: shPageRewrite.php 2313 2012-02-11 17:55:02Z silianacom-svn $
  *
  */
 
@@ -86,9 +86,9 @@ if (defined('SH404SEF_IS_RUNNING')) {
         break;
       default :
         for ($i=0; $i < $maxCount; $i++) {
-          $result .= ($firstOnly == 'first' ? ($i==0 ? $value:$tag):$value).$tag.$bits[$i+1];
-        }
-        break;
+        $result .= ($firstOnly == 'first' ? ($i==0 ? $value:$tag):$value).$tag.$bits[$i+1];
+      }
+      break;
     }
     return $result;
   }
@@ -106,7 +106,7 @@ if (defined('SH404SEF_IS_RUNNING')) {
         break;
       default :
         $replacement = $value . '$1';
-        break;
+      break;
     }
 
     $result = preg_replace( $pattern, $replacement, $buffer, $firstOnly ? 1 : 0);
@@ -126,7 +126,8 @@ if (defined('SH404SEF_IS_RUNNING')) {
     unset($otherArticles[$articlesCount-1]);
 
     $bits = explode ('class="contentpagetitle">', $matches[1]);
-    if (count ($bits) > 1) {  // there is a linked title
+    if (count ($bits) > 1) {
+      // there is a linked title
       $titleBits = array();
       preg_match('/(.*)(<script|<\/a>)/isU', $bits[1], $titleBits); // extract title-may still have <h1> tags
       $title = JString::trim(JString::trim(stripslashes(html_entity_decode(JString::trim($titleBits[1])))), '"');
@@ -164,7 +165,8 @@ if (defined('SH404SEF_IS_RUNNING')) {
     $part2 = $bits[1];  // 2nd part, after the href=
     $sep = substr($part2, 0, 1);  // " or ' ?
     $link = JString::trim($part2, $sep);  // remove first " or '
-    if (empty($sep)) { // this should not happen, but it happens (Fireboard)
+    if (empty($sep)) {
+      // this should not happen, but it happens (Fireboard)
       $result = $matches[0];
       return $result;
     }
@@ -173,10 +175,11 @@ if (defined('SH404SEF_IS_RUNNING')) {
      
     $shPageInfo = & Sh404sefFactory::getPageInfo();
     $sefConfig = & Sh404sefFactory::getConfig();
-     
+
     if ( substr($link, 0, strlen($shPageInfo->getDefaultLiveSite())) != $shPageInfo->getDefaultLiveSite()
-    && substr($link, 0, 7) == 'http://'
-    && substr($link, 0, strlen($shPageInfo->basePath)) != $shPageInfo->basePath){
+    && (substr($link, 0, 7) == 'http://' || substr($link, 0, 7) == 'https://')
+    && (empty($shPageInfo->basePath) || substr($link, 0, strlen($shPageInfo->basePath)) != $shPageInfo->basePath)
+    ){
 
       $mask = '%%shM1%%href="%%shM2%%" %%shM3%% >%%shM4%%<img border="0" alt="%%shM5%%" src="'
       .$shPageInfo->getDefaultLiveSite().'/components/com_sh404sef/images/'
@@ -198,7 +201,9 @@ if (defined('SH404SEF_IS_RUNNING')) {
       $m5 = strip_tags($m4);
       $result = str_replace('%%shM5%%', $m5, $result);
 
-    } else $result = $matches[0];
+    } else {
+      $result = $matches[0];
+    }
     return $result;
   }
 
@@ -255,7 +260,8 @@ if (defined('SH404SEF_IS_RUNNING')) {
 
       // is this homepage ? set flag for future use
       // V 1.2.4.t make sure we have lang info and properly sorted params
-      if (!preg_match( '/(&|\?)lang=[a-zA-Z]{2,3}/iU', $shPageInfo->shCurrentPageNonSef)) {  // no lang string, let's add default
+      if (!preg_match( '/(&|\?)lang=[a-zA-Z]{2,3}/iU', $shPageInfo->shCurrentPageNonSef)) {
+        // no lang string, let's add default
         $shTemp = explode( '-', $shPageInfo->shMosConfig_locale);
         $shLangTemp = $shTemp[0] ? $shTemp[0] : 'en';
         $shPageInfo->shCurrentPageNonSef .= '&lang='.$shLangTemp;
@@ -264,6 +270,15 @@ if (defined('SH404SEF_IS_RUNNING')) {
       $nonSef = shGetCurrentNonSef();
       $isHome = $nonSef == shSortUrl(shCleanUpAnchor(Sh404sefFactory::getPageInfo()->homeLink));
       $shCustomTags = shGetCustomMetaData( $isHome ? sh404SEF_HOMEPAGE_CODE : $nonSef);
+
+      // J! 2.5 finder canonical handling/hack
+      $highlight = shGetURLVar($nonSef, 'highlight', null);
+      if(!empty($highlight) && empty($shCanonicalTag)) {
+        $searchCanoNonSef = str_replace( '?highlight='.$highlight, '', $nonSef);
+        $searchCanoNonSef = str_replace( '&highlight='.$highlight, '', $searchCanoNonSef);
+        $shCanonicalTag = JRoute::_($searchCanoNonSef);
+      }
+
       $tagsToInsert = ''; // group new tags insertion, better perf
 
       if ( !empty($shCustomTags)) {
@@ -402,15 +417,15 @@ if (defined('SH404SEF_IS_RUNNING')) {
       // fix homepage link when using Joomfish in non default languages, error in joomla mainmenu helper
       /*
        if (sh404SEF_PROTECT_AGAINST_BAD_NON_DEFAULT_LANGUAGE_MENU_HOMELINK && !shIsDefaultLang( $shPageInfo->shMosConfig_locale)) {
-       $badHomeLink = preg_quote(JURI::base());
-       $targetLang = explode( '-', $shPageInfo->shMosConfig_locale);
-       $goodHomeLink = rtrim(JURI::base(), '/') . $sefConfig->shRewriteStrings[$sefConfig->shRewriteMode] . $targetLang[0] . '/';
-       $buffer = preg_replace( '#<div class="module_menu(.*)href="' . $badHomeLink . '"#isU',
-       '<div class="module_menu$1href="' . $goodHomeLink . '"', $buffer);
-       $buffer = preg_replace( '#<div class="moduletable_menu(.*)href="' . $badHomeLink . '"#isU',
-       '<div class="moduletable_menu$1href="' . $goodHomeLink . '"', $buffer);
-       }
-       */
+      $badHomeLink = preg_quote(JURI::base());
+      $targetLang = explode( '-', $shPageInfo->shMosConfig_locale);
+      $goodHomeLink = rtrim(JURI::base(), '/') . $sefConfig->shRewriteStrings[$sefConfig->shRewriteMode] . $targetLang[0] . '/';
+      $buffer = preg_replace( '#<div class="module_menu(.*)href="' . $badHomeLink . '"#isU',
+      '<div class="module_menu$1href="' . $goodHomeLink . '"', $buffer);
+      $buffer = preg_replace( '#<div class="moduletable_menu(.*)href="' . $badHomeLink . '"#isU',
+      '<div class="moduletable_menu$1href="' . $goodHomeLink . '"', $buffer);
+      }
+      */
       // all done
       return $buffer;
     }
@@ -488,21 +503,21 @@ if (defined('SH404SEF_IS_RUNNING')) {
     // insert shURL if tag found, except if editing item on frontend
     if (strpos( $buffer, '{sh404sef_pageid}') !== false || strpos( $buffer, '{sh404sef_shurl}') !== false) {
       // pull out contents of editor to prevent URL changes inside edit area
-      $editor =& JFactory::getEditor();
-      $regex = '#'.$editor->_tagForSEF['start'].'(.*)'.$editor->_tagForSEF['end'].'#Us';
-      preg_match_all($regex, $buffer, $editContents, PREG_PATTERN_ORDER);
+      //$editor =& JFactory::getEditor();
+      //$regex = '#'.$editor->_tagForSEF['start'].'(.*)'.$editor->_tagForSEF['end'].'#Us';
+      //preg_match_all($regex, $buffer, $editContents, PREG_PATTERN_ORDER);
 
       // create an array to hold the placeholder text (in case there are more than one editor areas)
-      $placeholders = array();
-      for ($i = 0; $i < count($editContents[0]); $i++) {
-        $placeholders[] = $editor->_tagForSEF['start'].$i.$editor->_tagForSEF['end'];
-      }
+      //$placeholders = array();
+      //for ($i = 0; $i < count($editContents[0]); $i++) {
+      //  $placeholders[] = $editor->_tagForSEF['start'].$i.$editor->_tagForSEF['end'];
+      //}
 
       // replace editor contents with placeholder text
-      $buffer   = str_replace($editContents[0], $placeholders, $buffer);
+      //$buffer   = str_replace($editContents[0], $placeholders, $buffer);
       $buffer = str_replace( array('{sh404sef_pageid}', '{sh404sef_shurl}'), $shPageInfo->shURL, $buffer );
       // restore the editor contents
-      $buffer   = str_replace($placeholders, $editContents[0], $buffer);
+      //$buffer   = str_replace($placeholders, $editContents[0], $buffer);
 
     }
   }
@@ -512,7 +527,8 @@ if (defined('SH404SEF_IS_RUNNING')) {
     // get sh404sef config
     $sefConfig = & Sh404sefFactory::getConfig();
     $pageInfo = &Sh404sefFactory::getPageInfo();
-    if(empty($sefConfig->shMetaManagementActivated) || !isset($sefConfig) || empty( $pageInfo->shCurrentPageNonSef)) {
+
+    if(empty($sefConfig->shMetaManagementActivated) || !isset($sefConfig) || empty( $pageInfo->shCurrentPageNonSef) || (!empty($pageInfo->httpStatus) && $pageInfo->httpStatus == 404)) {
       return;
     }
 
@@ -636,7 +652,7 @@ if (defined('SH404SEF_IS_RUNNING')) {
     if ((!empty($sefConfig->fbAdminIds) && $customData->og_enable_fb_admin_ids == SH404SEF_OPTION_VALUE_USE_DEFAULT) || $customData->og_enable_fb_admin_ids == SH404SEF_OPTION_VALUE_YES) {
       $content = empty($customData->fb_admin_ids) ? $sefConfig->fbAdminIds : $customData->fb_admin_ids;
       if($customData->og_enable_fb_admin_ids != SH404SEF_OPTION_VALUE_NO && !empty($content)) {
-        $openGraphData .= "\n" . '  <meta name="fb:admins" content="'.$content.'" />';
+        $openGraphData .= "\n" . '  <meta property="fb:admins" content="'.$content.'" />';
         $fbNameSpace = 'xmlns:fb="https://www.facebook.com/2008/fbml"';
       }
     }

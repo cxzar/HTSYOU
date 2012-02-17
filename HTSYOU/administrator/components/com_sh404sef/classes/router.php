@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: router.php 2194 2011-12-08 15:33:32Z silianacom-svn $
+ * @version     $Id: router.php 2315 2012-02-11 17:56:21Z silianacom-svn $
  */
 
 // no direct access
@@ -41,6 +41,9 @@ class Sh404sefClassRouter extends JRouterSite {
    * and checking automated redirections
    */
   public function startup( & $uri) {
+
+    // check some SEO related redirects
+    $this->_checkSeoRedirects( $uri);
 
     // check www vs non-www and other domain related stuff
     // may redirect to another url
@@ -118,7 +121,7 @@ class Sh404sefClassRouter extends JRouterSite {
     // redirects and such if the router parse method is
     // called several times
     self::$requestParsed = true;
-
+    
     // Send that back to J! router to put everything together
     if(self::$parsedWithJoomlaRouter) {
       return array();
@@ -162,7 +165,8 @@ class Sh404sefClassRouter extends JRouterSite {
       $langFilterParams->loadString($rawParams);
       if ($langFilterParams->get('detect_browser', 1)){
         $userLanguage = JLanguageHelper::detectLanguage();
-        if($userLanguage != $langCode) {
+        if(!empty( $userLanguage) && $userLanguage != $langCode) {
+          _log( __METHOD__ .'/'. __LINE__ . ': user lang: ' . $userLanguage . ' langcode: ' . $langCode);
           // user has a specific language, let's redirect to that
           $vars['lang'] = shGetIsoCodeFromName($userLanguage);
           $uri->setQuery( $vars);
@@ -311,34 +315,34 @@ class Sh404sefClassRouter extends JRouterSite {
           // if at least one extension uses Joomla! router, we must first try to use that
           if(!empty(Sh404sefFactory::getConfig()->useJoomlaRouter)) {
 
-            // use parent parser
-            $vars = parent::_parseSefRoute($uri);
+          // use parent parser
+          $vars = parent::_parseSefRoute($uri);
 
-            // if we found something, raise a flag
-            self::$parsedWithJoomlaRouter = true;
-            // collect vars that may have been stored by J! such as Itemid
-            $vars = array_merge( Sh404sefFactory::getPageInfo()->router->getVars(), $vars);
-            $this->setVars( array());
+          // if we found something, raise a flag
+          self::$parsedWithJoomlaRouter = true;
+          // collect vars that may have been stored by J! such as Itemid
+          $vars = array_merge( Sh404sefFactory::getPageInfo()->router->getVars(), $vars);
+          $this->setVars( array());
 
-            // and cut through the rest of the processing
-            break;
-          }
-
-          // check more redirects: from Joomla SEF to our SEF
-          $this->_checkJoomlaSefToSefRedirects( $uri);
-
-          // try find similar urls to redirect to: with or without trailing slash
-          $this->_checkTrailingSlash( $uri);
-
-          // there might be an alias we're supposed to redirect current request to
-          $this->_checkAliases( $uri);
-
-          // check if this is a short url
-          $this->_checkShurls( $uri);
-
-          // if no alternative found, issue a 404
-          $vars = $this->_do404( $uri);
+          // and cut through the rest of the processing
           break;
+        }
+
+        // check more redirects: from Joomla SEF to our SEF
+        $this->_checkJoomlaSefToSefRedirects( $uri);
+
+        // try find similar urls to redirect to: with or without trailing slash
+        $this->_checkTrailingSlash( $uri);
+
+        // there might be an alias we're supposed to redirect current request to
+        $this->_checkAliases( $uri);
+
+        // check if this is a short url
+        $this->_checkShurls( $uri);
+
+        // if no alternative found, issue a 404
+        $vars = $this->_do404( $uri);
+        break;
       }
 
     }
@@ -379,7 +383,8 @@ class Sh404sefClassRouter extends JRouterSite {
     $nonSefVars = $uri->getQuery( $asArray = true);
     if (strpos( $route, '?') !== false && !empty( $nonSefVars)) {
       $parts = explode( '?', $route);
-      if ($sefConfig->shRewriteMode == 2) {  // '/index.php?/' - removed from V 3.0+, but code left, as maybe we can put it back later?
+      if ($sefConfig->shRewriteMode == 2) {
+        // '/index.php?/' - removed from V 3.0+, but code left, as maybe we can put it back later?
         // need to extract the first part of the query, which is actually the path
         // and store it as the path
         $tmpParts = explode( '/index.php?/', $route);
@@ -562,6 +567,29 @@ class Sh404sefClassRouter extends JRouterSite {
     }
   }
 
+  protected function _checkSeoRedirects( $uri) {
+    // facebook: it may happen that FB cause an URL that has been liked or otherise shared
+    // to be linked to and thus indexed with an added query parameter. This will cause
+    // duplicate content issue, so if it happens, we want to 301 redirect to the same URL
+    // without that parameter
+    $fb_xd_bust = isset( $_GET['fb_xd_bust']);
+    $fb_xd_fragment = isset( $_GET['fb_xd_fragment']);
+    if(!empty( $fb_xd_bust) || !empty( $fb_xd_fragment)) {
+
+      // sanity checks, like don't redirect if there is some POST data
+      if( !$this->_canRedirectFrom($uri)) {
+        return;
+      }
+
+      // need to redirect, let's kill the faulty params
+      $uri->delVar( 'fb_xd_bust');
+      $uri->delVar( 'fb_xd_fragment');
+
+      // finally redirect
+      shRedirect( $uri->toString());
+
+    }
+  }
 
   protected function _checkRedirectToCorrectCase( $uri, $path) {
 
@@ -585,12 +613,12 @@ class Sh404sefClassRouter extends JRouterSite {
 
       // now the only difference between the two can be the case
       if ( $originalPath != $path) {
-        // can only be different from case, change case in uri
+        // can only be different from case, change case in uri, and add rewrite mode prefix, if any
         $uri->setPath( $path);
-        $targetUrl = $uri->base() . $uri->toString( array('path', 'query', 'fragment'));
+        $targetUrl = $uri->base() . ltrim( $sefConfig->shRewriteStrings[$sefConfig->shRewriteMode], '/') . $uri->toString( array('path', 'query', 'fragment'));
         // perform redirect
         _log( 'Redirecting to correct url case : from ' . $uri->get('_uri') . ' to ' . $targetUrl);
-        shCheckRedirect( $targetUrl, $uri->get('_uri'));
+        shRedirect( $targetUrl);
       }
     }
   }
@@ -661,7 +689,8 @@ class Sh404sefClassRouter extends JRouterSite {
       $sefUrl = '';
       // try to get it from our url store
       $urlType = shGetSefURLFromCacheOrDB( $nonSefUrl, $sefUrl);
-      if ($urlType == sh404SEF_URLTYPE_AUTO || $urlType == sh404SEF_URLTYPE_CUSTOM) {  // found a match in database
+      if ($urlType == sh404SEF_URLTYPE_AUTO || $urlType == sh404SEF_URLTYPE_CUSTOM) {
+        // found a match in database
         $sefUrl = $uri->base() . $sefUrl;
         _log('redirecting non-sef to existing SEF : '.$sefUrl);
         shRedirect( $sefUrl);
@@ -671,7 +700,8 @@ class Sh404sefClassRouter extends JRouterSite {
       if ( $sefConfig->shRedirectNonSefToSef && !empty( $nonSefUrl) && (!shIsMultilingual()
       || ((shIsMultilingual() == 'joomla' || shIsMultilingual() == 'joomfish')
       && shGetNameFromIsoCode(shDecideRequestLanguage())
-      == $pageInfo->shMosConfig_locale ))) { // $shMosConfig_locale is still deafult lang, as
+      == $pageInfo->shMosConfig_locale ))) {
+        // $shMosConfig_locale is still deafult lang, as
         // language has not been discovered yet
         $lang = JRequest::getVar( 'lang', $pageInfo->shMosConfig_locale, 'GET' );
         $shUri = new JUri( $nonSefUrl);
@@ -748,12 +778,16 @@ class Sh404sefClassRouter extends JRouterSite {
     $targetSefUrl = '';
     $urlType = JModel::getInstance( 'Sefurls', 'Sh404sefModel')->getSefURLFromCacheOrDB( $nonSefUrl, $targetSefUrl);
 
+    $pageInfo = & Sh404sefFactory::getPageInfo();
+
     // found a match : redirect
     if ($urlType == sh404SEF_URLTYPE_AUTO || $urlType == sh404SEF_URLTYPE_CUSTOM) {
       $tmpUri = new JURI( $uri->base() . $targetSefUrl);
       $targetSefUrl = $tmpUri->toString();
-      _log('redirecting non-sef to existing SEF : '. $targetSefUrl);
-      shRedirect( $targetSefUrl);
+      if( $targetSefUrl != $pageInfo->shCurrentPageURL) {
+        _log('redirecting non-sef to existing SEF : '. $targetSefUrl);
+        shRedirect( $targetSefUrl);
+      }
     }
 
     // haven't found a SEF in the cache or DB, maybe we can just create it on the fly ?
@@ -761,15 +795,18 @@ class Sh404sefClassRouter extends JRouterSite {
     || shIsMultilingual() == 'joomla'
     || (shIsMultilingual() == 'joomfish'
     && shGetNameFromIsoCode(shDecideRequestLanguage())
-    == Sh404sefFactory::getPageInfo()->shMosConfig_locale ))) { // $shMosConfig_locale is still deafult lang, as language has not been discovered yet
+    == Sh404sefFactory::getPageInfo()->shMosConfig_locale ))) {
+      // $shMosConfig_locale is still deafult lang, as language has not been discovered yet
       $GLOBALS['mosConfig_defaultLang'] = Sh404sefFactory::getPageInfo()->shMosConfig_locale;  // V 1.2.4.t joomfish not initialised so we must do
       // this otherwise shGetDefaultLanguage will not work
       $shUri = new JUri( $nonSefUrl);
       $shOriginalUri = new JURI($nonSefUrl);
       $targetSefUrl = shSefRelToAbs( $nonSefUrl, $uri->getVar('lang'), $shUri, $shOriginalUri);
-      if (strpos( $targetSefUrl, 'option=com') === false && $targetSefUrl != $nonSefUrl) {
-        _log('redirecting non-sef to newly created SEF : '.$targetSefUrl . ' from ' . $nonSefUrl);
-        shRedirect( $targetSefUrl);
+      if( $targetSefUrl != $pageInfo->shCurrentPageURL) {
+        if (strpos( $targetSefUrl, 'option=com') === false && $targetSefUrl != $nonSefUrl) {
+          _log(__METHOD__ .'/'. __LINE__ . ': redirecting non-sef to newly created SEF : '.$targetSefUrl . ' from ' . $nonSefUrl);
+          shRedirect( $targetSefUrl);
+        }
       }
     }
   }
@@ -833,18 +870,21 @@ class Sh404sefClassRouter extends JRouterSite {
       return;
     }
 
+    // our configuration object
+    $sefConfig = Sh404sefFactory::getConfig();
+
     // separate path and full request
     $path = $uri->getPath();
-    $url = str_replace( JURI::root(), '', $uri->get( '_uri'));
+    $requestPath = str_replace( JURI::root() . ltrim( $sefConfig->shRewriteStrings[$sefConfig->shRewriteMode], '/') , '', $uri->get( '_uri'));
     $queryString = $uri->getQuery();
 
     // build sql query, we may check both path and full query
     $sql = 'select ??,?? from ?? where ?? = ?';
     $nameQuoted = array( 'alias', 'newurl', '#__sh404sef_aliases', 'alias');
-    $quoted = array( $url);
+    $quoted = array( $requestPath);
 
     // path different from full url requested, means there is a query string
-    if(!empty( $path) && $path != $url) {
+    if(!empty( $path) && $path != $requestPath) {
       $sql .= ' or ?? = ?';
       $nameQuoted[] = 'alias';
       $quoted[]= $path;
@@ -864,18 +904,18 @@ class Sh404sefClassRouter extends JRouterSite {
       $dest = Sh404sefHelperDb::queryQuoteOnly( $sql, $nameQuoted, $quoted)->loadObject();
 
       // append query string if some params were added to the alias
-      if (!empty( $dest) && !empty( $dest->newurl) && !empty( $queryString) && $dest->alias != $url) {
+      if (!empty( $dest) && !empty( $dest->newurl) && !empty( $queryString) && $dest->alias != $requestPath) {
         $dest->newurl .= JString::strpos( $dest->newurl, '?') !== false ? '&' . $queryString : '?' . $queryString;
       }
 
       // do the redirect, after checking a few conditions
       if(!empty( $dest)) {
-        shCheckRedirect( $dest->newurl, $url );
+        shCheckRedirect( $dest->newurl, $uri->get( '_uri') );
       }
 
     } catch (Sh404sefException $e) {
       // if error, just log
-      _log( __METHOD__ . '/' . __CLASS__ . ' Database error reading aliases: ' . $e->getMessage());
+      _log( __METHOD__ .'/'. __LINE__ . '/' . __CLASS__ . ' Database error reading aliases: ' . $e->getMessage());
     }
   }
 
@@ -911,7 +951,7 @@ class Sh404sefClassRouter extends JRouterSite {
         }
       } catch (Sh404sefException $e) {
         // if error, just log
-        _log( __METHOD__ . '/' . __CLASS__ . 'Database error reading aliases: ' . $e->getMessage());
+        _log( __METHOD__ .'/'. __LINE__ . '/' . __CLASS__ . 'Database error reading aliases: ' . $e->getMessage());
       }
     }
 
@@ -957,7 +997,7 @@ class Sh404sefClassRouter extends JRouterSite {
           shLogToSecFile($logData);
         }
       } catch (Sh404sefExceptionDefault $e) {
-        _log( __METHOD__ . '/' . __CLASS__ . ': Database error: ' . $e->getMessage());
+        _log( __METHOD__ .'/'. __LINE__ . '/' . __CLASS__ . ': Database error: ' . $e->getMessage());
       }
     }
 
@@ -988,7 +1028,7 @@ class Sh404sefClassRouter extends JRouterSite {
         )->eLoadResultArray();
         $id = empty($ids[0]) ? null : $ids[0];
       } catch (Sh404sefExceptionDefault $e) {
-        _log( __METHOD__ . '/' . __CLASS__ . ': Database error: ' . $e->getMessage());
+        _log( __METHOD__ .'/'. __LINE__ . '/' . __CLASS__ . ': Database error: ' . $e->getMessage());
       }
       if (empty( $id)) {
         JError::raiseError( 404, JText::_( 'Component Not Found' ) . ' ('.$pageInfo->getDefaultLiveSite().'/' . $uri->getPath().')' );

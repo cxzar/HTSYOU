@@ -3,12 +3,12 @@
 <extension type="component" version="1.6" method="upgrade">
 	<name>sh404SEF</name>
 	<author><![CDATA[ Yannick Gaultier]]></author>
-	<creationDate>2011-12-13</creationDate>
+	<creationDate>2012-02-13</creationDate>
 	<copyright>2010 - Yannick Gaultier - Anything Digital</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>admin@anything-digital.com</authorEmail>
 	<authorUrl>anything-digital.com</authorUrl>
-	<version>3.4.4.1226</version>
+	<version>3.4.6.1269</version>
 	<description></description>
 	
 	<scriptfile>installation.script.php</scriptfile>
@@ -48,11 +48,9 @@
 		<filename>sef_ext/com_registration.php</filename>
 		<filename>sef_ext/com_search.php</filename>
 		<filename>sef_ext/com_users.php</filename>
-		<filename>sef_ext/com_virtuemart.php</filename>
 		<filename>sef_ext/com_weblinks.php</filename>
 		<filename>sef_ext/com_wrapper.php</filename>
 		<filename>sef_ext/sample_com_plugin.php</filename>
-		<filename>meta_ext/com_virtuemart.php</filename>
 		<filename>meta_ext/com_content.php</filename>
 	</files>
 	<administration>
@@ -169,6 +167,9 @@
       <language tag="it-IT">it-IT.com_sh404sef.sys.ini</language>
       <language tag="nl-NL">nl-NL.com_sh404sef.ini</language>
       <language tag="nl-NL">nl-NL.com_sh404sef.sys.ini</language>
+      <language tag="nl-NL">nl-NL.com_sh404sef.acesef.ini</language>
+      <language tag="nl-NL">nl-NL.com_sh404sef.joomsef.ini</language>
+      <language tag="nl-NL">nl-NL.mod_sh404sef_cpicon.ini</language>
 			<language tag="ro-RO">ro-RO.com_sh404sef.ini</language>
 			<language tag="ro-RO">ro-RO.com_sh404sef.sys.ini</language>
 			<language tag="ro-RO">ro-RO.mod_sh404sef_cpicon.ini</language>

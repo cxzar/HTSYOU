@@ -7,7 +7,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: sef_ext.php 2107 2011-10-22 12:27:40Z silianacom-svn $
+ * @version     $Id: sef_ext.php 2252 2012-01-23 11:11:42Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -436,112 +436,6 @@ class sef_404 {
 
     die( 'voluntary die in ' . __METHOD__ . ' of class ' . __CLASS__);
 
-    $shPageInfo = & Sh404sefFactory::getPageInfo();  // get page details gathered by system plugin
-    $sefConfig = & Sh404sefFactory::getConfig();
-
-    // get DB
-    $database =& JFactory::getDBO();
-
-    $QUERY_STRING ='';
-    $req = implode('/',$url_array);
-    if ($req != '/') $req = JString::ltrim($req, '/'); // V x
-    $req = str_replace("//","/",$req);
-    _log('sef404 reverting URL : '.$req);
-
-    // read from db
-    $sql="SELECT oldurl, newurl FROM #__sh404sef_urls WHERE oldurl = ".$database->Quote($req)." ORDER BY rank ASC LIMIT 1"; // V 1.2.4.q
-
-    $database->setQuery($sql);
-    $row = $database->loadObject();
-
-    if ($row) {
-      // use the cached url
-      $string = $row->newurl;
-      // check for urls using wrong letter case, 301 redirect to correct url case
-      $shPageInfo = & Sh404sefFactory::getPageInfo();
-      if (empty($shPageInfo->autoRedirectsDisabled) && $sefConfig->redirectToCorrectCaseUrl) {
-        // if initial query exactly matches oldurl found in db, then case is correct
-        // else we redirect to the url found in db, but we also need to append query string to it !
-        if ($req != $row->oldurl) {
-          // can only be different from case
-          // what is the url we should redirect to ?
-          $targetUrl = str_replace($req, $row->oldurl, $shPageInfo->shSaveRequestURI);
-          $targetUrl = $shPageInfo->URI->protocol.'://'.$shPageInfo->URI->host.(empty($shPageInfo->URI->port) ? '' : ':'.$shPageInfo->URI->port)
-          .$targetUrl.(empty($shPageInfo->URI->anchor) ? '':'#'.$shPageInfo->URI->anchor);
-          // perform redirect
-          _log( 'Redirecting to correct url case : from ' . $req . ' to ' . $targetUrl);
-          shRedirect( $targetUrl);
-        }
-      }
-
-      // keep going if we did not redirect to correct case
-      _log('sef404 reverting URL : found : '.$row->newurl);
-      // update the count
-      $database->setQuery("UPDATE #__sh404sef_urls SET cpt=(cpt+1) WHERE `newurl` = ".$database->Quote($row->newurl)
-      ." AND `oldurl` = ".$database->Quote($row->oldurl));  // V 1.2.4.q
-      $database->query();
-
-      // now we must merge query string from request and POST data with that found in db
-      // as there might be common variables. For instance, limit=5 in the DB
-      // but limit=10 as been pass as POST DATA from a drop-down list item
-      $otherVars = empty($shPageInfo->URI->querystring) ? array() : $shPageInfo->URI->querystring;
-      $postVars = JRequest::get( 'post');
-      $otherVars = array_merge( $otherVars, $postVars);
-      if( !empty( $otherVars)) {
-        foreach( $otherVars as $key => $value) {
-          // if var exists in the incoming url, override it with querystring or post var value
-          if ( shGetURLVar( $string, $key, null) !== null) {
-            // if we change the value of limit, we must reset limitstart, or we may end up
-            // with weird page number
-            if ($key == 'limit') {
-              $limit = shGetURLVar( $string, 'limit', null);
-              if (!is_null($limit) && $value != $limit){
-                // we are changing limit value : is there a limitstart ?
-                $limitstart = shGetURLVar( $string, 'limitstart', null);
-                if (!is_null($limitstart)) {
-                  // calculate a new limitstart
-                  $limitstart = empty( $limit) ? 0 : floor( $limitstart / $limit) - 1;
-                  $limitstart = $limitstart < 0 ? 0 : $limitstart;
-                  // and set it
-                  $string = shSetURLVar( $string, 'limitstart', $limitstart, $canBeEmpty = true);
-                  // kill any remaining limitstart value
-                  if (array_key_exists( 'limitstart', $otherVars)) {
-                    unset( $otherVars['limitstart']);
-                  }
-                }
-              }
-            }
-            // now apply new value for the key
-            $string = shSetURLVar($string, $key,$value);
-          }
-        }
-      }
-      $string = str_replace( '&amp;', '&', $string );
-      $QUERY_STRING= str_replace('index.php?','',$string);
-      // so weird : because of how Joomla choose to not include $limit in urls, I must remove &limit=xx from the restored url
-      // I do have to store it in db however, otherwise same sef will be associated with same non-sef, and then
-      // Joomla content views will be screwed up also as they guess $limit and reset JRequest('limit');
-      if (!empty( $QUERY_STRING)) {
-        $QUERY_STRING = '&' . $QUERY_STRING;
-        $option = shGetURLVar($QUERY_STRING, 'option');
-        $layout = shGetURLVar( $QUERY_STRING, 'layout');
-        if (empty( $layout)) {
-          $layout = 'default';
-        }
-        $view = shGetURLVar( $QUERY_STRING, 'view');
-        if ($option == 'com_content' && $layout != 'blog' &&  ($view == 'category' || $view == 'section')) {
-          $limit = shGetURLVar($QUERY_STRING, 'limit');
-          //$QUERY_STRING = shCleanUpVar( $QUERY_STRING, 'limit');
-          // but we need to keep it, because of a bug in Joomla, which I could not trace
-          // whereby the user state limit value in com_content.default.limit is that of the blog instead of that of the current view
-          $mainframe = JFactory::getApplication();
-          $mainframe->setUserState( 'com_content.sh.' . $view . '.' . $layout . '.limit', $limit);
-          //_log( 'Removing limit from reverted url, to : ' . $QUERY_STRING);
-        }
-        $QUERY_STRING = JString::ltrim( $QUERY_STRING, '&');
-      }
-    }
-    return $QUERY_STRING;
   }
 
   public static function getContentTitles($view,$id, $layout, $Itemid=0, $shLang = null, $sefConfig = null)  {

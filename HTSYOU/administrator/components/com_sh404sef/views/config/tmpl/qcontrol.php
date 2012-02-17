@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: qcontrol.php 2050 2011-06-30 13:52:38Z silianacom-svn $
+ * @version     $Id: qcontrol.php 2292 2012-02-03 11:57:29Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -102,7 +102,7 @@ $pane =& JPane::getInstance('Tabs');
     <td>
       <select name="shRewriteMode" id="shRewriteMode" class="inputbox" size="1">
          <option value="0" <?php echo $this->sefConfig->shRewriteMode == 0 ? 'selected="selected"' : ''; ?> ><?php echo JText::_('COM_SH404SEF_WITH_HTACCESS_MOD_REWRITE'); ?></option>
-         <option value="1" <?php echo $this->sefConfig->shRewriteMode == 1 ? 'selected="selected"' : ''; ?> ><?php echo JText::_('COM_SH404SEF_WITHOUT_HTACCESS_INDEX.PHP'); ?></option>
+         <option value="1" <?php echo $this->sefConfig->shRewriteMode == 1 ? 'selected="selected"' : ''; ?> ><?php echo JText::_('COM_SH404SEF_RW_MODE_INDEXPHP'); ?></option>
     </select>
     </td>
     <td><?php echo JHTML::_('tooltip', JText::_('COM_SH404SEF_TT_SELECT_REWRITE_MODE'), JText::_('COM_SH404SEF_SELECT_REWRITE_MODE') ); ?></td>

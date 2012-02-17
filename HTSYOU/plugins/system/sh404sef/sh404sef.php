@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: sh404sef.php 2122 2011-10-27 17:17:38Z silianacom-svn $
+ * @version     $Id: sh404sef.php 2298 2012-02-09 12:13:29Z silianacom-svn $
  */
 
 // no direct access
@@ -37,6 +37,12 @@ class  plgSystemSh404sef extends JPlugin {
     // get our configuration
     $sefConfig = & Sh404sefFactory::getConfig();
 
+    // hook for a few SEO hacks
+    if($app->isSite()) {
+      $this->_hacks( JRequest::get(), $sefConfig);
+    }
+
+    // security layer
     if (!$app->isAdmin() && $sefConfig->shSecEnableSecurity) {
       require_once(JPATH_ROOT.DS.'components'.DS.'com_sh404sef'.DS.'shSec.php');
       // do security checks
@@ -63,7 +69,8 @@ class  plgSystemSh404sef extends JPlugin {
     // another hook to allow other SEF extensions language file to be loaded
     Sh404sefHelperExtplugins::loadLanguageFiles();
 
-    if (!$sefConfig->Enabled) {  // go away if not enabled
+    if (!$sefConfig->Enabled) {
+      // go away if not enabled
       return;
     }
 
@@ -178,11 +185,44 @@ class  plgSystemSh404sef extends JPlugin {
     $sefConfig = Sh404sefFactory::getConfig();
 
     // return if no seo optim to perform
-    if ($sefConfig->shMetaManagementActivated || $sefConfig->analyticsEnabled) {  // go away if not enabled
+    if ($sefConfig->shMetaManagementActivated || $sefConfig->analyticsEnabled) {
+      // go away if not enabled
       $include = JPATH_ROOT.DS.'components'.DS.'com_sh404sef'.DS.'shPageRewrite.php';
       require_once( $include);
     }
      
+  }
+
+  /**
+   * A set of SEO hacks that don't fit elsewhere
+   * as we usually want a very quick response and
+   * avoid wasted resources
+   *
+   * @param object $sefConfig our global configuration
+   */
+  protected function _hacks( $sefConfig) {
+
+    $getRequest = JRequest::get( 'GET');
+
+    // facebook: provide a channelUrl to like/Send buttons
+    $option = empty($getRequest['option']) ? '' : $getRequest['option'];
+    $view = empty($getRequest['view']) ? '' : $getRequest['view'];
+    $format = empty($getRequest['format']) ? 'raw' : $getRequest['format'];
+    $langtag = empty($getRequest['langtag']) ? 'en_GB' : $getRequest['langtag'];
+
+    if($option == 'com_sh404sef' && $view == 'channelurl' && $format == 'raw') {
+      // this is a request for the channelUrl
+      $pageContent = '<script src="//connect.facebook.net/' . $langtag . '/all.js"></script>';
+      if(!headers_sent()) {
+        $cache_expire = 60*60*24*365;
+        header("Pragma: public");
+        header("Cache-Control: max-age=".$cache_expire);
+        header('Expires: ' . gmdate('D, d M Y H:i:s', time()+$cache_expire) . ' GMT');
+      }
+      echo $pageContent;
+      jexit();
+    }
+
   }
 
   /**
@@ -237,7 +277,8 @@ class  plgSystemSh404sef extends JPlugin {
     $app = JFactory::getApplication();
     $sefConfig = Sh404sefFactory::getConfig();
 
-    if (!defined('SHMOBILE_MOBILE_TEMPLATE_SWITCHED') && !empty($sefConfig->alternateTemplate)) { // global on/off switch
+    if (!defined('SHMOBILE_MOBILE_TEMPLATE_SWITCHED') && !empty($sefConfig->alternateTemplate)) {
+      // global on/off switch
       self::$_template = $app->getTemplate(); // save current template
       $app->setTemplate( $sefConfig->alternateTemplate);
     }
@@ -248,7 +289,8 @@ class  plgSystemSh404sef extends JPlugin {
     $app = JFactory::getApplication();
     $sefConfig = Sh404sefFactory::getConfig();
 
-    if (!defined('SHMOBILE_MOBILE_TEMPLATE_SWITCHED') && !empty($sefConfig->alternateTemplate)) { // global on/off switch
+    if (!defined('SHMOBILE_MOBILE_TEMPLATE_SWITCHED') && !empty($sefConfig->alternateTemplate)) {
+      // global on/off switch
       if (empty(self::$_template)) {
         return;
       }

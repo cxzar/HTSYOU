@@ -30,7 +30,7 @@ class shSEFConfig {
   const COM_SH404SEF_UNCATEGORIZED_USE_MENU_ITEM = 1;
 
   /* string,  version number */
-  var $version = '3.4.4.1226';
+  var $version = '3.4.6.1269';
   /* boolean, is 404 SEF enabled  */
   var $Enabled = false;
   /* char,  Character to use for url replacement */
@@ -38,9 +38,9 @@ class shSEFConfig {
   /* char,  Character to use for page spacer */
   var $pagerep = '-';
   /* strip these characters */
-  var $stripthese = ',|~|!|@|%|^|(|)|<|>|:|;|{|}|[|]|&|`|„|‹|’|‘|“|�?|•|›|«|´|»|°';
+  var $stripthese = ',|~|!|@|%|^|(|)|<|>|:|;|{|}|[|]|&|`|„|‹|’|‘|“|”|•|›|«|´|»|°';
   /* characters replacement table v 1.2.4.f April 4, 2007*/
-  var $shReplacements = 'Š|S, Œ|O, Ž|Z, š|s, œ|oe, ž|z, Ÿ|Y, ¥|Y, µ|u, À|A, �?|A, Â|A, Ã|A, Ä|A, Å|A, Æ|A, Ç|C, È|E, É|E, Ê|E, Ë|E, Ì|I, �?|I, Î|I, �?|I, �?|D, Ñ|N, Ò|O, Ó|O, Ô|O, Õ|O, Ö|O, Ø|O, Ù|U, Ú|U, Û|U, Ü|U, �?|Y, ß|s, à|a, á|a, â|a, ã|a, ä|a, å|a, æ|a, ç|c, è|e, é|e, ê|e, ë|e, ì|i, í|i, î|i, ï|i, ð|o, ñ|n, ò|o, ó|o, ô|o, õ|o, ö|o, ø|o, ù|u, ú|u, û|u, ü|u, ý|y, ÿ|y, ß|ss, ă|a, ş|s, ţ|t, ț|t, Ț|T, Ș|S, ș|s, Ş|S';
+  var $shReplacements = 'Š|S, Œ|O, Ž|Z, š|s, œ|oe, ž|z, Ÿ|Y, ¥|Y, µ|u, À|A, Á|A, Â|A, Ã|A, Ä|A, Å|A, Æ|A, Ç|C, È|E, É|E, Ê|E, Ë|E, Ì|I, Í|I, Î|I, Ï|I, Ð|D, Ñ|N, Ò|O, Ó|O, Ô|O, Õ|O, Ö|O, Ø|O, Ù|U, Ú|U, Û|U, Ü|U, Ý|Y, ß|s, à|a, á|a, â|a, ã|a, ä|a, å|a, æ|a, ç|c, è|e, é|e, ê|e, ë|e, ì|i, í|i, î|i, ï|i, ð|o, ñ|n, ò|o, ó|o, ô|o, õ|o, ö|o, ø|o, ù|u, ú|u, û|u, ü|u, ý|y, ÿ|y, ß|ss, ă|a, ş|s, ţ|t, ț|t, Ț|T, Ș|S, ș|s, Ş|S';
   /* string,  suffix for "files" */
   var $suffix = '.html';
   /* string,  file to display when there is none */
@@ -1227,7 +1227,7 @@ if (JFile::exists($sef_custom_config_file)) {
 if ($app->isAdmin()) {  // only need to modify custom params in back-end
   $this->defaultParamList = '<?php
 // custom.sef.php : custom.configuration file for sh404SEF
-// 3.4.4.1226 - anything-digital.com/sh404sef/seo-analytics-and-security-for-joomla.html
+// 3.4.6.1269 - anything-digital.com/sh404sef/seo-analytics-and-security-for-joomla.html
 
 // DO NOT REMOVE THIS LINE :
 if (!defined(\'_JEXEC\')) die(\'Direct Access to this location is not allowed.\');

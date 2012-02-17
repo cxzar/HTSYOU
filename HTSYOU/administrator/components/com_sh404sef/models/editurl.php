@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: editurl.php 2176 2011-11-21 18:58:29Z silianacom-svn $
+ * @version     $Id: editurl.php 2238 2012-01-05 19:04:35Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -312,7 +312,7 @@ class Sh404sefModelEditurl extends Sh404sefClassBaseeditmodel {
     }
 
     // search DB for urls pairs with same SEF url
-    $query = 'SELECT * FROM #__sh404sef_urls WHERE oldurl = ' . $this->_db->Quote( $row->oldurl) . ' ORDER BY rank ASC';
+    $query = 'SELECT * FROM #__sh404sef_urls WHERE binary oldurl = ' . $this->_db->Quote( $row->oldurl) . ' ORDER BY rank ASC';
     $this->_db->setQuery($query);
     $dbUrlList = $this->_db->loadObjectList();
 
@@ -360,7 +360,7 @@ class Sh404sefModelEditurl extends Sh404sefClassBaseeditmodel {
           // TODO this code is duplicated just a few line below, need refactoring
           if (!empty($previousSefUrl) && strpos($this->_data['shAliasList'], $previousSefUrl) === false) {
             // check if not already a valid SEF url in the DB
-            $query = 'SELECT count(id) FROM #__sh404sef_urls WHERE oldurl = ' . $this->_db->Quote( $previousSefUrl);
+            $query = 'SELECT count(id) FROM #__sh404sef_urls WHERE binary oldurl = ' . $this->_db->Quote( $previousSefUrl);
             $this->_db->setQuery($query);
             $isThere = $this->_db->loadResult();
             if (empty( $isThere)) {
@@ -388,7 +388,7 @@ class Sh404sefModelEditurl extends Sh404sefClassBaseeditmodel {
         // TODO this code is duplicated just a few line below, need refactoring
         if (!empty( $previousSefUrl) && $previousSefUrl != $row->newurl) {
           // search for the old #2 record in duplicate list
-          $query = 'SELECT id FROM #__sh404sef_urls WHERE oldurl = ' . $this->_db->Quote( $previousSefUrl) . ' ORDER BY rank ASC';
+          $query = 'SELECT id FROM #__sh404sef_urls WHERE binary oldurl = ' . $this->_db->Quote( $previousSefUrl) . ' ORDER BY rank ASC';
           $this->_db->setQuery($query);
           $previousRanked2 = $this->_db->loadObject();
 
@@ -431,7 +431,7 @@ class Sh404sefModelEditurl extends Sh404sefClassBaseeditmodel {
       // TODO this code is duplicated just a few line above, need refactoring
       if (!empty($previousSefUrl) && strpos($this->_data['shAliasList'], $previousSefUrl) === false) {
         // check if not already a valid SEF url in the DB
-        $query = 'SELECT count(id) FROM #__sh404sef_urls WHERE oldurl = ' . $this->_db->Quote( $previousSefUrl);
+        $query = 'SELECT count(id) FROM #__sh404sef_urls WHERE binary oldurl = ' . $this->_db->Quote( $previousSefUrl);
         $this->_db->setQuery($query);
         $isThere = $this->_db->loadResult();
         if (empty( $isThere)) {
@@ -446,7 +446,7 @@ class Sh404sefModelEditurl extends Sh404sefClassBaseeditmodel {
       // TODO this code is duplicated just a few line above, need refactoring
       if (!empty( $previousSefUrl) && $previousSefUrl != $row->newurl) {
         // search for the old #2 record in duplicate list
-        $query = 'SELECT id FROM #__sh404sef_urls WHERE oldurl = ' . $this->_db->Quote( $previousSefUrl) . ' ORDER BY rank ASC';
+        $query = 'SELECT id FROM #__sh404sef_urls WHERE binary oldurl = ' . $this->_db->Quote( $previousSefUrl) . ' ORDER BY rank ASC';
         $this->_db->setQuery($query);
         $previousRanked2 = $this->_db->loadObject();
 

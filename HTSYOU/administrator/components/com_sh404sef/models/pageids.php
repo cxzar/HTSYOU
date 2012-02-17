@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: pageids.php 2070 2011-07-18 18:16:06Z silianacom-svn $
+ * @version     $Id: pageids.php 2308 2012-02-11 15:08:33Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -142,7 +142,7 @@ class Sh404sefModelPageids extends Sh404sefClassBaselistModel {
 
       default:
         $numberOfPageids = 0;
-        break;
+      break;
     }
 
     return intval( $numberOfPageids);
@@ -497,6 +497,15 @@ class Sh404sefModelPageids extends Sh404sefClassBaselistModel {
     // check global flags
     if (!$sefConfig->enablePageId || $sefConfig->stopCreatingShurls) {
       return false;
+    }
+
+    // make sure we have a language
+    $pageInfo = & Sh404sefFactory::getPageInfo();
+    $nonSefUrl = shSetURLVar($nonSefUrl, 'lang', $pageInfo->shMosConfig_shortcode);
+
+    // not on homepage
+    if( shIsAnyHomepage( $nonSefUrl)) {
+      return '';
     }
 
     // check at component level

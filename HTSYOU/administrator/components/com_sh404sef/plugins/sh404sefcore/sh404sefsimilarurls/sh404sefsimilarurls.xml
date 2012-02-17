@@ -3,12 +3,12 @@
 	method="upgrade">
 	<name>sh404sef - Similar urls plugin</name>
 	<author>Yannick Gaultier</author>
-	<creationDate>2011-12-13</creationDate>
+	<creationDate>2012-02-13</creationDate>
 	<copyright>2010 Yannick Gaultier</copyright>
 	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
 	<authorEmail>admin@anything-digital.com	</authorEmail>
 	<authorUrl>anything-digital.com</authorUrl>
-	<version>3.4.4.1226</version>
+	<version>3.4.6.1269</version>
 	<description>Search for urls similar to that of the current page</description>
 	<files>
 		<filename plugin="sh404sefsimilarurls">sh404sefsimilarurls.php</filename>

@@ -5,11 +5,45 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: com_community.php 2086 2011-09-05 13:24:09Z silianacom-svn $
+ * @version     $Id: com_community.php 2241 2012-01-06 14:09:34Z silianacom-svn $
  *
  */
 
 defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
+
+// Mighty Touch and JomSocial use same component name (com_community)
+// check if JomSocial is installed before using this code
+if(!function_exists('shGetJSVersion')) {
+  function shGetJSVersion()	{
+    static $version		= null;
+
+    if( is_null( $version ) )	{
+      $parser		=& JFactory::getXMLParser('Simple');
+
+      // Load the local XML file first to get the local version
+      $xml = JPATH_ROOT . DS . 'administrator' . DS. 'components' .DS. 'com_community' .DS. 'community.xml';
+      jimport( 'joomla.filesystem.file');
+      if(!JFile::exists( $xml)) {
+        return $version;
+      }
+      
+      $parser->loadFile( $xml );
+      $document	=& $parser->document;
+
+      $element		=& $document->getElementByPath( 'version' );
+      $version		= $element->data();
+    }
+    return $version;
+  }
+}
+
+// get JomSocial installed version
+$jsVersion = shGetJSVersion();
+// if null, JS is not installed, this is probably
+// a Mighty Touch url
+if(is_null( $jsVersion)) {
+  // return;
+}
 
 // ------------------  standard plugin initialize function - don't change ---------------------------
 global $sh_LANG;
@@ -51,26 +85,6 @@ $lang->load('com_community');
 $Itemid = isset($Itemid) ? $Itemid : null;
 $limit = isset($limit) ? $limit : null;
 $limitstart = isset($limitstart) ? $limitstart : null;
-
-if(!function_exists('shGetJSVersion')) {
-  function shGetJSVersion()	{
-    static $version		= null;
-
-    if( is_null( $version ) )	{
-      $parser		=& JFactory::getXMLParser('Simple');
-
-      // Load the local XML file first to get the local version
-      $xml = JPATH_ROOT . DS . 'administrator' . DS. 'components' .DS. 'com_community' .DS. 'community.xml';
-       
-      $parser->loadFile( $xml );
-      $document	=& $parser->document;
-
-      $element		=& $document->getElementByPath( 'version' );
-      $version		= $element->data();
-    }
-    return $version;
-  }
-}
 
 if(!function_exists('shGetJSText')) {
   function shGetJSText($id)	{
@@ -182,7 +196,7 @@ if(!function_exists('shGetJSText')) {
           break;
         case 'EDIT PRIVACY':
           $id = 'PROFILE_PRIVACY_EDIT';
-          break;  
+          break;
         case 'GROUP MEMBERS':
         case 'MEMBERS':
           $id = 'GROUPS_MEMBERS';
@@ -552,11 +566,11 @@ switch($view){
     break;
   case 'profile':
     if(!empty( $userid)) {
-    $slug = shGetJSUsernameSlug($userid, $option, $shLangName);
-    if(!empty($slug)) {
-      $title[] = $slug;
-      $title[] = '/';
-    }
+      $slug = shGetJSUsernameSlug($userid, $option, $shLangName);
+      if(!empty($slug)) {
+        $title[] = $slug;
+        $title[] = '/';
+      }
     } else if (empty($task)) {
       $title[] = shGetJSText('PROFILE');
       $title[] = '/';

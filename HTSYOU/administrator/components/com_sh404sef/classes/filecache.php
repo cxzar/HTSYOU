@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: filecache.php 2050 2011-06-30 13:52:38Z silianacom-svn $
+ * @version     $Id: filecache.php 2309 2012-02-11 15:11:39Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -258,7 +258,7 @@ $shURLCacheCreationDate = %s;
         }
         if (SH404SEF_URL_CACHE_TTL && $this->_itsTimeToCheckTTL) { // probability = 1/SH404SEF_WRITES_TO_CLEAN_LOGS
           if (!empty($this->_urlCacheCreationDate)){  // if we have a valid creation date, check  TTL
-            if (($now-$this->_urlCacheCreationDate) > SH404SEF_URL_CACHE_TTL*86400) { // cache must be cleared
+            if (($now-$this->_urlCacheCreationDate) > SH404SEF_URL_CACHE_TTL*3600) { // cache must be cleared
               $this->_urlCache = array();
               unlink($this->_cacheFilefullpath);
               $this->_urlCacheCreationDate = $now;

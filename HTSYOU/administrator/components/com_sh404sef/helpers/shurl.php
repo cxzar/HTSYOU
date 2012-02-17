@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: shurl.php 2214 2011-12-11 16:14:03Z silianacom-svn $
+ * @version     $Id: shurl.php 2308 2012-02-11 15:08:33Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -26,6 +26,9 @@ class Sh404sefHelperShurl {
         jimport( 'joomla.utilities.string');
         $nonSefUrl = JString::ltrim( $pageInfo->shCurrentPageNonSef, '/');
         $nonSefUrl = shSortURL( $nonSefUrl);
+
+        // make sure we have a language
+        $nonSefUrl = shSetURLVar($nonSefUrl, 'lang', $pageInfo->shMosConfig_shortcode);
 
         // remove tracking vars (Google Analytics)
         $nonSefUrl = Sh404sefHelperGeneral::stripTrackingVarsFromNonSef( $nonSefUrl);
@@ -80,10 +83,12 @@ class Sh404sefHelperShurl {
     }
 
     // check various conditions, to avoid overloading ourselves with shURL
+
     // not on homepage
     if( shIsAnyHomepage( $nonSefUrl)) {
       return '';
     }
+
     // not for format = raw, format = pdf or printing
     $format = shGetURLVar( $nonSefUrl, 'format');
     if( in_array( strtolower( $format), array( 'raw', 'pdf'))) {

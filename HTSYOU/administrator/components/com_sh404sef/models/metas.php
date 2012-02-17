@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: metas.php 2206 2011-12-08 18:13:54Z silianacom-svn $
+ * @version     $Id: metas.php 2256 2012-01-23 17:12:39Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -22,7 +22,6 @@ class Sh404sefModelMetas extends Sh404sefClassBaselistModel {
    * Save a list of meta data as entered by user in backend to the database
    *
    * @param string $metaData an array of meta key/meta value from user. Also include nonsef url
-   *
    * @return boolean true on success
    */
   public function save( $metaDatas) {
@@ -35,7 +34,7 @@ class Sh404sefModelMetas extends Sh404sefClassBaselistModel {
     // at least on new records
     $metas = '';
     foreach($metaDatas as $key => $value) {
-      if($key != 'meta_id' &&  (substr( $key, 0,4) == 'meta' || substr($key, 0, 3) == 'fb_' || substr( $key, 0, 3) == 'og_')) {
+      if($key != 'meta_id' &&  (substr( $key, 0,4) == 'meta' || substr($key, 0, 3) == 'fb_' || substr( $key, 0, 3) == 'og_' || $key == 'canonical')) {
         $metas .= $value;
       }
     }
@@ -56,12 +55,20 @@ class Sh404sefModelMetas extends Sh404sefClassBaselistModel {
       return true;
     }
 
+    $status = true;
+
+    // load pre-existing values
+    if(!empty($metaDatas['id'])) {
+      $status = $row->load( $metaDatas['id']);
+    }
+
     // attach incoming data to table object
-    $status = $row->bind( $metaDatas );
+    $status = $status && $row->bind( $metaDatas );
 
     // add language code if missing, except on home page
     if ( $status && $row->newurl != sh404SEF_HOMEPAGE_CODE &&  // don't add on homepage
-    !preg_match( '/(&|\?)lang=[a-zA-Z]{2,3}/iU', $row->newurl)) {  // no lang string, let's add default
+    !preg_match( '/(&|\?)lang=[a-zA-Z]{2,3}/iU', $row->newurl)) {
+      // no lang string, let's add default
       $shTemp = explode( '-', shGetDefaultLang());
       $shLangTemp = $shTemp[0] ? $shTemp[0] : 'en';
       $row->newurl .= '&lang='.$shLangTemp;
@@ -155,7 +162,7 @@ class Sh404sefModelMetas extends Sh404sefClassBaselistModel {
 
       default:
         $numberOfMetaRecords = 0;
-        break;
+      break;
     }
 
     return intval( $numberOfMetaRecords);

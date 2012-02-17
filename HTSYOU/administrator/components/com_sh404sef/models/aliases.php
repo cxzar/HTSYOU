@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: aliases.php 2050 2011-06-30 13:52:38Z silianacom-svn $
+ * @version     $Id: aliases.php 2226 2012-01-05 11:19:52Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -39,10 +39,10 @@ class Sh404sefModelAliases extends Sh404sefClassBaselistModel {
     // Write new aliases.
     if (!empty( $aliasList[0])) {
       $baseQuery = 'INSERT INTO #__sh404sef_aliases (newurl, alias, type) VALUES __shValue__;';
-      $endOfLine = array("\r\n", "\n", "\r");
+      $badChars = array("\r\n", "\n", "\r", ' ');
       foreach($aliasList as $alias) {
         // remove end of line chars
-        $alias = str_replace($endOfLine, '', $alias);
+        $alias = str_replace($badChars, '', $alias);
 
         // if something left, try insert it into DB
         if (!empty($alias)) {
@@ -53,7 +53,7 @@ class Sh404sefModelAliases extends Sh404sefClassBaselistModel {
           try {
             $count = Sh404sefHelperDb::count( '#__sh404sef_aliases', 'id', 'oldurl = ? and newurl <> ?', array($alias, ''));
 
-          if (empty( $count)) {
+            if (empty( $count)) {
               $count = Sh404sefHelperDb::count( '#__sh404sef_aliases', '*', array('alias' => $alias));
             }
           } catch (Sh404sefExceptionDefault $e) {
@@ -141,7 +141,7 @@ class Sh404sefModelAliases extends Sh404sefClassBaselistModel {
     // issue when displaying again results
     $this->_setState( 'limitstart', 0);
     $this->_setState( 'limit', 0);
-    
+
     // set error
     $error = $this->_db->getErrorNum();
     if (!empty($error)) {
@@ -317,7 +317,7 @@ class Sh404sefModelAliases extends Sh404sefClassBaselistModel {
 
     return $orderBy;
   }
-  
+
   protected function _getTableName() {
 
     return '#__sh404sef_aliases';

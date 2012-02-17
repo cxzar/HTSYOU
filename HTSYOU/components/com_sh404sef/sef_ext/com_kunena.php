@@ -5,7 +5,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-15
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: com_kunena.php 2102 2011-10-21 07:41:29Z silianacom-svn $
+ * @version     $Id: com_kunena.php 2255 2012-01-23 15:47:51Z silianacom-svn $
  */
 
 defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
@@ -89,7 +89,7 @@ if (!function_exists('shKUCategoryName')) {
       $catname = $category->name;
     } elseif (class_exists('KunenaRouter')) {
       if (KunenaRouter::$catidcache === null) {
-					KunenaRouter::loadCategories ();
+        KunenaRouter::loadCategories ();
       }
       // Kunena 1.6 support
       $catname = empty(KunenaRouter::$catidcache[$catid]) ? '' : KunenaRouter::$catidcache[$catid]['name'];
@@ -285,7 +285,8 @@ switch (strtolower($func)) {
     $shTopic = shKUTopicName( $id, $option, $shLangIso, $shLangName);  // V 1.2.4.q $option was missing
     if (!empty ($shTopic)) {
       $title[] = $shTopic;
-      if ($sefConfig->shFbInsertMessageId) {  // only remove post id if it was inserted in message
+      if ($sefConfig->shFbInsertMessageId) {
+        // only remove post id if it was inserted in message
         shRemoveFromGETVarsList('id');
       }
     }
@@ -350,9 +351,13 @@ switch (strtolower($func)) {
       case 'lock':
         $dosef = false;
         break;
+      case 'new':
+        $title[] = $sh_LANG[$shLangIso]['COM_SH404SEF_KU_NEW_THREAD'];
+        shRemoveFromGETVarsList('do');
+        break;
       default:  // if creating new post, data is passed through POST, so other variables than func is not available
         $dosef = false;
-        break;
+      break;
     }
 
     break;
@@ -397,14 +402,14 @@ switch (strtolower($func)) {
     }
     /*    switch ($view){
      case 'threaded':
-     $title[] = $sh_LANG[$shLangIso]['COM_SH404SEF_KU_THREADED'];
-     shRemoveFromGETVarsList('view');
-     break;
-     case 'flat':
-     $title[] = $sh_LANG[$shLangIso]['COM_SH404SEF_KU_FLAT'];
-     shRemoveFromGETVarsList('view');
-     break;
-     }*/
+    $title[] = $sh_LANG[$shLangIso]['COM_SH404SEF_KU_THREADED'];
+    shRemoveFromGETVarsList('view');
+    break;
+    case 'flat':
+    $title[] = $sh_LANG[$shLangIso]['COM_SH404SEF_KU_FLAT'];
+    shRemoveFromGETVarsList('view');
+    break;
+    }*/
     if (!empty( $view)) {
       shRemoveFromGETVarsList('view');
     }
@@ -501,7 +506,7 @@ switch (strtolower($func)) {
         break;
       default:
         $dosef = false;
-        break;
+      break;
     }
     break;
 
@@ -553,7 +558,7 @@ switch (strtolower($func)) {
         break;
       default:
         $dosef = false;
-        break;
+      break;
     }
     break;
 
@@ -664,9 +669,9 @@ switch (strtolower($func)) {
 
   default:
     if ( shKUGetVersion() < '1.6' ) {
-      $dosef = false;
-    }
-    break;
+    $dosef = false;
+  }
+  break;
 }
 
 if ( shKUGetVersion() >= '1.6' ) {
@@ -777,20 +782,19 @@ if ( shKUGetVersion() >= '1.6' ) {
           break;
         default:
           $dosef = false;
-          break;
+        break;
       }
     case '':
       break;
     default:
       $dosef = false;
-      break;
+    break;
   }
 
 }
 
 
 shRemoveFromGETVarsList('option');
-if (!empty($lang))
 shRemoveFromGETVarsList('lang');
 if (!empty($Itemid))
 shRemoveFromGETVarsList('Itemid');

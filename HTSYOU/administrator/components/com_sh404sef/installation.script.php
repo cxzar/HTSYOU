@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: installation.script.php 2163 2011-11-19 11:24:44Z silianacom-svn $
+ * @version     $Id: installation.script.php 2320 2012-02-13 15:26:55Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -16,7 +16,6 @@ defined( '_JEXEC' ) or die;
  * Installation/Uninstallation script
  *
  */
-
 class Com_Sh404sefInstallerScript {
 
   private $_siteId = '';
@@ -193,8 +192,10 @@ class Com_Sh404sefInstallerScript {
     }
 
     // no category for our content yet. Create it
-    require_once JPATH_ADMINISTRATOR . '/components/com_categories/models/category.php';
-    $catmodel = new CategoriesModelCategory();
+    $basePath = JPATH_ADMINISTRATOR . '/components/com_categories';
+    require_once $basePath . '/models/category.php';
+    $config = array( 'table_path' => $basePath . '/tables');
+    $catmodel = new CategoriesModelCategory( $config);
     $catData = array( 'id' => 0, 'parent_id' => 0, 'level' => 1, 'path' => 'sh404sef-custom-content', 'extension' => 'com_content'
     , 'title' => 'sh404SEF custom content', 'alias' => 'sh404sef-custom-content', 'description' => 'Do not delete please!', 'published' => 1, 'language' => '*');
     $status = $catmodel->save( $catData);

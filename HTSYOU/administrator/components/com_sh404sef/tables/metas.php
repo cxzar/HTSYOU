@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: metas.php 2128 2011-11-08 19:12:36Z silianacom-svn $
+ * @version     $Id: metas.php 2236 2012-01-05 18:46:29Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -75,15 +75,15 @@ class Sh404sefTableMetas extends JTable {
 
   /**
    * Canonical url for the page
-   * 
+   *
    * @var   string
    * @access  public
    */
   public $canonical = '';
-  
+
   //Open graph data
   public $og_enable = SH404SEF_OPTION_VALUE_USE_DEFAULT;
-  public $og_type = '';
+  public $og_type = SH404SEF_OPTION_VALUE_USE_DEFAULT;
   public $og_image = '';
   public $og_enable_description = SH404SEF_OPTION_VALUE_USE_DEFAULT;
   public $og_enable_site_name = SH404SEF_OPTION_VALUE_USE_DEFAULT;
@@ -125,7 +125,7 @@ class Sh404sefTableMetas extends JTable {
     $this->metalang = JString::trim($this->metalang);
     $this->metarobots = JString::trim($this->metarobots);
     $this->canonical = JString::trim($this->canonical);
-    
+
     // Open graph data
     $this->og_site_name = JString::trim($this->og_site_name);
     $this->fb_admin_ids = JString::trim($this->fb_admin_ids);
@@ -155,6 +155,19 @@ class Sh404sefTableMetas extends JTable {
       return false;
     }
 
+    // check for existing record, even if id is empty. This may happen
+    // in some circumstances, when saving data from popup, ajaxified, dialog boxes
+    if(empty($this->id)) {
+      try {
+        $existingId = Sh404sefHelperDb::selectResult( $this->_tbl, 'id', array('newurl' => $this->newurl));
+        if(!empty( $existingId)) {
+          $this->id = $existingId;
+        }
+      } catch( Sh404sefExceptionDefault $e) {
+
+      }
+
+    }
     return true;
   }
 

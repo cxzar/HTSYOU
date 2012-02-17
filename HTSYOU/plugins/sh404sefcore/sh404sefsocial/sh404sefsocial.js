@@ -5,7 +5,7 @@
  * @copyright Yannick Gaultier - 2007-2011
  * @package sh404SEF-16
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version $Id: sh404sefsocial.js 2154 2011-11-18 17:49:07Z silianacom-svn $
+ * @version $Id: sh404sefsocial.js 2298 2012-02-09 12:13:29Z silianacom-svn $
  */
 
 // get Google Analytics queue
@@ -18,6 +18,7 @@ _sh404sefSocialTrack.setup = function() {
 
   FB.init({
     appId : _sh404sefSocialTrack.options.FBAppId ? _sh404sefSocialTrack.options.FBAppId : "154426421321384",
+    channelUrl : _sh404sefSocialTrack.options.FBChannelUrl ? _sh404sefSocialTrack.options.FBChannelUrl : "",
     status : true, // check login status
     cookie : true, // enable cookies to allow the server to access the session
     oauth : true, // enable OAuth 2.0
@@ -47,7 +48,7 @@ _sh404sefSocialTrack.setupFBTracking = function() {
     if (FB && FB.Event && FB.Event.subscribe) {
       FB.Event.subscribe('edge.create', function(targetUrl) {
         // alert( 'tracking a FB like');
-        _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName+'_facebook', 'like', targetUrl, 1, true ]);
+        _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName + '_facebook', 'like', targetUrl, 1, true ]);
         // Google tracking
         if (_sh404sefSocialTrack.options.enableGoogleTracking) {
           _gaq.push([ '_trackSocial', 'facebook', 'like', targetUrl ]);
@@ -55,7 +56,7 @@ _sh404sefSocialTrack.setupFBTracking = function() {
       });
       FB.Event.subscribe('edge.remove', function(targetUrl) {
         // alert( 'tracking a FB unlike');
-        _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName+'_facebook', 'unlike', targetUrl, 1, true ]);
+        _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName + '_facebook', 'unlike', targetUrl, 1, true ]);
         // Google tracking
         if (_sh404sefSocialTrack.options.enableGoogleTracking) {
           _gaq.push([ '_trackSocial', 'facebook', 'unlike', targetUrl ]);
@@ -63,7 +64,7 @@ _sh404sefSocialTrack.setupFBTracking = function() {
       });
       FB.Event.subscribe('message.send', function(targetUrl) {
         // alert( 'tracking a FB send');
-        _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName+'_facebook', 'send', targetUrl, 1, true ]);
+        _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName + '_facebook', 'send', targetUrl, 1, true ]);
         // Google tracking
         if (_sh404sefSocialTrack.options.enableGoogleTracking) {
           _gaq.push([ '_trackSocial', 'facebook', 'send', targetUrl ]);
@@ -85,7 +86,7 @@ _sh404sefSocialTrack.setupTweeterTracking = function() {
             targetUrl = _sh404sefSocialTrack.extractParamFromUri(event.target.src, 'url');
           }
           // alert( 'tracking a tweet');
-          _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName+'_tweeter', 'tweet', targetUrl, 1, true ]);
+          _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName + '_tweeter', 'tweet', targetUrl, 1, true ]);
           // Google tracking
           if (_sh404sefSocialTrack.options.enableGoogleTracking) {
             _gaq.push([ '_trackSocial', 'twitter', 'tweet', targetUrl ]);
@@ -104,10 +105,10 @@ _sh404sefSocialTrackGPlusTracking = function(data) {
   try {
     if (data.state == "on") {
       // alert( 'tracking a plus one');
-      _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName+'_gplus', data.state, data.href, 1, true ]);
+      _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName + '_gplus', data.state, data.href, 1, true ]);
     } else if (data.state == "off") {
-      //alert('tracking an unplus one');
-      _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName+'_gplus', data.state, data.href, 1, true ]);
+      // alert('tracking an unplus one');
+      _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName + '_gplus', data.state, data.href, 1, true ]);
     }
   } catch (e) {
   }
@@ -116,9 +117,10 @@ _sh404sefSocialTrackGPlusTracking = function(data) {
 // Google page click tracking
 _sh404sefSocialTrack.GPageTracking = function(target, source) {
   try {
-    //alert( 'tracking GPage, page='+target+' from '+source);
-    _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName+'_gplus_page', target, source, 1, true ]);
-  } catch (e) {}
+    // alert( 'tracking GPage, page='+target+' from '+source);
+    _gaq.push([ '_trackEvent', _sh404sefSocialTrack.trackerName + '_gplus_page', target, source, 1, true ]);
+  } catch (e) {
+  }
 };
 
 /**

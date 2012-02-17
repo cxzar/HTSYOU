@@ -5,7 +5,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: editurl.css 2050 2011-06-30 13:52:38Z silianacom-svn $
+ * @version     $Id: editurl.css 2245 2012-01-10 19:37:41Z silianacom-svn $
  */
 
 .sh404sef-popup #content-box {
@@ -39,4 +39,31 @@ div.mainurl {
   background-repeat: no-repeat;
   text-align: center;
 
-}  
+}
+
+#sh-message-box ul{
+  color: #0055BB;
+  background-position: 4px top;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+  list-style: none;
+  padding: 10px;
+  border-top: 3px solid #84A7DB;
+  border-bottom: 3px solid #84A7DB;
+  background-color: #C3D2E5;
+  background-image: url(../images/notice-info.png);
+}
+
+#sh-error-box ul{
+  color: #c00;
+  background-position: 4px top;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+  list-style: none;
+  padding: 10px;
+  border-top: 3px solid #84A7DB;
+  border-bottom: 3px solid #84A7DB;
+  background-color: #E6C0C0;
+  background-image: url(../images/notice-alert.png);
+  border-color: #DE7A7B;
+}

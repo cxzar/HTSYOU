@@ -6,7 +6,7 @@
  * @copyright   Yannick Gaultier - 2007-2011
  * @package     sh404SEF-16
  * @license     http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @version     $Id: ext.php 2050 2011-06-30 13:52:38Z silianacom-svn $
+ * @version     $Id: ext.php 2312 2012-02-11 16:17:48Z silianacom-svn $
  */
 
 // Security check to ensure this file is being included by a parent file.
@@ -293,7 +293,6 @@ $pane =& JPane::getInstance('Tabs');
   
     echo $pane->endPanel();
     
-   */
       
     echo $pane->startPanel( 'Virtuemart', 'virtuemart' );
     
@@ -360,7 +359,8 @@ $pane =& JPane::getInstance('Tabs');
   ?></table><?php
   // end of params for Virtuemart  -->
   
-    echo $pane->endPanel(); 
+    echo $pane->endPanel();
+  */   
     echo $pane->startPanel( 'Community Builder', 'cb' );
     
   // params for Community Builder  -->
