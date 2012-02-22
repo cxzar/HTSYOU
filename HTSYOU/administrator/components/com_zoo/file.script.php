@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 class Com_ZOOInstallerScript {
@@ -48,13 +48,17 @@ class Com_ZOOInstallerScript {
 	}
 
 	function update($parent) {
+
+		// get installer
+		$installer = method_exists($parent, 'getParent') ? $parent->getParent() : $parent->parent;
+
 		if ($manifest = $parent->get('manifest')) {
 			if (isset($manifest->install->sql)) {
-				$utfresult = $parent->get('parent')->parseSQLFiles($manifest->install->sql);
+				$utfresult = $installer->parseSQLFiles($manifest->install->sql);
 
 				if ($utfresult === false) {
 					// Install failed, rollback changes
-					$parent->abort(JText::sprintf('JLIB_INSTALLER_ABORT_COMP_INSTALL_SQL_ERROR', $db->stderr(true)));
+					$installer->abort(JText::sprintf('JLIB_INSTALLER_ABORT_COMP_INSTALL_SQL_ERROR', JFactory::getDBO()->stderr(true)));
 
 					return false;
 				}

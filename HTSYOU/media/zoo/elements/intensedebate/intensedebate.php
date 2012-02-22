@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -11,6 +11,22 @@
        The Intensedebate element class (http://www.intensedebate.com)
 */
 class ElementIntensedebate extends Element implements iSubmittable {
+
+	/*
+		Function: hasValue
+			Checks if the element's value is set.
+
+	   Parameters:
+			$params - render parameter
+
+		Returns:
+			Boolean - true, on success
+	*/
+	public function hasValue($params = array()) {
+		$value   = $this->get('value', $this->config->get('default'));
+		$account = $this->config->get('account');
+		return !empty($value) && !empty($account);
+	}
 
 	/*
 		Function: render
@@ -24,11 +40,8 @@ class ElementIntensedebate extends Element implements iSubmittable {
 	*/
 	public function render($params = array()) {
 
-		// init vars
-		$account = $this->config->get('account');
-
 		// render html
-		if ($account && $this->get('value', $this->config->get('default'))) {
+		if (($account = $this->config->get('account')) && $this->get('value', $this->config->get('default'))) {
 			if ($layout = $this->getLayout()) {
 				return $this->renderLayout($layout, compact('account'));
 			}

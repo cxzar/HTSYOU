@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -145,7 +145,8 @@ class ConfigurationController extends AppController {
 
 			// raise error on exception
 			$this->app->error->raiseNotice(0, JText::_('Error During Export').' ('.$e.')');
-			$this->setRedirect($this->baseurl.'&task=importexport', $msg);
+			$this->setRedirect($this->baseurl.'&task=importexport');
+			return;
 
 		}
 
@@ -191,12 +192,14 @@ class ConfigurationController extends AppController {
 			} else {
 				// raise error on exception
 				$this->app->error->raiseNotice(0, JText::_('Error Importing (Unable to upload file.)'));
-				$this->setRedirect($this->baseurl.'&task=importexport', $msg);
+				$this->setRedirect($this->baseurl.'&task=importexport');
+				return;
 			}
 		} else {
 			// raise error on exception
 			$this->app->error->raiseNotice(0, JText::_('Error Importing (Unable to upload file.)'));
-			$this->setRedirect($this->baseurl.'&task=importexport', $msg);
+			$this->setRedirect($this->baseurl.'&task=importexport');
+			return;
 		}
 
 
@@ -241,7 +244,8 @@ class ConfigurationController extends AppController {
 
 					// raise error on exception
 					$this->app->error->raiseNotice(0, JText::_('Error Importing (Not a valid JSON file)'));
-					$this->setRedirect($this->baseurl.'&task=importexport', $msg);
+					$this->setRedirect($this->baseurl.'&task=importexport');
+					return;
 
 				}
 				$layout = 'importjson';
@@ -308,7 +312,7 @@ class ConfigurationController extends AppController {
 
 	public function doExport() {
 
-		$exporter = $this->app->request->getString('exporter');
+		$exporter = $this->app->request->getCmd('exporter');
 
 		if ($exporter) {
 
@@ -336,10 +340,52 @@ class ConfigurationController extends AppController {
 
 				// raise error on exception
 				$this->app->error->raiseNotice(0, JText::_('Error Exporting').' ('.$e.')');
-				$this->setRedirect($this->baseurl.'&task=importexport', $msg);
+				$this->setRedirect($this->baseurl.'&task=importexport');
+				return;
 
 			}
 		}
+	}
+
+	public function doExportCSV() {
+
+		//init vars
+		$files = array();
+
+		try {
+
+			foreach ($this->application->getTypes() as $type) {
+				if ($file = $this->app->export->toCSV($type)) {
+					$files[] = $file;
+				}
+			}
+
+			if (empty($files)) {
+				throw new AppException(JText::sprintf('There are no items to export'));
+			}
+
+			$filepath = $this->app->path->path("tmp:").'/'.$this->application->getGroup().'.zip';
+			$zip = $this->app->archive->open($filepath, 'zip');
+			$zip->create($files, PCLZIP_OPT_REMOVE_ALL_PATH);
+			if (is_readable($filepath) && JFile::exists($filepath)) {
+				$this->app->filesystem->output($filepath);
+				$files[] = $filepath;
+				foreach ($files as $file) {
+					if (JFile::exists($file)) {
+						JFile::delete($file);
+					}
+				}
+			} else {
+				throw new AppException(JText::sprintf('Unable to create file %s', $filepath));
+			}
+
+		} catch (AppException $e) {
+				// raise error on exception
+				$this->app->error->raiseNotice(0, JText::_('Error Exporting').' ('.$e.')');
+				$this->setRedirect($this->baseurl.'&task=importexport');
+				return;
+		}
+
 	}
 
 }

@@ -3,13 +3,14 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 class AppExporterZoo2 extends AppExporter {
 
 	protected $_application;
 	protected $_categories;
+	protected $_comment_table;
 
 	public function __construct() {
 		parent::__construct();
@@ -36,12 +37,12 @@ class AppExporterZoo2 extends AppExporter {
 		}
 
 		// export items
-		$types = $this->_application->getTypes();
+		$this->_comment_table = $this->app->table->comment;
 		$item_table = $this->app->table->item;
-		foreach ($types as $type) {
-			$items = $item_table->getByType($type->id, $this->_application->id);
-			foreach ($items as $key => $item) {
-				$this->_addItem($item, $type->name);
+		foreach ($this->_application->getTypes() as $type) {
+			foreach ($item_table->getByType($type->id, $this->_application->id) as $key => $item) {
+				$this->_addItem($item, $type);
+				$item_table->unsetObject($key);
 			}
 		}
 
@@ -70,7 +71,7 @@ class AppExporterZoo2 extends AppExporter {
 		parent::_addCategory($category->name, $category->alias, $data);
 	}
 
-	protected function _addItem(Item $item, $group = 'default') {
+	protected function _addItem(Item $item, Type $type) {
 
 		$data = array();
 		foreach ($this->item_attributes as $attribute) {
@@ -82,12 +83,12 @@ class AppExporterZoo2 extends AppExporter {
 			$data['author'] = $user->username;
 		}
 
-		$data['tags']	= $item->getTags();
+		$data['tags']	  = $item->getTags();
 
 		// store item content, metadata, config params
-		$data['content'] = $item->getParams()->get('content.');
+		$data['content']  = $item->getParams()->get('content.');
 		$data['metadata'] = $item->getParams()->get('metadata.');
-		$data['config'] = $item->getParams()->get('config.');
+		$data['config']   = $item->getParams()->get('config.');
 
 		// add categories
 		foreach ($item->getRelatedCategoryIds() as $category_id) {
@@ -105,40 +106,43 @@ class AppExporterZoo2 extends AppExporter {
 			}
 		}
 
-		foreach ($item->getElements() as $element) {
+		foreach ($item->elements as $identifier => $element_data) {
 
-			switch ($element->getElementType()) {
+			if (!$element = $type->getElement($identifier)) {
+				continue;
+			}
+			$element_type = $element->getElementType();
+
+			switch ($element_type) {
 				case 'relateditems':
 					$items = array();
-					if ($element->get('item')) {
-						foreach ($element->get('item') as $item_id) {
+					if (isset($element_data['item'])) {
+						foreach ($element_data['item'] as $item_id) {
 							$items[] = $this->app->alias->item->translateIDToAlias($item_id);
 						}
 					}
-					$element->set('item', $items);
+					$element_data['item'] = $items;
 
 					break;
 
 				case 'relatedcategories':
 					$categories = array();
-					if ($element->get('category')) {
-						foreach ($element->get('category') as $category_id) {
-							$categories[] = $this->app->alias->category->translateIDToAlias($category_id);
+					if (isset($element_data['category'])) {
+						foreach ($element_data['category'] as $category_id) {
+							$categories[] = isset($this->_categories[$category_id]) ? $this->_categories[$category_id]->alias : $this->app->alias->category->translateIDToAlias($category_id);
 						}
 					}
-					$element->set('category', $categories);
+					$element_data['category'] = $categories;
 
 					break;
 
-				default:
-					break;
 			}
 
-			$data['elements'][$element->identifier]['type'] = $element->getElementType();
-			$data['elements'][$element->identifier]['name'] = $element->config->get('name');
-			$data['elements'][$element->identifier]['data'] = $element->data();
+			$data['elements'][$identifier]['type'] = $element_type;
+			$data['elements'][$identifier]['name'] = $element->config->get('name');
+			$data['elements'][$identifier]['data'] = $element_data;
 
-			foreach ($this->app->table->comment->getCommentsForItem($item->id) as $comment) {
+			foreach ($this->_comment_table->getCommentsForItem($item->id) as $comment) {
 				foreach ($this->comment_attributes as $attribute) {
 					if (isset($comment->$attribute)) {
 						$data['comments'][$comment->id][$attribute] = $comment->$attribute;
@@ -151,7 +155,7 @@ class AppExporterZoo2 extends AppExporter {
 
 		}
 
-		parent::_addItem($item->name, $item->alias, $group, $data);
+		parent::_addItem($item->name, $item->alias, $type->name, $data);
 	}
 
 }

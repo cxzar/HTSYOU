@@ -5,12 +5,12 @@
 	<creationDate>January 2012</creationDate>
 	<updateUrl>http://www.yootheme.com/updates</updateUrl>
 	<copyright>Copyright (C) YOOtheme GmbH</copyright>
-	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only</license>
+	<license>http://www.gnu.org/licenses/gpl.html GNU/GPL</license>
 	<assetsLicense>YOOtheme Proprietary Use License (http://www.yootheme.com/license)</assetsLicense>
 	<authorEmail>info@yootheme.com</authorEmail>
 	<authorUrl>http://www.yootheme.com</authorUrl>
-	<version>2.5.10</version>
-	<description>ZOO component for Joomla 1.7 developed by YOOtheme (http://www.yootheme.com)</description>
+	<version>2.5.11</version>
+	<description>ZOO component for Joomla 2.5 developed by YOOtheme (http://www.yootheme.com)</description>
 	<languages folder="site/language">
 		<language tag="en-GB">en-GB.com_zoo.ini</language>
 	</languages>

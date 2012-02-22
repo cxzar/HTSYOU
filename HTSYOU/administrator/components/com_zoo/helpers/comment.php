@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -130,6 +130,7 @@ class CommentHelper extends AppHelper {
 	public function readCookies() {
 
 		// get cookies
+		$data = array();
 		foreach (array('hash', 'author', 'email', 'url') as $key) {
 			$data[$key] = $this->app->request->getString(self::COOKIE_PREFIX.$key, '', 'cookie');
 		}

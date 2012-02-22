@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 class GooglemapsHelper extends AppHelper{
@@ -78,8 +78,6 @@ class GooglemapsHelper extends AppHelper{
 	}
 
 	public function queryGeoCoder($address) {
-	    $contents = '';
-
 		// query use fsockopen
 		$response = $this->app->http->get(sprintf('http://maps.google.com/maps/api/geocode/json?address=%s&sensor=false', urlencode($address)));
 

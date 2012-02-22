@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 class AppExporterK2 extends AppExporter {
@@ -31,12 +31,6 @@ class AppExporterK2 extends AppExporter {
 	    		." FROM #__k2_categories AS a"
 	       		." LEFT JOIN #__k2_extra_fields_groups AS b ON b.id = a.extraFieldsGroup";
 	    $categories = $db->queryObjectList($query, 'id');
-
-    	// get category table
-		$category_table = $this->app->table->category;
-
-		// get item table
-		$item_table = $this->app->table->item;
 
 		// sanatize category aliases
 		$aliases = array();
@@ -73,7 +67,7 @@ class AppExporterK2 extends AppExporter {
 			if ($category->image) {
 				$data['content']['image'] = '/media/k2/categories/'.$category->image;
 			}
-			$this->_addCategory($category->title, $category->alias, $data);
+			$this->_addCategory($category->name, $category->alias, $data);
 		}
 
 		// get k2 items
@@ -116,7 +110,7 @@ class AppExporterK2 extends AppExporter {
                     $type = JText::_('K2-Unassigned');
                 }
 
-                $this->_addItem($item, $categories, $tags, $extra_fields, $type);
+                $this->_addItem($item, $extra_fields, $categories, $tags, $type);
             }
 		}
 
@@ -124,7 +118,7 @@ class AppExporterK2 extends AppExporter {
 
 	}
 
-	protected function _addItem($item, $categories = array(), $tags = array(), $extra_fields, $group = 'default') {
+	protected function _addItem($item, $extra_fields, $categories = array(), $tags = array(), $group = 'default') {
 
 		$data = array();
 		foreach ($this->item_attributes as $attribute) {
@@ -142,7 +136,7 @@ class AppExporterK2 extends AppExporter {
 		$data['categories'][] = $categories[$item->catid]->alias;
 
 		// add tags
-		$data['tags'] = $tags[$item->id];
+		$data['tags'] = isset($tags[$item->id]) ? $tags[$item->id] : array();
 
 		// add item content
 		$i = 0;

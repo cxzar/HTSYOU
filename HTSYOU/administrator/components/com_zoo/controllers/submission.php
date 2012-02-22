@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -74,7 +74,7 @@ class SubmissionController extends AppController {
 		$this->getView()->display();
 	}
 
-	public function edit($tpl = null) {
+	public function edit() {
 
 		// disable menu
 		$this->app->request->setVar('hidemainmenu', 1);
@@ -114,14 +114,14 @@ class SubmissionController extends AppController {
         foreach ($this->application->getTypes() as $type) {
 
             // list types with submission layouts only
-            if (count($this->app->zoo->getLayouts($this->application, $type->id, 'submission')) > 0) {
+            if (count($this->app->type->layouts($type, 'submission')) > 0) {
 
                 $form = $this->submission->getForm($type->id);
 
                 $this->types[$type->id]['name'] = $type->name;
 
                 $options = array($this->app->html->_('select.option', '', '- '.JText::_('not submittable').' -'));
-                $this->types[$type->id]['select_layouts'] = $this->app->html->_('zoo.layoutlist', $this->application, $type->id, 'submission', $options, 'params[form]['.$type->id.'][layout]', '', 'value', 'text', $form->get('layout'));
+                $this->types[$type->id]['select_layouts'] = $this->app->html->_('zoo.layoutlist', $type, 'submission', $options, 'params[form]['.$type->id.'][layout]', '', 'value', 'text', $form->get('layout'));
 
                 $options = array($this->app->html->_('select.option', '', '- '.JText::_('uncategorized').' -'));
                 $this->types[$type->id]['select_categories'] = $this->app->html->_('zoo.categorylist', $this->application, $options, 'params[form]['.$type->id.'][category]', 'size="1"', 'value', 'text', $form->get('category'));
@@ -251,9 +251,6 @@ class SubmissionController extends AppController {
 				$submission->id         = 0;                         // set id to 0, to force new category
 				$submission->name      .= ' ('.JText::_('Copy').')'; // set copied name
 				$submission->alias      = $this->app->alias->submission->getUniqueAlias($id, $submission->alias.'-copy'); // set copied alias
-
-				// track parent for ordering update
-				$parents[] = $submission->parent;
 
 				// save copied category data
 				$this->table->save($submission);

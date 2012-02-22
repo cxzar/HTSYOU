@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 // no direct access
@@ -13,6 +13,21 @@ defined('_JEXEC') or die('Restricted access');
 
 Changelog
 ------------
+
+2.5.11
+# fixed issue in cookbook app (full layout)
+# fixed bug with access level in download element
++ Widgetkit Element now submittable
++ Joomla Module Element now submittable
++ added CSV export
++ import into subcategories by separating categories through "///" (CSV)
++ import into existing categories by adding category alias (CSV)
+# fixed metadata import (Joomla)
+# fix to sh404SEF plugin
+^ updated K2 importer to reflect latest changes
+^ updated MediaElement.js to 2.6.5
+# fix to Social Buttons element (IE)
++ you can now add an API Key (Googlemaps Element)
 
 2.5.10
 # fixed build problem with Finder plugin (SmartSearch)
@@ -35,7 +50,7 @@ Changelog
 ^ updated German translation
 # fixed Norwegian translation
 + category submission: added param to allow for single or multiple selection
-+ updated MediaElement.js to 2.6.4
+^ updated MediaElement.js to 2.6.4
 # text and textarea element now show default value, without having to edit the item
 
 2.5.7
@@ -71,7 +86,7 @@ Changelog
 2.5.4
 ^ improved error message if ZOO minimum requirements are not met
 ^ improved consistency with item links
-+ updated MediaElement.js to 2.5.0
+^ updated MediaElement.js to 2.5.0
 + added tags to CSV import
 # fixed problems with showing comments from unpublished items (Comments module)
 # links in notification mails are now SEOed
@@ -93,7 +108,7 @@ Changelog
 # fixed possible cause for JLIB_APPLICATION_ERROR_COMPONENT_NOT_LOADING upon update
 # fixed default select options of several applications
 + added "Publish Up" core element (useful for displaying dates in blog)
-^ updated mediaelementjs to version 2.3.2
+^ updated MediaElement.js to 2.3.2
 ^ updated jQuery to version 1.7.1
 + added editDisplay event to type edit view
 # fixed problems with J1.7 import of categories having the same alias

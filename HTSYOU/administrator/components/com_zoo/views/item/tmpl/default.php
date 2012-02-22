@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 // no direct access
@@ -96,10 +96,8 @@ $this->app->document->addScript('assets:js/item.js');
 			$nullDate = $this->app->database->getNullDate();
 			for ($i=0, $n=count($this->items); $i < $n; $i++) :
 
-				$row     = $this->items[$i];
-				$checked = $this->app->html->_('grid.id', $i, $row->id);
-
-				$now		  = $this->app->date->create();
+				$row		  = $this->items[$i];
+				$now		  = $this->app->date->create()->toUnix();
 				$publish_up   = $this->app->date->create($row->publish_up);
 				$publish_down = $this->app->date->create($row->publish_down);
 				$offset		  = $this->app->date->getOffset();
@@ -108,13 +106,13 @@ $this->app->document->addScript('assets:js/item.js');
 
 				$img = '';
 				$alt = '';
-				if ( $now->toUnix() <= $publish_up->toUnix() && $row->state == 1 ) {
+				if ($now <= $publish_up->toUnix() && $row->state == 1) {
 					$img = 'publish_y.png';
 					$alt = JText::_('Published');
-				} else if (($now->toUnix() <= $publish_down->toUnix() || $row->publish_down == $nullDate) && $row->state == 1 ) {
+				} else if (($now <= $publish_down->toUnix() || $row->publish_down == $nullDate) && $row->state == 1 ) {
 					$img = 'publish_g.png';
 					$alt = JText::_('Published');
-				} else if ($now->toUnix() > $publish_down->toUnix() && $row->state == 1) {
+				} else if ($now > $publish_down->toUnix() && $row->state == 1) {
 					$img = 'publish_r.png';
 					$alt = JText::_('Expired');
 				} else if ($row->state == 0) {

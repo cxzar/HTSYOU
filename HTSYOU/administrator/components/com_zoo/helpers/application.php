@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -32,5 +32,29 @@ class ApplicationHelper extends AppHelper {
         }
         return $applications;
     }
+
+	/*
+		Function: groups
+			Get all application groups.
+
+		Returns:
+			Array - The application groups
+	*/
+	public function groups() {
+
+		// get applications
+		$apps = array();
+
+		if ($folders = $this->app->path->dirs('applications:')) {
+			foreach ($folders as $folder) {
+				if ($this->app->path->path("applications:$folder/application.xml")) {
+					$apps[$folder] = $this->app->object->create('Application');
+					$apps[$folder]->setGroup($folder);
+				}
+			}
+		}
+
+		return $apps;
+	}
 
 }

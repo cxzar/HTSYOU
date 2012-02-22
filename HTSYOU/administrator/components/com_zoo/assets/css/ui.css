@@ -1902,8 +1902,9 @@ div.importbox h3 {
 }
 
 div.importbox button.button-grey.export {
-	width: 360px;
+	width: 240px;
 	padding: 20px 10px 20px 10px;
+	margin-right: 10px;
 }
 
 div.importbox button.button-grey.export:hover {

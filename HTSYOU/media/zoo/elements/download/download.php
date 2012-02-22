@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 // register ElementFile class
@@ -128,6 +128,13 @@ class ElementDownload extends ElementFile implements iSubmittable {
 		// init vars
 		$filepath = $this->app->path->path('root:'.$this->get('file'));
 		$download_mode = $this->config->get('download_mode');
+
+		// check access
+		if ($this->app->user->canAccess(null, $this->config->get('access'))) {
+			header('Content-Type: text/html');
+			echo JText::_('Unable to access download!');
+			return;
+		}
 
 		// check limit
 		if ($this->isDownloadLimitReached()) {

@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -43,6 +43,7 @@ class ElementGooglemaps extends Element implements iSubmittable {
 		$params			   = $this->app->data->create($params);
 		$location          = $this->get('location');
 		$locale            = $this->config->get('locale');
+		$key			   = $this->config->get('key');
 
 		// init display params
 		$layout   		   = $params->get('layout');
@@ -120,7 +121,7 @@ class ElementGooglemaps extends Element implements iSubmittable {
 
 		// render layout
 		if ($layout = $this->getLayout()) {
-			return $this->renderLayout($layout, compact('maps_id', 'javascript', 'css_module_width', 'css_module_height', 'information', 'locale'));
+			return $this->renderLayout($layout, compact('maps_id', 'javascript', 'css_module_width', 'css_module_height', 'information', 'locale', 'key'));
 		}
 
 		return null;

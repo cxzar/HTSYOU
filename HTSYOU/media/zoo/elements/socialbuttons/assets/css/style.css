@@ -12,7 +12,7 @@
 }
 .yoo-zoo.socialbuttons > div:first-child { margin-left: 0 }
 
-.yoo-zoo .socialbuttons iframe {
+.yoo-zoo.socialbuttons iframe {
 	border: none;
 	overflow: hidden;
 }

@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -23,8 +23,8 @@ class ElementDisqus extends Element implements iSubmittable {
 			Boolean - true, on success
 	*/
 	public function hasValue($params = array()) {
-		$value = $this->get('value');
-		$website   = $this->config->get('website');
+		$value   = $this->get('value', $this->config->get('default'));
+		$website = $this->config->get('website');
 		return !empty($value) && !empty($website);
 	}
 

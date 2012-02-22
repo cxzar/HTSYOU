@@ -85,7 +85,6 @@
 		<tbody>
 		<?php
 		$k = 0;
-		$nullDate = $this->app->database->getNullDate();
 		for ($i = 0, $n = count($this->items); $i < $n; $i++) {
 			$row    = &$this->items[$i];
 

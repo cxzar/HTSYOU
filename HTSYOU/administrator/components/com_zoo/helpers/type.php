@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -113,5 +113,41 @@ class TypeHelper extends AppHelper {
 		$renderer->saveConfig($config, $path.'/renderer/item/positions.config');
 
 	}
+
+    /*
+		Function: layouts
+			Returns layouts for a type of an app.
+
+		Returns:
+			Array - layouts
+	*/
+    public function layouts($type, $layout_type = '') {
+
+        $result = array();
+
+        // get template
+        if ($template = $type->getApplication()->getTemplate()) {
+
+			// get renderer
+			$renderer = $this->app->renderer->create('item')->addPath($template->getPath());
+
+			$path   = 'item';
+			$prefix = 'item.';
+			if ($renderer->pathExists($path.DIRECTORY_SEPARATOR.$type->id)) {
+				$path   .= DIRECTORY_SEPARATOR.$type->id;
+				$prefix .= $type->id.'.';
+			}
+
+			foreach ($renderer->getLayouts($path) as $layout) {
+				$metadata = $renderer->getLayoutMetaData($prefix.$layout);
+				if (empty($layout_type) || ($metadata->get('type') == $layout_type)) {
+					$result[$layout] = $metadata;
+				}
+			}
+		}
+
+        return $result;
+
+    }
 
 }

@@ -101,3 +101,5 @@
 [09-Feb-2012 15:16:07] PHP Parse error:  syntax error, unexpected T_ENDIF in /home/haterz14/public_html/haterz/templates/yoo_quantum/layouts/template.php on line 196
 [09-Feb-2012 15:24:38] PHP Parse error:  syntax error, unexpected T_ENDIF in /home/haterz14/public_html/haterz/templates/yoo_quantum/layouts/template.php on line 196
 [09-Feb-2012 15:28:41] PHP Parse error:  syntax error, unexpected T_ENDIF in /home/haterz14/public_html/haterz/templates/yoo_quantum/layouts/template.php on line 197
+[21-Feb-2012 15:08:36] PHP Fatal error:  Call to a member function checkAnswer() on a non-object in /home/haterz14/public_html/haterz/libraries/cms/form/rule/captcha.php on line 47
+[21-Feb-2012 15:09:55] PHP Fatal error:  Call to a member function checkAnswer() on a non-object in /home/haterz14/public_html/haterz/libraries/cms/form/rule/captcha.php on line 47

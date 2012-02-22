@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -215,7 +215,7 @@ class DefaultController extends AppController {
 		$this->item_order = $params->get('config.item_order');
 		$layout 		  = $category_id == 0 ? 'frontpage' : 'category';
 		$items_per_page   = $params->get('config.items_per_page', 15);
-		$offset			  = ($page - 1) * $items_per_page;
+		$offset			  = max(($page - 1) * $items_per_page, 0);
 
 		// get categories and items
 		$this->items      = $this->app->table->item->getByCategory($this->application->id, $category_id, true, null, $this->item_order, $offset, $items_per_page);

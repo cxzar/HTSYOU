@@ -10,6 +10,7 @@
 	<description>Google Maps (http://maps.google.com/)</description>
 	<params>
 		<param name="locale" type="text" default="en" label="Directions language" description="DIRECTIONS_LANGUAGE_DESCRIPTION" />
+		<param name="key" type="text" default="" label="API Key" description="You'll only need an API Key on large sites. Check out http://code.google.com/apis/maps/documentation/javascript/tutorial.html#api_key on how to obtain an API Key." />
 	</params>
 	<params group="render">
 		<param name="layout" type="zoolayout" default="" label="Layout" description="OVERRIDE_DEFAULT_OUTPUT" constraint="googlemaps" />

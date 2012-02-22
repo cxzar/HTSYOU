@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -55,7 +55,7 @@ class ManagerController extends AppController {
 		$this->app->zoo->toolbarHelp();
 
 		// get applications
-		$this->applications = $this->app->zoo->getApplicationGroups();
+		$this->applications = $this->app->application->groups();
 
 		// display view
 		$this->getView()->display();
@@ -227,6 +227,7 @@ class ManagerController extends AppController {
 		$this->app->request->checkToken() or jexit('Invalid Token');
 
 		// init vars
+		$msg = '';
 		$cid = $this->app->request->get('cid', 'array', array());
 
 		if (count($cid) < 1) {
@@ -342,6 +343,7 @@ class ManagerController extends AppController {
 		$this->app->request->checkToken() or jexit('Invalid Token');
 
 		// init vars
+		$msg = '';
 		$cid = $this->app->request->get('cid', 'array', array());
 
 		if (count($cid) < 1) {

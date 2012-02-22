@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -252,12 +252,9 @@ class AppData extends ArrayObject {
 	*/
 	public function flattenRecursive() {
 		$flat = array();
-		foreach (new RecursiveIteratorIterator(new RecursiveArrayIterator($this), RecursiveIteratorIterator::SELF_FIRST) as $key => $value) {
-			if (!is_array($value)) {
-				$flat[] = $value;
-			}
+		foreach (new RecursiveIteratorIterator(new RecursiveArrayIterator($this)) as $value) {
+			$flat[] = $value;
 		}
-
 		return $flat;
 	}
 

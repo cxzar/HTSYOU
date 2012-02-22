@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 class ExportHelper extends AppHelper {
@@ -64,6 +64,117 @@ class ExportHelper extends AppHelper {
 		return $exporters;
 	}
 
+	/*
+		Function: toCSV
+			Exports items of a type to a csv file
+
+		Parameters:
+			$type - Type object
+
+		Returns:
+			String - file path, false if no items are found
+	*/
+	public function toCSV($type) {
+
+		$item_table = $this->app->table->item;
+		$type->getApplication()->getCategoryTree();
+		$data = array();
+
+		$i = 1;
+		$compare = array();
+		foreach ($item_table->getByType($type->id, $type->getApplication()->id) as $item) {
+
+			// item properties
+			$data[$i]['Name'] = $item->name;
+			$data[$i]['Author Alias'] = $item->getAuthor();
+			$data[$i]['Created Date'] = $item->created;
+
+			// categories
+			$data[$i]['Category'] = array();
+			foreach($item->getRelatedCategories() as $category) {
+				$name = $category->name .'|||'.$category->alias;
+				while (($category = $category->getParent()) && $category->id) {
+					$name = $category->name .'|||'.$category->alias . "///$name";
+				}
+				$data[$i]['Category'][] = $name;
+			}
+
+			// tags
+			$data[$i]['Tag'] = $item->getTags();
+
+			// elements
+			foreach ($type->getElements() as $identifier => $element) {
+				if (!isset($item->elements[$identifier])) {
+					continue;
+				}
+
+				$name = $element->config->get('name') ? $element->config->get('name') : $element->getElementType();
+				switch ($element->getElementType()) {
+					case 'text':
+					case 'textarea':
+					case 'link':
+					case 'email':
+					case 'date':
+						$data[$i][$name] = array();
+						foreach ($item->elements[$identifier] as $self) {
+							$data[$i][$name][] = @$self['value'];
+						}
+						break;
+					case 'country':
+						$data[$i][$name] = @$item->elements[$identifier]['country'];
+						break;
+					case 'gallery':
+						$data[$i][$name] = @$item->elements[$identifier]['value'];
+						break;
+					case 'image':
+					case 'download':
+						$data[$i][$name] = @$item->elements[$identifier]['file'];
+						break;
+					case 'googlemaps':
+						$data[$i][$name] = @$item->elements[$identifier]['location'];
+						break;
+				}
+			}
+
+			$compare = array_replace_recursive($compare, $data[$i]);
+
+			$item_table->unsetObject($item->id);
+
+			$i++;
+		}
+
+		if (empty($data)) {
+			return false;
+		}
+
+		// determine maxima to pad arrays
+		$maxima = array_map(create_function('$a', 'return count($a);'), array_filter($compare, create_function('$a', 'return is_array($a);')));
+		foreach ($maxima as $key => $num) {
+			foreach (array_keys($data) as $i) {
+				$data[$i][$key] = array_pad((isset($data[$i][$key]) ? $data[$i][$key] : array()), max(1, $num), '');
+			}
+		}
+
+		// set header
+		array_unshift($data, array());
+		foreach ($compare as $key => $value) {
+			$num = is_array($value) ? count($value) : 1;
+			$data[0] = array_merge($data[0], array_fill(0, max(1, $num), $key));
+		}
+
+		$file = rtrim($this->app->system->application->getCfg('tmp_path'), '\/') . "/$type->id.csv";
+		if (($handle = fopen($file, "w")) !== false) {
+			foreach ($data as $row) {
+				fputcsv($handle, $this->app->data->create($row)->flattenRecursive());
+			}
+			fclose($handle);
+		} else {
+			throw new AppExporterException(sprintf('Unable to write to file %s.', $file));
+		}
+
+		return $file;
+	}
+
 }
 
 abstract class AppExporter {
@@ -74,45 +185,12 @@ abstract class AppExporter {
 	protected $_name;
 
 	public $category_attributes = array('parent', 'published', 'description', 'ordering');
-	public $item_attributes = array('searchable', 'state', 'created',
-										'modified', 'hits', 'author',
-										'access', 'priority', 'metakey',
-										'metadesc', 'metadata', 'publish_up',
-										'publish_down');
-	public $element_attributes = array('text' => array('value'),
-										'textarea' => array('value'),
-										'download' => array('file', 'download_limit', 'hits', 'size'),
-										'rating' => array('value', 'votes'),
-										'date' => array('value'),
-										'email' => array('text', 'value', 'subject', 'body'),
-										'link' => array('text', 'value', 'target', 'rel'),
-										'gallery' => array('value', 'title'),
-										'image' => array('file'),
-										'video' => array('file', 'url', 'width', 'height', 'autoplay'),
-										'joomlamodule' => array('value'),
-										'socialbookmarks' => array('value'),
-										'addthis' => array('value'),
-										'disqus' => array('value'),
-										'flickr' => array('value', 'flickrid'),
-										'googlemaps' => array('location', 'popup'),
-										'intensedebate' => array('value'),
-										'checkbox' => array('option'),
-										'radio' => array('option'),
-										'select' => array('option'),
-										'country' => array('country'),
-										'relatedcategories' => array('category'),
-										'relateditems' => array('item')
-	);
-	public $comment_attributes = array('parent_id', 'user_id', 'user_type',
-										'author', 'email', 'url', 'ip',
-										'created', 'content', 'state', 'username');
-
+	public $item_attributes = array('searchable', 'state', 'created', 'modified', 'hits', 'author', 'access', 'priority', 'publish_up', 'publish_down');
+	public $comment_attributes = array('parent_id', 'user_id', 'user_type', 'author', 'email', 'url', 'ip', 'created', 'content', 'state', 'username');
 
 	public function __construct() {
 		$this->app = App::getInstance('zoo');
-		$this->_data = $this->app->data->create();
-		$this->_data['categories'] = array();
-		$this->_data['items'] = array();
+		$this->_data = $this->app->data->create(array('categories' => array(), 'items' => array()));
 	}
 
 	/*

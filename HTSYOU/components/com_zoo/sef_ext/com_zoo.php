@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 defined( '_JEXEC' ) or die( 'Direct Access to this location is not allowed.' );
@@ -63,7 +63,7 @@ $task = !empty($task) ? $task : (isset($query['view']) ? $query['view'] : null);
 $controller = isset($query['controller']) ? $query['controller'] : null;
 
 // ignore ajax requests
-if (in_array($task, array('remove', 'callelement', 'element')) || in_array($controller, array('comment'))) {
+if (in_array($task, array('remove', 'callelement', 'element')) || in_array($controller, array('comment', 'item'))) {
 	$dosef = false;
 }
 
@@ -204,6 +204,8 @@ switch ($task) {
 		break;
 
 	default:
+		// trigger sh404sef event
+		$zoo->event->dispatcher->notify($zoo->event->create(null, 'application:sh404sef', array('title' => &$title, 'query' => &$query, 'dosef' => &$dosef)));
 
 }
 

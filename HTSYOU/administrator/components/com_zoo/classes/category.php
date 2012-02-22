@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -433,11 +433,8 @@ class Category {
 	      Array - Image info
 	*/
 	public function getImage($name) {
-		$params = $this->getParams();
-		if ($image = $params->get($name)) {
-
-			return $this->app->html->_('zoo.image', $image, $params->get($name . '_width'), $params->get($name . '_height'));
-
+		if ($image = $this->params->get($name)) {
+			return $this->app->html->_('zoo.image', $image, $this->params->get($name . '_width'), $this->params->get($name . '_height'));
 		}
 		return null;
 	}

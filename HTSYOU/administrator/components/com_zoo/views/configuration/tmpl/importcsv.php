@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 // no direct access
@@ -51,7 +51,7 @@ $this->app->document->addScript('assets:js/import.js');
 								$options[] = $this->app->html->_('select.option',  '</OPTGROUP>' );
 
 								$options[] = $this->app->html->_('select.option',  '<OPTGROUP>', JText::_('Elements') );
-								foreach ($element_types as $element_type => $elements) {
+								foreach ($element_types as $elements) {
 									foreach ($elements as $element) {
 										$options[] = $this->app->html->_('select.option', $element->identifier, $element->config->get('name') . ' (' . ucfirst($element->getElementType()) . ')');
 									}

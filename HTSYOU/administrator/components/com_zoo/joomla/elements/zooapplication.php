@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 class JElementZooApplication extends JElement {
@@ -27,7 +27,6 @@ class JElementZooApplication extends JElement {
 		// init vars
 		$params		= $app->parameterform->convertParams($this->_parent);
 		$table		= $app->table->application;
-		$attributes = $node instanceof JSimpleXMLElement ? $node->_attributes : $node->attributes();
 
 		// set modes
 		$modes = array();

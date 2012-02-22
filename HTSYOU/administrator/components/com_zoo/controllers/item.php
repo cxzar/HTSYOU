@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -207,7 +207,7 @@ class ItemController extends AppController {
 		$this->getView()->setLayout('add')->display();
 	}
 
-	public function edit($tpl = null) {
+	public function edit() {
 
 		// disable menu
 		$this->app->request->setVar('hidemainmenu', 1);
@@ -272,14 +272,12 @@ class ItemController extends AppController {
 
 		// init vars
 		$now        = $this->app->date->create();
-		$post       = $this->app->request->get('post:', 'array');
 		$frontpage  = $this->app->request->getBool('frontpage', false);
 		$categories	= $this->app->request->get('categories', null);
 		$details	= $this->app->request->get('details', null);
-		$metadata   = $this->app->request->get('meta', null);
 		$cid        = $this->app->request->get('cid.0', 'int');
 		$tzoffset   = $this->app->date->getOffset();
-		$post       = array_merge($post, $details);
+		$post       = array_merge($this->app->request->get('post:', 'array', array()), $details);
 
 		try {
 
@@ -405,8 +403,7 @@ class ItemController extends AppController {
 		$this->app->request->checkToken() or jexit('Invalid Token');
 
 		// init vars
-		$now  = $this->app->date->create();
-		$post = $this->app->request->get('post:', 'array');
+		$now  = $this->app->date->create()->toMySQL();
 		$cid  = $this->app->request->get('cid', 'array', array());
 
 		if (count($cid) < 1) {
@@ -420,7 +417,6 @@ class ItemController extends AppController {
 
 				// get item
 				$item       = $this->table->get($id);
-				$elements   = $item->getElements();
 				$categories = $item->getRelatedCategoryIds();
 
 				// copy item
@@ -428,10 +424,8 @@ class ItemController extends AppController {
 				$item->name       .= ' ('.JText::_('Copy').')'; 						// set copied name
 				$item->alias       = $this->app->alias->item->getUniqueAlias($id, $item->alias.'-copy'); 	// set copied alias
 				$item->state       = 0;                         						// unpublish item
-				$item->created	   = $now->toMySQL();
-				$item->created_by  = $this->user->get('id');
-				$item->modified	   = $now->toMySQL();
-				$item->modified_by = $this->user->get('id');
+				$item->created	   = $item->modified = $now;
+				$item->created_by  = $item->modified_by = $this->user->get('id');
 				$item->hits		   = 0;
 
 				// copy tags

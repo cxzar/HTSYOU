@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -18,11 +18,11 @@ class AppParameterFormDefault extends AppParameterFormXml {
 
 		Parameters:
 			name - The name of the control, or the default text area if a setup file is not found
-			group - Parameter group 
+			group - Parameter group
 
 		Returns:
 			String - HTML
-	*/	
+	*/
 	public function render($name = 'params', $group = '_default') {
 		if (!isset($this->_xml[$group])) {
 			return false;
@@ -30,7 +30,7 @@ class AppParameterFormDefault extends AppParameterFormXml {
 
 		$params = $this->getParams($name, $group);
 
-		$html[] = '<ul class="parameter-form">';
+		$html = array('<ul class="parameter-form">');
 
 		// add group description
 		if ($description = $this->_xml[$group]->attributes('description')) {
@@ -44,7 +44,7 @@ class AppParameterFormDefault extends AppParameterFormXml {
 			if ($param[0]) {
 				$html[] = '<div class="label">'.$param[0].'</div>';
 			}
-			
+
 			$html[] = '<div class="field">'.$param[1].'</div>';
 			$html[] = '</li>';
 		}

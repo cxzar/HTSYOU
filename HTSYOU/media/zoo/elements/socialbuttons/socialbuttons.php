@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -11,6 +11,20 @@
        The Socialbuttons element class
 */
 class ElementSocialbuttons extends Element implements iSubmittable {
+
+	/*
+		Function: hasValue
+			Checks if the repeatables element's value is set.
+
+	   Parameters:
+			$params - render parameter
+
+		Returns:
+			Boolean - true, on success
+	*/
+	public function hasValue($params = array()) {
+		return $this->get('value', $this->config->get('default')) && ($this->config->get('twitter') || $this->config->get('google') || $this->config->get('facebook'));
+	}
 
 	/*
 		Function: render
@@ -36,7 +50,7 @@ class ElementSocialbuttons extends Element implements iSubmittable {
 			// add assets
 			$this->app->document->addStylesheet('elements:socialbuttons/assets/css/style.css');
 
-			$html[] = '<div class="yoo-zoo socialbuttons">';
+			$html[] = '<div class="yoo-zoo socialbuttons clearfix">';
 
 			// Tweet Button
 			if ($this->config->get('twitter')) {
@@ -54,25 +68,39 @@ class ElementSocialbuttons extends Element implements iSubmittable {
 			// Google Plus One
 			if ($this->config->get('google')) {
 				$this->app->system->document->addScript('https://apis.google.com/js/plusone.js');
-				$html[] = '<div><g:plusone href="'.htmlspecialchars($item_route).'"'
-							.($params->get('ggsize') ? ' size="'.$params->get('ggsize').'"' : '')
-							.($params->get('ggcount') ? ' count="true"' : ' count="false"')
-							.($locale ? '' : ' lang="'.$locale.'"')
-							.'></g:plusone></div>';
+				$html[] = '<div><div class="g-plusone" data-href="'.htmlspecialchars($item_route).'" data-annotation="none"'
+							.($params->get('ggsize') ? ' data-size="'.$params->get('ggsize').'"' : '')
+							.($params->get('ggcount') ? ' data-count="true"' : ' data-count="false"')
+							.($locale ? '' : ' data-lang="'.$locale.'"')
+							.'></div></div>';
 			}
 
 			// Facebook Like
 			if ($this->config->get('facebook')) {
-				$href = 'http://www.facebook.com/plugins/like.php?'
-							.'href='.urlencode($item_route)
-							.'&amp;layout='.$params->get('fblayout')
-							.'&amp;show_faces='.$params->get('fbshow_faces')
-							.'&amp;width='.$params->get('fbwidth')
-							.'&amp;action='.$params->get('fbaction')
-							.'&amp;colorscheme='.$params->get('fbcolorscheme')
-							.($locale ? '' : '&amp;locale='.$locale)
-							.($params->get('ref') ? '&amp;ref='.$params->get('fbref') : '');
-				$html[] = '<div><iframe src="'.$href.'" style="border:none; overflow:hidden; width: '.$params->get('fbwidth').'px; height: '.$params->get('fbheight', '20').'px" ></iframe></div>';
+				$this->app->system->document->addScriptDeclaration(
+						'jQuery(function($) { if (!$("body").find("#fb-root").length) {
+							$("body").append(\'<div id="fb-root"></div>\');
+							(function(d, s, id) {
+							var js, fjs = d.getElementsByTagName(s)[0];
+							if (d.getElementById(id)) return;
+							js = d.createElement(s); js.id = id;
+							js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+							fjs.parentNode.insertBefore(js, fjs);
+							}(document, \'script\', \'facebook-jssdk\'));
+						}});');
+
+				$html[] = '<div><div class="fb-like"'
+						.'data-href="'.htmlspecialchars($item_route).'"'
+						.'data-send="false"'
+						.'data-layout="'.$params->get('fblayout').'"'
+						.'data-width="'.$params->get('fbwidth').'"'
+						.'data-show-faces="'.$params->get('fbshow_faces').'"'
+						.'data-action="'.$params->get('fbaction').'"'
+						.'data-colorscheme="'.$params->get('fbcolorscheme').'"'
+						.($locale ? 'data-locale="'.$locale.'"' : '')
+						.($params->get('ref') ? 'data-ref="'.$params->get('fbref').'"' : '')
+					.'></div></div>';
+
 			}
 
 			$html[] = '</div>';

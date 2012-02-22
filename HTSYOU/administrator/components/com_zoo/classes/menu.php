@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -203,7 +203,7 @@ class AppMenuItem extends AppTreeItem {
 	*/
 	public function render() {
 		$link   = $this->app->request->getVar('hidemainmenu') ? null : $this->_link;
-		$html[] = '<li '.JArrayHelper::toString($this->_attributes).'>';
+		$html   = array('<li '.JArrayHelper::toString($this->_attributes).'>');
 		$html[] = ($link ? '<a href="'.JRoute::_($link).'">' : '<span>').'<span>'.$this->getName().'</span>'.($link ? '</a>' : '</span>');
 
 		if (count($this->getChildren())) {

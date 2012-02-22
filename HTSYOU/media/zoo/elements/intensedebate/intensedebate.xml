@@ -10,5 +10,9 @@
 	<description>IntenseDebate Comments (http://www.intensedebate.com/)</description>
 	<params>
 		<param name="account" type="text" default="" label="IntenseDebate Account" description="Get one at: http://www.intensedebate.com/" />
+		<param name="default" type="radio" default="1" label="Enabled By Default" description="Enabled by default">
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </param>
 	</params>
 </element>

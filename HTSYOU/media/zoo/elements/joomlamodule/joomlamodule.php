@@ -3,14 +3,14 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
    Class: ElementJoomlamodule
        The Joomla module wapper element class
 */
-class ElementJoomlamodule extends Element {
+class ElementJoomlamodule extends Element implements iSubmittable {
 
 	/*
 		Function: render
@@ -65,6 +65,35 @@ class ElementJoomlamodule extends Element {
 
 		return $this->app->html->_('zoo.modulelist', $options, $this->getControlName('value'), null, 'value', 'text', $this->get('value', $this->config->get('default')));
 
+	}
+
+	/*
+		Function: renderSubmission
+			Renders the element in submission.
+
+	   Parameters:
+            $params - AppData submission parameters
+
+		Returns:
+			String - html
+	*/
+	public function renderSubmission($params = array()) {
+        return $this->edit();
+	}
+
+	/*
+		Function: validateSubmission
+			Validates the submitted element
+
+	   Parameters:
+            $value  - AppData value
+            $params - AppData submission parameters
+
+		Returns:
+			Array - cleaned value
+	*/
+	public function validateSubmission($value, $params) {
+		return array('value' => $value->get('value'));
 	}
 
 }

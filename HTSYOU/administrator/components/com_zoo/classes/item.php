@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -517,13 +517,10 @@ class Item {
 		Function: getComments
 			Get items comments.
 
-		Parameters:
-  			$state - Specifiy the comments state
-
 		Returns:
 			Array - comments
 	*/
-	public function getComments($state = 1) {
+	public function getComments() {
 		return $this->app->table->comment->getCommentsForItem($this->id, $this->getApplication()->getParams()->get('global.comments.order', 'ASC'), $this->app->comment->activeAuthor());
 	}
 
@@ -531,14 +528,11 @@ class Item {
     	Function: getCommentTree
     	  Get comments as tree.
 
-		Parameters:
-	      $state - Specifiy the comments state to count
-
 	   Returns:
 	      Array - comments
  	*/
-	public function getCommentTree($state = 1) {
-		return $this->app->tree->build($this->getComments($state), 'Comment', $this->getApplication()->getParams()->get('global.comments.max_depth'), 'parent_id');
+	public function getCommentTree() {
+		return $this->app->tree->build($this->getComments(), 'Comment', $this->getApplication()->getParams()->get('global.comments.max_depth'), 'parent_id');
 	}
 
 	/*

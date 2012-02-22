@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -44,13 +44,13 @@ class ModuleHelper extends AppHelper {
 			return false;
 		}
 
-		foreach ($modules as $i => $module) {
-			$file					= $modules[$i]->module;
-			$custom 				= $this->app->string->substr($file, 0, 4) == 'mod_' ? 0 : 1;
-			$modules[$i]->user  	= $custom;
-			$modules[$i]->name		= $custom ? $modules[$i]->title : $this->app->string->substr($file, 4);
-			$modules[$i]->style		= null;
-			$modules[$i]->position	= $this->app->string->strtolower($modules[$i]->position);
+		foreach ($modules as $module) {
+			$file				= $module->module;
+			$custom 			= $this->app->string->substr($file, 0, 4) == 'mod_' ? 0 : 1;
+			$module->user		= $custom;
+			$module->name		= $custom ? $module->title : $this->app->string->substr($file, 4);
+			$module->style		= null;
+			$module->position	= $this->app->string->strtolower($module->position);
 		}
 
 		return $modules;

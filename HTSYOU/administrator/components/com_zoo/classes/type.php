@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -190,9 +190,8 @@ class Type {
 
 	public function getCoreElementsConfig() {
 		if (!$this->_core_elements_config) {
-			if ($core_file = $this->app->path->path('elements:core.config')) {
-				$this->_core_elements_config = $this->app->data->create(JFile::read($core_file))->get('elements');
-			}
+			$config = $this->app->data->create(JFile::read($this->app->path->path('elements:core.config')))->get('elements');
+			$this->_core_elements_config = $this->app->event->dispatcher->notify($this->app->event->create($this, 'type:coreconfig')->setReturnValue($config))->getReturnValue();
 		}
 
 		return $this->_core_elements_config;

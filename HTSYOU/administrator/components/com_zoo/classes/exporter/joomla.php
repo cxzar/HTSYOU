@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 class AppExporterJoomla extends AppExporter {
@@ -104,6 +104,9 @@ class AppExporterJoomla extends AppExporter {
 		if (!$this->app->user->get($article->created_by)) {
 			return;
 		}
+
+		$metadata = $this->app->parameter->create($article->metadata);
+		$data['metadata'] = array('description' => $article->metadesc, 'keywords' => $article->metakey, 'robots' => $metadata->get('robots'), 'author' => $metadata->get('author'));
 
 		$data['author'] = $this->app->user->get($article->created_by)->username;
 

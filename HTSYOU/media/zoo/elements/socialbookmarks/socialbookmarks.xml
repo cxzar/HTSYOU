@@ -9,6 +9,10 @@
 	<version>2.5.0</version>
 	<description>Social Bookmarks</description>
 	<params>
+		<param name="default" type="radio" default="1" label="Enabled By Default" description="Enabled by default">
+			<option value="0">JNO</option>
+			<option value="1">JYES</option>
+		</param>
 		<param name="google" type="radio" default="1" label="Google" description="">
 			<option value="0">JNO</option>
 			<option value="1">JYES</option>

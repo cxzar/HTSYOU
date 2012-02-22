@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -173,7 +173,7 @@ class CategoryTable extends AppTable {
 		Returns:
 			Array - Array of categories
 	*/
-	public function getAll($application_id, $published = false, $item_count = false){
+	public function getAll($application_id, $published = false, $item_count = false, $user = null){
 
 		if ($item_count) {
 
@@ -193,7 +193,7 @@ class CategoryTable extends AppTable {
 				$select = 'c.*, GROUP_CONCAT(DISTINCT i.id) as item_ids';
 
 				$from  .= ' LEFT JOIN '.ZOO_TABLE_ITEM.' AS i USE INDEX (MULTI_INDEX2) ON ci.item_id = i.id'
-						.' AND i.'.$this->app->user->getDBAccessString()
+						.' AND i.'.$this->app->user->getDBAccessString($user)
 						.' AND i.state = 1'
 						.' AND (i.publish_up = '.$null.' OR i.publish_up <= '.$now.')'
 						.' AND (i.publish_down = '.$null.' OR i.publish_down >= '.$now.')';

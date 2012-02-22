@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -234,43 +234,15 @@ class SubmissionController extends AppController {
 
         // init vars
         $post	  = $this->app->request->get('post:', 'array');
-		$db		  = $this->app->database;
-		$now	  = $this->app->date->create('now', $this->app->date->getOffset());
 		$msg	  = '';
 
         try {
 
             $this->_init();
 
-			// set default values on new item
+			// set name on new item
 			if (!$edit = (bool) $this->item->id) {
-
-				// set name
 				$this->item->name = JText::_('Submitted Item');
-
-				// set state
-				$this->item->state = 0;
-
-				// set created date
-				$this->item->created		  = $now->toMySQL();
-				$this->item->created_by		  = $this->user->get('id');
-				$this->item->created_by_alias = '';
-
-				// set publish up - publish down
-				$this->item->publish_up   = $now->toMySQL();
-				$this->item->publish_down = $db->getNullDate();
-
-				// set access
-				$this->item->access = $this->app->joomla->getDefaultAccess();
-
-				// set searchable
-				$this->item->searchable = 1;
-
-				// set params
-				$this->item->getParams()
-					->set('config.enable_comments', true)
-					->set('config.primary_category', 0);
-
 			}
 
             // is current user the item owner and does the user have sufficient user rights
@@ -311,7 +283,7 @@ class SubmissionController extends AppController {
 				}
 
                 // set modified
-                $this->item->modified	 = $now->toMySQL();
+                $this->item->modified	 = $this->app->date->create()->toMySQL();
                 $this->item->modified_by = $this->user->get('id');
 
 				// enforce time limit on submissions
@@ -348,9 +320,9 @@ class SubmissionController extends AppController {
 				// trigger saved event
 				$this->app->event->dispatcher->notify($this->app->event->create($this->submission, 'submission:saved', array('item' => $this->item, 'new' => !$edit)));
 
-			// add post data to session if form is not valid
             } else {
 
+				// add post data to session if form is not valid
 				$this->app->system->application->setUserState($this->session_form_key, serialize($post));
 
             }
@@ -522,17 +494,25 @@ class SubmissionController extends AppController {
             }
         }
 
-        // get item table
-        $table = $this->app->table->item;
-
         // get item
-		if (!$this->item_id || !($this->item = $table->get($this->item_id))) {
+		if (!$this->item_id || !($this->item = $this->app->table->item->get($this->item_id))) {
+
+			$now = $this->app->date->create()->toMySQL();
+
             $this->item = $this->app->object->create('Item');
-            $this->item->application_id = $this->application->id;
-            $this->item->type = $this->type->id;
-			$this->item->publish_up = $this->app->date->create()->toMySQL();
-			$this->item->publish_down = $this->app->database->getNullDate();
-			$this->item->access = $this->app->joomla->getDefaultAccess();
+            $this->item->application_id   = $this->application->id;
+            $this->item->type			  = $this->type->id;
+			$this->item->publish_up		  = $now;
+			$this->item->publish_down	  = $this->app->database->getNullDate();
+			$this->item->access			  = $this->app->joomla->getDefaultAccess();
+			$this->item->created		  = $now;
+			$this->item->created_by		  = $this->user->get('id');
+			$this->item->created_by_alias = '';
+			$this->item->state			  = 0;
+			$this->item->searchable		  = true;
+			$this->item->getParams()
+				->set('config.enable_comments', true)
+				->set('config.primary_category', 0);
         }
 
     }

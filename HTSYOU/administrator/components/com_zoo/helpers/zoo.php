@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -90,23 +90,6 @@ class ZooHelper extends AppHelper {
 		}
 
 		return null;
-	}
-
-	public function getApplicationGroups() {
-
-		// get applications
-		$apps = array();
-
-		if ($folders = $this->app->path->dirs('applications:')) {
-			foreach ($folders as $folder) {
-				if ($this->app->path->path("applications:$folder/application.xml")) {
-					$apps[$folder] = $this->app->object->create('Application');
-					$apps[$folder]->setGroup($folder);
-				}
-			}
-		}
-
-		return $apps;
 	}
 
 	/*
@@ -244,42 +227,6 @@ class ZooHelper extends AppHelper {
 	}
 
     /*
-		Function: getLayouts
-			Returns layouts for a type of an app.
-
-		Returns:
-			Array - layouts
-	*/
-    public function getLayouts($application, $type_id, $layout_type = '') {
-
-        $result = array();
-
-        // get template
-        if ($template = $application->getTemplate()) {
-
-			// get renderer
-			$renderer = $this->app->renderer->create('item')->addPath($template->getPath());
-
-			$path   = 'item';
-			$prefix = 'item.';
-			if ($renderer->pathExists($path.DIRECTORY_SEPARATOR.$type_id)) {
-				$path   .= DIRECTORY_SEPARATOR.$type_id;
-				$prefix .= $type_id.'.';
-			}
-
-			foreach ($renderer->getLayouts($path) as $layout) {
-				$metadata = $renderer->getLayoutMetaData($prefix.$layout);
-				if (empty($layout_type) || ($metadata->get('type') == $layout_type)) {
-					$result[$layout] = $metadata;
-				}
-			}
-		}
-
-        return $result;
-
-    }
-
-    /*
 		Function: getVersion
 			Returns current ZOO version.
 
@@ -314,5 +261,15 @@ class ZooHelper extends AppHelper {
 		}
 		return $title;
 	}
+
+	// @deprecated with zoo 2.5.11 use application helper instead
+	public function getApplicationGroups() {
+		return $this->app->application->groups();
+	}
+
+	// @deprecated with zoo 2.5.11 use type helper instead
+    public function getLayouts($application, $type_id, $layout_type = '') {
+		return $this->app->type->layouts($application->getType($type_id), $layout_type);
+    }
 
 }

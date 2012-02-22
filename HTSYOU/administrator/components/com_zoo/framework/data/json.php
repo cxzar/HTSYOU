@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -52,7 +52,7 @@ class JSONData extends AppData {
 		Function: _jsonEncode
 			Returns human readable JSON encoded string
 	*/
-	public function _jsonEncode($in, $indent = 0, $from_array = false)	{
+	public function _jsonEncode($in, $indent = 0)	{
 		$out = '';
 
 		foreach ($in as $key => $value) {

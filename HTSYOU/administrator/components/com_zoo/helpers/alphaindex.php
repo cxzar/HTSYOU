@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -20,7 +20,7 @@ class AlphaindexHelper extends AppHelper {
 			AppAlphaindex
 	*/
 	public function create($path) {
-		return $this->app->object->create('AppAlphaindex', array($this->app, $path));
+		return $this->app->object->create('AppAlphaindex', array($path));
 	}
 
 }
@@ -50,7 +50,7 @@ class AppAlphaindex {
 	   Returns:
 	      YAlphaindex
  	*/
-	public function __construct($app, $path) {
+	public function __construct($path) {
 		if ($xml = simplexml_load_file($path)) {
 
 			// add other character

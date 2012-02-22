@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -127,7 +127,7 @@ class InstallHelper extends AppHelper {
 			throw new InstallHelperException('Unable to write to folder: ' . $write_directory);
 		}
 
-		$applications = $this->app->zoo->getApplicationGroups();
+		$applications = $this->app->application->groups();
 		$application = isset($applications[$group]) ? $applications[$group] : null;
 
 		// trigger installed event

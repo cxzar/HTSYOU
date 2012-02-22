@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -28,12 +28,7 @@ class ImportHelper extends AppHelper {
 		Returns:
 			Boolean - true on success
 	*/
-	public function import(
-		$json_file,
-		$import_frontpage = true,
-		$import_categories = true,
-		$element_assignment = array(),
-		$types = array()) {
+	public function import($json_file, $import_frontpage = true, $import_categories = true, $element_assignment = array(), $types = array()) {
 
 		// set_time_limit doesn't work in safe mode
 		if (!ini_get('safe_mode')) {
@@ -118,7 +113,9 @@ class ImportHelper extends AppHelper {
 			$category_obj->application_id = $application->id;
 
 			// set category content params
-			$category_obj->getParams()->set('content.', $category['content']);
+			if (isset($category['content'])) {
+				$category_obj->getParams()->set('content.', $category['content']);
+			}
 
 			$db->query('INSERT INTO '. ZOO_TABLE_CATEGORY . '(alias) VALUES ('.$db->quote($category_obj->alias).')');
 			$category_obj->id = $db->insertid();
@@ -169,8 +166,6 @@ class ImportHelper extends AppHelper {
 		foreach ($items as $alias => $item) {
 
 			if (isset($item['group']) && isset($types[$item['group']]) && !empty($types[$item['group']]) && ($type = $app_types[$types[$item['group']]])) {
-
-				$elements = $type->getElements();
 
 				$item_obj 		 	 = $this->app->object->create('Item');
 				$item_obj->alias 	 = $this->app->string->sluggify($alias);
@@ -234,9 +229,9 @@ class ImportHelper extends AppHelper {
 				}
 
 				// set metadata, content, config params
-				$item_obj->getParams()->set('metadata.', $item['metadata']);
-				$item_obj->getParams()->set('content.', $item['content']);
-				$item_obj->getParams()->set('config.', $item['config']);
+				$item_obj->getParams()->set('metadata.', @$item['metadata']);
+				$item_obj->getParams()->set('content.', @$item['content']);
+				$item_obj->getParams()->set('config.', @$item['config']);
 
 				$item_objects[$alias] = $item_obj;
 
@@ -421,13 +416,7 @@ class ImportHelper extends AppHelper {
 		Returns:
 			Boolean - true on success
 	*/
-	public function importCSV(
-		$file,
-		$type = '',
-		$contains_headers = false,
-		$field_separator = ',',
-		$field_enclosure = '"',
-		$element_assignment = array()) {
+	public function importCSV($file, $type = '', $contains_headers = false, $field_separator = ',', $field_enclosure = '"', $element_assignment = array()) {
 
 		// set_time_limit doesn't work in safe mode
 		if (!ini_get('safe_mode')) {
@@ -439,12 +428,10 @@ class ImportHelper extends AppHelper {
 
 			if ($type_obj = $application->getType($type)) {
 
-				$c = 0;
 				$assignments = array();
 				foreach ($element_assignment as $column => $value) {
 					if (!empty($value[$type])) {
-						$name = $value[$type];
-						$assignments[$name][] = $column;
+						$assignments[$value[$type]][] = $column;
 					}
 				}
 
@@ -460,32 +447,31 @@ class ImportHelper extends AppHelper {
 					$item_table			= $this->app->table->item;
 					$category_table		= $this->app->table->category;
 					$user_id			= $this->app->user->get()->get('id');
-					$now				= $this->app->date->create();
-					$row				= 0;
+					$now				= $this->app->date->create()->toMySQL();
+					$access				= $this->app->joomla->getDefaultAccess();
 					$app_categories		= $application->getCategories();
-					$app_categories		= array_map(create_function('$cat', 'return $cat->name;'), $app_categories);
+					$app_category_names	= array_map(create_function('$cat', 'return $cat->name;'), $app_categories);
+					$app_category_alias	= array_map(create_function('$cat', 'return $cat->alias;'), $app_categories);
+					$alias_matches		= array();
 
 					while (($data = fgetcsv($handle, 0, $field_separator, $field_enclosure)) !== FALSE) {
-						if (!($contains_headers && $row == 0)) {
+						if (!($contains_headers)) {
 
 							$item = $this->app->object->create('Item');
 							$item->application_id = $application->id;
 							$item->type = $type;
 
 							// set access
-							$item->access = $this->app->joomla->getDefaultAccess();
+							$item->access = $access;
 
 							// store created by
 							$item->created_by  = $user_id;
 
-							// set created
-							$item->created	   = $now->toMySQL();
+							// set created, modified
+							$item->created = $item->modified = $now;
 
 							// store modified_by
 							$item->modified_by = $user_id;
-
-							// set modified
-							$item->modified	   = $now->toMySQL();
 
 							// store element_data and item name
 							$item_categories = array();
@@ -575,31 +561,53 @@ class ImportHelper extends AppHelper {
 									// store categories
 									$related_categories = array();
 									foreach ($item_categories as $category_name) {
+										$names = array_filter(explode('///', $category_name));
+										$previous_id = 0;
+										$found = true;
 
-										if (!empty($category_name) && !in_array($category_name, $app_categories)) {
+										for ($i = 0; $i < count($names); $i++) {
 
-											$category = $this->app->object->create('Category');
-											$category->application_id = $application->id;
-											$category->name = $category_name;
-											$category->parent = 0;
+											list($name, $alias) = array_pad(explode('|||', $names[$i]), 2, false);
 
-											$category->alias = $this->app->string->sluggify($category_name);
+											// did the alias change?
+											$alias = $alias && isset($alias_matches[$alias]) ? $alias_matches[$alias] : $alias;
 
-											// set a valid category alias
-											$category->alias = $this->app->alias->category->getUniqueAlias(0, $category->alias);
+											// try to find category through alias, if category is not found, try to match name
+											if (!($id = array_search($alias, $app_category_alias)) && !$alias) {
+												$id = array_search($name, $app_category_names);
+												foreach (array_keys($app_category_names, $name) as $key) {
+													if ($previous_id && isset($app_categories[$key]) && $app_categories[$key]->parent == $previous_id) {
+														$id = $key;
+													}
+												}
+											}
+											if (!$found || !$id) {
 
-											try {
+												$found = false;
 
-												$category_table->save($category);
-												$related_categories[] = $category->id;
-												$app_categories[$category->id] = $category->name;
+												$category = $this->app->object->create('Category');
+												$category->application_id = $application->id;
+												$category->name = $name;
+												$category->parent = $previous_id;
 
-											} catch (CategoryTableException $e) {}
+												// set a valid category alias
+												$category->alias = $this->app->alias->category->getUniqueAlias(0, $this->app->string->sluggify($alias ? $alias : $name));
 
-										} else {
+												try {
 
-											$related_categories[] = array_search($category_name, $app_categories);
+													$category_table->save($category);
+													$app_categories[$category->id] = $category;
+													$app_category_names[$category->id] = $category->name;
+													$app_category_alias[$category->id] = $alias_matches[$alias] = $category->alias;
+													$id = $category->id;
 
+												} catch (CategoryTableException $e) {}
+											}
+											if ($id && $i == count($names) - 1) {
+												$related_categories[] = $id;
+											} else {
+												$previous_id = $id;
+											}
 										}
 									}
 
@@ -619,8 +627,7 @@ class ImportHelper extends AppHelper {
 								} catch (ItemTableException $e) {}
 							}
 						}
-
-						$row++;
+						$contains_headers = false;
 					}
 					fclose($handle);
 					return true;
@@ -675,10 +682,9 @@ class ImportHelper extends AppHelper {
 
 		// get column names and row count
 		$row = 0;
-		$columns = 0;
-		if (($handle = fopen($file, "r")) !== FALSE) {
+		if (($handle = fopen($file, "r")) !== false) {
 
-			while (($data = fgetcsv($handle, 0, $field_separator, $field_enclosure)) !== FALSE) {
+			while (($data = fgetcsv($handle, 0, $field_separator, $field_enclosure)) !== false) {
 				if ($row == 0) {
 					// get column names from header row
 					if ($contains_headers) {
@@ -690,7 +696,6 @@ class ImportHelper extends AppHelper {
 
 				// get max column count
 				$row++;
-
 			}
 
 			// get item count

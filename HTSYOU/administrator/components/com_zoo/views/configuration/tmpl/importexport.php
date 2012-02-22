@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 // no direct access
@@ -35,6 +35,18 @@ $app_item_count 	= (int) $this->application->getItemCount();
 		</div>
 	</div>
 
+	<div class="uploadbox importbox">
+		<div>
+			<h3><?php echo JText::_('Import from CSV:'); ?></h3>
+			<input type="text" class="filename" readonly="readonly" />
+			<div class="button-container">
+			  <button class="button-grey search" type="button"><?php echo JText::_('Search'); ?></button>
+			  <input type="file" accept="text/x-comma-separated-values" name="import-csv" />
+			</div>
+			<button class="button-green upload" type="button"><?php echo JText::_('Upload'); ?></button>
+		</div>
+	</div>
+
 	<div class="importbox">
 		<div>
 			<h3><?php echo JText::_('EXPORT_APP_INSTANCE'); ?></h3>
@@ -42,8 +54,15 @@ $app_item_count 	= (int) $this->application->getItemCount();
 
 			<?php if ($app_category_count || $app_item_count) : ?>
 
-				<button class="button-grey export" type="button">
-					<span><?php echo JText::_('Start Export'); ?></span>
+				<button class="button-grey export" data-task="doexport" type="button">
+					<span><?php echo JText::_('JSON'); ?></span>
+					<?php echo $app_category_count; ?> <?php echo $app_category_count == 1 ? JText::_('Category') : JText::_('Categories');?>
+					<?php echo JText::_('and'); ?>
+					<?php echo $app_item_count; ?> <?php echo $app_item_count == 1 ? JText::_('Item') : JText::_('Items'); ?>
+				</button>
+
+				<button class="button-grey export" data-task="doexportcsv" type="button">
+					<span><?php echo JText::_('CSV'); ?></span>
 					<?php echo $app_category_count; ?> <?php echo $app_category_count == 1 ? JText::_('Category') : JText::_('Categories');?>
 					<?php echo JText::_('and'); ?>
 					<?php echo $app_item_count; ?> <?php echo $app_item_count == 1 ? JText::_('Item') : JText::_('Items'); ?>
@@ -55,18 +74,6 @@ $app_item_count 	= (int) $this->application->getItemCount();
 
 			<?php endif; ?>
 
-		</div>
-	</div>
-
-	<div class="uploadbox importbox">
-		<div>
-			<h3><?php echo JText::_('Import from CSV:'); ?></h3>
-			<input type="text" class="filename" readonly="readonly" />
-			<div class="button-container">
-			  <button class="button-grey search" type="button"><?php echo JText::_('Search'); ?></button>
-			  <input type="file" accept="text/x-comma-separated-values" name="import-csv" />
-			</div>
-			<button class="button-green upload" type="button"><?php echo JText::_('Upload'); ?></button>
 		</div>
 	</div>
 

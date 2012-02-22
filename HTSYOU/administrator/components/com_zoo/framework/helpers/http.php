@@ -3,13 +3,13 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
 	Class: HttpHelper
 		HTTP helper class
-*/    
+*/
 class HttpHelper extends AppHelper {
 
 	/* current transport class */
@@ -45,7 +45,7 @@ class HttpHelper extends AppHelper {
 
 		Returns:
 			Mixed
-	*/	
+	*/
 	public function get($url, $options = array()) {
 		return $this->request($url, $options);
 	}
@@ -61,7 +61,7 @@ class HttpHelper extends AppHelper {
 
 		Returns:
 			Mixed
-	*/	
+	*/
 	public function post($url, $data = null, $options = array()) {
 		return $this->request($url, array_merge(array('method' => 'POST', 'body' => $data), $options));
 	}
@@ -77,7 +77,7 @@ class HttpHelper extends AppHelper {
 
 		Returns:
 			Mixed
-	*/	
+	*/
 	public function put($url, $data = null, $options = array()) {
 		return $this->request($url, array_merge(array('method' => 'PUT', 'body' => $data), $options));
 	}
@@ -94,11 +94,11 @@ class HttpHelper extends AppHelper {
 			Mixed
 	*/
 	public function request($url, $options = array()) {
-		
+
 		if ($this->transport) {
 			return $this->transport->request($url, $options);
 		}
-		
+
 		return false;
 	}
 
@@ -109,7 +109,7 @@ class HttpHelper extends AppHelper {
 		HTTP transport class using cURL
 */
 class AppHttpCurl extends AppHttp {
-	
+
 	/*
 		Function: request
 			Execute a HTTP request
@@ -120,7 +120,7 @@ class AppHttpCurl extends AppHttp {
 
 		Returns:
 			Mixed
-	*/	
+	*/
 	public function request($url, $options = array()) {
 
 		// parse request
@@ -136,7 +136,7 @@ class AppHttpCurl extends AppHttp {
 		curl_setopt($curl, CURLOPT_HEADER, true);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, $request['ssl_verifypeer']);
-		
+
 		// post request ?
 		if ($request['method'] == 'POST') {
 			curl_setopt($curl, CURLOPT_POST, true);
@@ -148,20 +148,19 @@ class AppHttpCurl extends AppHttp {
 			curl_setopt($curl, CURLOPT_CUSTOMREQUEST, $request['method']);
 			curl_setopt($curl, CURLOPT_POSTFIELDS, $request['body']);
 		}
-		
+
 		// connect with curl
 		$res = curl_exec($curl);
-		$test = curl_error($curl);
 		curl_close($curl);
 
 		// parse response
 		$res = $this->_parseResponse($res);
-	
+
 		// save to file
 		if ($res && $request['file'] && file_put_contents($request['file'], $res['body']) === false) {
 			return false;
 		}
-		
+
 		return $res;
 	}
 
@@ -194,13 +193,13 @@ class AppHttpStreams extends AppHttp {
 
 		Returns:
 			Mixed
-	*/	
+	*/
 	public function request($url, $options = array()) {
 
 		// parse request
 		$request = $this->_parseRequest($url, $options);
 
-		// create stream options 
+		// create stream options
 		$options = array('http' =>
 			array('method' => $request['method'],
 			  	  'protocol_version' => $request['version'],
@@ -264,7 +263,7 @@ class AppHttpSocket extends AppHttp {
 
 		Returns:
 			Mixed
-	*/	
+	*/
 	public function request($url, $options = array()) {
 
 		// parse request
@@ -272,7 +271,7 @@ class AppHttpSocket extends AppHttp {
 
 		// set host
 		$host = $request['url']['scheme'] == 'https' ? sprintf('ssl://%s', $request['url']['host']) : $request['url']['host'];
-		
+
 		// connect with fsockopen
 		$res = false;
 	    $fp  = @fsockopen($host, $request['url']['port'], $errno, $errstr, $request['url']['timeout']);
@@ -286,7 +285,7 @@ class AppHttpSocket extends AppHttp {
 
 		// parse response
 		$res = $this->_parseResponse($res);
-	
+
 		// save to file
 		if ($res && $request['file'] && file_put_contents($request['file'], $res['body']) === false) {
 			return false;
@@ -311,7 +310,7 @@ class AppHttpSocket extends AppHttp {
 /*
 	Class: AppHttp
 		HTTP base class
-		Based on HTTP Socket connection class (http://cakephp.org, Cake Software Foundation, Inc., MIT License)		
+		Based on HTTP Socket connection class (http://cakephp.org, Cake Software Foundation, Inc., MIT License)
 */
 class AppHttp {
 
@@ -423,7 +422,7 @@ class AppHttp {
 
 		$request['timeout']   = (int) ceil($request['timeout']);
 		$request['redirects'] = (int) $request['redirects'];
-		
+
 		if (is_array($request['header'])) {
 			$request['header'] = $this->_parseHeader($request['header']);
 			$request['header'] = array_merge(array('Host' => $request['url']['host']), $request['header']);
@@ -432,7 +431,7 @@ class AppHttp {
 		if (isset($request['auth']['user']) && isset($request['auth']['pass'])) {
 			$request['header']['Authorization'] = $request['auth']['method'].' '.base64_encode($request['auth']['user'].':'.$request['auth']['pass']);
 		}
-		
+
 		if (isset($request['url']['user']) && isset($request['url']['pass'])) {
 			$request['header']['Authorization'] = $request['auth']['method'].' '.base64_encode($request['url']['user'].':'.$request['url']['pass']);
 		}
@@ -444,7 +443,7 @@ class AppHttp {
 		if (!empty($request['body']) && !isset($request['header']['Content-Length'])) {
 			$request['header']['Content-Length'] = strlen($request['body']);
 		}
-		
+
 		if (empty($request['line'])) {
 			$request['line'] = strtoupper($request['method']).' '.$request['url']['path'].(isset($request['url']['query']) ? '?'.$request['url']['query'] : ''). ' HTTP/' . $request['version'].$this->line_break;
 		}
@@ -479,7 +478,7 @@ class AppHttp {
 
 		// parse header
 		if (preg_match("/^(.+\r\n)(.*)(?<=\r\n)\r\n/Us", $res, $match)) {
-			
+
 			list($null, $response['raw']['status-line'], $response['raw']['header']) = $match;
 			$response['raw']['body'] = substr($res, strlen($match[0]));
 
@@ -495,7 +494,7 @@ class AppHttp {
 			if (!empty($response['header'])) {
 				$response['cookies'] = $this->parseCookies($response['header']);
 			}
-			
+
 		} else {
 			$response['body'] = $res;
 			$response['raw']['body'] = $res;
@@ -513,7 +512,7 @@ class AppHttp {
 
 		return $response;
 	}
-	
+
 	/*
 		Function: _buildHeader
 			 Builds the header string for a request
@@ -545,7 +544,7 @@ class AppHttp {
 
 		return $returnHeader;
 	}
-	
+
 	/*
 		Function: _parseHeader
 			 Parses an string based header to an array
@@ -594,7 +593,7 @@ class AppHttp {
 				$header[$field] = array_merge((array)$header[$field], (array)$value);
 			}
 		}
-		
+
 		return $header;
 	}
 
@@ -642,7 +641,7 @@ class AppHttp {
 			$chunkLength = hexdec($hexLength);
 			$chunk = substr($body, 0, $chunkLength);
 			$decodedBody .= $chunk;
-			
+
 			if ($chunkLength !== 0) {
 				$body = substr($body, $chunkLength + strlen("\r\n"));
 			}
@@ -662,7 +661,7 @@ class AppHttp {
 
 		// parse url
 		$url = array_merge(array('user' => null, 'pass' => null, 'path' => '/', 'query' => null, 'fragment' => null), parse_url($url));
-		
+
 		// set scheme
 		if (!isset($url['scheme'])) {
 			$url['scheme'] = 'http';
@@ -682,7 +681,7 @@ class AppHttp {
 		if (!isset($url['path'])) {
 			$url['path'] = '/';
 		}
-		
+
 		return $url;
 	}
 
@@ -692,35 +691,35 @@ class AppHttp {
 
 		Returns:
 			String
-	*/	
+	*/
 	protected function _escapeToken($token, $chars = null) {
 		$regex = '/(['.join('', $this->_tokenEscapeChars(true, $chars)).'])/';
 		$token = preg_replace($regex, '"\\1"', $token);
 		return $token;
 	}
-	
+
 	/*
 		Function: _unescapeToken
 			Unescapes a given $token according to RFC 2616 (HTTP 1.1 specs)
 
 		Returns:
 			String
-	*/	
+	*/
 	protected function _unescapeToken($token, $chars = null) {
 		$regex = '/"(['.join('', $this->_tokenEscapeChars(true, $chars)).'])"/';
 		$token = preg_replace($regex, '\\1', $token);
 		return $token;
 	}
-		
+
 	/*
 		Function: _tokenEscapeChars
 			Gets escape chars according to RFC 2616 (HTTP 1.1 specs)
 
 		Returns:
 			Array
-	*/	
+	*/
 	protected function _tokenEscapeChars($hex = true, $chars = null) {
-		
+
 		if (!empty($chars)) {
 			$escape = $chars;
 		} else {
@@ -735,13 +734,11 @@ class AppHttp {
 			return $escape;
 		}
 
-		$regexChars = '';
-
 		foreach ($escape as $key => $char) {
 			$escape[$key] = '\\x'.str_pad(dechex(ord($char)), 2, '0', STR_PAD_LEFT);
 		}
 
 		return $escape;
 	}
-	
+
 }

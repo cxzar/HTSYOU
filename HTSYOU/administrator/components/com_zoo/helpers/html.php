@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -181,13 +181,13 @@ class HTMLHelper extends AppHelper {
 		Function: layoutList
 			Returns layout select list html string.
 	*/
-	public function layoutList($application, $type_id, $layout_type, $options, $name, $attribs = null, $key = 'value', $text = 'text', $selected = NULL, $idtag = false, $translate = false) {
+	public function layoutList($type, $layout_type, $options, $name, $attribs = null, $key = 'value', $text = 'text', $selected = NULL, $idtag = false, $translate = false) {
 
 		// set options
 		settype($options, 'array');
 		reset($options);
 
-        $layouts = $this->app->zoo->getLayouts($application, $type_id, $layout_type);
+        $layouts = $this->app->type->layouts($type, $layout_type);
 
         foreach ($layouts as $layout => $metadata) {
             $options[] = $this->_('select.option', $layout, $metadata->get('name'));
@@ -388,12 +388,12 @@ class HTMLHelper extends AppHelper {
 		if ($this->app->joomla->isVersion('1.5')) {
 			return $this->app->html->_('select.genericlist', $data, $name, $attribs, $optKey, $optText, $selected);
 		} else {
-			$attributes['list.attr'] = $attribs;
-			$attributes['id'] = $idtag;
+			$attributes['list.attr']	  = $attribs;
+			$attributes['id']			  = $idtag;
 			$attributes['list.translate'] = $translate;
-			$attributes['option.key'] = $optKey;
-			$attributes['option.text'] = $optText;
-			$attributes['list.select'] = $selected;
+			$attributes['option.key']	  = $optKey;
+			$attributes['option.text']	  = $optText;
+			$attributes['list.select']	  = $selected;
 			$attributes['option.text.toHtml'] = false;
 
 			return $this->app->html->_('select.genericlist', $data, $name, $attributes);

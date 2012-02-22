@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -23,7 +23,7 @@ class ElementSocialBookmarks extends Element implements iSubmittable {
 			Boolean - true, on success
 	*/
 	public function hasValue($params = array()) {
-		return (bool) $this->get('value', true);
+		return (bool) $this->get('value', $this->config->get('default'));
 	}
 
 	/*
@@ -38,7 +38,7 @@ class ElementSocialBookmarks extends Element implements iSubmittable {
 	*/
 	public function render($params = array()) {
 
-		if ($this->get('value', true)) {
+		if ($this->get('value', $this->config->get('default'))) {
 
 			// init vars
 			$bookmarks_config = $this->config->get('bookmarks');
@@ -53,7 +53,7 @@ class ElementSocialBookmarks extends Element implements iSubmittable {
 
 			// render layout
 			if ($layout = $this->getLayout()) {
-				return $this->renderLayout($layout, array('bookmarks' => $bookmarks));
+				return $this->renderLayout($layout, compact('bookmarks'));
 			}
 		}
 
@@ -68,7 +68,7 @@ class ElementSocialBookmarks extends Element implements iSubmittable {
 	       String - html
 	*/
 	public function edit() {
-		return $this->app->html->_('select.booleanlist', $this->getControlName('value'), '', $this->get('value', 1));
+		return $this->app->html->_('select.booleanlist', $this->getControlName('value'), '', $this->get('value', $this->config->get('default')));
 	}
 
 	/*

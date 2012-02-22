@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 class Update257 implements iUpdate {
@@ -32,7 +32,7 @@ class Update257 implements iUpdate {
 	*/
 	public function run($app) {
 
-		foreach ($app->zoo->getApplicationGroups() as $application) {
+		foreach ($app->application->groups() as $application) {
 
 			foreach ($application->getTypes() as $type) {
 
@@ -47,15 +47,12 @@ class Update257 implements iUpdate {
 						$prefix .= $type->id.'.';
 					}
 
-					$links = array();
 					foreach ($renderer->getLayouts($path) as $layout) {
 
 						// get layout metadata
 						$metadata = $renderer->getLayoutMetaData($prefix.$layout);
 
 						if ($metadata->get('type') == 'submission') {
-
-							$positions = $renderer->getPositions($prefix.$layout);
 							$config = $renderer->getConfig('item');
 							$config = $app->data->create($config);
 							if (isset($config[$application->getGroup().'.'.$type->id.'.'.$layout]['content'])) {
@@ -85,7 +82,7 @@ class Update257 implements iUpdate {
 								}
 							}
 
-						}catch (Exceoption $e) {}
+						}catch (Exception $e) {}
 					}
 				}
 			}

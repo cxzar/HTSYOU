@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -218,7 +218,7 @@ class Application {
 	*/
 	public function getToolbarTitle($title) {
 
-		$html[] = '<div class="header icon-48-'.(($this->hasIcon()) ? 'application"' : 'zoo"').'>';
+		$html   = array('<div class="header icon-48-'.(($this->hasIcon()) ? 'application"' : 'zoo"').'>');
 		$html[] = $this->hasIcon() ? '<img src="'.$this->getIcon().'" width="48" height="48" style="margin-left:-55px;vertical-align:middle;" />' : null;
 		$html[] = $title;
 		$html[] = '</div>';
@@ -259,11 +259,11 @@ class Application {
 	   Returns:
 	      Array - Categories
  	*/
-	public function getCategories($published = false, $item_count = false) {
+	public function getCategories($published = false, $item_count = false, $user = null) {
 
 		// get categories
 		if (empty($this->_categories) || (!$this->_itemcount && $item_count)) {
-			$this->_categories = $this->app->table->category->getAll($this->id, $published, $item_count);
+			$this->_categories = $this->app->table->category->getAll($this->id, $published, $item_count, $user);
 		}
 
 		$this->_itemcount = $item_count || $this->_itemcount;
@@ -287,7 +287,7 @@ class Application {
 		// get category tree
 		if (empty($this->_category_tree) || (!$this->_itemcount && $item_count)) {
 			// get categories and item count
-			$categories = $this->getCategories($published, $item_count);
+			$categories = $this->getCategories($published, $item_count, $user);
 
 			$this->_category_tree = $this->app->tree->build($categories, 'Category');
 			$this->_category_tree[0]->application_id = $this->id;
@@ -481,10 +481,7 @@ class Application {
 
 		// get parameter xml file
 		if ($xml = $this->app->path->path($this->getResource().$this->metaxml_file)) {
-
-			// get form
 			return $this->app->parameterform->create($xml);
-
 		}
 
 		return null;
@@ -592,11 +589,8 @@ class Application {
 	      Array - Image info
 	*/
 	public function getImage($name) {
-		$params = $this->getParams();
-		if ($image = $params->get($name)) {
-
-			return $this->app->html->_('zoo.image', $image, $params->get($name . '_width'), $params->get($name . '_height'));
-
+		if ($image = $this->params->get($name)) {
+			return $this->app->html->_('zoo.image', $image, $this->params->get($name . '_width'), $this->params->get($name . '_height'));
 		}
 		return null;
 	}

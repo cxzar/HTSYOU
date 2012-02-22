@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -91,10 +91,8 @@ class BackupHelper extends AppHelper {
 				$result[] = '--';
 
 				$insert = 'INSERT INTO '.$table.' VALUES(';
-				foreach ($rows as $index => $row) {
-
+				foreach ($rows as $row) {
 					$result[] = $insert.'"'.implode('","', array_map(array($db, 'getEscaped'), $row))."\");";
-
 				}
 
 			}
@@ -159,7 +157,7 @@ class BackupHelper extends AppHelper {
 	*/
 	public function generateHeader() {
 
-		$header[] = '-- ZOO SQL Dump';
+		$header   = array('-- ZOO SQL Dump');
 		$header[] = '-- version ' . $this->app->zoo->version();
 		$header[] = '-- http://www.yootheme.com';
 		$header[] = '--';

@@ -3,7 +3,7 @@
 * @package   com_zoo
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 class Update25BETA implements iUpdate {
@@ -41,7 +41,7 @@ class Update25BETA implements iUpdate {
 	public function run($app) {
 
 		$json = $app->data->create();
-		$applications = $app->zoo->getApplicationGroups();
+		$applications = $app->application->groups();
 		foreach ($applications as $application) {
 
 			// convert xml types to json
@@ -198,14 +198,14 @@ class Update25BETA implements iUpdate {
 	}
 
 	protected function _isRepeatable($app, $type) {
-		if (isset($_repeatable_elements[$type])) {
-			return $_repeatable_elements[$type];
+		if (isset($this->_repeatable_elements[$type])) {
+			return $this->_repeatable_elements[$type];
 		}
 
 		if ($file = $app->path->path("elements:$type/$type.php")) {
 			if ($content = JFile::read($file)) {
-				$_repeatable_elements[$type] = preg_match('/class(.*)extends(.*)ElementRepeatable/i', $content);
-				return $_repeatable_elements[$type];
+				$this->_repeatable_elements[$type] = preg_match('/class(.*)extends(.*)ElementRepeatable/i', $content);
+				return $this->_repeatable_elements[$type];
 			}
 		}
 
