@@ -3,7 +3,7 @@
 * @package   Widgetkit
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   YOOtheme Proprietary Use License (http://www.yootheme.com/license)
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 // no direct access
@@ -326,6 +326,9 @@ class ZooWidget {
 					$i = 0;
 					$widget_items = array();
 					foreach($zoo_items as $item) {
+
+						// add the item itself
+						$widget_items[$i]['zooitem'] = $item;
 
 						// add item title
 						$widget_items[$i]['title'] = $item->name;

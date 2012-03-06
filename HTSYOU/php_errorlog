@@ -103,3 +103,22 @@
 [09-Feb-2012 15:28:41] PHP Parse error:  syntax error, unexpected T_ENDIF in /home/haterz14/public_html/haterz/templates/yoo_quantum/layouts/template.php on line 197
 [21-Feb-2012 15:08:36] PHP Fatal error:  Call to a member function checkAnswer() on a non-object in /home/haterz14/public_html/haterz/libraries/cms/form/rule/captcha.php on line 47
 [21-Feb-2012 15:09:55] PHP Fatal error:  Call to a member function checkAnswer() on a non-object in /home/haterz14/public_html/haterz/libraries/cms/form/rule/captcha.php on line 47
+[29-Feb-2012 13:17:21] PHP Fatal error:  Call to a member function checkAnswer() on a non-object in /home/haterz14/public_html/haterz/libraries/cms/form/rule/captcha.php on line 47
+[29-Feb-2012 13:18:20] PHP Fatal error:  Call to a member function checkAnswer() on a non-object in /home/haterz14/public_html/haterz/libraries/cms/form/rule/captcha.php on line 47
+[29-Feb-2012 13:19:45] PHP Fatal error:  Call to a member function checkAnswer() on a non-object in /home/haterz14/public_html/haterz/libraries/cms/form/rule/captcha.php on line 47
+[29-Feb-2012 13:21:48] PHP Fatal error:  Call to a member function checkAnswer() on a non-object in /home/haterz14/public_html/haterz/libraries/cms/form/rule/captcha.php on line 47
+[29-Feb-2012 13:24:56] PHP Fatal error:  Call to a member function checkAnswer() on a non-object in /home/haterz14/public_html/haterz/libraries/cms/form/rule/captcha.php on line 47
+[29-Feb-2012 13:38:54] PHP Fatal error:  Call to a member function checkAnswer() on a non-object in /home/haterz14/public_html/haterz/libraries/cms/form/rule/captcha.php on line 47
+[02-Mar-2012 22:32:34] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:32:47] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:35:04] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:35:13] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:35:46] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:37:50] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 23:02:26] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 23:19:32] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 23:19:34] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 23:22:52] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[03-Mar-2012 11:21:22] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[03-Mar-2012 11:22:31] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[03-Mar-2012 11:32:46] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/common.php' (include_path='.:/usr/local/php52/pear') in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3.php on line 17

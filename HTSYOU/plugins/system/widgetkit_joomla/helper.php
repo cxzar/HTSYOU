@@ -3,7 +3,7 @@
 * @package   Widgetkit
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   YOOtheme Proprietary Use License (http://www.yootheme.com/license)
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 // no direct access
@@ -19,7 +19,7 @@ class WidgetkitJoomlaWidgetkitHelper extends WidgetkitHelper {
 
 		if ($params->get('readmore') && $item->readmore) {
 			$link = JRoute::_(ContentHelperRoute::getArticleRoute($item->id, $item->catid));
-			$result .= '<a class="readmore" href="'.$link.'">' . JText::_('Read more...') . '</a>';
+			$result .= '<a class="readmore" href="'.$link.'">' . JText::_('COM_CONTENT_READ_MORE_TITLE') . '</a>';
 		}
 
 		return $result;
@@ -69,7 +69,7 @@ class WidgetkitJoomlaWidgetkitHelper extends WidgetkitHelper {
 		$model = JModel::getInstance('Articles', 'ContentModel', array('ignore_request' => true));
 		$model->setState('params', JFactory::getApplication()->getParams());
 		$model->setState('filter.category_id', $catid);
-		$model->setState('filter.published', true);
+		$model->setState('filter.published', 1);
 		$model->setState('filter.access', true);
 		$model->setState('list.ordering', $ordering);
 		$model->setState('list.direction', $direction);

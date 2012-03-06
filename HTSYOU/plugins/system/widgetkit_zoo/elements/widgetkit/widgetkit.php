@@ -3,14 +3,14 @@
 * @package   Widgetkit
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   YOOtheme Proprietary Use License (http://www.yootheme.com/license)
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
    Class: ElementWidgetkit
        The Widgetkit wapper element class
 */
-class ElementWidgetkit extends Element {
+class ElementWidgetkit extends Element implements iSubmittable {
 
 	protected $widgetkit;
 
@@ -81,6 +81,35 @@ class ElementWidgetkit extends Element {
 	*/
 	public function getConfigForm() {
 		return parent::getConfigForm()->addElementPath(dirname(__FILE__));
+	}
+
+	/*
+		Function: renderSubmission
+			Renders the element in submission.
+
+	   Parameters:
+            $params - AppData submission parameters
+
+		Returns:
+			String - html
+	*/
+	public function renderSubmission($params = array()) {
+        return $this->edit();
+	}
+
+	/*
+		Function: validateSubmission
+			Validates the submitted element
+
+	   Parameters:
+            $value  - AppData value
+            $params - AppData submission parameters
+
+		Returns:
+			Array - cleaned value
+	*/
+	public function validateSubmission($value, $params) {
+		return array('value' => $value->get('value'));
 	}
 
 }

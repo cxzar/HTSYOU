@@ -3,7 +3,7 @@
 * @package   Widgetkit
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   YOOtheme Proprietary Use License (http://www.yootheme.com/license)
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 // no direct access
@@ -30,7 +30,15 @@ $id = $this->identifier.'-'.uniqid();
 
 	<?php foreach ($thumbs as $image) : ?>
 		<li>
-			<img src="<?php echo $image['img']; ?>" alt="<?php echo $image['filename']; ?>" />
+			<?php
+				if(!is_numeric($settings['width']) || !is_numeric($settings['height'])){
+					list($width, $height) = @getimagesize($image['img_file']);
+				}else{
+					$width  = $settings['width'];
+					$height = $settings['height'];
+				}
+			?>
+			<img src="<?php echo $image['img']; ?>" alt="<?php echo $image['filename']; ?>" height="<?php echo $height; ?>" width="<?php echo $width; ?>"/>
 		</li>
 	<?php endforeach; ?>
 

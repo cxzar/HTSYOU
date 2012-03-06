@@ -81,7 +81,7 @@ class ExportHelper extends AppHelper {
 		$data = array();
 
 		$i = 1;
-		$compare = array();
+		$maxima = array();
 		foreach ($item_table->getByType($type->id, $type->getApplication()->id) as $item) {
 
 			// item properties
@@ -136,7 +136,11 @@ class ExportHelper extends AppHelper {
 				}
 			}
 
-			$compare = array_replace_recursive($compare, $data[$i]);
+			foreach ($data[$i] as $key => $value) {
+				if (is_array($value)) {
+					$maxima[$key] = max(1, @$maxima[$key], count($value));
+				}
+			}
 
 			$item_table->unsetObject($item->id);
 
@@ -147,17 +151,16 @@ class ExportHelper extends AppHelper {
 			return false;
 		}
 
-		// determine maxima to pad arrays
-		$maxima = array_map(create_function('$a', 'return count($a);'), array_filter($compare, create_function('$a', 'return is_array($a);')));
+		// use maxima to pad arrays
 		foreach ($maxima as $key => $num) {
 			foreach (array_keys($data) as $i) {
-				$data[$i][$key] = array_pad((isset($data[$i][$key]) ? $data[$i][$key] : array()), max(1, $num), '');
+				$data[$i][$key] = array_pad($data[$i][$key], $num, '');
 			}
 		}
 
 		// set header
 		array_unshift($data, array());
-		foreach ($compare as $key => $value) {
+		foreach ($data[1] as $key => $value) {
 			$num = is_array($value) ? count($value) : 1;
 			$data[0] = array_merge($data[0], array_fill(0, max(1, $num), $key));
 		}

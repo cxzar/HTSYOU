@@ -50,6 +50,14 @@
 .wk-ie7 .wk-slideshow-default .nav span { zoom: 1; }
 
 
+/* Slideshow: Screen Style
+----------------------------------------------------------------------------------------------------*/
+
+.wk-ie7 .wk-slideshow-screen .nav li,
+.wk-ie7 .wk-slideshow-screen .nav span { display: inline; }
+.wk-ie7 .wk-slideshow-screen .nav span { zoom: 1; }
+
+
 /* Slideshow: List Style
 ----------------------------------------------------------------------------------------------------*/
 

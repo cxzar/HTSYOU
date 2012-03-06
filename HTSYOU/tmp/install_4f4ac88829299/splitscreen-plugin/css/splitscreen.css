@@ -1,0 +1,310 @@
+/*-----------------------------------------------------------------------*/	
+/*
+ *
+ * SPLITSCREEN - Fullscreen Splitting Page Splash Ad Jquery Plugin
+ * URL: http://www.codecanyon.net/user/d8n
+ * Version: 1.0
+ * Author: D8N
+ * Author URL: http://www.codecanyon.net/user/d8n
+ * Copyright © 2011
+ * All rights reserved.
+ *
+ */
+/*-----------------------------------------------------------------------*/	
+/******************************************/
+/** SPLITSCREEN CSS ***************************/
+/******************************************/
+
+	*{
+	margin:0;
+	padding:0;
+	}	
+	
+	.splitscreen_body{position:relative; overflow:hidden; overflow-y:hidden; overflow-x:hidden;}
+	
+	.splitscreen {
+	position:fixed;
+	overflow:hidden;
+	height:100%;
+	width:100%;
+	min-height:100%;
+	min-width: 100%;
+	z-index:300;
+	background:transparent;
+	}
+	.splitscreen-main{
+	position:fixed; 
+	top:0; 
+	left:0; 
+	width:100%; 
+	height:100%; 
+	z-index:108; 
+	}
+	.splitscreen-logo{
+	position:absolute;
+	width:100%;
+	height:100%;
+	z-index:105;	
+	border:0px solid white;
+	top:0;
+	}
+	.splitscreen-logo-left{
+	left:0px;
+	width:200%;
+	}		
+	.splitscreen-logo-right{
+	right:0px;
+	width:200%;
+	}		
+	.splitscreen-left{
+	position:fixed;
+	left:0;
+	top:0;
+	height:100%;
+	width:50%;
+	overflow:hidden;
+	z-index:105;
+	}
+	.splitscreen-right{
+	position:fixed;
+	left:50%;
+	top:0;
+	height:100%;
+	width:50%;
+	overflow:hidden;
+	z-index:105;
+	}
+	.splitscreen-bg-left{
+	position:relative;
+	left:0;
+	top:0;
+	z-index:105;
+	}
+	.splitscreen-bg-right{
+	position:relative;
+	right:100%;
+	top:0;
+	z-index:105;
+	}
+	
+	/******************************/
+	
+	.splitscreen-shadow-left{
+	position:fixed;
+	left:0;
+	top:0;
+	margin-left:10px;
+	height:100%;
+	width:50%;
+	overflow:hidden;
+	z-index:104;
+	}
+	.splitscreen-shadow-right{
+	position:fixed;
+	left:50%;
+	top:0;
+	margin-left:-10px;
+	height:100%;
+	width:50%;
+	overflow:hidden;
+	z-index:104;
+	}	
+	
+	.splitscreen-shadow-left .splitscreen-shadow{
+	position:absolute;
+	left:0;
+	top:0;
+	height:100%;
+	width:100%;
+	overflow:hidden;
+	background:transparent url(../img/shadow-left.png) top right repeat-y;
+	z-index:104;
+	}
+	.splitscreen-shadow-right .splitscreen-shadow{
+	position:absolute;
+	right:0;
+	top:0;
+	height:100%;
+	width:100%;
+	overflow:hidden;
+	background:transparent url(../img/shadow-right.png) top left repeat-y;
+	z-index:104;
+	}
+	
+	/******************************/
+	
+	.splitscreen-activate{
+	position:fixed;
+	width: 20%;
+	background:transparent url(../img/clear.png);
+	height:100%;
+	left:50%;
+	margin-left:-10%;
+	z-index:107;
+	cursor:pointer;
+	}
+	.splitscreen-activate-2{
+	position:fixed;
+	width: 20%;
+	background:transparent;
+	height:100%;
+	left:50%;
+	margin-left:-10%;
+	z-index:106;
+	cursor:pointer;
+	}		
+	.splitscreen-underlay{
+	position:fixed;
+	width:100%;
+	height:100%;
+	z-index:103;
+	}
+	.splitscreen-teaser{
+	position:fixed;
+	width: 20%;
+	background:transparent;
+	height:100%;
+	left:50%;
+	margin-left:-10%;	
+	z-index:103;
+	}
+	.splitscreen-teaser-holder{
+	position:relative;
+	height:100%;
+	width:100%;
+	background:transparent;
+	}	
+	.splitscreen-teaser-holder table, td, th
+	{
+	border:0px solid #000000;
+	padding:0; 
+	margin:0;
+	height:100%;
+	width:100%;
+	}	
+	body .splitscreen-teaser-html{
+	display:none;
+	}
+	body .splitscreen-teaser .splitscreen-teaser-holder .splitscreen-teaser-body .splitscreen-teaser-html{
+	position:relative;
+	background:transparent;
+	padding:15px;
+	display:block;
+	}
+	/* SPLITSCREEN > LEFT FADE, RIGHT FADE AND RASTER
+	============================================*/
+
+	.splitscreen-fade-left{
+	position:absolute;
+	width:40%; 
+	height:100%;	
+	left:0px;
+	z-index:108;
+	}
+	.splitscreen-fade-right{
+	position:absolute;
+	width:40%;  
+	height:100%;	
+	right:0px;
+	z-index:108;
+	}	
+	.splitscreen-raster-left{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:100%;
+	z-index:106;
+	overflow:hidden;
+	}		
+	.splitscreen-raster-right{
+	position:absolute;
+	top:0px;
+	left:0px;
+	width:200%;
+	height:100%;
+	z-index:106;
+	overflow:hidden;
+	}
+	/* SPLITSCREEN > BUTTON HOLDER
+	============================================*/	
+	.splitscreen-button-div{
+	position:fixed;
+	width: 20%;
+	background:transparent;
+	height:100%;
+	left:50%;
+	margin-left:-10%;	
+	z-index:103;
+	}	
+	.splitscreen-button-holder{
+	position:relative;
+	height:100%;
+	width:100%;
+	background:transparent;
+	padding:10px 0px 10px 0px;
+	}
+	.splitscreen-button-holder table, td, th{
+	border:0px solid #000000;
+	padding:0; 
+	margin:0;
+	height:100%;
+	width:100%;
+	}	
+	/* SPLITSCREEN > LOAD MASK
+	============================================*/	
+	.splitscreen-load-mask{
+	position:fixed;
+	overflow:hidden;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	min-height:100%;
+	min-width: 100%;
+	z-index: 999;
+	display:block;
+	}
+	
+/******************************************/
+/** END SPLITSCREEN CSS ***********************/
+/******************************************/
+
+
+
+
+/*-----------------------------------------------------------------------*/	
+/* 
+ * Super Awesome Buttons with CSS3 and RGBA,
+ * Copyright ZURB,
+ * Freely available for distribution under the MIT license
+ */
+/*-----------------------------------------------------------------------*/	
+/******************************************/
+/** DEFAULT BUTTON CSS ********************/
+/******************************************/
+
+	.awesome, .awesome:visited {
+	background:#222222 url(../img/btn-gradient.png) left bottom repeat-x; 
+	display: inline-block; 
+	padding: 10px 15px 11px; 
+	margin:0px 10px 0px 10px;
+	color: #fff; 
+	text-decoration: none;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	position: relative;
+	cursor: pointer;
+	
+	} 	
+	
+	.awesome:hover									{ background-color: #111; color: #fff; }
+	.awesome:active									{ top: 1px; }
+
+/*****************************************/
+/** END BUTTON CSS ***********************/
+/*****************************************/

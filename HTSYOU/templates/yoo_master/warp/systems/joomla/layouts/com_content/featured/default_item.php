@@ -59,7 +59,9 @@ $canEdit	= $this->item->params->get('access-edit');
 					echo ' '.JText::_('TPL_WARP_ON').' <time datetime="'.substr($this->item->created, 0,10).'" pubdate>'.JHtml::_('date', $this->item->created, JText::_('DATE_FORMAT_LC3')).'</time>';
 				}
 
-				echo '. ';
+				if (($params->get('show_author') && !empty($this->item->author )) || $params->get('show_create_date')) {
+					echo '. ';
+				}
 	
 				if ($params->get('show_category')) {
 					echo JText::_('TPL_WARP_POSTED_IN').' ';

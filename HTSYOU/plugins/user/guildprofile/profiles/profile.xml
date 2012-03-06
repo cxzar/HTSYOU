@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="profile">
+		<fieldset name="profile"
+			label="PLG_GUILD_PROFILE_SLIDER_LABEL"
+		>
+			
+
+			<field
+				name="guildname"
+				type="password"
+				id="guildname"
+				description="Este password te lo da un oficial de la guild"
+				filter="string"
+				label="Guild password"
+				message="necesitas este campo"
+				size="30"
+			/>
+		</fieldset>
+	</fields>
+</form>

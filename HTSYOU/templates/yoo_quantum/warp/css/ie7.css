@@ -1,4 +1,4 @@
-/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+/* Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
 
 /*
  * IE7 Style Sheet - Only loaded by Internet Explorer 7
@@ -10,6 +10,12 @@
 
 /* undo forcing vertical scrollbar */
 body { overflow: visible; }
+
+/* HTML5 elements */
+audio, canvas, video {
+	display: inline;
+	zoom: 1;
+}
 
 img { -ms-interpolation-mode: bicubic; }
 

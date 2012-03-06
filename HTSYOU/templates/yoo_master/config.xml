@@ -58,6 +58,7 @@
 			<option value="timesnewroman">Times New Roman</option>
 			<option value="trebuchet">Trebuchet</option>
 			<option value="droidsans">Droid Sans</option>
+			<option value="KingsCrossRegular">hatesyou</option>
 		</field>
 		<field name="font2" type="list" default="default" label="Header Font" description="Select the headings typeface.">
 			<option value="arial">Arial</option>
@@ -68,6 +69,7 @@
 			<option value="bebas">Bebas Neue</option>
 			<option value="yanonekaffeesatz">Yanone Kaffeesatz</option>
 			<option value="droidsans">Droid Sans</option>
+			<option value="KingsCrossRegular">hatesyou</option>
 		</field>
 		<field name="font3" type="list" default="default" label="Menu Font" description="Select the menu typeface.">
 			<option value="arial">Arial</option>
@@ -78,6 +80,7 @@
 			<option value="bebas">Bebas Neue</option>
 			<option value="yanonekaffeesatz">Yanone Kaffeesatz</option>
 			<option value="droidsans">Droid Sans</option>
+			<option value="KingsCrossRegular">hatesyou</option>
 		</field>
 		<field name="Content" type="separator" />
 		<field name="date" type="radio" default="1" label="Date" description="Show the date.">

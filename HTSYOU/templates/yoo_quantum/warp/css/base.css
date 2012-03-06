@@ -1,4 +1,4 @@
-/* Copyright (C) YOOtheme GmbH, YOOtheme Proprietary Use License (http://www.yootheme.com/license) */
+/* Copyright (C) YOOtheme GmbH, http://www.gnu.org/licenses/gpl.html GNU/GPL */
 
 /*
  * Base Style Sheet - Reduces inconsistencies across all browsers
@@ -45,11 +45,13 @@ input[type='reset'],
 select, button, label { cursor: pointer; }
 
 
-/* Render new HTML5 elements as blocks
+/* HTML5 elements
 ----------------------------------------------------------------------------------------------------*/
 
-article, aside, details, figcaption, figure,
-footer, header, hgroup, nav, section { display: block; }
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section { display: block; }
+audio, canvas, video { display: inline-block; }
+audio:not([controls]) { display: none; }
+[hidden] { display: none; }
 
 
 /* New Base Values

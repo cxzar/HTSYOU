@@ -1,0 +1,32 @@
+jQuery Splitscreen 1.3
+
+Changelog
+
+## 8/31/2011 (1.3.0)
+
+0 Added support for touch devices using MobileES to determine if Splitscreen should use mousedown or mousenter based on device.
+
+## 8/29/2011 (1.3.0)
+
+0 Integrated the floating image feature, allowing for the placement of a floating image in 9 different locations within Splitscreen:
+  left top, left center, left bottom, right top, right center, right bottom, center top, center, center bottom
+
+## 8/14/2011 (1.2.5)
+
+0 Updated cookie handling by integrating Klaus Hartl's jQuery Cookie Plugin
+1 Customization upgrade mainly for Promo mode. Font Color, Font Family and Size options were added to the 'Promo' and 'Continue' button configuration. 
+
+## 8/10/2011 (1.2.0)
+
+0 Minor code improvements and optimization
+1 Hide browser scrollbar until Splitscreen is dismissed
+
+## 07/25/2011 (1.0.0)
+
+0 Added mdetect.js (under Apache license 2.0) to the '/js' folder to ensure the plugin degrades well with devices that it's not optimized display on.
+1 On line 284, removed a duplicative declaration of $($this) variable
+2 Moved showOption() and showOptionBtn() functions outside of each() for optimization
+3 On line 122, added isTierIphone and DetectMobileQuick() to the if() function to put 'mdetect.js' to work
+4 Updated the example html files to include mdetect.js
+5 Updated the docs to reflect the changes.
+6 Fixed path to splitscreen file in the html examples

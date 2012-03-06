@@ -1,11 +1,21 @@
 # Warp Theme Framework #
 
-- Version: 6.1.6
+- Version: 6.1.8
 - Date: February 2012
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com/warp>
 
 ## Changelog
+
+	6.1.8
+	# Fixed com_contact, com_weblinks, com_newsfeed, com_content overrides (J25)
+	# Fixed "dot" issue in meta text in com_content overrides (J)
+	# Fixed tracking code saving (WP)
+
+	6.1.7
+	# Fixed mbstring extension check
+	^ Updated HTML5 Shiv to 3.4
+	^ Update HTML5 display defaults in base.css
 
 	6.1.6
 	+ Added CSS for pagebreak navigation (J)

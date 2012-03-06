@@ -3,7 +3,7 @@
 * @package   yoo_quantum
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   YOOtheme Proprietary Use License (http://www.yootheme.com/license)
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 // get template configuration
@@ -114,6 +114,7 @@ include($this['path']->path('layouts:template.config.php'));
 
 	<div id="m-navigation-storage"><?php echo $this['modules']->render($this['config']->get('mobile_position_menu'), array("menu" => "mobile")); ?></div>
 
+	<?php echo $this->render('footer'); ?>
 </body>
 
 </html>

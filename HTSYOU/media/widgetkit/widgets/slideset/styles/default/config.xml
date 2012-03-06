@@ -19,9 +19,10 @@
 			<option value="10">10</option>
 			<option value="set">Use Set Name</option>
 		</setting>
-		<setting name="navigation" label="Navigation" type="radio" default="1">
+		<setting name="navigation" label="Navigation" type="list" default="1">
 			<option value="1">Show</option>
 			<option value="0">Hide</option>
+			<option value="2">Use Set Name</option>
 		</setting>
 		<setting name="buttons" label="Buttons" type="radio" default="0">
 			<option value="1">Show</option>

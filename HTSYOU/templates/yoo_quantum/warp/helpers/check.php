@@ -3,7 +3,7 @@
 * @package   Warp Theme Framework
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   YOOtheme Proprietary Use License (http://www.yootheme.com/license)
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -71,7 +71,7 @@ class CheckWarpHelper extends WarpHelper {
         }
 
 		// check multibyte string support
-        if (!class_exists('DOMDocument')) {
+        if (!extension_loaded('mbstring')) {
            $this->issues['notice'][] = 'No <a href="http://php.net/manual/en/book.mbstring.php">Multibyte string (mbstring)</a> support available.';
         }
 

@@ -1,0 +1,5 @@
+/*la tipografía se activa en la plantilla config style body font. Agregar todas las tags que quieren que aparezca con el tipo de fuente aquí, separadas con coma*/
+#Hates{ 
+	font-family: "KingsCrossRegular";
+	font-size: 120pt;
+}

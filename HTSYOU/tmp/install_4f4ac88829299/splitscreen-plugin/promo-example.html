@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en" xml:lang="en">
+<head>
+	<title>Splitscreen PROMO mode</title>	
+
+	<!-- META -->
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+	<meta name="author" content="Daton Lynch" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/splitscreen.css" type="text/css" media="all"/>
+	
+	<!-- JS -->
+	<script type="text/javascript" src="js/jquery-1.6.2.min.js"></script>
+	<script type="text/javascript" src="js/jquery.easing-1.3.js"></script>
+	<script type="text/javascript" src="js/mdetect.js"></script>
+	<script type="text/javascript" src="js/jquery.splitscreen-1.3.js"></script>
+	
+</head>
+<body>
+
+<!-- Demo Web Page Content -->
+<center><img src="example.jpg" /></center>
+<!-- end Demo Web Page Content -->
+
+
+
+
+	<!-- ----------------------------------------- -->
+	<!-- Splitscreen Teaser Html ----------------- -->
+	<!-- ----------------------------------------- -->
+	<div class="splitscreen-teaser-html" style="color:#fff; font-weight:bold">
+		IF SPLITMODE IS SET TO TEASER, TEASER HTML CODE BELONGS IN THIS DIV.
+		<a href='#' class="x-splitscreen" style="color:#ccc">Continue to website</a>
+	</div>
+
+	<!-- ----------------------------------------- -->
+	<!-- Splitscreen Initialize Plugin ----------- -->
+	<!-- ----------------------------------------- -->
+	<script type="text/javascript">
+	$('body').splitscreen({
+	
+		//See 'Configuration Options' in the User guide for parameter info.
+		
+		/* Mode */
+		splitMode:		'promo',			
+		cookieName:		'splitscreen',			
+		
+		/* True or False */
+		cookieOn:			false,				 			
+		showPromoBtn:		true,				
+		showContinueBtn:	true, 						
+		showFade:			true,				
+		showRaster:			true, 		
+		showCenter:			true, 		
+		showCenterTop:		false, 	    /* NEW show center image on the top */
+		showCenterBottom:	false, 	    /* NEW show center image on the bottom */		
+		showFloatRightTop:    false,	/* NEW show floating image in right top */
+		showFloatRightCenter: false,	/* NEW show floating image in right center */
+		showFloatRightBottom: false,	/* NEW show floating image in right bottom */		
+		showFloatLeftTop:     false,	/* NEW show floating image in left top */
+		showFloatLeftCenter:  false,	/* NEW show floating image in left center */
+		showFloatLeftBottom:  false,	/* NEW show floating image in left bottom */					
+		showUnderlay:		true,					
+		showIntroSplit:		true, 				
+		showAutoSplit:		true, 				
+		showHints:			false, 				
+
+		/* Timer */
+		splitTimeIntro: 	2000, 		
+		splitTimeAuto:		15000, 
+
+		/* Images */		
+		imageDir: 			'img/',		
+		imageBG:			'background-3.jpg', 	
+		imageWidthBG: 		1920, 				
+		imageHeightBG:		1080, 						
+		imageRaster:		'raster00.png', 	
+		alphaRaster:		'80', 					
+		imageCenter:		'logo-large.png',
+		imageFloating:		'logo-large.png',	/* NEW - set the  floating image to use */			
+		imageFadeLeft:		'fade-left.png',	
+		imageFadeRight:		'fade-right.png',	
+		imageLoading:		'loader-black.gif',	
+		imageLoadingBG: 	'#000000',			
+		
+		/* Align Teaser */
+		verticalAlignTeaser:	'middle',		 		
+
+		/* Align Buttons*/
+		verticalAlignBtn:	'middle',			
+		
+		/* Continue button */		
+		textContinueBtn:		'Continue to site &raquo;', 
+		colorContinueTxt:		'#ffffff', 					
+		fontContinueTxt:		'Georgia1, Georgia, serif', 		
+		sizeContinueBtn:		'14px',						
+		colorContinueBtn:		'#333333',					
+		colorContinueRoll:		'#999999',					
+		
+		/* Promo button */
+		textPromoBtn:		'Build Something Too &raquo;',	
+		colorPromoTxt:		'#ffffff', 													
+		fontPromoTxt:		'Georgia1, Georgia, serif', 									
+		sizePromoBtn:		'18px',													 	
+		colorPromoBtn:		'#cc0000',													
+		colorPromoRoll:		'#ff0000',														
+		urlPromoBtn:		'http://www.google.com',									
+		targetPromoBtn:		'_blank',															
+
+		/* Underlay */
+		colorUnderlay:			'#000000',			
+		alphaUnderlay:			'95'
+	});	
+	</script>
+</body>
+</html>

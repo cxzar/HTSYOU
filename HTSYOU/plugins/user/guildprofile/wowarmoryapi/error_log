@@ -1,0 +1,390 @@
+[01-Feb-2012 15:02:37] PHP Fatal error:  Class 'BattlenetArmory' not found in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 3
+[01-Feb-2012 15:02:50] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('eu', 'Defias Brotherh...', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(41): BattlenetArmo in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:03:51] PHP Fatal error:  Uncaught exception 'PDOException' with message 'could not find driver' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct(':host=;dbname=', NULL, NULL)
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('eu', 'Defias Brotherh...', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(4): BattlenetArmory->getGuild('Shadowsong')
+#7 {main}
+  thrown in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:03:52] PHP Fatal error:  Uncaught exception 'PDOException' with message 'could not find driver' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct(':host=;dbname=', NULL, NULL)
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('eu', 'Defias Brotherh...', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(4): BattlenetArmory->getGuild('Shadowsong')
+#7 {main}
+  thrown in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:05:55] PHP Fatal error:  Uncaught exception 'PDOException' with message 'could not find driver' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct(':host=;dbname=', NULL, NULL)
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(4): BattlenetArmory->getGuild('Shadowsong')
+#7 {main}
+  thrown in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:05:58] PHP Fatal error:  Uncaught exception 'PDOException' with message 'could not find driver' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct(':host=;dbname=', NULL, NULL)
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(4): BattlenetArmory->getGuild('Shadowsong')
+#7 {main}
+  thrown in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:07:45] PHP Fatal error:  Uncaught exception 'PDOException' with message 'could not find driver' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct(':host=;dbname=', NULL, NULL)
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(4): BattlenetArmory->getGuild('Shadowsong')
+#7 {main}
+  thrown in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:09:40] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(13): BattlenetArmory->getGuil in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:09:41] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(13): BattlenetArmory->getGuil in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:10:03] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(11): BattlenetArmory->getGuil in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:10:04] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(11): BattlenetArmory->getGuil in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:10:05] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(11): BattlenetArmory->getGuil in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:10:05] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(11): BattlenetArmory->getGuil in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:10:05] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(11): BattlenetArmory->getGuil in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:12:09] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Shadowsong')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(11): BattlenetArmory->getGuil in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:12:20] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(11): BattlenetArmory->getGuild(' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:12:21] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(11): BattlenetArmory->getGuild(' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:12:22] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[28000] [1045] Access denied for user 'figmentw'@'localhost' (using password: NO)' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', '', '')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php(11): BattlenetArmory->getGuild(' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:17:01] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:17:02] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:17:03] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:17:04] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=127....', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:17:34] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:17:35] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:22:58] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:23:00] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:35:10] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:35:11] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:39:40] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:21
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(21): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 21
+[01-Feb-2012 15:42:57] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:23
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(23): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 23
+[01-Feb-2012 15:42:58] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:23
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(23): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 23
+[01-Feb-2012 15:42:58] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:23
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(23): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 23
+[01-Feb-2012 15:42:58] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:23
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(23): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 23
+[01-Feb-2012 15:42:58] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:23
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(23): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 23
+[01-Feb-2012 15:42:59] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:23
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(23): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 23
+[01-Feb-2012 15:42:59] PHP Fatal error:  Uncaught exception 'PDOException' with message 'SQLSTATE[42000] [1044] Access denied for user 'figmentw_asiste'@'localhost' to database 'figmentw_wow'' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php:23
+Stack trace:
+#0 /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php(23): PDO->__construct('mysql:host=loca...', 'figmentw_asiste', 'XgS@Kw87V~eX')
+#1 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(158): SafePDO->__construct()
+#2 /home/figmentw/public_html/magazine/wow/wowarmoryapi/CacheControl.class.php(29): CacheControl->openDatabase()
+#3 /home/figmentw/public_html/magazine/wow/wowarmoryapi/jsonConnect.class.php(28): CacheControl->__construct()
+#4 /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php(20): jsonConnect->__construct()
+#5 /home/figmentw/public_html/magazine/wow/wowarmoryapi/BattlenetArmory.class.php(138): Guild->__construct('us', 'Estigma', 'Estigma')
+#6 /home/figmentw/public_html/magazine/wow/wowarmoryapi/gu in /home/figmentw/public_html/magazine/wow/wowarmoryapi/SafePDO.class.php on line 23
+[01-Feb-2012 15:49:57] PHP Warning:  imagecreatefrompng(/home/figmentw/public_html/magazine/wow/wowarmoryapi/img/static/.png) [<a href='function.imagecreatefrompng'>function.imagecreatefrompng</a>]: failed to open stream: No such file or directory in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 335
+[01-Feb-2012 15:49:57] PHP Warning:  imagesx(): supplied argument is not a valid Image resource in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 352
+[01-Feb-2012 15:49:57] PHP Warning:  imagesy(): supplied argument is not a valid Image resource in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 353
+[01-Feb-2012 15:49:57] PHP Warning:  imagecopy(): supplied argument is not a valid Image resource in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 357
+[01-Feb-2012 15:49:57] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php:335) in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 190
+[01-Feb-2012 15:51:27] PHP Warning:  imagecreatefrompng(/home/figmentw/public_html/magazine/wow/wowarmoryapi/img/static/.png) [<a href='function.imagecreatefrompng'>function.imagecreatefrompng</a>]: failed to open stream: No such file or directory in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 335
+[01-Feb-2012 15:51:27] PHP Warning:  imagesx(): supplied argument is not a valid Image resource in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 352
+[01-Feb-2012 15:51:27] PHP Warning:  imagesy(): supplied argument is not a valid Image resource in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 353
+[01-Feb-2012 15:51:27] PHP Warning:  imagecopy(): supplied argument is not a valid Image resource in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 357
+[01-Feb-2012 15:51:27] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php:335) in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 190
+[01-Feb-2012 15:58:18] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 129
+[01-Feb-2012 15:59:27] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 130
+[01-Feb-2012 15:59:28] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 130
+[01-Feb-2012 15:59:57] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 132
+[01-Feb-2012 15:59:57] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 132
+[01-Feb-2012 15:59:58] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 132
+[01-Feb-2012 16:04:33] PHP Catchable fatal error:  Object of class Character could not be converted to string in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 15
+[01-Feb-2012 16:04:34] PHP Catchable fatal error:  Object of class Character could not be converted to string in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 15
+[01-Feb-2012 16:04:35] PHP Catchable fatal error:  Object of class Character could not be converted to string in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 15
+[01-Feb-2012 16:04:35] PHP Catchable fatal error:  Object of class Character could not be converted to string in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 15
+[01-Feb-2012 16:07:44] PHP Catchable fatal error:  Object of class Character could not be converted to string in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 11
+[01-Feb-2012 16:09:49] PHP Fatal error:  Call to undefined method Character::getGuild() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 13
+[01-Feb-2012 16:24:39] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 127
+[01-Feb-2012 16:27:12] PHP Fatal error:  Call to a member function getMembers() on a non-object in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 11
+[01-Feb-2012 16:28:29] PHP Fatal error:  Call to undefined function  getcurrenttitle() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 43
+[01-Feb-2012 16:28:29] PHP Fatal error:  Call to undefined function  getcurrenttitle() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 43
+[01-Feb-2012 16:29:29] PHP Warning:  imagecreatefrompng(/home/figmentw/public_html/magazine/wow/wowarmoryapi/img/static/.png) [<a href='function.imagecreatefrompng'>function.imagecreatefrompng</a>]: failed to open stream: No such file or directory in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 335
+[01-Feb-2012 16:29:29] PHP Warning:  imagesx(): supplied argument is not a valid Image resource in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 352
+[01-Feb-2012 16:29:29] PHP Warning:  imagesy(): supplied argument is not a valid Image resource in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 353
+[01-Feb-2012 16:29:29] PHP Warning:  imagecopy(): supplied argument is not a valid Image resource in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 357
+[01-Feb-2012 16:29:29] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php:335) in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 190
+[01-Feb-2012 16:35:56] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php:15) in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 190
+[01-Feb-2012 16:48:31] PHP Fatal error:  Call to private method Character::excludeFields() from context '' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 15
+[01-Feb-2012 21:04:28] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php:16) in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 190
+[01-Feb-2012 21:04:37] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php:16) in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 190
+[01-Feb-2012 21:04:38] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php:16) in /home/figmentw/public_html/magazine/wow/wowarmoryapi/Guild.class.php on line 190
+[01-Feb-2012 21:10:06] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 18
+[01-Feb-2012 21:10:21] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 16
+[01-Feb-2012 21:10:21] PHP Parse error:  syntax error, unexpected T_DOUBLE_ARROW in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 16
+[01-Feb-2012 21:19:09] PHP Parse error:  syntax error, unexpected T_ECHO in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 18
+[01-Feb-2012 21:19:13] PHP Parse error:  syntax error, unexpected T_ECHO in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 18
+[09-Feb-2012 17:47:28] PHP Fatal error:  Call to undefined method BattlenetArmory::getData() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:08] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:08] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:09] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:09] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:09] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:10] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:21] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:22] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:22] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:22] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:23] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 17:48:23] PHP Fatal error:  Call to undefined method BattlenetArmory::getMounts() in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 12
+[09-Feb-2012 18:20:32] PHP Parse error:  syntax error, unexpected '}' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 26
+[09-Feb-2012 18:21:23] PHP Parse error:  syntax error, unexpected '}' in /home/figmentw/public_html/magazine/wow/wowarmoryapi/guild.php on line 26
+[10-Feb-2012 19:54:44] PHP Fatal error:  Call to a member function getCharacter() on a non-object in /home/figmentw/public_html/magazine/wow/plugins/system/usermeta/wowarmoryapi/guild_test.php on line 11
+[10-Feb-2012 20:14:24] PHP Fatal error:  Call to a member function getMembers() on a non-object in /home/figmentw/public_html/magazine/wow/plugins/system/usermeta/wowarmoryapi/guild_test.php on line 12
+[10-Feb-2012 20:29:15] PHP Parse error:  syntax error, unexpected T_INC, expecting ')' in /home/figmentw/public_html/magazine/wow/plugins/system/usermeta/wowarmoryapi/guild_test.php on line 18
+[10-Feb-2012 20:30:27] PHP Parse error:  syntax error, unexpected ';' in /home/figmentw/public_html/magazine/wow/plugins/system/usermeta/wowarmoryapi/guild_test.php on line 19
+[10-Feb-2012 20:46:32] PHP Fatal error:  Cannot use object of type Character as array in /home/figmentw/public_html/magazine/wow/plugins/system/usermeta/wowarmoryapi/guild_test.php on line 28
+[10-Feb-2012 20:47:48] PHP Fatal error:  Cannot use object of type Character as array in /home/figmentw/public_html/magazine/wow/plugins/system/usermeta/wowarmoryapi/guild_test.php on line 28
+[15-Feb-2012 22:51:23] PHP Parse error:  syntax error, unexpected '}' in /home/figmentw/public_html/magazine/joomla/plugins/user/profile/wowarmoryapi/guild.php on line 31
+[16-Feb-2012 12:58:56] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/figmentw/public_html/magazine/joomla/plugins/user/profile/wowarmoryapi/guild.php on line 21

@@ -10,7 +10,9 @@
 		<?php endif; ?>
 		
 			<?php if ($show_date) : ?>
-			<time datetime="<?php echo date(DATE_W3C, strtotime($tweets[0]->created_at)); ?>" pubdate></time>
+			<a class="statuslink" href="<?php echo $tweets[0]->getStatusLink(); ?>">
+				<time datetime="<?php echo date(DATE_W3C, strtotime($tweets[0]->created_at)); ?>" pubdate></time>
+			</a>
 			<?php endif; ?>
 		
 	</p>

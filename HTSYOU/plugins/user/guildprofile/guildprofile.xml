@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.1" type="plugin" group="user">
+	<name>Guild-Profile</name>
+	<author>Orcadiano@ragnaros</author>
+	<creationDate>February 2012</creationDate>
+	<copyright>(C) 2012 - 2020. All rights reserved.</copyright>
+	<license>(C)</license>
+	<authorEmail>elponchotrucker@gamil.com</authorEmail>
+	<version>1.1.0</version>
+	<description>PLG_GUILD_PROFILE_XML_DESCRIPTION</description>
+
+	<files>
+		<filename plugin="guildprofile">guildprofile.php</filename>
+		<filename>index.html</filename>
+		<folder>profiles</folder>
+		<folder>wowarmoryapi</folder>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.plg_user_guildprofile.ini</language>
+		<language tag="en-GB">en-GB.plg_user_guildprofile.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+				<field name="register-require-user" type="spacer" class="text"
+					label="PLG_GUILD_PROFILE_FIELD_NAME_REGISTER_REQUIRE_USER"
+				/>
+
+				<field
+				name="public_key"
+				type="text"
+				default=""
+				label="COM_GUILD_FIELD_RESET_PASSWORD1_LABEL"
+				description="PLG_GUILD_PROFILE_FIELD_GUILDPASS"
+				required="true"
+				filter="string"				
+				size="15" />
+
+				<field
+				name="guild_name"
+				type="text"
+				default=""
+				label="PLG_GUILD_PROFILE_FIELD_GUILD_NAME"
+				description="Nombre de tu guild"
+				required="true"
+				filter="string"
+				size="15" />
+
+				<field
+				name="range_minimum"
+				type="integer"
+				default=""
+				label="PLG_GUILD_PROFILE_FIELD_RANK"
+				description="El rango minimo para poder registrarse 0 = todos los rangos se pueden registrar"
+				first="0" last="10" step="1"
+				required="true"
+				filter="string"
+				size="2" />
+				
+				<field
+				name="real_name"
+				type="text"
+				default=""
+				label="PLG_GUILD_PROFILE_FIELD_NOMBRE_SERVER"
+				description="Nombre de el servidor"
+				required="true"
+				filter="string"
+				size="15" />
+
+				<field name="region" type="list"
+
+					description="PLG_GUILD_PROFILE_FIELD_ADDRESS1_DESC"
+					label="PLG_GUILD_PROFILE_FIELD_GUILD_SERVER"
+				>
+					<option value="US">US</option>
+					<option value="EU">EU</option>
+					<option value="TW">TW</option>	
+					<option value="KR">KR</option>
+				</field>
+				
+				
+				<field name="register-require_guildname" type="list"
+
+					description="El nombre de la guild a la que pertenece"
+					label="PLG_GUILD_PROFILE_GUILD_NAME"
+				>
+					<option value="2">JOPTION_REQUIRED</option>
+					<option value="1">JOPTION_OPTIONAL</option>
+					<option value="0">JDISABLED</option>
+				</field>
+						
+			</fieldset>
+
+		</fields>
+	</config>
+</extension>

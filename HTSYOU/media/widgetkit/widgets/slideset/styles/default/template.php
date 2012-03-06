@@ -3,7 +3,7 @@
 * @package   Widgetkit
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   YOOtheme Proprietary Use License (http://www.yootheme.com/license)
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 	$widget_id = $widget->id.'-'.uniqid();
@@ -14,10 +14,6 @@
 	if (is_numeric($settings['items_per_set'])) {
 		
 		$sets = array_chunk($widget->items, $settings['items_per_set']);
-
-		foreach (array_keys($sets) as $s) {
-			$nav[] = '<li><span></span></li>';
-		}
 
 	} else {
 	
@@ -30,10 +26,10 @@
 			$sets[$item['set']][] = $item;
 		}
 
-		foreach (array_keys($sets) as $s) {
-			$nav[] = '<li><span>'.$s.'</span></li>';
-		}
+	}
 
+	foreach (array_keys($sets) as $s) {
+		$nav[] = ($settings['navigation'] == 2) ? '<li><span>'.$s.'</span></li>' : '<li><span></span></li>';
 	}
 
 	$i = 0;
@@ -63,6 +59,6 @@
 		<?php if ($settings['buttons']): ?><div class="next"></div><div class="prev"></div><?php endif; ?>
 	</div>
 	<?php if ($settings['navigation'] && count($nav)) : ?>
-	<ul class="nav <?php echo (is_numeric($settings['items_per_set'])) ? 'icon' : 'text'; ?>"><?php echo implode('', $nav); ?></ul>
+	<ul class="nav <?php echo ($settings['navigation'] == 1) ? 'icon' : 'text'; ?>"><?php echo implode('', $nav); ?></ul>
 	<?php endif; ?>
 </div>

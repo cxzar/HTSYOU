@@ -1,0 +1,546 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>Template Documentation Template</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/table.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }	
+		.new{color:#006600}
+		.prior{color:#993300}
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;jQuery Splitscreen Plugin&rdquo; Documentation by &ldquo;Daton Lynch&rdquo; v1.3</h3>
+		
+		<hr>
+		
+		<h1 class="center">&ldquo;jQuery Splitscreen Plugin&rdquo;</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					Created: 07/24/2011<br>
+					Updated: 08/29/2011<br>
+					By: <a href="http://codecanyon.net/user/d8n">Daton Lynch</a><br>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thank you for purchasing my plugin. If you have any questions that are beyond the scope of this help file, please feel free to email via my user page contact form <a href="http://codecanyon.net/user/d8n">here</a>.</p>
+			</div>
+		</div><!-- end div .borderTop -->
+		
+		<hr>
+		<h2 class="alt">About Splitscreen</h2>
+		
+		<p class="prepend-top append-0">Splitscreen is a unique, mouse-responsive fullscreen billboard-style jQuery overlay plugin with three modes: <i>splash</i>, <i>promo</i>, and <i>teaser</i>; and several options for plugin customization.
+		Simply add the Splitscreen Css and Javascript files to the head of your webpage and initialize the plugin at the bottom of your webpage, leave the rest of your webpage content in tact and Splitscreen will do the rest. 
+		</p> 
+
+		<p class="prepend-top append-0">In <b>Splash mode</b>, Splitscreen appears above your website content and is dismissed(closed) by clicking on the center of the page.</p> 
+		<p class="prepend-top append-0">In <b>Promo mode</b> Splitscreen appears above your website content with two buttons behind the split. One button leades to a custom
+		url, while the other dismisses(closes) Splitscreen, allowing the user to view the current page.</p> 
+		
+		<p class="prepend-top append-0">In <b>Teaser mode</b> Splitscreen appears above your website content and provides the option to
+		add custom 'teaser' html behind the split; in this mode Splitscreen cannot be dismissed(closed)	unless you add css to the 'teaser' html
+		or use javascript to <a href="#closing">Close Splitscreen Externally</a>.</p>
+
+		<p><h3 class="new"><strong>Updated (v1.3)</strong></h3> Splitscreen has been updated. Version 1.3 updates Splitscreen by (1) Providing <strong>support for mobile and touch devices</strong> using detection and mousedown events when viewed on mobile and touch devices. (2) The update also integrates the floating image feature, allowing for the placement of a floating image in 9 different locations within Splitscreen. See <a href="#initialize">Initializing the Plugin</a> and <a href="#config">Configuration Options</a> for usage. New options are in bolded <span style="color:#006600; font-weight:bold">green</span></p>
+		
+		<p><h3 class="prior"><strong>Prior update (v1.2)</strong></h3> Version 1.2 updated Splitscreen with a customization upgrade mainly for Promo mode. Font Color, Font Family and Size options were added to the 'Promo' and 'Continue' button configuration. Example files have been updated to reflect the new options. In addition, a new 'true, false' option named 'showHints' was added to enable plugin users to turn Splitscreen's alt/title tags on or off.</p>
+		
+		<hr>		
+		
+		<h2 id="toc" class="alt">Getting Started</h2>
+		<ol class="alpha">
+			<li><a href="#assets">Splitscreen Assets</a></li>
+			<li><a href="#headerincludes">Files to Include in the Header</a></li>
+			<li><a href="#initialize">Initializing the Plugin</a></li>
+			<li><a href="#closing">Close Splitscreen Externally</a></li>
+			<li><a href="#config">Configuration Options</a></li>
+			<li><a href="#sources">Sources, Credits and Notes</a></li> 
+			<li><a href="#faqs">FAQs - Frequently Asked Questions</a></li>
+		</ol>
+		
+		<hr>
+
+		<h3 id="assets"><strong>1. Splitscreen Assets</strong> - <a href="#toc">top</a></h3>
+		<p>The Splitscreen directory contains three folders and comes with three example files to show you how <i>jQuery.Splitscreen</i> is used. The plugins' assets are as follows:</p>
+		
+<p><h3><b>/js</b></h3></p>
+<p>
+The <b>js</b> directory includes the following javascript files.<br /><br />
+
+<b>&raquo; <i>jquery.splitscreen.1.3.js</i></b><br />
+<pre>	This is the main javascript file for the Splitscreen plugin.
+	The minified version is also included in the package: jquery.splitscreen.1.3.min.js</pre>
+
+<b>&raquo; <i>jquery-1.6.2.min.js</i></b><br />
+<pre>	The latest version of the jQuery library.</pre>
+
+<b>&raquo; <i>jquery.easing.1.3.js</i></b><br />
+<pre>	The jQuery plugin for animation easing.</pre>
+
+<b>&raquo; <i>mdetect.js</i></b><br />
+<pre>	Detects mobile devices. Referenced in jquery.splitscreen.1.3.js to prevent
+	the plugin from displaying on incompatiable mobile devices so that the
+	webpage can be viewed unobstructed in those situations.</pre>
+</p>
+
+<hr>
+
+<p><h3><b>/css</b></h3></p>
+<p>
+The <b>css</b> directory includes the stylesheet for the plugin in one file:<br /><br />
+
+<b>&raquo; <i>splitscreen.css</i></b><br />
+<pre>	The css file for the Splitscreen plugin.</pre>
+
+</p>
+
+<hr>
+
+<p><h3><b>/img</b></h3></p>
+<p>
+The <b>img</b> directory contains the numerous images that are native to the plugin.<br /><br />
+
+</p>
+
+		<hr>
+
+		<h3 id="headerincludes"><strong>2. Files to Include in the Header</strong> - <a href="#toc">top</a></h3>
+
+		<p>Include the follow css and javascript files in the head of your html document.</p>  
+
+<pre style="background:#fafafb; Border: 1px solid #CCC;">
+
+	&lt;!-- CSS --&gt;
+	&lt;link rel="stylesheet" href="css/splitscreen.css" type="text/css" media="all"/&gt;
+	
+	&lt;!-- JS --&gt;
+	&lt;script type="text/javascript" src="js/jquery-1.6.2.min.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="js/jquery.easing-1.3.js"&gt;&lt;/script&gt;
+	&lt;script type="text/javascript" src="js/mdetect.js"&gt;&lt;/script&gt;	
+	&lt;script type="text/javascript" src="js/jquery.splitscreen-1.3.js"&gt;&lt;/script&gt;
+	</pre>
+		
+
+
+		<hr>
+		
+		<h3 id="initialize"><strong>3. Initializing the Plugin</strong> - <a href="#toc">top</a></h3>
+		
+		<h4>DEFAULT</h4>
+		<p>To initialize the plugin with the default options, after all of your content, add the following code to the end of your html document, right above the closing &lt;<b>/</b>body&gt; tag:</p>		
+
+		<pre style="background:#fafafb; Border: 1px solid #CCC;">
+		
+	&lt;script type="text/javascript"&gt;
+	
+	$('body').splitscreen();
+	
+	&lt;/script&gt;
+	</pre>
+
+		<h4>CUSTOM (<i>recommended</i>)</h4>
+		<p>The example html files use the custom approach. To initialize the plugin with the custom options, add the following code to the end of your html document after all of your content, right above the closing &lt;<b>/</b>body&gt; tag
+		and modify according to your requirements.<i>See <a href=#config>Configuration Options</a> for parameter info.</i></p>
+
+		<p><span style="color:#006600; font-weight:bold">In version 1.3 there are 8 new options under <i>/* True or False */</i>and 1 new related option under <i>/* Images */</i></span></p>		
+
+<pre style="background:#fafafb; Border: 1px solid #CCC;">
+
+	&lt;!-- ----------------------------------------- --&gt;
+	&lt;!-- Splitscreen Teaser Html ----------------- --&gt;
+	&lt;!-- ----------------------------------------- --&gt;
+	&lt;div class="splitscreen-teaser-html" style="color:#fff; font-weight:bold"&gt;
+		IF SPLITMODE IS SET TO TEASER, TEASER HTML CODE BELONGS IN THIS DIV
+		&lt;a href='#' class="x-splitscreen" style="color:#ccc"&gt;Continue to website&lt;/a&gt;		
+	&lt;/div&gt;
+
+	&lt;!-- ----------------------------------------- --&gt;
+	&lt;!-- Splitscreen Initialize Plugin ----------- --&gt;
+	&lt;!-- ----------------------------------------- --&gt;
+	&lt;script type="text/javascript"&gt;
+	$('body').splitscreen({
+	
+		//See 'Configuration Options' in the User guide for parameter info.
+		
+		/* Mode */
+		splitMode:		'promo',			
+		cookieName:		'splitscreen',			
+		
+		/* True or False */
+		cookieOn:		false,				 			
+		showPromoBtn:		true,				
+		showContinueBtn:	true, 						
+		showFade:		true,				
+		showRaster:		true, 				
+		showCenter:		true,<span style="color:#006600; font-weight:bold"> 				
+/* NEW */     showCenterTop:	    false, 					
+/* NEW */     showCenterBottom:     false, 								
+/* NEW */     showFloatRightTop:    false, 						
+/* NEW */     showFloatRightCenter: false, 						
+/* NEW */     showFloatRightBottom: false, 							
+/* NEW */     showFloatLeftTop:     false, 						
+/* NEW */     showFloatLeftCenter:  false, 						
+/* NEW */     showFloatLeftBottom:  false,</span> 								
+		showUnderlay:		true,					
+		showIntroSplit:		true, 				
+		showAutoSplit:		true, 				
+		showHints:		false,
+		
+		/* Timer */
+		splitTimeIntro: 	2000, 							
+		splitTimeAuto:		15000, 					
+
+		/* Images */		
+		imageDir: 		'img/',				
+		imageBG:		'background.png',	 	
+		imageWidthBG: 		1920, 				
+		imageHeightBG:		1080, 						
+		imageRaster:		'raster00.png', 		
+		alphaRaster:		'85', 				 		
+		imageCenter:		'logo-large.png',<span style="color:#006600; font-weight:bold">
+/* NEW */     imageFloating:	   'logo-large.png',</span> 		
+		imageFadeLeft:		'fade-left.png',		
+		imageFadeRight:		'fade-right.png',		
+		imageLoading:		'loader-black.gif',		
+		imageLoadingBG: 	'#000000',			
+		
+		/* Align Teaser */
+		verticalAlignTeaser:	'middle',					
+
+		/* Align Buttons*/
+		verticalAlignBtn:	'middle',			
+		
+		/* Continue button */		
+		textContinueBtn:	'Continue to site &raquo;',	 	
+		colorContinueTxt:	'#ffffff',
+		fontContinueTxt:	'Georgia1, Georgia, serif',	
+		sizeContinueBtn:	'14px',				
+		colorContinueBtn:	'#333333',			
+		colorContinueRoll:	'#999999',			
+		
+		/* Promo button */
+		textPromoBtn:		'Take A Test Drive &raquo;',		
+		colorPromoTxt:		'#ffffff',
+		fontPromoTxt:		'Georgia1, Georgia, serif',	
+		sizePromoBtn:		'18px',				
+		colorPromoBtn:		'#cc0000',			
+		colorPromoRoll:		'#ff0000',				
+		urlPromoBtn:		'http://www.google.com',	
+		targetPromoBtn:		'_blank',				
+
+		/* Underlay */
+		colorUnderlay:		'#000000',			
+		alphaUnderlay:		'90'
+	});	
+	&lt;/script&gt;
+	</pre>		
+		
+		
+		<hr>
+		
+		<h3 id="closing"><strong>4) Close Splitscreen Externally</strong> - <a href="#toc">top</a></h3>
+		
+		<p>You can close Splitscreen externally via javascript function or by adding a special css class to an element.</p>		
+		<p><b>A</b>. Via javascript call, invoke this function in your javascript code: <i><b>$.closeSplitscreen();</b></i></a></p>
+		<p><b>B</b>. Via css element action add the class <i><b>x-splitscreen</b></i> to an element. <b>For Example</b>: <pre>	&lt;a href='#' class="x-splitscreen"&gt;Continue to website&lt;/a&gt;</pre></p>
+
+		
+		<hr>
+
+		<h3 id="config"><strong>5) Configuration Options</strong> - <a href="#toc">top</a></h3>
+		
+		<p>Use configuration options to customize Splitscreen settings for your use. The available settings with defaults and descriptions are as follows:</p>
+		<p><span style="color:#006600; font-weight:bold">In version 1.3 there are 8 new options under <i>/* True or False */</i>and 1 new related option under <i>/* Images */</i></span></p>		
+
+<p>		
+
+<table>
+
+<caption>Mode</caption>
+<tbody>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+<tr><td style="font-weight:bold">splitMode</td><td>'splash'</td><td>'splash' mode OR 'promo' mode OR 'teaser' mode</td></tr>
+
+<tr><td style="font-weight:bold">cookieName</td><td>'splitscreen'</td><td>Cookie name to be set if 'cookieOn' is set to true</td></tr>
+
+</tbody>
+
+</table>
+
+
+
+<table>
+
+<caption>True or False</caption>
+<tbody>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+<tr><td style="font-weight:bold">cookieOn</td><td>false</td><td>(true, false) If true, User only sees splitscreen once during a site visit </td></tr>
+
+<tr><td style="font-weight:bold">showPromoBtn</td><td>true</td><td>(true, false) If true, Show left side and right side fade overlay images</td></tr>
+
+<tr><td style="font-weight:bold">showContinueBtn</td><td>true</td><td>(true, false) If true, Show raster image</td></tr>
+
+<tr><td style="font-weight:bold">showFade</td><td>true</td><td>(true, false) If true, Show left side and right side fade overlay images</td></tr>
+
+<tr><td style="font-weight:bold">showRaster</td><td>true</td><td>(true, false) If true, Show raster image</td></tr>
+
+<tr><td style="font-weight:bold">showCenter</td><td>true</td><td>(true, false) If true, Show <i>center image</i> in the absolute center of Splitscreen</td></tr>
+
+<tr><td class="new" style="font-weight:bold">showCenterTop</td><td class="new">false</td><td class="new">(true, false) If true, Show <i>center image</i> in CENTER TOP position</td></tr>
+
+<tr><td class="new" style="font-weight:bold">showCenterBottom</td><td class="new">false</td><td class="new">(true, false) If true, Show <i>center image</i> in CENTER BOTTOM position</td></tr>
+
+<tr><td class="new" style="font-weight:bold">showFloatRightTop</td><td class="new">false</td><td class="new">(true, false) If true, Show <i>floating image</i> in RIGHT TOP position</td></tr>
+
+<tr><td class="new" style="font-weight:bold">showFloatRightCenter</td><td class="new">false</td><td class="new">(true, false) If true, Show <i>floating image</i> in RIGHT CENTER position</td></tr>
+
+<tr><td class="new" style="font-weight:bold">showFloatRightBottom</td><td class="new">false</td><td class="new">(true, false) If true, Show <i>floating image</i> in RIGHT BOTTOM position</td></tr>
+
+<tr><td class="new" style="font-weight:bold">showFloatLeftTop</td><td class="new">false</td><td class="new">(true, false) If true, Show <i>floating image</i> in LEFT TOP position</td></tr>
+
+<tr><td class="new" style="font-weight:bold">showFloatLeftCenter</td><td class="new">false</td><td class="new">(true, false) If true, Show <i>floating image</i> in LEFT CENTER position</td></tr>
+
+<tr><td class="new" style="font-weight:bold">showFloatLeftBottom</td><td class="new">false</td><td class="new">(true, false) If true, Show <i>floating image</i> in LEFT BOTTOM position</td></tr>
+
+<tr><td style="font-weight:bold">showUnderlay</td><td>true</td><td>(true, false) If true, Show underlay div (ref. 'colorUnderlay', 'alphaUnderlay')</td></tr>
+
+<tr><td style="font-weight:bold">showIntroSplit</td><td>true</td><td>(true, false) If true, Show the split once when page first loads (ref. 'splitTimeIntro')</td></tr>
+
+<tr><td style="font-weight:bold">showAutoSplit</td><td>true</td><td>(true, false) If true, Show the split every interval (ref. 'splitTimeAuto')</td></tr>
+
+<tr><td style="font-weight:bold">showHints</td><td>false</td><td><b class="prior"><!-- *v1.2 --></b> (true, false) If true, Shows the alt/title hint boxes when hovering on the Splitscreen</td></tr>
+
+</tbody>
+
+</table>
+
+
+
+<table>
+
+<caption>Timer</caption>
+<tbody>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+<tr><td style="font-weight:bold">splitTimeIntro</td><td>2000</td><td>Time in milliseconds after page loads that splitscreen will 'showIntroSplit'</td></tr>
+
+<tr><td style="font-weight:bold">splitTimeAuto</td><td>15000</td><td>Interval in milliseconds that 'showAutoSplit' will loop and play</td></tr>
+
+</tbody>
+
+</table>
+
+
+
+<table>
+
+<caption>Images</caption>
+<tbody>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+<tr><td style="font-weight:bold">imageDir</td><td>'img/'</td><td>Image directory for splitscreen images ('img/')</td></tr>
+
+<tr><td style="font-weight:bold">imageBG</td><td>'background.png'</td><td>Splitscreen background image is increased to fullscreen ('background.png')</td></tr>
+
+<tr><td style="font-weight:bold">imageWidthBG</td><td>1920</td><td><b>* Required</b> - Enter the Actual width of the background image you are using </td></tr>
+
+<tr><td style="font-weight:bold">imageHeightBG</td><td>1080</td><td><b>* Required</b> - Enter the Actual height of the background image you are using</td></tr>
+
+<tr><td style="font-weight:bold">imageRaster</td><td>'raster00.png'</td><td>Raster image to use</td></tr>
+
+<tr><td style="font-weight:bold">alphaRaster</td><td>'80'</td><td>Alpha transparency of the raster image (i.e. '80', range is '0' to '99') </td></tr>
+
+<tr><td style="font-weight:bold">imageCenter</td><td>'logo-large.png'</td><td>Center image to use</td></tr>
+
+<tr><td class="new" style="font-weight:bold">imageFloating</td><td class="new">'logo-large.png'</td><td class="new">Floating image to use</td></tr>
+
+<tr><td style="font-weight:bold">imageFadeLeft</td><td>'fade-left.png'</td><td>Fade image overlayed on the left</td></tr>
+
+<tr><td style="font-weight:bold">imageFadeRight</td><td>'fade-right.png'</td><td>Fade image overlayed on the right</td></tr>
+
+<tr><td style="font-weight:bold">imageLoading</td><td>'loader-black.gif'</td><td>Preloading image gif (i.e. 'black-loader.gif' or 'white-loader.gif')</td></tr>
+
+<tr><td style="font-weight:bold">imageLoadingBG</td><td>'#000000'</td><td>Background color for the preloading image (i.e. '#000000' or '#ffffff')</td></tr>
+
+</tbody>
+
+</table>
+
+
+
+<table>
+
+<caption>Align Teaser</caption>
+<tbody>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+<tr><td style="font-weight:bold">verticalAlignTeaser</td><td>'middle'</td><td>Align teaser html content to the 'top', 'middle' or 'bottom' </td></tr>
+
+</tbody>
+
+</table>
+
+
+
+<table>
+
+<caption>Align Buttons</caption>
+<tbody>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+<tr><td style="font-weight:bold">verticalAlignBtn</td><td>'bottom'</td><td>Align promo buttons to the 'top', 'middle' or 'bottom' </td></tr>
+
+</tbody>
+
+</table>
+
+
+
+<table>
+
+<caption>Continue button</caption>
+<tbody>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+<tr><td style="font-weight:bold">textContinueBtn</td><td>'Continue to site &raquo;'</td><td>Text shown on the button that continues to the website</td></tr>
+
+<tr><td style="font-weight:bold">colorContinueTxt</td><td>'#ffffff'</td><td><b class="prior"><!-- *v1.2 --></b> Color of the Continue text shown ('#ffffff')</td></tr>
+
+<tr><td style="font-weight:bold">fontContinueTxt</td><td>'Georgia1, Georgia, serif'</td><td><b class="prior"><!-- *v1.2 --></b> Font for Continue text ('Georgia1, Georgia, serif')</td></tr>
+
+<tr><td style="font-weight:bold">sizeContinueBtn</td><td>'14px'</td><td><b class="prior"><!-- *v1.2 --></b> Size in pixels of the Continue button text ('18px')</td></tr>
+
+<tr><td style="font-weight:bold">colorContinueBtn</td><td>'#333333'</td><td>Continue Button color ('#333333')</td></tr>
+
+<tr><td style="font-weight:bold">colorContinueRoll</td><td>'#999999'</td><td>Continue Roll Button color ('#333333')</td></tr>
+
+
+
+
+</tbody>
+
+</table>
+
+
+
+<table>
+
+<caption>Promo button</caption>
+<tbody>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+<tr><td style="font-weight:bold">textPromoBtn</td><td>'Click here for the story true story of karate &raquo;'</td><td>Text shown on the button that continues to advertisment url</td></tr>
+
+<tr><td style="font-weight:bold">colorPromoTxt</td><td>'#ffffff'</td><td><b class="prior"><!-- *v1.2 --></b> Color of the Promo text shown ('#ffffff')</td></tr>
+
+<tr><td style="font-weight:bold">fontPromoTxt</td><td>'Georgia1, Georgia, serif'</td><td><b class="prior"><!-- *v1.2 --></b> Font for Promo text ('Georgia1, Georgia, serif')</td></tr>
+
+<tr><td style="font-weight:bold">sizePromoBtn</td><td>'18px'</td><td><b class="prior"><!-- *v1.2 --></b> Size in pixels of the Promo button text ('18px')</td></tr>
+
+<tr><td style="font-weight:bold">colorPromoBtn</td><td>'#cc0000'</td><td>Promo Button color ('#cc0000')</td></tr>
+
+<tr><td style="font-weight:bold">colorPromoRoll</td><td>'#ff0000'</td><td>Promo Rollover Button color ('#333333')</td></tr>
+
+<tr><td style="font-weight:bold">urlPromoBtn</td><td>'http//:www.google.com'</td><td>The url that the promo button links to (i.e. 'http//:www.google.com')</td></tr>
+
+<tr><td style="font-weight:bold">targetPromoBtn</td><td>'_blank'</td><td>Where to open the promo link (i.e. '_blank' or '_parent')</td></tr>
+
+</tbody>
+
+</table>
+
+
+
+<table>
+
+<caption>Underlay</caption>
+<tbody>
+<tr>
+<th>Option</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+<tr><td style="font-weight:bold">colorUnderlay</td><td>'#000000'</td><td>Color of the underlay div (i.e. '#000000')</td></tr>
+
+<tr><td style="font-weight:bold">alphaUnderlay</td><td>'80'</td><td>Alpha transparency of the underlay div (i.e. '80', range is '0' to '99')</td></tr>
+
+</tbody>
+
+</table>
+
+</p>		
+		
+<hr>
+		
+		<h3 id="sources"><strong>6. Sources, Credits and Notes</strong> - <a href="#toc">top</a></h3>		
+
+		<h4><b>Sources and Credits</b></h4>
+		<p>All photos are licensed under creative commons in the public domain <i>via</i> arspublik <i>and via</i> wikimedia commons.</p>
+		<p>Raster images are Dual licensed under the MIT and GPL licenses <i>via</i> Jay Salvat.</p>
+		<p>Button css code is licensed under the MIT <i>via</i> Zurb.com.</p>
+		<p>Mdetect.js is licensed under Apache License Version 2.0 <i>via</i> blog.mobileesp.com. the author grants its' commercial use.</p>
+		<p>jQuery Cookie plugin is Dual licensed under the MIT and GPL licenses <i>via</i> Klaus Hartl (stilbuero.de)</p>
+		
+		<h4><b>IMPORTANT NOTES</b></h4>
+		<p>Setting width and height (<i>imageWidthBG</i> and <i>imageHeightBG</i>) of the background image in options is required to maintain aspect ratio for the image.</p>
+		<p>You can remove/hide the logo by setting <i>showCenter</i> to <i>false</i></p>		
+
+		<hr>
+		
+		<h3 id="faqs"><strong>7. FAQS - Frequently Asked Questions</strong> - <a href="#toc">top</a></h3>
+
+		<img src="assets/images/faq.jpg">
+		
+		<hr>
+		
+		<p>Once again, thank you so much for purchasing this jQuery Plugin. As I said at the beginning, I'd be glad to help you if you have any questions relating to this plugin. No guarantees, but I'll do my best to assist. If you have a more general question relating to the plugins on CodeCanyon, you might consider visiting the forums and asking your question in the "Item Discussion" section.</p> 
+		
+		<p class="append-bottom alt large"><strong>Daton Lynch</strong></p>
+		<p><a href="#toc">Go To Menu</a></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>

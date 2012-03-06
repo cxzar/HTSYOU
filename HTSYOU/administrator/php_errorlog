@@ -1,2 +1,10 @@
 [27-Jan-2012 17:55:21] PHP Fatal error:  Cannot access protected property AppView::$basePath in /home/haterz14/public_html/haterz/administrator/components/com_zoo/framework/classes/controller.php on line 68
 [27-Jan-2012 18:54:14] PHP Fatal error:  Cannot access protected property AppView::$basePath in /home/haterz14/public_html/haterz/administrator/components/com_zoo/framework/classes/controller.php on line 68
+[02-Mar-2012 22:05:20] PHP Fatal error:  Call to a member function attributes() on a non-object in /home/haterz14/public_html/haterz/libraries/joomla/installer/adapters/template.php on line 55
+[02-Mar-2012 22:31:44] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:31:58] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:32:08] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:34:20] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:34:28] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:35:40] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[02-Mar-2012 22:35:49] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231

@@ -2,13 +2,13 @@
 <extension type="component" version="1.7.0" method="upgrade">
 	<name>Widgetkit</name>
 	<author>YOOtheme</author>
-	<creationDate>February 2012</creationDate>
+	<creationDate>March 2012</creationDate>
 	<updateUrl>http://www.yootheme.com/updates</updateUrl>
 	<copyright>Copyright (C) YOOtheme GmbH</copyright>
 	<license>YOOtheme Proprietary Use License (http://www.yootheme.com/license)</license>
 	<authorEmail>info@yootheme.com</authorEmail>
 	<authorUrl>http://www.yootheme.com</authorUrl>
-	<version>1.0.1</version>
+	<version>1.0.3</version>
 	<description>Widgetkit - A widget toolkit by YOOtheme (http://www.yootheme.com)</description>
 	<install>
 		<sql>

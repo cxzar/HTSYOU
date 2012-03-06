@@ -3,7 +3,7 @@
 * @package   Widgetkit
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   YOOtheme Proprietary Use License (http://www.yootheme.com/license)
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 /*
@@ -205,6 +205,7 @@ class TwitterWidgetkitHelper extends WidgetkitHelper {
 					foreach ($response['results'] as $res) {
 
 						$tweet = new WidgetkitTweet();
+						$tweet->id   = $res['id_str'];
 						$tweet->user = $res['from_user'];
 						$tweet->name = $res['from_user'];
 						$tweet->image = $res['profile_image_url'];
@@ -217,6 +218,7 @@ class TwitterWidgetkitHelper extends WidgetkitHelper {
 					foreach ($response as $res) {
 
 						$tweet = new WidgetkitTweet();
+						$tweet->id   = $res['id_str'];
 						$tweet->user = $res['user']['screen_name'];
 						$tweet->name = $res['user']['name'];
 						$tweet->image = $res['user']['profile_image_url'];
@@ -241,6 +243,7 @@ class TwitterWidgetkitHelper extends WidgetkitHelper {
 */
 class WidgetkitTweet {
 
+	public $id;
 	public $user;
 	public $name;
 	public $image;
@@ -249,6 +252,10 @@ class WidgetkitTweet {
 
 	public function getLink() {
 		return 'http://twitter.com/'.$this->user;			
+	}
+
+	public function getStatusLink() {
+		return 'http://twitter.com/'.$this->user.'/statuses/'.$this->id;			
 	}
 
 	public function getText() {

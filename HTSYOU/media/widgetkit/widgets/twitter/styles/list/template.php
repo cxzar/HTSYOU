@@ -19,7 +19,9 @@
 			<?php endif; ?>
 			
 			<?php if ($show_date) : ?>
-			<time datetime="<?php echo date(DATE_W3C, strtotime($tweet->created_at)); ?>" pubdate></time>
+			<a class="statuslink" href="<?php echo $tweet->getStatusLink(); ?>">
+				<time datetime="<?php echo date(DATE_W3C, strtotime($tweet->created_at)); ?>" pubdate></time>
+			</a>
 			<?php endif; ?>
 			
 		</p>

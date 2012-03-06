@@ -53,7 +53,9 @@ $params = &$this->params;
 						echo ' '.JText::_('TPL_WARP_ON').' <time datetime="'.substr($item->created, 0,10).'" pubdate>'.JHtml::_('date', $item->created, JText::_('DATE_FORMAT_LC3')).'</time>';
 					}
 
-					echo '. ';
+					if (($params->get('show_author') && !empty($item->author )) || $params->get('show_create_date')) {
+						echo '. ';
+					}
 		
 					if ($params->get('show_category')) {
 						echo JText::_('TPL_WARP_POSTED_IN').' ';

@@ -1,11 +1,25 @@
 # Widgetkit #
 
-- Version: 1.0.1
-- Date: February 2012
+- Version: 1.0.3
+- Date: March 2012
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com>
 
 ## Changelog
+
+	1.0.3
+	# Fixed auto removing paragraphs and linebreaks (WP)
+	# Fixed Joomla Plugin will no longer show unpublished articles
+	# Fixed ZOO Gallery Element (Slideshow)
+
+	1.0.2
+	+ Added Twitter direct message link
+	^ Updated slideset navigation option
+	# Fixed gallery widget preview thumbnails on widget create
+	# Fixed Read more translation (J)
+	# Fixed ssl protocol support (WP)
+	# Fixed gallery slideset style
+	# Fixed slideshow screen style in IE7
 
 	1.0.1
 	+ Added slideshow screen style

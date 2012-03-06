@@ -73,7 +73,7 @@
 
 		var paths = <?php echo json_encode($widget->paths); ?>;
 		var captions = <?php echo json_encode($widget->captions); ?>;
-		var links = <?php echo json_encode($widget->links); ?>;
+		var links = <?php echo json_encode(isset($widget->links) ? $widget->links : array()); ?>;
 
 		$('#gallery').data('url', '<?php echo $this['path']->url("media:"); ?>');
 

@@ -3,7 +3,7 @@
 * @package   Widgetkit
 * @author    YOOtheme http://www.yootheme.com
 * @copyright Copyright (C) YOOtheme GmbH
-* @license   YOOtheme Proprietary Use License (http://www.yootheme.com/license)
+* @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
 // no direct access
@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access');
 
 $target = $target ? 'target="_blank"' : '';
 $rel	= $rel ? 'data-lightbox="' . $rel .'"' : '';
-$title  = $title ? ' title="'.htmlentities($title).'"' : '';
+$title  = $title ? ' title="'.htmlspecialchars($title, ENT_QUOTES, 'UTF-8').'"' : '';
 
 $link_enabled = !empty($url);
 $lightbox = !$params->get('link_to_item') && $this->get('lightbox_image') && $link_enabled;

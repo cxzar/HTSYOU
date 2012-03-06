@@ -14,6 +14,10 @@ defined('_JEXEC') or die('Restricted access');
 Changelog
 ------------
 
+2.5.12
+# fixed problem with Download element introduced in 2.5.11
+# fixed issue with CSV export (PHP < 5.3)
+
 2.5.11
 # fixed issue in cookbook app (full layout)
 # fixed bug with access level in download element
