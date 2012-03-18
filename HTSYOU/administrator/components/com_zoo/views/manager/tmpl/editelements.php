@@ -28,6 +28,22 @@ $this->app->document->addScript('assets:js/type.js');
 				}
 			?>
 			</ul>
+			<div class="core-element-configuration">
+				<div class="toggler"><a href="#"><?php echo JText::_('Edit Core Elements'); ?></a></div>
+				<ul class="element-list">
+				<?php
+					$elements = $this->type->getCoreElements();
+					if (empty($elements)) {
+						echo '<li></li>';
+					} else {
+						foreach ($elements as $element) {
+							$element->config->set('name', $element->getMetadata('name'));
+							echo '<li class="element hideconfig">'.$this->partial('editelement', array('element' => $element)).'</li>';
+						}
+					}
+				?>
+				</ul>
+			</div>
 		</fieldset>
 	</div>
 

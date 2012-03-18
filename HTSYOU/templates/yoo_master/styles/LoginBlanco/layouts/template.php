@@ -156,22 +156,24 @@ include($this['path']->path('layouts:template.config.php'));
 	</div>
 	
 	<?php echo $this->render('footer'); ?>
-		<!-- ----------------------------------------- -->
-		<!-- Splitscreen Teaser Html ----------------- -->
-		<!-- ----------------------------------------- -->
-		<div class="splitscreen-teaser-html" style="color:#fff; font-weight:bold">
+	
+	<!-- Splitscreen Teaser Html -->
+	<!--	<div class="splitscreen-teaser-html" style="color:#fff; font-weight:bold">
 			IF SPLITMODE IS SET TO TEASER, TEASER HTML CODE BELONGS IN THIS DIV
-			<a href='#' class="x-splitscreen" style="color:#ccc">Continue to website</a>		
+			<a href='#' class="x-splitscreen" style="color:#ccc">Continue to website</a>
+		</div> -->
+		<div class="splitscreen-teaser-html" id="loginoob">
+			<jdoc:include type="modules" name="loginpro" />
+			<a href='#' class="x-splitscreen" style="color:#ccc">Continue to website</a>
 		</div>
 	
-		<!-- ----------------------------------------- -->
-		<!-- Splitscreen Initialize Plugin ----------- -->
-		<!-- ----------------------------------------- -->
+	<!-- Splitscreen Initialize Plugin -->
+
 	<script type="text/javascript">
 	$('body').splitscreen({
 		
 		/* Mode */
-				splitMode:		'promo',			
+				splitMode:		'teaser',			
 				cookieName:		'splitscreen',			
 				
 				/* True or False */
@@ -199,10 +201,10 @@ include($this['path']->path('layouts:template.config.php'));
 				splitTimeAuto:		15000, 					
 		
 				/* Images */		
-				imageDir: 		'http://haterz.org/haterz/templates/yoo_master/styles/LoginBlanco/img/',				
+				imageDir: 		'http://haterz.org/haterz/img/',				
 				imageBG:		'background-1.jpg',
-				imageWidthBG: 		1920, 				
-				imageHeightBG:		1080, 						
+				imageWidthBG: 		2000, 				
+				imageHeightBG:		1333, 						
 				imageRaster:		'raster00.png', 		
 				alphaRaster:		'85', 				 		
 				imageCenter:		'logo-large.png',

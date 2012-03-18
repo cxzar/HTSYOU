@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="2.5"
+	client="site"
+	method="upgrade">
+	<name>Ace Login Register</name>
+	<author>Eternaware</author>
+	<creationDate>July 2012</creationDate>
+	<copyright>Copyright (C) 2005 - 2012 Open Source Matters. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>contact@eternaware.com</authorEmail>
+	<authorUrl>www.eternaware.com</authorUrl>
+	<version>2.5.0</version>
+	<description>
+		Ace Login Register is your all-in-one authentication handler. It is designed to be both flexible for developers and simple for beginners. Please submit a convenient contact request at www.eternaware.com if you would like any assistance customizing or troubleshooting this extension. We promise to respond to you quickly!
+	</description>
+	<files>
+		<filename module="mod_aceLoginRegister">mod_aceLoginRegister.php</filename>
+		<filename>mod_aceLoginRegister.xml</filename>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<folder>tmpl</folder>
+	</files>
+	<languages>
+		<language tag="en-GB">en-GB.mod_aceLoginRegister.sys.ini</language>
+		<language tag="en-GB">en-GB.mod_aceLoginRegister.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			
+			<!-- Styles -->
+			
+			<fieldset name="styles" label="MOD_ACELOGINREGISTER_FIELDSET_STYLES">
+				
+				<field
+					name="loginLabelsInside"
+					type="checkbox"
+					value="1"
+					label="MOD_ACELOGINREGISTER_STYLES_LOGIN_LABELSINSIDE"
+				/>
+					
+				<field
+					name="registerLabelsInside"
+					type="checkbox"
+					value="1"
+					label="MOD_ACELOGINREGISTER_STYLES_REGISTER_LABELSINSIDE"
+				/>
+				
+				<field
+					name="moduleWidth"
+					type="text"
+					label="MOD_ACELOGINREGISTER_STYLES_MODULE_WIDTH"
+					default="auto"
+				/>
+				
+				<field
+					name="moduleHeight"
+					type="text"
+					label="MOD_ACELOGINREGISTER_STYLES_MODULE_HEIGHT"
+					default="auto"
+				/>
+				
+				<field
+					name="loginAndRegister"
+					type="list"
+					label="MOD_ACELOGINREGISTER_STYLES_LOGIN_AND_REGISTER"
+					default="1"
+				>
+					<option value="1">Both</option>
+					<option value="2">Login</option>
+					<option value="3">Register</option>
+				</field>
+				
+				<field
+					name="switchOne"
+					type="checkbox"
+					value="1"
+					label="MOD_ACELOGINREGISTER_STYLES_SWITCH_ONE"
+				/>
+				
+				<field
+					name="hideForgot"
+					type="checkbox"
+					value="1"
+					label="MOD_ACELOGINREGISTER_STYLES_HIDE_FORGOT"
+				/>
+				
+				<field
+					name="hideRemember"
+					type="checkbox"
+					value="1"
+					label="MOD_ACELOGINREGISTER_STYLES_HIDE_REMEMBER"
+				/>
+				
+				<field
+					name="forceRemember"
+					type="checkbox"
+					value="1"
+					label="MOD_ACELOGINREGISTER_STYLES_FORCE_REMEMBER"
+				/>
+				
+				<field
+					name="selectLayout"
+					type="list"
+					label="MOD_ACELOGINREGISTER_STYLES_LOGIN_LAYOUT"
+					default="2"
+				>
+					<option value="1">Center</option>
+					<option value="2">Right</option>
+				</field>
+				
+				<field
+					name="selectTheme"
+					type="list"
+					label="MOD_ACELOGINREGISTER_STYLES_LOGIN_THEME"
+					default="1"
+				>
+					<option value="1">Mint</option>
+					<option value="2">Ember</option>
+				</field>
+				
+				<field
+					name="selectEffect"
+					type="list"
+					label="MOD_ACELOGINREGISTER_STYLES_LOGIN_EFFECT"
+					default="1"
+				>
+					<option value="1">Bounce</option>
+					<option value="2">Slide</option>
+				</field>
+				
+				<field
+					name="disableJQuery"
+					type="checkbox"
+					value="1"
+					label="MOD_ACELOGINREGISTER_DISABLE_JQUERY"
+					description="MOD_ACELOGINREGISTER_DISABLE_JQUERY_DESC"
+				/>
+				
+				<field
+					name="disableJQueryUI"
+					type="checkbox"
+					value="1"
+					label="MOD_ACELOGINREGISTER_DISABLE_JQUERYUI"
+					description="MOD_ACELOGINREGISTER_DISABLE_JQUERYUI_DESC"
+				/>
+	
+				
+			</fieldset>
+			
+			
+			<fieldset name="labels" label="MOD_ACELOGINREGISTER_PARAMS_FORMLABELS">
+			
+					<!-- Login Labels -->
+					
+					<field
+						name="loginUsernameLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_LOGIN_USERNAME_LABEL"
+						default="Username"
+					/>
+					<field
+						name="loginPasswordLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_LOGIN_PASSWORD_LABEL"
+						default="Password"
+					/>
+					<field
+						name="loginRememberLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_LOGIN_REMEMBER_LABEL"
+						default="Remember Me?"
+					/>
+					<field
+						name="loginSubmitLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_LOGIN_SUBMIT_LABEL"
+						default="Log in"
+					/>
+					<field
+						name="loginForgotPWLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_LOGIN_FORGOTPASSWORD_LABEL"
+						default="Forgot your password?"
+					/>
+					<field
+						name="loginForgotUNLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_LOGIN_FORGOTUSERNAME_LABEL"
+						default="Forgot your username?"
+					/>
+					
+					<!-- Register Labels -->
+					
+					<field
+						name="registerNameLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_REGISTER_NAME_LABEL"
+						default="Name"
+					/>
+					<field
+						name="registerUsernameLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_REGISTER_USERNAME_LABEL"
+						default="Username"
+					/>
+					<field
+						name="registerPasswordLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_REGISTER_PASSWORD_LABEL"
+						default="Password"
+					/>
+					<field
+						name="registerPassword2Label"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_REGISTER_PASSWORD2_LABEL"
+						default="Confirm Password"
+					/>
+					<field
+						name="registerEmailLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_REGISTER_EMAIL_LABEL"
+						default="Email Address"
+					/>
+					<field
+						name="registerEmail2Label"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_REGISTER_EMAIL2_LABEL"
+						default="Confirm Email"
+					/>
+					<field
+						name="registerSubmit"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_REGISTER_SUBMIT_LABEL"
+						default="Register"
+					/>
+					
+					<!-- Switch Buttons -->
+					
+					<field
+						name="switchLogin"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_SWITCH_LOGIN"
+						default="Login"
+					/>
+					<field
+						name="switchRegister"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_SWITCH_REGISTER"
+						default="Register"
+					/>
+
+			</fieldset>
+			
+			
+			
+
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static">
+					<option
+						value="static"></option>
+				</field>
+			</fieldset>
+			
+		</fields>
+	</config>
+</extension>

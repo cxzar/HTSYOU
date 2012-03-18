@@ -1,0 +1,200 @@
+
+#alrContainLoginRegister{
+	padding: 10px;
+}
+
+#alrContainMaxHeight{
+	margin: 4px;
+	min-width: 120px !important;
+	margin: auto;
+}
+
+#alrContainLogin{
+
+}
+
+#alrContainRegister {
+
+}
+
+#alrLogoutBtn{
+	width: 100%;
+	padding: 10px 0;
+	text-align: center;
+}
+
+#alrLogoutBtnFix{
+	margin-right: 2px;
+}
+
+#alrLogoutBtn{
+	width: 100%;
+	padding: 10px 0;
+	text-align: center;
+}
+
+.alrContainForm{
+	overflow: hidden;
+	font-weight: bold;
+	
+}
+
+.alrContainForm input{
+	width: 100%;
+	padding: 6px;
+	border: 1px solid #000;
+}
+
+#alrLoginSubmitBtn, #alrRegisterSubmitBtn{
+	height: 36px;
+}
+
+.alrRecord{
+	width: 100%;
+	position: relative;
+	padding-bottom: 10px;
+}
+
+.alrRemember{
+	width: 100%;
+	position: relative;
+}
+
+.alrLabelText{
+	float: left;
+	width: 30%;
+	text-align: right;
+	margin-right: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	line-height: 28px;
+	padding: 2px !important;
+}
+
+
+#alrContainRegister .alrLabelText{
+	width: 40%;
+}
+
+.alrInputText{
+	overflow: hidden;
+	margin: auto;
+}
+
+.alrInputTextFix{
+	margin-right: 14px;
+}
+
+.alrRecord:after{
+
+}
+
+.alrRecordClear{
+	clear:both;
+	display: block;
+}
+
+
+/* Remember Me Checkbox */
+
+.alrLabelRemember{
+	text-align: center;
+}
+
+#alrCheckRemeber{
+	display: none!important;
+}
+
+.alrLabelRemember label{
+
+}
+
+.alrLabelRemember label:hover{
+
+}
+
+.alrLabelRemember.checked label{
+
+}
+
+/* Login Submit */
+
+.alrLoginSubmit{
+	
+}
+
+.alrLoginSubmit input{
+	width: 100%;
+}
+
+.nextLine{
+	clear: both;
+	width: 100% !important;
+}
+
+/* Forgot */
+
+.alrForgot{
+	
+}
+
+.alrForgotPassword, .alrForgotUsername{
+	padding-top: 10px;
+}
+
+
+/* Register */
+
+
+#alrContainRegister .alrLabelText label{
+	font-size: 18px;
+}
+
+#alrContainRegister input{
+	font-weight: bold;
+}
+
+#alrRegisterSubmitBtn{
+	width: 100%;
+}
+
+#member-registration {
+	padding: 0!important;
+}
+
+
+/* Switch */
+
+#alrContainSwitchOne {
+	display: none;
+	margin-bottom: 14px;
+	font-size:14px;
+}
+
+#alrContainSwitchOne li{
+	list-style: none;
+	width: 100%;
+	padding: 8px 0;
+	text-align: center;
+}
+
+#alrContainSwitch {
+	padding: 6px;
+	margin-bottom: 14px;
+	font-size:14px;
+}
+
+#alrContainSwitch li{
+	text-align: center;
+	list-style: none;
+	padding: 6px 0!important;
+	width: 40%;
+}
+
+#btnSwitchLogin{
+	float: left;
+}
+
+#btnSwitchRegister{
+	float: right;
+}

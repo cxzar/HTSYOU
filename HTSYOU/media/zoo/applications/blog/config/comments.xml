@@ -20,13 +20,13 @@
 			<option value="2">approval required only once</option>
 		</param>
 		<param name="time_between_user_posts" type="text" size="55" default="120" label="Time between user posts" description="TIME_BEFORE_ALLOWED_POST_AGAIN" />
-		<param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="@spacer" type="spacer" />
 		<param name="email_notification" type="text" size="55" default="" label="Email Notification" description="EMAIL_NOTIFICATION_DESCRIPTION" />
 		<param name="email_reply_notification"  type="radio" default="0" label="Email on reply" description="EMAIL_REPLY_DESCRIPTION">
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
 		</param>
-		<param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="@spacer" type="spacer" />
 		<param name="avatar" type="radio" default="1" label="Show avatar" description="Show avatar">
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
@@ -47,34 +47,34 @@
 			<option value="9">J9</option>
 			<option value="10">J10</option>
 		</param>
-		<param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="@spacer" type="spacer" />
 		<param name="facebook_enable" type="radio" default="0" label="Enable Facebook" description="COMMENT_FACEBOOK_AUTHENTICATION">
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
 		</param>
 		<param name="facebook_app_id" type="text" size="55" default="" label="Facebook Application ID" description="FACEBOOK_APPLICATION_ID" />
 		<param name="facebook_app_secret" type="text" size="55" default="" label="Facebook Application Secret" description="FACEBOOK_APPLICATION_SECRET" />
-		<param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="@spacer" type="spacer" />
 		<param name="twitter_enable" type="radio" default="0" label="Enable Twitter" description="COMMENT_TWITTER_AUTHENTICATION">
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
 		</param>
 		<param name="twitter_consumer_key" type="text" size="55" default="" label="Twitter Consumer Key" description="TWITTER_CONSUMER_KEY" />
 		<param name="twitter_consumer_secret" type="text" size="55" default="" label="Twitter Consumer Secret" description="TWITTER_CONSUMER_SECRET" />
-		<param name="@spacer" type="spacer" default="" label="" description="" />		
+		<param name="@spacer" type="spacer" />		
 		<param name="akismet_enable" type="radio" default="0" label="Enable Akismet" description="CHECK_AKISMET">
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
 		</param>
 		<param name="akismet_api_key" type="text" size="55" default="" label="Wordpress API Key" description="WORDPRESS_APPLICATION_KEY" />
-		<param name="@spacer" type="spacer" default="" label="" description="" />			
+		<param name="@spacer" type="spacer" />			
 		<param name="mollom_enable" type="radio" default="0" label="Enable Mollom" description="CHECK_MOLLOM">
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
 		</param>
 		<param name="mollom_public_key" type="text" size="55" default="" label="Mollom Public Key" description="The Mollom public key." />
 		<param name="mollom_private_key" type="text" size="55" default="" label="Mollom Private Key" description="The Mollom private key." />
-		<param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="@spacer" type="spacer" />
 		<param name="blacklist" type="textarea" cols="40" rows="10" default="" label="Blacklist" description="BLACKLIST_DESCRIPTION" />
 	</params>
 </config>

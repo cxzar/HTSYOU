@@ -89,6 +89,26 @@
 					<option value="1">JOPTION_OPTIONAL</option>
 					<option value="0">JDISABLED</option>
 				</field>
+
+
+				<field name="perfilcamp" type="list"
+
+					description="Quieres activar el perfil con informacion del personaje"
+					label="PLG_GUILD_PROFILE_GUILD_PERFIL"
+				>
+					<option value="1">Enabled</option>
+					<option value="0">Disabled</option>
+				</field>
+
+
+				<field name="perfilcampd" type="list"
+
+					description="Quieres activar el perfil con el modelo 3D"
+					label="PLG_GUILD_PROFILE_GUILD_PERFILD"
+				>
+					<option value="1">Enabled</option>
+					<option value="0">Disabled</option>
+				</field>
 						
 			</fieldset>
 

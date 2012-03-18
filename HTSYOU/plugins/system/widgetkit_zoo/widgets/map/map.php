@@ -28,8 +28,7 @@ class ZooMap extends ZooWidget {
 			if ($application = $this->zoo->table->application->get($params->get('application', 0))) {
 
 				// load template
-				$zoo_items = version_compare($this->zoo->zoo->version(), '2.5.beta') >= 0 ? $this->zoo->module->getItems($params) : $this->zoo->zoomodule->getItems($params);
-				if ($zoo_items && !empty($zoo_items)) {
+				if (($zoo_items = $this->zoo->module->getItems($params)) && !empty($zoo_items)) {
 
 					// set renderer
 					$renderer = $this->zoo->renderer->create('item')->addPath(array($this->zoo->path->path('component.site:'), $this->widgetkit['path']->path('zoowidgets:'.$widget->type)));
@@ -60,7 +59,7 @@ class ZooMap extends ZooWidget {
 								$i++;
 							}
 
-						} catch (GooglemapsHelperException $e) {
+						} catch (GooglemapsAppHelperException $e) {
 
 							echo "<div class=\"alert\"><strong>({$e})</strong></div>\n";
 
@@ -100,7 +99,7 @@ class ZooMap extends ZooWidget {
 
 									}
 
-								} catch (GooglemapsHelperException $e) {
+								} catch (GooglemapsAppHelperException $e) {
 
 									echo "<div class=\"alert\"><strong>({$e})</strong></div>\n";
 

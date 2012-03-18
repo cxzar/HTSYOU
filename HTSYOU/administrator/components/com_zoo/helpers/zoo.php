@@ -18,6 +18,9 @@ class ZooHelper extends AppHelper {
 	/* version */
 	protected $_version;
 
+	/* user groups / view levels */
+	protected $_groups;
+
 	/*
 		Function: getApplication
 		  Returns a reference to the currently active Application object.
@@ -103,7 +106,7 @@ class ZooHelper extends AppHelper {
 	      Void
 	*/
 	public function toolbarHelp($ref = 'http://docs.yootheme.com/home/category/zoo-20') {
-		JToolBar::getInstance('toolbar')->appendButton('ZooHelp', $ref);
+		JToolBar::getInstance('toolbar')->appendButton('Link', 'help', 'Help', $ref);
 	}
 
 	/*
@@ -204,11 +207,14 @@ class ZooHelper extends AppHelper {
 			Array - groups
 	*/
 	public function getGroups() {
-		if ($this->app->joomla->isVersion('1.5')) {
-			return $this->app->database->queryObjectList("SELECT id, name FROM #__groups", "id");
-		} else {
-			return $this->app->database->queryObjectList("SELECT id, title AS name FROM #__viewlevels", "id");
+		if (!isset($this->_groups)) {
+			if ($this->app->joomla->isVersion('1.5')) {
+				$this->_groups = $this->app->database->queryObjectList("SELECT id, name FROM #__groups", "id");
+			} else {
+				$this->_groups = $this->app->database->queryObjectList("SELECT id, title AS name FROM #__viewlevels", "id");
+			}
 		}
+		return $this->_groups;
 	}
 
     /*

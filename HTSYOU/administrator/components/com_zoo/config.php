@@ -103,3 +103,6 @@ $zoo->event->register('TypeEvent');
 $zoo->event->dispatcher->connect('type:beforesave', array('TypeEvent', 'beforesave'));
 $zoo->event->dispatcher->connect('type:copied', array('TypeEvent', 'copied'));
 $zoo->event->dispatcher->connect('type:deleted', array('TypeEvent', 'deleted'));
+
+$zoo->event->register('ElementEvent');
+$zoo->event->dispatcher->connect('element:configform', array('ElementEvent', 'configForm'));

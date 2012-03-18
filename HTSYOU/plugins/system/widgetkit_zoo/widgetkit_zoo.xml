@@ -14,7 +14,6 @@
 		<filename plugin="widgetkit_zoo">widgetkit_zoo.php</filename>
 		<folder>assets</folder>
 		<folder>elements</folder>
-		<folder>joomla</folder>
 		<folder>layouts</folder>
 		<folder>widgets</folder>
 	</files>

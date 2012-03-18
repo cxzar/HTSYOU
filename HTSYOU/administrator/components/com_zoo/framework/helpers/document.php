@@ -26,7 +26,9 @@ class DocumentHelper extends AppHelper {
 			Void
 	*/
 	public function addStylesheet($path, $version = null) {
-		$this->app->system->document->addStylesheet($this->app->path->url($path).$this->getVersion($version));
+		if ($file = $this->app->path->url($path)) {
+			$this->app->system->document->addStylesheet($file.$this->getVersion($version));
+		}
 	}
 
 	/*
@@ -50,7 +52,9 @@ class DocumentHelper extends AppHelper {
 			$this->app->system->document->addScript($this->app->path->url('libraries:jquery/jquery.js').$version);
 		}
 
-		$this->app->system->document->addScript($this->app->path->url($path).$version);
+		if ($file = $this->app->path->url($path)) {
+			$this->app->system->document->addScript($file.$version);
+		}
 	}
 
 	/*

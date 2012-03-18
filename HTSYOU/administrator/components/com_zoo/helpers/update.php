@@ -267,14 +267,19 @@ class UpdateHelper extends AppHelper {
 				}
 
 				// decode response and set message
-				if (($data = json_decode($zoo_data["data"])) && $data->status == 'update-available') {
-					$this->app->system->application->enqueueMessage($data->message, 'notice');
+				if (!$this->app->system->session->get('com_zoo.hideUpdateNotification') && ($data = json_decode($zoo_data["data"])) && $data->status == 'update-available') {
+					$close = '<span onclick="jQuery.ajax(\''.$this->app->link(array('controller' => 'manager', 'task' => 'hideUpdateNotification')).'\'); jQuery(this).closest(\'ul\').hide();" class="hide-update-notification"></span>';
+					$this->app->system->application->enqueueMessage($data->message.$close, 'notice');
 				}
 
 				@file_put_contents($this->app->path->path("cache:").'/zoo_update_cache', serialize($zoo_data));
 			}
 
 		}
+	}
+
+	public function hideUpdateNotification() {
+		$this->app->system->session->set('com_zoo.hideUpdateNotification', true);
 	}
 
 }

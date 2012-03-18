@@ -117,7 +117,7 @@ $this['asset']->addFile('js', 'js:warp.js');
 $this['asset']->addFile('js', 'js:accordionmenu.js');
 $this['asset']->addFile('js', 'js:dropdownmenu.js');
 $this['asset']->addFile('js', 'js:template.js');
-$this['asset']->addFile('js', 'js:jquery-1.6.2.min.js'); //agregado
+$this['asset']->addFile('js', 'js:jquery-1.7.1.min.js'); //agregado - actualización jquery-1.6.2.min.js --> jquery-1.7.1.min.js
 $this['asset']->addFile('js', 'js:jquery.easing-1.3.js'); //agregado
 $this['asset']->addFile('js', 'js:jquery.splitscreen-1.3.js'); //agregado
 $this['asset']->addFile('js', 'js:jquery.splitscreen-1.3.min.js'); //agregado

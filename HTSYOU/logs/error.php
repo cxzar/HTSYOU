@@ -10,3 +10,16 @@
 2012-02-28	21:37:40	INFO	189.253.197.56	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
 2012-02-28	21:38:34	INFO	189.253.197.56	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
 2012-02-29	19:11:42	INFO	189.203.203.99	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-09	17:49:44	INFO	189.253.197.56	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-09	17:50:04	INFO	189.253.197.56	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-09	17:50:15	INFO	189.253.197.56	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-14	20:21:08	INFO	189.253.237.31	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-14	20:59:42	INFO	189.253.237.31	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-15	18:37:11	INFO	189.253.237.31	Joomla FAILURE: 	Empty password not allowed
+2012-03-16	01:12:22	INFO	24.216.241.50	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-16	05:01:58	INFO	24.216.241.50	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-16	05:01:58	INFO	24.216.241.50	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-16	05:03:20	INFO	24.216.241.50	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-16	05:29:32	INFO	24.216.241.50	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-16	05:32:28	INFO	24.216.241.50	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.
+2012-03-16	05:33:05	INFO	24.216.241.50	Joomla FAILURE: 	Username and password do not match or you do not have an account yet.

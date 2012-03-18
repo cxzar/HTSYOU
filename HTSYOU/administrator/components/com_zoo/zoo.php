@@ -44,6 +44,9 @@ if ($zoo->update->required() && $controller != 'update') {
 // check if update is available
 $zoo->update->available();
 
+// check for ZOO extension dependencies
+$zoo->dependency->check();
+
 // cache writable ?
 if (!($cache_path = $zoo->path->path('cache:')) || !is_writable($cache_path)) {
 	$zoo->error->raiseNotice(0, sprintf("Zoo cache folder is not writable! Please check directory permissions (%s)", $cache_path));
@@ -69,10 +72,6 @@ if (!$controller) {
 	$controller = $application ? 'item' : 'new';
 	$zoo->request->setVar('controller', $controller);
 }
-
-// set toolbar button include path
-$toolbar = JToolBar::getInstance('toolbar');
-$toolbar->addButtonPath($zoo->path->path('joomla:button'));
 
 // build menu
 $menu = $zoo->menu->get('nav');

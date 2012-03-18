@@ -55,6 +55,11 @@ class plgSystemWidgetkit_Zoo extends JPlugin {
 		// get zoo instance
 		$this->zoo = App::getInstance('zoo');
 
+		// check if Zoo > 2.5
+		if (version_compare($this->zoo->zoo->version(), '2.5') < 0) {
+			return;
+		}
+
 		// load zoo language file
 		$this->zoo->system->language->load('com_'.$this->zoo->id);
 
@@ -65,9 +70,7 @@ class plgSystemWidgetkit_Zoo extends JPlugin {
 		$this->widgetkit['path']->register($path.'/assets', 'assets');
 
 		// register widgetkit element path
-		if (version_compare($this->zoo->zoo->version(), '2.5.beta') >= 0) {
-			$this->zoo->path->register($path.'/elements', 'elements');
-		}
+		$this->zoo->path->register($path.'/elements', 'elements');
 
 		// bind init event
 		$this->widgetkit['event']->bind('admin', array($this, 'init'));
@@ -289,10 +292,9 @@ class ZooWidget {
 		$params = isset($widget->zoo['params']) ? $widget->zoo['params'] : array();
 
 		// get form
-		$params_xml = version_compare($this->zoo->zoo->version(), '2.5.beta') >= 0 ? "zoo{$this->type}:{$this->type}.xml" : "zoo{$this->type}:params/zoo2.4/{$this->type}.xml";
-		$form = $this->zoo->parameterform->create($this->widgetkit['path']->path($params_xml));
+		$form = $this->zoo->parameterform->create($this->widgetkit['path']->path("zoo{$this->type}:{$this->type}.xml"));
 		$form->setValues($params);
-		$form->addElementPath($this->widgetkit['path']->path('plugin.root:joomla/elements'));
+		$form->addElementPath($this->widgetkit['path']->path('plugin.root:layouts/fields'));
 
 		$type = $this->type;
 
@@ -317,8 +319,7 @@ class ZooWidget {
 			if ($application = $this->zoo->table->application->get($params->get('application', 0))) {
 
 				// load template
-				$zoo_items = version_compare($this->zoo->zoo->version(), '2.5.beta') >= 0 ? $this->zoo->module->getItems($params) : $this->zoo->zoomodule->getItems($params);
-				if ($zoo_items && !empty($zoo_items)) {
+				if (($zoo_items = $this->zoo->module->getItems($params)) && !empty($zoo_items)) {
 
 					// set renderer
 					$renderer = $this->zoo->renderer->create('item')->addPath(array($this->zoo->path->path('component.site:'), $this->widgetkit['path']->path('zoowidgets:'.$widget->type)));

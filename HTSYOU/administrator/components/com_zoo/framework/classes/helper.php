@@ -7,7 +7,7 @@
 */
 
 /*
-	Class: AppHelper
+	Class: AppAppHelper
 		Helper base class
 */
 class AppHelper {
@@ -38,7 +38,7 @@ class AppHelper {
 
 		Returns:
 			String
-	*/	
+	*/
 	public function getName() {
 		return $this->_name;
 	}
@@ -49,7 +49,7 @@ class AppHelper {
 
 		Returns:
 			Mixed
-	*/	
+	*/
 	protected function _call($function, $args = array()) {
 
 		if (is_array($function)) {
@@ -57,28 +57,28 @@ class AppHelper {
 			list($object, $method) = $function;
 
 			if (is_object($object)) {
-				switch (count($args)) { 
+				switch (count($args)) {
 					case 0 :
 						return $object->$method();
 						break;
-					case 1 : 
-						return $object->$method($args[0]); 
-						break; 
-					case 2: 
-						return $object->$method($args[0], $args[1]); 
-						break; 
-					case 3: 
-						return $object->$method($args[0], $args[1], $args[2]); 
-						break; 
-					case 4: 
-						return $object->$method($args[0], $args[1], $args[2], $args[3]); 
-						break; 
-				} 
+					case 1 :
+						return $object->$method($args[0]);
+						break;
+					case 2:
+						return $object->$method($args[0], $args[1]);
+						break;
+					case 3:
+						return $object->$method($args[0], $args[1], $args[2]);
+						break;
+					case 4:
+						return $object->$method($args[0], $args[1], $args[2], $args[3]);
+						break;
+				}
 			}
 
 		}
 
-		return call_user_func_array($function, $args);                               
+		return call_user_func_array($function, $args);
 	}
 
 }

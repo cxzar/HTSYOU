@@ -8,7 +8,7 @@
 	<license>YOOtheme Proprietary Use License (http://www.yootheme.com/license)</license>
 	<authorEmail>info@yootheme.com</authorEmail>
 	<authorUrl>http://www.yootheme.com</authorUrl>
-	<version>1.0.3</version>
+	<version>1.0.4</version>
 	<description>Widgetkit - A widget toolkit by YOOtheme (http://www.yootheme.com)</description>
 	<install>
 		<sql>

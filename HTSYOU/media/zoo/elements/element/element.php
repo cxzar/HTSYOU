@@ -365,7 +365,7 @@ abstract class Element {
 	public function getConfigForm() {
 
 		// get form
-		$form = $this->app->parameterform->create('');
+		$form = $this->app->parameterform->create();
 
 		// get config xml files
 		$params = array();

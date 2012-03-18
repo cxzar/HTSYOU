@@ -1,0 +1,29 @@
+
+
+.alrRecord input{
+	text-align: center;
+}
+
+.alrLoginSubmit{
+	width: 100%;
+}
+
+.alrLabelRemember label{
+	display: inline-block;
+	padding: 18px 0;
+	text-align: center;
+}
+
+.alrForgot{
+
+}
+
+.alrForgotPassword, .alrForgotUsername{
+	width: 50%;
+	float: left;
+	text-align: center;
+}
+
+.alrForgotPassword a, .alrForgotUsername a{
+
+}

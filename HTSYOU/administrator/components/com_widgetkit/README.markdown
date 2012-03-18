@@ -1,11 +1,14 @@
 # Widgetkit #
 
-- Version: 1.0.3
+- Version: 1.0.4
 - Date: March 2012
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com>
 
 ## Changelog
+
+	1.0.4
+	^ Updated Widgetkit ZOO plugin
 
 	1.0.3
 	# Fixed auto removing paragraphs and linebreaks (WP)

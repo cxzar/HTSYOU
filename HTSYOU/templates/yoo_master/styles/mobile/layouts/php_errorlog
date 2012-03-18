@@ -1,0 +1,3 @@
+[09-Mar-2012 18:15:48] PHP Fatal error:  Call to a member function addFile() on a non-object in /home/haterz14/public_html/haterz/templates/yoo_master/styles/mobile/layouts/template.config.php on line 10
+[09-Mar-2012 18:39:02] PHP Fatal error:  Call to a member function path() on a non-object in /home/haterz14/public_html/haterz/templates/yoo_master/styles/mobile/layouts/template.php on line 10
+[09-Mar-2012 19:13:35] PHP Fatal error:  Using $this when not in object context in /home/haterz14/public_html/haterz/templates/yoo_master/styles/mobile/layouts/module.php on line 118

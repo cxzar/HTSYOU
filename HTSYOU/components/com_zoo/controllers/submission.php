@@ -282,6 +282,11 @@ class SubmissionController extends AppController {
 					$this->item->alias = $this->app->alias->item->getUniqueAlias($this->item->id, $this->app->string->sluggify($this->item->name));
 				}
 
+				// unpublish item in none trusted state
+				if (!$this->submission->isInTrustedMode() && !in_array('_itemstate', array_keys($this->elements_config))) {
+					$this->item->state = 0;
+				}
+
                 // set modified
                 $this->item->modified	 = $this->app->date->create()->toMySQL();
                 $this->item->modified_by = $this->user->get('id');

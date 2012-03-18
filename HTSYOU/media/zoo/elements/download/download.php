@@ -130,7 +130,7 @@ class ElementDownload extends ElementFile implements iSubmittable {
 		$download_mode = $this->config->get('download_mode');
 
 		// check access
-		if (!$this->app->user->canAccess(null, $this->config->get('access'))) {
+		if (!$this->canAccess()) {
 			header('Content-Type: text/html');
 			echo JText::_('Unable to access download!');
 			return;

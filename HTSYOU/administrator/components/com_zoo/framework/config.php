@@ -25,5 +25,6 @@ if (!class_exists('App')) {
 	JLoader::register('AppView', $path.'/classes/view.php');
 	JLoader::register('ComponentHelper', $path.'/helpers/component.php');
 	JLoader::register('PathHelper', $path.'/helpers/path.php');
+	JLoader::register('UserAppHelper', $path.'/helpers/user.php');
 
 }

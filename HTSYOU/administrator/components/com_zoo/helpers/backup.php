@@ -79,7 +79,7 @@ class BackupHelper extends AppHelper {
 					$rows = array_map($callback, $rows);
 				}
 
-				$result[] = 'DROP TABLE '.$table.';';
+				$result[] = 'DROP TABLE IF EXISTS '.$table.';';
 				$create = $db->queryAssoc('SHOW CREATE TABLE '.$table);
 				$create = preg_replace("#(TYPE)=(MyISAM)#i", "ENGINE=MyISAM", $create);
 				$create = $create['Create Table'];

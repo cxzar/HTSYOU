@@ -1,0 +1,38 @@
+.alrContainLogin{
+	min-width: 120px !important;
+}
+
+.alrRecord input{
+	text-align: right;
+}
+
+.alrRememberSubmit{
+	width: 100%;
+}
+
+.alrLoginSubmit{
+	float: right;
+	width: 40%;
+}
+
+.alrLabelRemember{
+	float: right;
+}
+
+.alrLabelRemember label{
+	padding-right: 28px;
+	margin-right: 10px;
+	display: block;
+	line-height: 36px;
+}
+
+.alrForgot{
+	clear: both;
+
+}
+
+.alrForgotPassword, .alrForgotUsername{
+	width: 50%;
+	float: left;
+	text-align: center;
+}

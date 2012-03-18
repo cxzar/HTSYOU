@@ -54,7 +54,7 @@ class ElementItemState extends Element implements iSubmittable {
 
 		if ($now <= $publish_up && $this->_item->state == 1 ) {
 			return JText::_('Published');
-		} else if (($now <= $publish_down || $this->_item->publish_down == $nullDate) && $this->_item->state == 1) {
+		} else if (($now <= $publish_down || $this->_item->publish_down == $this->app->database->getNullDate()) && $this->_item->state == 1) {
 			return JText::_('Published');
 		} else if ( $now->toUnix() > $publish_down->toUnix() && $this->_item->state == 1 ) {
 			return JText::_('Expired');

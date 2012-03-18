@@ -65,7 +65,16 @@ class ElementEvent {
 	public static function configForm($event) {
 
 		$element = $event->getSubject();
-		$form = $event['form'];
+		if ($element->getGroup() == 'Core') {
+			$form = $event['form'];
+			if ($xml = $form->getXML('_default')) {
+				foreach ($xml->param as $child) {
+					if (in_array($child->attributes("name"), array('name', 'description'))) {
+						$xml->removeChild($child);
+					}
+				}
+			}
+		}
 
 	}
 

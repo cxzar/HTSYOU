@@ -6,13 +6,4 @@
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
-class JElementCountries extends JElement {
-
-	function fetchElement($name, $value, $node, $control_name) {
-
-		$app = App::getInstance('zoo');
-
-		return $app->html->_('zoo.countryselectlist', $app->country->getIsoToNameMapping(), $control_name.'[selectable_country][]', $this->_parent->element->config->get('selectable_country', array()), true);
-	}
-
-}
+echo $this->app->html->_('zoo.countryselectlist', $this->app->country->getIsoToNameMapping(), $control_name.'[selectable_country][]', $parent->element->config->get('selectable_country', array()), true);

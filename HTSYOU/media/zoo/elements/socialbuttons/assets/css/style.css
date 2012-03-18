@@ -4,15 +4,9 @@
  * social buttons
  */
 
-.yoo-zoo.socialbuttons { overflow: hidden; }
+.yoo-zoo.socialbuttons { margin-top: 15px; }
 
 .yoo-zoo.socialbuttons > div {
-	margin-left: 10px;
+	margin-right: 10px;
 	float: left;
-}
-.yoo-zoo.socialbuttons > div:first-child { margin-left: 0 }
-
-.yoo-zoo.socialbuttons iframe {
-	border: none;
-	overflow: hidden;
 }

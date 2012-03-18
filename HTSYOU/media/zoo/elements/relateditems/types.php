@@ -6,30 +6,18 @@
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
-class JElementTypes extends JElement {
+// get element from parent parameter form
+$config  	 = $parent->element->config;
+$application = $parent->application;
 
-	function fetchElement($name, $value, &$node, $control_name) {
+// init vars
+$attributes = array();
+$attributes['class'] = (string) $node->attributes()->class ? (string) $node->attributes()->class : 'inputbox';
+$attributes['multiple'] = 'multiple';
+$attributes['size'] = (string) $node->attributes()->size ? (string) $node->attributes()->size : '';
 
-		// load config
-		require_once(JPATH_ADMINISTRATOR.'/components/com_zoo/config.php');
-
-		$app = App::getInstance('zoo');
-
-		// get element from parent parameter form
-		$config  	 = $this->_parent->element->config;
-		$application = $this->_parent->application;
-
-		// init vars
-		$attributes = array();
-		$attributes['class'] = $node->attributes('class') ? $node->attributes('class') : 'inputbox';
-		$attributes['multiple'] = 'multiple';
-		$attributes['size'] = $node->attributes('size') ? $node->attributes('size') : '';
-
-		foreach ($application->getTypes() as $type) {
-			$options[] = $app->html->_('select.option', $type->id, JText::_($type->name));
-		}
-
-		return $app->html->_('select.genericlist', $options, $control_name.'[selectable_type][]', $attributes, 'value', 'text', $config->get('selectable_type', array()));
-	}
-
+foreach ($application->getTypes() as $type) {
+	$options[] = $this->app->html->_('select.option', $type->id, JText::_($type->name));
 }
+
+echo $this->app->html->_('select.genericlist', $options, $control_name.'[selectable_type][]', $attributes, 'value', 'text', $config->get('selectable_type', array()));

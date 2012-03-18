@@ -870,6 +870,10 @@ class ManagerController extends AppController {
 
 	}
 
+	public function hideUpdateNotification() {
+		$this->app->update->hideUpdateNotification();
+	}
+
 }
 
 /*

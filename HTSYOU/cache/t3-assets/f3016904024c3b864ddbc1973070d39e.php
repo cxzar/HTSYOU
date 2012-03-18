@@ -1,1 +1,0 @@
-a:3:{s:6:"themes";a:2:{s:14:"engine.default";a:2:{i:0;s:6:"engine";i:1;s:7:"default";}s:16:"template.default";a:2:{i:0;s:8:"template";i:1;s:7:"default";}}s:7:"layouts";a:0:{}s:8:"profiles";a:0:{}}

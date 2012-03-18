@@ -42,6 +42,7 @@ class App {
 		// set defaults
 		$path = dirname(dirname(__FILE__));
 		$this->addHelper(new PathHelper($this));
+		$this->addHelper(new UserAppHelper($this));
 		$this->path->register(JPATH_ROOT, 'root');
 		$this->path->register(JPATH_ROOT.'/media', 'media');
 		$this->path->register($path.'/classes', 'classes');
@@ -62,7 +63,7 @@ class App {
 			App
 	*/
 	public static function getInstance($id) {
-	
+
 		// add instance, if not exists
 		if (!isset(self::$_instances[$id])) {
 			self::$_instances[$id] = new App($id);
@@ -89,7 +90,7 @@ class App {
 		if (isset($this->_helpers[$name])) {
 			return $this->_helpers[$name];
 		}
-		
+
 		return null;
 	}
 
@@ -127,7 +128,7 @@ class App {
 
 		foreach ($helpers as $name) {
 			$class = $name.$suffix;
-  
+
 			// autoload helper class
 			if (!class_exists($class) && ($file = $this->path->path('helpers:'.$name.'.php'))) {
 			    require_once($file);
@@ -149,7 +150,7 @@ class App {
 
 		Returns:
 			Mixed
-	*/	
+	*/
 	public function __get($name) {
 		return $this->getHelper($name);
 	}
@@ -157,7 +158,7 @@ class App {
 	/*
 		Function: link
 			Get link to this component's related resources.
-		
+
 		Returns:
 			String
 	*/
@@ -190,7 +191,7 @@ class App {
 	/*
 		Function: dispatch
 			Dispatch app controller.
-			
+
 		Parameters:
 			$default - Default controller name
 			$config - Additional config options
@@ -235,9 +236,9 @@ class App {
 	Class: AppException
 */
 class AppException extends Exception {
-	
+
 	public function __toString() {
-		return $this->getMessage(); 
+		return $this->getMessage();
 	}
-	
+
 }

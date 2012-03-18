@@ -101,12 +101,12 @@ class ElementMedia extends ElementFile implements iSubmittable {
 			switch ($format) {
 				case 'vimeo':
 
-					$source = preg_replace($this->_vimeo_regex, '$1player.vimeo.com/video/$2', $source);
+					$source = preg_replace($this->_vimeo_regex, '//player.vimeo.com/video/$2', $source);
 					break;
 
 				case 'youtube':
 
-					$source = rtrim(preg_replace($this->_youtube_regex, '$1/embed/$2?$3', $source), '?');
+					$source = rtrim(preg_replace($this->_youtube_regex, '//www.youtube.com/embed/$2?$3', $source), '?');
 					break;
 
 				case 'youtu.be':
@@ -150,7 +150,8 @@ class ElementMedia extends ElementFile implements iSubmittable {
 			}
 
 			$autoplay = $autoplay && !preg_match('/autoplay=/', $source)? (strpos($source, '?') === false ? '?' : '&').'autoplay=1' : '';
-			return '<iframe src="'.$source.$autoplay.'"'.$width.$height.'></iframe>';
+			$wmode = !preg_match('/wmode=/', $source) ? (!$autoplay && strpos($source, '?') === false ? '?' : '&').'wmode=transparent' : '';
+			return '<iframe src="'.$source.$autoplay.$wmode.'"'.$width.$height.'></iframe>';
 
 		}
 

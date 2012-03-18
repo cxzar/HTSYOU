@@ -147,11 +147,21 @@ select, input, textarea, button { font: 12px Arial, sans-serif; }
 form, textarea { margin: 0; }
 legend, fieldset, input { padding: 0; }
 
+/*
 textarea,
 input[type='text'],
 input[type='password'],
 select { padding: 2px; }
-select { line-height: 19px; } /* Needed for Safari */
+select { line-height: 19px; } */ /* Needed for Safari */
+
+/* The previous line of code has been changed
+to the following for Ace Login Register. */
+
+textarea,
+input[type='text'],
+input[type='password'],
+select { }
+select { line-height: 19px; }
 
 button,
 input[type='button'],

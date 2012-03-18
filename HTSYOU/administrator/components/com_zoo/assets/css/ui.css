@@ -1573,6 +1573,11 @@ ul.element-list li.hideconfig div.config { display: none; }
 ul.element-list li.dragging { border: 1px dashed #000000; }
 ul.element-list li.dragging:hover { background: none; }
 
+.core-element-configuration > .toggler { margin: 10px; }
+.core-element-configuration ul.element-list div.delete-element { display: none; }
+.core-element-configuration ul.element-list li.element div.name { cursor: default; }
+.core-element-configuration ul.element-list li.element div.name span { display: none; }
+
 /* edit elements */
 #add-element { overflow: hidden; }
 
@@ -2432,8 +2437,12 @@ fieldset .element-textarea textarea {
 	margin: 0px;
 }
 
+div.label label,
 div.field label,
-div.field input { margin-right: 3px; }
+div.field input,
+div.field select { margin: 1px 0; }
+
+div.field label { margin: 0 5px; }
 
 div#element-box div.m { background-color: #FFFFFF; }
 
@@ -2603,3 +2612,13 @@ fieldset.panelform #item-order { float: left; }
 }
 
 #update-default .notifications { color: #B90000; }
+
+span.hide-update-notification {
+	width: 10px;
+	height: 12px;
+	margin-left: 10px;
+	background: url(../images/cancel.png) 0px 0px no-repeat;
+	vertical-align: middle;
+	display: inline-block;
+	cursor: pointer;
+}

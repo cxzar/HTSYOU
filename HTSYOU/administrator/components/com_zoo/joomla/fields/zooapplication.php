@@ -6,28 +6,16 @@
 * @license   http://www.gnu.org/licenses/gpl.html GNU/GPL
 */
 
-// no direct access
-defined('_JEXEC') or die('Restricted access');
-
-// load config
-require_once(JPATH_ADMINISTRATOR.'/components/com_zoo/config.php');
-
 class JFormFieldZooApplication extends JFormField {
 
 	protected $type = 'ZooApplication';
 
 	public function getInput() {
 
-		// get app
-		$app = App::getInstance('zoo');
+		// load config
+		require_once(JPATH_ADMINISTRATOR.'/components/com_zoo/config.php');
 
-		jimport('joomla.html.parameter.element');
-		$app->loader->register('JElementZooApplication', 'joomla:elements/zooapplication.php');
-
-		$element = $app->object->create('JElementZooApplication');
-		$element->set('_parent', $this->form->getValue('params'));
-		return $element->fetchElement($this->fieldname, $this->value, $this->element, "jform[{$this->group}]");
-		
+		return App::getInstance('zoo')->field->render('zooapplication', $this->fieldname, $this->value, $this->element, array('control_name' => "jform[{$this->group}]", 'parent' => $this->form->getValue('params')));
 	}
 
 }

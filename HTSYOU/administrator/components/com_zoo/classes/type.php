@@ -160,7 +160,8 @@ class Type {
 	        Array - Array of element objects
  	*/
 	public function getElements() {
-		return $this->_getElements($this->elements);
+		$identifiers = $this->elements ? array_keys($this->elements) : array();
+		return $this->_getElements(array_filter($identifiers, create_function('$a', 'return strpos($a, \'_item\') !== 0;')));
 	}
 
 	/*
@@ -171,13 +172,13 @@ class Type {
 	        Array - Array of element objects
  	*/
 	public function getCoreElements() {
-		return $this->_getElements($this->getCoreElementsConfig());
+		return $this->_getElements(array_keys($this->getCoreElementsConfig()));
 	}
 
-	protected function _getElements($config) {
-		if ($config) {
+	protected function _getElements($identifiers) {
+		if ($identifiers) {
 			$elements = array();
-			foreach ($config as $identifier => $element_config) {
+			foreach ($identifiers as $identifier) {
 				if ($element = $this->getElement($identifier)) {
 					$elements[$identifier] = $element;
 				}

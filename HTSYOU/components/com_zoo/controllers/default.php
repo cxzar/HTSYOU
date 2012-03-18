@@ -253,7 +253,7 @@ class DefaultController extends AppController {
 			$title = empty($title) ? $this->category->name : $title;
 		}
 		if (($menu = $this->app->object->create('JSite')->getMenu()->getActive()) && (@$menu->query['view'] == 'category' || @$menu->query['view'] == 'frontpage') && $this->app->parameter->create($menu->params)->get('category') == $category_id) {
-			if ($page_title = $this->app->parameter->create($menu->params)->get('page_title')) {
+			if (($page_title = $this->app->parameter->create($menu->params)->get('page_title')) || ($page_title = $this->app->joomla->isVersion('1.5') ? $menu->name : $menu->title)) {
 				$title = $page_title;
 			}
 		}

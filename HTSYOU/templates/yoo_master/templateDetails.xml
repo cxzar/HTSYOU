@@ -36,6 +36,8 @@
 		<folder>warp</folder>
 	</files>
 	<positions>
+		<position>loginpro</position>
+		<position>loginside</position>
 		<position>absolute</position>
 		<position>search</position>
 		<position>logo</position>

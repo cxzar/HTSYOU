@@ -14,6 +14,27 @@ defined('_JEXEC') or die('Restricted access');
 Changelog
 ------------
 
+2.5.15
++ you can now hide the update notifications for current session
+# fixed problem with ZOO administration with open_basedir restriction in effect
+# fixed issue with Publish Down date on some systems (Submission)
+# fixes to protocoll part of url in Socialbutton and Media elements
+# fix to DB backup functionality
+
+2.5.14
+# download element will check against default access value now, if none is set
+# fixed bugs related to the field API change
+
+2.5.13
++ added option to fully hide/show categories on category/frontpage views
++ assign access level to core elements
+# editing a submission in none trusted mode will set the item to unpublished
+# fixed bug with submission (Documentation app)
+# Item Frontpage, Item Searchable and Item State elements no longer sortable
+# fix to Page Titles on frontpage (J2.5)
+# fixed css issues (Social Buttons Element)
+# fixed language problem with Facebook Like Button (Social Buttons Element)
+
 2.5.12
 # fixed problem with Download element introduced in 2.5.11
 # fixed issue with CSV export (PHP < 5.3)

@@ -105,11 +105,13 @@ class ElementItemPublish_Down extends Element implements iSubmittable {
 	*/
 	public function bindData($data = array()) {
 		$value = @$data['value'];
-		if (!empty($value) && ($value = strtotime($value)) && ($value = strftime(SubmissionController::EDIT_DATE_FORMAT, $value))) {
+		if (!empty($value) && ($value = strtotime($value)) && $value > 0 && ($value = strftime(SubmissionController::EDIT_DATE_FORMAT, $value))) {
 			$tzoffset = $this->app->system->config->getValue('config.offset');
 			$date     = $this->app->date->create($value, $tzoffset);
 			$value	  = $date->toMySQL();
 			$this->_item->publish_down = $value;
+		} else {
+			$this->_item->publish_down = $this->app->database->getNullDate();
 		}
 	}
 

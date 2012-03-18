@@ -7,10 +7,21 @@
 */
 
 /*
-   Class: UserHelper
+   Class: UserAppHelper
    The Helper Class for user
 */
-class UserHelper extends AppHelper {
+class UserAppHelper extends AppHelper {
+
+	/*
+		Function: getName
+			Get helper name
+
+		Returns:
+			String
+	*/
+	public function getName() {
+		return 'user';
+	}
 
 	/*
 		Function: get

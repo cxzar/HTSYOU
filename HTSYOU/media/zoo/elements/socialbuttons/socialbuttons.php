@@ -54,8 +54,8 @@ class ElementSocialbuttons extends Element implements iSubmittable {
 
 			// Tweet Button
 			if ($this->config->get('twitter')) {
-				$this->app->system->document->addScript('http://platform.twitter.com/widgets.js');
-				$html[] = '<div><a href="http://twitter.com/share" class="twitter-share-button"'
+				$this->app->system->document->addScript('//platform.twitter.com/widgets.js');
+				$html[] = '<div><a href="//twitter.com/share" class="twitter-share-button"'
 							.' data-url="'.htmlspecialchars($item_route).'"'
 							. ($params->get('twvia') ? ' data-via="'.$params->get('twvia').'"' : '')
 							. ($params->get('twtext') ? ' data-text="'.$params->get('twtext').'"' : '')
@@ -67,7 +67,7 @@ class ElementSocialbuttons extends Element implements iSubmittable {
 
 			// Google Plus One
 			if ($this->config->get('google')) {
-				$this->app->system->document->addScript('https://apis.google.com/js/plusone.js');
+				$this->app->system->document->addScript('//apis.google.com/js/plusone.js');
 				$html[] = '<div><div class="g-plusone" data-href="'.htmlspecialchars($item_route).'" data-annotation="none"'
 							.($params->get('ggsize') ? ' data-size="'.$params->get('ggsize').'"' : '')
 							.($params->get('ggcount') ? ' data-count="true"' : ' data-count="false"')
@@ -77,17 +77,22 @@ class ElementSocialbuttons extends Element implements iSubmittable {
 
 			// Facebook Like
 			if ($this->config->get('facebook')) {
-				$this->app->system->document->addScriptDeclaration(
-						'jQuery(function($) { if (!$("body").find("#fb-root").length) {
-							$("body").append(\'<div id="fb-root"></div>\');
-							(function(d, s, id) {
-							var js, fjs = d.getElementsByTagName(s)[0];
-							if (d.getElementById(id)) return;
-							js = d.createElement(s); js.id = id;
-							js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-							fjs.parentNode.insertBefore(js, fjs);
-							}(document, \'script\', \'facebook-jssdk\'));
-						}});');
+
+				static $added = false;
+				if (!$added) {
+					$this->app->system->document->addScriptDeclaration(
+							'jQuery(function($) { if (!$("body").find("#fb-root").length) {
+								$("body").append(\'<div id="fb-root"></div>\');
+								(function(d, s, id) {
+								var js, fjs = d.getElementsByTagName(s)[0];
+								if (d.getElementById(id)) return;
+								js = d.createElement(s); js.id = id;
+								js.src = "//connect.facebook.net/'.($locale ? $locale : 'en_US').'/all.js#xfbml=1";
+								fjs.parentNode.insertBefore(js, fjs);
+								}(document, \'script\', \'facebook-jssdk\'));
+							}});');
+					$added = true;
+				}
 
 				$html[] = '<div><div class="fb-like"'
 						.'data-href="'.htmlspecialchars($item_route).'"'
@@ -97,7 +102,6 @@ class ElementSocialbuttons extends Element implements iSubmittable {
 						.'data-show-faces="'.$params->get('fbshow_faces').'"'
 						.'data-action="'.$params->get('fbaction').'"'
 						.'data-colorscheme="'.$params->get('fbcolorscheme').'"'
-						.($locale ? 'data-locale="'.$locale.'"' : '')
 						.($params->get('ref') ? 'data-ref="'.$params->get('fbref').'"' : '')
 					.'></div></div>';
 
