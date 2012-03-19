@@ -64,6 +64,7 @@ if ($registerLabelsInside == 1){
 			jQuery('#alrRegisterUsername').prop('value', '$registerUsernameLabel');
 			jQuery('#alrRegisterPassword').prop('value', 'password');
 			jQuery('#alrRegisterPassword2').prop('value', 'password');
+			jQuery('#alrGuildPassword').prop('value', 'Guild Password');
 			jQuery('#alrRegisterEmail').prop('value', '$registerEmailLabel');
 			jQuery('#alrRegisterEmail2').prop('value', '$registerEmail2Label');
 			jQuery('#alrRegisterSubmitBtn').prop('value', '$registerSubmit');
@@ -274,6 +275,18 @@ if ($moduleWidth != "auto"){
 					<div class="alrInputTextFix">	
 						<input id="alrRegisterPassword2" type="password" name="jform[password2]" autocomplete="off" class="validate-password required" aria-required="true" required="required"
 						onfocus="if(this.value == 'password') { this.value = ''; $alrLblIn = 1;}" onblur="if((<?php echo ($registerLabelsInside);?> == 1 || $alrLblIn == 1)&& this.value == '') { this.value = 'password'; }">
+					</div>
+				</div>
+			</div>
+			<!-- -->
+			<div class="alrRecord">
+				<div class="alrLabelText">
+					<label id="alrGuildPasswordLbl" for="jformg_password2" class="hasTip required" title=""><?php echo $guildPasswordLabel;?></label>
+				</div>
+				<div class="alrInputText">
+					<div class="alrInputTextFix">	
+						<input id="alrGuildPassword" type="text" name="jformg[password2]" autocomplete="off" class="validate-password required" aria-required="true" required="required"
+						onfocus="if(this.value == 'Guild Password') { this.value = ''; $alrLblIn = 1;}" onblur="if((<?php echo ($guildLabelsInside);?> == 1 || $alrLblIn == 1)&& this.value == '') { this.value = 'Guild Password'; }">
 					</div>
 				</div>
 			</div>

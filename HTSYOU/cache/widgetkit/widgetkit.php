@@ -1,1 +1,0 @@
-{"update_check":"eb68b87742eca4754837a22357ae5055","update_data":"{\"status\":\"up-to-date\",\"message\":\"You're up to date!. Joomla 2.5 Extension 1.0.4 is currently the newest version available.\"}"}

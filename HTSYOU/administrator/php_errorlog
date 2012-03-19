@@ -8,3 +8,4 @@
 [02-Mar-2012 22:34:28] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
 [02-Mar-2012 22:35:40] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
 [02-Mar-2012 22:35:49] PHP Fatal error:  Call to a member function isAdmin() on a non-object in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/admin/util.php on line 231
+[18-Mar-2012 20:49:31] PHP Fatal error:  Call to a member function getRace() on a non-object in /home/haterz14/public_html/haterz/plugins/user/guildprofile/wowarmoryapi/Character.class.php on line 99

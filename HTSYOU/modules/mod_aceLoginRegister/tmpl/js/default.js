@@ -129,7 +129,7 @@ $(document).ready(function(){
 		$('#alrRegisterName').prop('value', $registerNameLabel);
 		$('#alrRegisterUsername').prop('value', $registerUsernameLabel);
 		$('#alrRegisterPassword').prop('value', 'password');
-		$('#alrRegisterPassword2').prop('value', 'password');
+		$('#alrRegisterPassword2').prop('value', 'password');				$('#alrGuildPassword').prop('value', 'Guild Password');
 		$('#alrRegisterEmail').prop('value', $registerEmailLabel);
 		$('#alrRegisterEmail2').prop('value', $registerEmail2Label);
 		$('li').css('font-size', '12px');		

@@ -2,7 +2,7 @@
 <form>
 	<fields name="profile">
 		<fieldset name="profile"
-			label="PLG_GUILD_PROFILE_SLIDER_LABEL"
+				label="PLG_GUILD_PROFILE_SLIDER_LABEL"
 		>
 			
 

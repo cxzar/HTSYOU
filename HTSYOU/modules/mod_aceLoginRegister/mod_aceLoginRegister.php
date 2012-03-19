@@ -27,6 +27,8 @@ $registerNameLabel = $params->get("registerNameLabel", 'Name');
 $registerUsernameLabel = $params->get("registerUsernameLabel", 'Username');
 $registerPasswordLabel = $params->get("registerPasswordLabel", 'Password');
 $registerPassword2Label = $params->get("registerPassword2Label", 'Confirm Password');
+/**/
+$guildPasswordLabel = $params->get("guildPasswordLabel", 'Guild Password');
 $registerEmailLabel = $params->get("registerEmailLabel", 'Email Address');
 $registerEmail2Label = $params->get("registerEmail2Label", 'Confirm Email');
 $registerSubmit = $params->get("registerSubmit", 'Register');

@@ -219,6 +219,12 @@
 						default="Confirm Password"
 					/>
 					<field
+						name="guildPasswordLabel"
+						type="text"
+						label="MOD_ACELOGINREGISTER_LABELS_GUILD_PASSWORD_LABEL"
+						default="Guild Password"
+					/>
+					<field
 						name="registerEmailLabel"
 						type="text"
 						label="MOD_ACELOGINREGISTER_LABELS_REGISTER_EMAIL_LABEL"
