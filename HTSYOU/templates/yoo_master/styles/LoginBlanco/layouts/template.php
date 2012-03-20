@@ -15,6 +15,7 @@ include($this['path']->path('layouts:template.config.php'));
 
 <head>
 <link rel="stylesheet" href="css/splitscreen.css" type="text/css" media="all"/>
+<link rel="stylesheet" type="text/css" media="all" href="pandaria.css">
 <?php echo $this['template']->render('head'); ?>
 </head>
 
@@ -80,10 +81,28 @@ include($this['path']->path('layouts:template.config.php'));
 		
 		</header>
 		
+		<!--CODIGO PROPIO CZAR-->
 		<div id="Titulo">
 			<p id="Beta">En construcción : Beta 0.002</p>
 			<p id="Hates">Hates You</p>
 		</div>
+
+		<div id="benjaminbutton" id="asdButton"> asd </button>
+			<button type="button">
+		</div>
+			
+			<div id="incense-wrapper">
+				<div id="incense">
+				<object width="650" height="400" type="application/x-shockwave-flash" data="http://us.media.blizzard.com/wow/mists-of-pandaria/flash/incense.swf" id="incense" style="visibility: visible;">
+				<param name="allowFullScreen" value="true"/><param name="bgcolor" value="#000000"/>
+				<param name="allowScriptAccess" value="always"/>
+				<param name="wmode" value="transparent"/>
+				<param name="menu" value="false"/>
+				<param name="base" value="http://us.media.blizzard.com/wow/media/videos"/>
+				</object>
+				</div>
+			</div>
+		<!--CODIGO PROPIO CZAR-->	
 
 		<?php if ($this['modules']->count('top-a')) : ?>
 		<section id="top-a" class="grid-block"><?php echo $this['modules']->render('top-a', array('layout'=>$this['config']->get('top-a'))); ?></section>
@@ -94,6 +113,7 @@ include($this['path']->path('layouts:template.config.php'));
 		<?php endif; ?>
 		
 		<?php if ($this['modules']->count('innertop + innerbottom + sidebar-a + sidebar-b') || $this['config']->get('system_output')) : ?>
+		
 		<div id="main" class="grid-block">
 		
 			<div id="maininner" class="grid-box">
