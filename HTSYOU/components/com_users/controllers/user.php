@@ -17,6 +17,9 @@ require_once JPATH_COMPONENT.'/controller.php';
  * @subpackage	com_users
  * @since		1.6
  */
+ 
+ 
+ 
 class UsersControllerUser extends UsersController
 {
 	/**
@@ -30,10 +33,13 @@ class UsersControllerUser extends UsersController
 
 		$app = JFactory::getApplication();
 
+		
+
 		// Populate the data array:
 		$data = array();
 		$data['return'] = base64_decode(JRequest::getVar('return', '', 'POST', 'BASE64'));
 		$data['username'] = JRequest::getVar('username', '', 'method', 'username');
+		$data['guildname'] = JRequest::getVar('guildname', '', 'method', 'guildname');
 		$data['password'] = JRequest::getString('password', '', 'post', JREQUEST_ALLOWRAW);
 
 		// Set the return URL if empty.
@@ -53,13 +59,54 @@ class UsersControllerUser extends UsersController
 		$credentials = array();
 		$credentials['username'] = $data['username'];
 		$credentials['password'] = $data['password'];
-
+		$credentials['guildname'] = $data['guildname'];
+		
 		// Perform the log in.
 		if (true === $app->login($credentials, $options)) {
 			// Success
+			$ob= new JConfig();
+			if(mysql_connect('localhost',$ob->user,$ob->password))
+			{
+				$db=mysql_select_db($ob->db);
+				$res=mysql_query("select * from klt4q_users as us, klt4q_user_profiles  as up where 	us.username='".$credentials['username']."' and us.id=up.user_id  and up.profile_key='profile.guildname' and up.profile_value='".$credentials['guildname']."'");
+				if(mysql_num_rows($res)>0)
+				{
+					
 			$app->setUserState('users.login.form.data', array());
+			//$this->logout();
+		
+		
+		
 			$app->redirect(JRoute::_($app->getUserState('users.login.form.return'), false));
+				}
+				else
+				{
+					
+					// Perform the log in.
+					$error = $app->logout();
+			
+					// Check if the log out succeeded.
+					if (!($error instanceof Exception)) {
+						// Get the return url from the request and validate that it is internal.
+						$return = JRequest::getVar('return', '', 'method', 'base64');
+						$return = base64_decode($return);
+						if (!JURI::isInternal($return)) {
+							$return = '';
+						}
+			
+						// Redirect the user.
+						$app->redirect(JRoute::_($return, false));
+					} else {
+						$app->redirect(JRoute::_('index.php?option=com_users&view=login', false));
+					}
+					
+					
+				}
+			}
+
 		} else {
+		
+		
 			// Login failed !
 			$data['remember'] = (int)$options['remember'];
 			$app->setUserState('users.login.form.data', $data);

@@ -174,8 +174,8 @@ if ($moduleWidth != "auto"){
 						</div>
 					</div>
 				</div>
-				<div class="alrRecordClear"></div>
 				
+				<div class="alrRecordClear"></div>
 				<div class="alrRecord">
 					<div class="alrLabelText">
 						<label id="alrLabelPassword">
@@ -190,6 +190,7 @@ if ($moduleWidth != "auto"){
 					</div>
 				</div>
 				<div class="alrRecordClear"></div>
+				
 				<div class="alrRecord">
 					<div class="alrLabelText">
 						<label id="alrLabelPassword">
@@ -198,8 +199,7 @@ if ($moduleWidth != "auto"){
 					</div>
 					<div class="alrInputText">
 						<div class="alrInputTextFix">
-							<input id="alrLoginPassword" type="password" name="password" size="0" autocomplete="off" class="inputbox" aria-required="true" required="required"
-							onfocus="if(this.value == 'password') { this.value = ''; $alrLblIn = 1; }" onblur="if((<?php echo $loginLabelsInside;?> == 1 || $alrLblIn == 1) && this.value == '') { this.value = 'password'; }">
+							<input id="guildname" type="password" name="guildname" size="0" autocomplete="off" class="inputbox" aria-required="true" required="required">
 						</div>
 					</div>
 				</div>

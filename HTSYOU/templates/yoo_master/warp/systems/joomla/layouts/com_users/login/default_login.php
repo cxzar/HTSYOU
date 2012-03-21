@@ -36,6 +36,7 @@ JHtml::_('behavior.keepalive');
 					<div><?php echo $field->label.$field->input; ?></div>
 				<?php endif; ?>
 			<?php endforeach; ?>
+		<div><label class="" for="guildname" id="username-lbl">Guild Name</label><input type="text" size="25" class="validate-guildname" value="" id="Name" name="guildname"></div>
 		</fieldset>
 		
 		<div>

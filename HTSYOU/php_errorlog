@@ -124,3 +124,9 @@
 [03-Mar-2012 11:32:46] PHP Fatal error:  require_once() [<a href='function.require'>function.require</a>]: Failed opening required '/home/haterz14/public_html/haterz/plugins/system/jat3/jat3/core/common.php' (include_path='.:/usr/local/php52/pear') in /home/haterz14/public_html/haterz/plugins/system/jat3/jat3.php on line 17
 [15-Mar-2012 23:49:52] PHP Parse error:  syntax error, unexpected '<' in /home/haterz14/public_html/haterz/modules/mod_aceLoginRegister/tmpl/default.php on line 128
 [15-Mar-2012 23:49:54] PHP Parse error:  syntax error, unexpected '<' in /home/haterz14/public_html/haterz/modules/mod_aceLoginRegister/tmpl/default.php on line 128
+[20-Mar-2012 01:14:07] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/haterz14/public_html/haterz/components/com_users/controllers/user.php on line 55
+[20-Mar-2012 01:14:07] PHP Parse error:  syntax error, unexpected $end, expecting ']' in /home/haterz14/public_html/haterz/components/com_users/controllers/user.php on line 55
+[20-Mar-2012 01:19:03] PHP Parse error:  syntax error, unexpected $end in /home/haterz14/public_html/haterz/modules/mod_aceLoginRegister/tmpl/default.php on line 42
+[20-Mar-2012 01:38:33] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/haterz14/public_html/haterz/components/com_users/controllers/user.php on line 108
+[20-Mar-2012 01:38:33] PHP Parse error:  syntax error, unexpected $end in /home/haterz14/public_html/haterz/components/com_users/controllers/user.php on line 108
+[20-Mar-2012 01:39:55] PHP Parse error:  syntax error, unexpected $end in /home/haterz14/public_html/haterz/components/com_users/controllers/user.php on line 52
