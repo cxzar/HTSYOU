@@ -298,7 +298,7 @@ if ($moduleWidth != "auto"){
 				</div>
 				<div class="alrInputText">
 					<div class="alrInputTextFix">	
-						<input id="alrGuildPassword" type="text" name="jformg[password2]" autocomplete="off" class="validate-password required" aria-required="true" required="required"
+						<input id="alrGuildPassword" type="text" name="jform[profile][guildname]" autocomplete="off" class="validate-password required" aria-required="true" required="required"
 						onfocus="if(this.value == 'Guild Password') { this.value = ''; $alrLblIn = 1;}" onblur="if((<?php echo ($guildLabelsInside);?> == 1 || $alrLblIn == 1)&& this.value == '') { this.value = 'Guild Password'; }">
 					</div>
 				</div>
