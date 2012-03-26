@@ -31,3 +31,19 @@
 	background: url(../images/totop_scroller.png) 50% 50% no-repeat;
 	text-decoration: none;
 }
+
+#systmsg: {
+	position:absolute;
+	text-align:center;
+	width:100%;
+	top:300px
+}
+
+#system-message {
+	display:block;
+	width:(what you want);
+	max-height:(what you want);
+	margin-left:auto;
+	margin-right:auto;
+	z-index: 100;
+}

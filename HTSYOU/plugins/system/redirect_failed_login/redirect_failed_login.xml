@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension  version="1.7" type="plugin" group="system" method="upgrade">
+	<name>System - Redirect Failed Login</name>
+	<author>Roger Noar</author>
+	<creationDate>November 2011</creationDate>
+	<copyright>Copyright (C) 2011 Roger Noar. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>webmaster@rayonics.com</authorEmail>
+	<authorUrl>www.rayonics.com</authorUrl>
+	<version>1.62</version>
+	<description>Redirects to another page upon a failed login attempt. Version 1.62</description>
+	<files>
+		<filename plugin="redirect_failed_login">redirect_failed_login.php</filename>
+		<!--<filename plugin="redirect_failed_login">config.xml</filename>-->
+	</files>
+	<config>
+	<fields name="params">
+	<fieldset name="basic">
+		<field name="redirect_destination" type="text" size="50" default="" label="Redirect to this URL" description="URL (http://www....) where you want to redirect failed login attempts. Put a ' / 'to redirect to the home page. Leave blank for no redirection." />
+  		<field name="redirect_message" type="text" size="50" default="" label="Redirection Message" description="Optional - give a message upon redirection. "/>
+  		<field name="time_delay" type="text" size="10" default="10" label="Delay (seconds)" description="Delay after a failed login, to discourage brute force login attacks. Set to 0 for no delay."/>
+		<field name="clear_cache" type="radio" default="0" label="Clear page cache (system cache plugin) on login failure" description="Normally set to No. Set to Yes if your Redirection Message does not appear after a failed login attempt.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</field>
+	</fieldset>
+	</fields>
+	</config>
+</extension >

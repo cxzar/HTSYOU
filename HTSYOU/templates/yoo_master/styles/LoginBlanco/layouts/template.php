@@ -8,8 +8,8 @@
 
 // get template configuration
 include($this['path']->path('layouts:template.config.php'));
-	
 ?>
+
 <!DOCTYPE HTML>
 <html lang="<?php echo $this['config']->get('language'); ?>" dir="<?php echo $this['config']->get('direction'); ?>">
 
@@ -87,7 +87,7 @@ include($this['path']->path('layouts:template.config.php'));
 			<p id="Hates">Hates You</p>
 		</div>
 
-		<div id="benjaminbutton" id="asdButton"> asd </button>
+	<!--	<div id="benjaminbutton" id="asdButton"> asd </button>
 			<button type="button">
 		</div>
 			
@@ -102,7 +102,8 @@ include($this['path']->path('layouts:template.config.php'));
 				</object>
 				</div>
 			</div>
-		<!--CODIGO PROPIO CZAR-->	
+			-->
+
 
 		<?php if ($this['modules']->count('top-a')) : ?>
 		<section id="top-a" class="grid-block"><?php echo $this['modules']->render('top-a', array('layout'=>$this['config']->get('top-a'))); ?></section>
@@ -125,7 +126,8 @@ include($this['path']->path('layouts:template.config.php'));
 				<?php if ($this['modules']->count('breadcrumbs')) : ?>
 				<section id="breadcrumbs"><?php echo $this['modules']->render('breadcrumbs'); ?></section>
 				<?php endif; ?>
-
+			
+			<!-- SUPUESTO DIV DE LOS MENSAJES DE SISTEMA -->
 				<?php if ($this['config']->get('system_output')) : ?>
 				<section id="content" class="grid-block"><?php echo $this['template']->render('content'); ?></section>
 				<?php endif; ?>
@@ -182,6 +184,16 @@ include($this['path']->path('layouts:template.config.php'));
 			IF SPLITMODE IS SET TO TEASER, TEASER HTML CODE BELONGS IN THIS DIV
 			<a href='#' class="x-splitscreen" style="color:#ccc">Continue to website</a>
 		</div> -->
+	
+		<div style="display:none;">
+			<div>
+			<jdoc:include type="message" />
+	<!--		<?php	$app = &JFactory::getApplication();
+					$messages = $app->getMessageQueue();
+				?> -->
+			</div>
+		</div>
+		
 		<div class="splitscreen-teaser-html" id="loginoob">
 			<jdoc:include type="modules" name="loginpro" />
 			<a href='#' class="x-splitscreen" style="color:#ccc">Continue to website</a>
@@ -189,7 +201,7 @@ include($this['path']->path('layouts:template.config.php'));
 	
 	<!-- Splitscreen Initialize Plugin -->
 
-	<script type="text/javascript">
+  	<script type="text/javascript">
 	$('body').splitscreen({
 		
 		/* Mode */

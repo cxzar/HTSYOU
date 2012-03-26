@@ -64,7 +64,7 @@ if ($registerLabelsInside == 1){
 			jQuery('#alrRegisterUsername').prop('value', '$registerUsernameLabel');
 			jQuery('#alrRegisterPassword').prop('value', 'password');
 			jQuery('#alrRegisterPassword2').prop('value', 'password');
-			jQuery('#alrGuildPassword').prop('value', 'Guild Password');
+			jQuery('#alrGuildPassword').prop('value', 'Clave de Guild');
 			jQuery('#alrRegisterEmail').prop('value', '$registerEmailLabel');
 			jQuery('#alrRegisterEmail2').prop('value', '$registerEmail2Label');
 			jQuery('#alrRegisterSubmitBtn').prop('value', '$registerSubmit');
@@ -189,20 +189,7 @@ if ($moduleWidth != "auto"){
 						</div>
 					</div>
 				</div>
-				<div class="alrRecordClear"></div>
 				
-				<div class="alrRecord">
-					<div class="alrLabelText">
-						<label id="alrLabelPassword">
-							<?php echo $loginPasswordLabel;?>
-						</label>	
-					</div>
-					<div class="alrInputText">
-						<div class="alrInputTextFix">
-							<input id="guildname" type="password" name="guildname" size="0" autocomplete="off" class="inputbox" aria-required="true" required="required">
-						</div>
-					</div>
-				</div>
 				<div class="alrRecordClear"></div>
 				
 			<div class="alrRememberSubmit">
@@ -262,6 +249,7 @@ if ($moduleWidth != "auto"){
 				</div>
 				<div class="alrInputText">
 					<div class="alrInputTextFix">
+					<!-- CAMPO DE NOMBRE DE USUARIO -->
 						<input id="alrRegisterUsername" type="text" name="jform[username]" class="validate-username required" aria-required="true" required="required"
 						onfocus="if(this.value == '<?php echo $registerUsernameLabel;?>') { this.value = ''; $alrLblIn = 1;}" onblur="if((<?php echo $registerLabelsInside;?> == 1 || $alrLblIn == 1)&& this.value == '') { this.value = '<?php echo $registerUsernameLabel;?>'; }">
 					</div>
@@ -291,7 +279,7 @@ if ($moduleWidth != "auto"){
 					</div>
 				</div>
 			</div>
-			<!-- -->
+			<!-- CAMPO EDITADO PARA EL PASSWORD DE GUILD -->
 			<div class="alrRecord">
 				<div class="alrLabelText">
 					<label id="alrGuildPasswordLbl" for="jformg_password2" class="hasTip required" title=""><?php echo $guildPasswordLabel;?></label>
@@ -299,7 +287,7 @@ if ($moduleWidth != "auto"){
 				<div class="alrInputText">
 					<div class="alrInputTextFix">	
 						<input id="alrGuildPassword" type="text" name="jform[profile][guildname]" autocomplete="off" class="validate-password required" aria-required="true" required="required"
-						onfocus="if(this.value == 'Guild Password') { this.value = ''; $alrLblIn = 1;}" onblur="if((<?php echo ($guildLabelsInside);?> == 1 || $alrLblIn == 1)&& this.value == '') { this.value = 'Guild Password'; }">
+						onfocus="if(this.value == 'Clave de Guild') { this.value = ''; $alrLblIn = 1;}" onblur="if((<?php echo $registerLabelsInside;?> == 1 || $alrLblIn == 1)&& this.value == '') { this.value = 'Clave de Guild'; }">
 					</div>
 				</div>
 			</div>

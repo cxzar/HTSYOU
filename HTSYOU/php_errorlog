@@ -130,3 +130,10 @@
 [20-Mar-2012 01:38:33] PHP Warning:  Unexpected character in input:  ''' (ASCII=39) state=1 in /home/haterz14/public_html/haterz/components/com_users/controllers/user.php on line 108
 [20-Mar-2012 01:38:33] PHP Parse error:  syntax error, unexpected $end in /home/haterz14/public_html/haterz/components/com_users/controllers/user.php on line 108
 [20-Mar-2012 01:39:55] PHP Parse error:  syntax error, unexpected $end in /home/haterz14/public_html/haterz/components/com_users/controllers/user.php on line 52
+[22-Mar-2012 21:31:54] PHP Fatal error:  Call to undefined method TemplateWarpHelper::getBuffer() in /home/haterz14/public_html/haterz/templates/yoo_master/styles/LoginBlanco/layouts/template.php on line 21
+[22-Mar-2012 22:04:10] PHP Parse error:  syntax error, unexpected ';' in /home/haterz14/public_html/haterz/templates/yoo_master/styles/LoginBlanco/layouts/template.php on line 22
+[24-Mar-2012 22:48:03] PHP Fatal error:  Cannot access protected property JURI::$_path in /home/haterz14/public_html/haterz/plugins/system/redirect_failed_login/redirect_failed_login.php on line 52
+[24-Mar-2012 22:49:41] PHP Parse error:  syntax error, unexpected ';', expecting T_FUNCTION in /home/haterz14/public_html/haterz/plugins/system/redirect_failed_login/redirect_failed_login.php on line 70
+[24-Mar-2012 22:49:49] PHP Parse error:  syntax error, unexpected ';', expecting T_FUNCTION in /home/haterz14/public_html/haterz/plugins/system/redirect_failed_login/redirect_failed_login.php on line 70
+[25-Mar-2012 00:04:12] PHP Fatal error:  Call to undefined method TemplateWarpHelper::getBuffer() in /home/haterz14/public_html/haterz/templates/yoo_master/styles/LoginBlanco/layouts/template.php on line 188
+[25-Mar-2012 00:47:54] PHP Fatal error:  Call to a member function getMessageQueue() on a non-object in /home/haterz14/public_html/haterz/plugins/system/modalmessages/modalmessages.php on line 61
