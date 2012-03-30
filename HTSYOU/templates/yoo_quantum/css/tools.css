@@ -6,10 +6,9 @@
 ----------------------------------------------------------------------------------------------------*/
 
 a.button-more,
-form.box button,
-form.short button,
-form.box input[type="button"],
-form.box input.button {
+form.style button,
+form.style input[type="button"],
+form.style input.button {
 	margin: 3px;
 	padding: 4px 10px;
 	border: none;
@@ -110,48 +109,36 @@ dl.separator dt:first-child:after { display: none; }
 /* Forms (Needed for System Markup)
 ----------------------------------------------------------------------------------------------------*/
 
-form.box fieldset,
-form.short fieldset { 
+form.box fieldset { 
 	padding: 10px 15px;
 	-moz-border-radius: 6px;
 	-webkit-border-radius: 6px;
 	border-radius: 6px;
 }
 
-form.box fieldset legend,
-form.short fieldset legend {
+form.box fieldset legend {
 	font-size: 12px;
 	text-transform: uppercase;
 }
 
-form.box fieldset div,
-form.short fieldset div { margin-bottom: 10px; }
+form.box fieldset div { margin-bottom: 10px; }
 
-form.box input[type="text"],
-form.short input[type="text"],
-form.box input[type="password"],
-form.short input[type="password"],
-form.box select,
-form.short select,
-form.box textarea,
-form.short textarea {
+form.style input[type="text"],
+form.style input[type="password"],
+form.style select,
+form.style textarea {
 	padding: 4px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
 
-form.box input[type="text"]:focus,
-form.short input[type="text"]:focus,
-form.box input[type="password"]:focus,
-form.short input[type="password"]:focus,
-form.box select:focus,
-form.short select:focus,
-form.box textarea:focus,
-form.short textarea:focus { outline: none; }
+form.style input[type="text"]:focus,
+form.style input[type="password"]:focus,
+form.style select:focus,
+form.style textarea:focus { outline: none; }
 
-form.box textarea,
-form.short textarea { padding: 8px 10px; }
+form.style textarea { padding: 8px 10px; }
 
 
 /* Mobile Switcher (Needed for Mobile)

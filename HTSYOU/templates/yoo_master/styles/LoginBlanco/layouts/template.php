@@ -224,8 +224,8 @@ include($this['path']->path('layouts:template.config.php'));
 		/* NEW */     showFloatLeftCenter:  false, 						
 		/* NEW */     showFloatLeftBottom:  false, 								
 				showUnderlay:		true,					
-				showIntroSplit:		true, 				
-				showAutoSplit:		true, 				
+				showIntroSplit:		false, 				
+				showAutoSplit:		false, 				
 				showHints:		false,
 				
 				/* Timer */
@@ -238,7 +238,7 @@ include($this['path']->path('layouts:template.config.php'));
 				imageWidthBG: 		2000, 				
 				imageHeightBG:		1333, 						
 				imageRaster:		'raster00.png', 		
-				alphaRaster:		'85', 				 		
+				alphaRaster:		'0', 				 		
 				imageCenter:		'logo-large.png',
 		/* NEW */     imageFloating:	   'logo-large.png', 		
 				imageFadeLeft:		'fade-left.png',		
@@ -253,7 +253,7 @@ include($this['path']->path('layouts:template.config.php'));
 				verticalAlignBtn:	'middle',			
 				
 				/* Continue button */		
-				textContinueBtn:	'Continue to site »',	 	
+				textContinueBtn:	'Más Información',	 	
 				colorContinueTxt:	'#ffffff',
 				fontContinueTxt:	'Georgia1, Georgia, serif',	
 				sizeContinueBtn:	'14px',				

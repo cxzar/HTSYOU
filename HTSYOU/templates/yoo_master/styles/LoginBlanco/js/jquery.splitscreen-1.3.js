@@ -456,14 +456,14 @@ if (DetectTierIphone() || DetectTierTablet()){
 	}else{			
 			// MOUSE ACTION	STANDARD
 			if(settings.splitMode == 'splash'){			
-				$('.splitscreen-activate').mouseenter(function () { 
+				$('.splitscreen-activate').mousedown(function () { 
 						$('.splitscreen-left, .splitscreen-shadow-left').queue('fx', []);
 						$('.splitscreen-right, .splitscreen-shadow-right').queue('fx', []);
 						$(".splitscreen-left, .splitscreen-shadow-left").animate({left: "-10%"}, {duration: 1000, easing: 'jswing'});
 						$(".splitscreen-right, .splitscreen-shadow-right").animate({left: "60%"}, {duration: 1000, easing: 'jswing'});
 						alreadyopen = true;
 						});					
-				$('.splitscreen-sector').mouseenter(function () { 
+				$('.splitscreen-sector').mousedown(function () { 
 						$(".splitscreen-left, .splitscreen-shadow-left").animate({left: "0%"}, {duration: 1000, easing: 'jswing'});
 						$(".splitscreen-right, .splitscreen-shadow-right").animate({left: "50%"}, {duration: 1000, easing: 'jswing'});
 						alreadyopen = false;
@@ -471,7 +471,7 @@ if (DetectTierIphone() || DetectTierTablet()){
 			}
 			
 			if(settings.splitMode == 'promo' || settings.splitMode == 'teaser'){			
-				$('.splitscreen-activate').mouseenter(function () { 
+				$('.splitscreen-activate').mousedown(function () { 
 						$('.splitscreen-left, .splitscreen-shadow-left').queue('fx', []);
 						$('.splitscreen-right, .splitscreen-shadow-right').queue('fx', []);						
 						$(".splitscreen-left, .splitscreen-shadow-left").animate({left: "-10%"}, {duration: 1000, easing: 'jswing'});
@@ -480,17 +480,17 @@ if (DetectTierIphone() || DetectTierTablet()){
 						$(".splitscreen-activate-2").animate({width: "2px", left: "69.9%"}, {duration: 1000, easing: 'jswing'});	
 						alreadyopen = true;
 						});	
-				$('.splitscreen-underlay').mouseenter(function () { 		
+				$('.splitscreen-underlay').mousedown(function () { 		
 						$(".splitscreen-left, .splitscreen-shadow-left").animate({left: "-10%"}, {duration: 1000, easing: 'jswing'});
 						$(".splitscreen-right, .splitscreen-shadow-right").animate({left: "60%"}, {duration: 1000, easing: 'jswing'});
 						alreadyopen = true;
 						});
-				$('.splitscreen-teaser').mouseenter(function () { 			
+				$('.splitscreen-teaser').mousedown(function () { 			
 						$(".splitscreen-left, .splitscreen-shadow-left").animate({left: "-10%"}, {duration: 1000, easing: 'jswing'});
 						$(".splitscreen-right, .splitscreen-shadow-right").animate({left: "60%"}, {duration: 1000, easing: 'jswing'});
 						alreadyopen = true;
 						});								
-				$('.splitscreen-sector').mouseenter(function () { 
+				$('.splitscreen-sector').mousedown(function () { 
 						$('.splitscreen-left, .splitscreen-shadow-left').queue('fx', []);
 						$('.splitscreen-right, .splitscreen-shadow-right').queue('fx', []);
 						$('.splitscreen-activate').queue('fx', []);

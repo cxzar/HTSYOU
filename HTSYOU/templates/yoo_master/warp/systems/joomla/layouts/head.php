@@ -1,4 +1,5 @@
 <meta charset="<?php echo $this['system']->document->getCharset(); ?>" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <jdoc:include type="head" />
 <link rel="apple-touch-icon-precomposed" href="<?php echo $this['path']->url('template:apple_touch_icon.png'); ?>" />
 <?php

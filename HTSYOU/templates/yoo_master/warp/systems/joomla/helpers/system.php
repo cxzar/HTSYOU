@@ -115,6 +115,12 @@ class SystemWarpHelper extends WarpHelper {
 					}
 				}
 			}
+			
+			//force show system output on search results
+			if(strtolower(JRequest::getVar('option')) == "com_search"){
+				$this['config']->set('system_output', 1);
+			}
+			
         }
 		
 		// is admin ?

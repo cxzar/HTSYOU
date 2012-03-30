@@ -1,11 +1,20 @@
 # Warp Theme Framework #
 
-- Version: 6.1.8
-- Date: February 2012
+- Version: 6.1.9
+- Date: March 2012
 - Author: YOOtheme GmbH
 - Website: <http://www.yootheme.com/warp>
 
 ## Changelog
+
+	6.1.9
+	^ Updated jQuery to 1.7.2 (J)
+	+ Added mod_finder override (J25)
+	+ Added com_finder override (J25)
+	+ Always force latest IE rendering engine (even in intranet) & Chrome Frame
+	# Fixed apply theme settings jumping (J25)
+	# Fixed system output on search results (J25)
+	# Fixed force SSL (WP)
 
 	6.1.8
 	# Fixed com_contact, com_weblinks, com_newsfeed, com_content overrides (J25)

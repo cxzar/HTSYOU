@@ -2,7 +2,7 @@
 <!DOCTYPE install PUBLIC "-//Joomla! 1.7//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.7/template-install.dtd">
 <extension version="1.7" type="template" client="site">
 	<name>yoo_quantum</name>
-	<version>1.0.12</version>
+	<version>1.0.13</version>
 	<creationDate>February 2012</creationDate>
 	<author>YOOtheme</author>
 	<authorEmail>info@yootheme.com</authorEmail>

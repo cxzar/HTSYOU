@@ -90,6 +90,10 @@ cf6c64459ff146c4698ea39cddc6505c fonts/bebas.css
 8acd0acfafa33979aed4496cc4e12561 html/com_content/featured/default.php
 8acd0acfafa33979aed4496cc4e12561 html/com_content/featured/default_item.php
 8acd0acfafa33979aed4496cc4e12561 html/com_content/form/edit.php
+8acd0acfafa33979aed4496cc4e12561 html/com_finder/search/default.php
+8acd0acfafa33979aed4496cc4e12561 html/com_finder/search/default_form.php
+8acd0acfafa33979aed4496cc4e12561 html/com_finder/search/default_result.php
+8acd0acfafa33979aed4496cc4e12561 html/com_finder/search/default_results.php
 8acd0acfafa33979aed4496cc4e12561 html/com_newsfeeds/categories/default.php
 8acd0acfafa33979aed4496cc4e12561 html/com_newsfeeds/categories/default_items.php
 8acd0acfafa33979aed4496cc4e12561 html/com_newsfeeds/category/default.php
@@ -130,6 +134,7 @@ cf6c64459ff146c4698ea39cddc6505c fonts/bebas.css
 5ab6f3f2b57711bebad311c23eac2fcf html/mod_articles_popular/default.php
 5ab6f3f2b57711bebad311c23eac2fcf html/mod_breadcrumbs/default.php
 5ab6f3f2b57711bebad311c23eac2fcf html/mod_custom/default.php
+5ab6f3f2b57711bebad311c23eac2fcf html/mod_finder/default.php
 5ab6f3f2b57711bebad311c23eac2fcf html/mod_login/default.php
 5ab6f3f2b57711bebad311c23eac2fcf html/mod_search/default.php
 74e8380c95db6a443f1ffe8d048ce32e html/pagination.php
@@ -170,13 +175,13 @@ fff664e40cac7486fe93dd46ef24cde4 styles/mobile/layouts/template.config.php
 72c96bd4044f456c1fd90e3e260fbca7 templateDetails.xml
 13ae8a45144919188fba81bb1beb9e23 template_preview.png
 9dcdd5deacc25a7e965875ec9dc7983e template_thumbnail.png
-f16ac53b36af14eec23f1c0d8fe8b7b6 warp/README.markdown
+a6163bcff8aee470398a12589ee85619 warp/README.markdown
 ee206d7607893e51d13ca34d94a72789 warp/classes/data.php
 073eb4267c6e86d51528d250545c19c6 warp/classes/helper.php
 d8e0c142f7b23ef3761a0223d8ec352b warp/classes/menu.php
 5f0073db3e491a9fa5b53d8a88d52466 warp/config/css/config.css
 3701d9b686243e09f76d32dbabd18321 warp/config/images/loader.gif
-67303bf9a32d2cff231f3564b36ecccf warp/config/js/config.js
+f2551799c5ca30f35f1434fbd4b88d9f warp/config/js/config.js
 30691b6a5c62dffc484049ab9e5a7a23 warp/config/layouts/config.php
 3cd003e9af69ce590bb31b1fb503fe96 warp/config/layouts/fields/checkbox.php
 979262f9248704aa7eefbdc07f220ca6 warp/config/layouts/fields/layout.php
@@ -235,7 +240,7 @@ a219e20e2678b66b24b9067a2e228a8d warp/js/css3pie.htc
 d51d791cfe24378b998eaeebed078296 warp/js/follower.js
 6a97f44d7525ad49b46511a3c4958657 warp/js/html5.js
 6c347ea2978e31a8810ccda88b70fe79 warp/js/mobile.js
-396d831a3a368f1ad479f44f6b9c3f9e warp/js/search.js
+dd064a5382321262d1fae93f1210fc06 warp/js/search.js
 aef9edbdf945e2c37e37ff4425b5b4ba warp/js/warp.js
 9b3c3e3e8b616d1f2d3b53ab6042d364 warp/layouts/error.php
 11dbdb97019e07068296c1f2bed63bd3 warp/layouts/modules/layouts/double.php
@@ -258,7 +263,7 @@ c0f09228af80692f431914823822887d warp/layouts/modules/templates/default-2.php
 018a26ad9aeb8161d06acee08163ecde warp/layouts/modules/templates/default-4.php
 3b2082ce2b6e46a49ee8d5df7d322ac1 warp/layouts/modules/templates/dropdown.php
 8b20bf31458d1759a07c6add34b5c412 warp/layouts/modules/templates/raw.php
-ddf8a8b597153ee6abd9a49ce57b13c8 warp/libraries/jquery/jquery.js
+0bf53976f529ff686a4a4b356c37085b warp/libraries/jquery/jquery.js
 ac781d71347a631d5435c03fc9c18a50 warp/menus/accordion.php
 987a0b23ea39e57eb03cf4f8b48ba2e4 warp/menus/default.php
 636c80a83a8cc7996d80091e1c0e7437 warp/menus/dropdown.php
@@ -276,7 +281,7 @@ a09f12a02164710b2dde64306fc719a4 warp/systems/joomla/css/system.css
 df16546c1fed0eb4e9a17c1fcdc0089d warp/systems/joomla/helpers/config.php
 a7802f6f992d866a128cbebdd72e58a6 warp/systems/joomla/helpers/modules.php
 8e11039711863e1a6cf08b3b7166d091 warp/systems/joomla/helpers/option.php
-b2368e9580e0e6da2e85cccd96c09606 warp/systems/joomla/helpers/system.php
+7fde45bae6d903b137ec8cb84ee3a500 warp/systems/joomla/helpers/system.php
 e4d0aba195d266868615dd3ee4b563d3 warp/systems/joomla/language/de-DE/de-DE.tpl_warp.ini
 62b6f0ed6cd1007f8f9ae4803904ac3c warp/systems/joomla/language/en-GB/en-GB.tpl_warp.ini
 6ed124902f1263d03539dcfaea259a53 warp/systems/joomla/layouts/com_contact/categories/default.php
@@ -305,6 +310,10 @@ dca192a6d6423a4a0fd4194bfb5fb553 warp/systems/joomla/layouts/com_content/categor
 439b48d3e2b2f8073661521b0197b8f1 warp/systems/joomla/layouts/com_content/featured/default.php
 d974cff55c2e77835d0482e6922e6122 warp/systems/joomla/layouts/com_content/featured/default_item.php
 4f876897dade45e9eaf59c451158417d warp/systems/joomla/layouts/com_content/form/edit.php
+4b38b6f2ed182cdc84ffff163a03cfa8 warp/systems/joomla/layouts/com_finder/search/default.php
+c67c2530f7be85782658152b22733bf4 warp/systems/joomla/layouts/com_finder/search/default_form.php
+8738cd79970e9240d37ffc88789eeeb9 warp/systems/joomla/layouts/com_finder/search/default_result.php
+5d4a3dd698d06efa006c7061bf4f6979 warp/systems/joomla/layouts/com_finder/search/default_results.php
 6d9f81bbaebc127ce78d36c8abfecc89 warp/systems/joomla/layouts/com_newsfeeds/categories/default.php
 6416cbb841fce447c9c0583939bc80cb warp/systems/joomla/layouts/com_newsfeeds/categories/default_items.php
 f2a5a6bc4b049817c63bbf31d6fbcdf8 warp/systems/joomla/layouts/com_newsfeeds/category/default.php
@@ -337,7 +346,7 @@ deaf37b53be2ec9d8a31403b3f4c54f8 warp/systems/joomla/layouts/com_weblinks/catego
 7d7b966f2c5a6f408571e9ce6ce3935b warp/systems/joomla/layouts/com_wrapper/wrapper/default.php
 b70339c275c74c1f6c54baf711b62805 warp/systems/joomla/layouts/content.php
 4a6438670401e5210db42cf6f2339ff9 warp/systems/joomla/layouts/footer.php
-b13b2eba19d50dfd7d451156ca0c61d8 warp/systems/joomla/layouts/head.php
+282c3128b91193658a3278a5bee22d9a warp/systems/joomla/layouts/head.php
 200406b2505726e3b64b6940c92e28f4 warp/systems/joomla/layouts/mobile/login.php
 2f6ed2607946b5d1d10bf046913c54cf warp/systems/joomla/layouts/mobile/search.php
 40b7bccaa3ab60393f68f544e67b1f58 warp/systems/joomla/layouts/mod_articles_archive/default.php
@@ -349,6 +358,7 @@ dcb8e484c0f60b5b4350179448eb5c96 warp/systems/joomla/layouts/mod_articles_news/v
 2029f6abb58045390ccce1955f0d7692 warp/systems/joomla/layouts/mod_articles_popular/default.php
 90378fb69bc738cee1bc62c6289f3c5d warp/systems/joomla/layouts/mod_breadcrumbs/default.php
 c7e367190907add814c275d47d2406dc warp/systems/joomla/layouts/mod_custom/default.php
+a1ae8250d2c072b5fa7b1381b9de185b warp/systems/joomla/layouts/mod_finder/default.php
 21003fb27f636f305a54a9a3c74b9ac4 warp/systems/joomla/layouts/mod_login/default.php
 f4054d3039261875dea170bd21a5fa92 warp/systems/joomla/layouts/mod_search/default.php
 aeaa17d811a06cc723cc9befa26b9bfb warp/systems/joomla/layouts/modules.php
@@ -356,4 +366,4 @@ aeaa17d811a06cc723cc9befa26b9bfb warp/systems/joomla/layouts/modules.php
 dbb42f773f24754558e78a28d305565f warp/systems/joomla/layouts/pagination.php
 0d19a8e9478d6340f15411e98408e699 warp/systems/joomla/menus/pre.php
 a03cbb199471b8a80cf0eec7c4ba171c warp/warp.php
-49cb439777b9bc7161a7c5204f78c236 warp/warp.xml
+a1f4c564c1133f63849760e0c920f95c warp/warp.xml

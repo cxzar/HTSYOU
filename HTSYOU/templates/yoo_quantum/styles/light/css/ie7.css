@@ -9,12 +9,9 @@
 .menu-dropdown a.level2,
 .menu-dropdown span.level2,
 a.button-more,
-form.box button,
-form.short button,
-form.box input[type="button"],
-form.box input.button,
-form.box input[type="button"],
-form.box input.button,
+form.style button,
+form.style input[type="button"],
+form.style input.button,
 #system .item > header time,
 #searchbox .results,
 div.box-content,
@@ -28,12 +25,9 @@ div.box-download { behavior: url(../../../warp/js/css3pie.htc); }
 .menu-sidebar li a,
 .menu-sidebar li span { zoom:1;}
 a.button-more,
-form.box button,
-form.short button,
-form.box input[type="button"],
-form.box input.button,
-form.box input[type="button"],
-form.box input.button,
+form.style button,
+form.style input[type="button"],
+form.style input.button,
 div.box-content,
 div.box-note,
 div.box-info,
@@ -46,19 +40,15 @@ div.box-download { position: relative; }
 
 ins, mark { background-color: #b8b76b; }
 
-form.box input[type="text"],
-form.short input[type="text"],
-form.box input[type="password"],
-form.short input[type="password"],
-form.box select,
-form.box textarea { background: #fdfdfd; }
+form.style input[type="text"],
+form.style input[type="password"],
+form.style select,
+form.style textarea  { background: #fdfdfd; }
 
-form.box input[type="text"]:focus,
-form.short input[type="text"]:focus,
-form.box input[type="password"]:focus,
-form.short input[type="password"]:focus,
-form.box select:focus,
-form.box textarea:focus {
+form.style input[type="text"]:focus,
+form.style input[type="password"]:focus,
+form.style select:focus,
+form.style textarea:focus {
 	background-color: #fff;
 	border-color: #bbb;
 }
@@ -198,20 +188,18 @@ form.box textarea:focus {
 
 /* Buttons */
 a.button-more,
-form.box button,
-form.short button,
-form.box input[type="button"],
-form.box input.button {
+form.style button,
+form.style input[type="button"],
+form.style input.button {
 	box-shadow:
 		0 1px 0 rgba(0,0,0,0.3),
 		0 0 0 3px rgba(0,0,0,0.09);
 }
 
 a.button-more:focus,
-form.box button:focus,
-form.short button:focus,
-form.box input[type="button"]:focus,
-form.box input.button:focus {
+form.style button:focus,
+form.style input[type="button"]:focus,
+form.style input.button:focus {
 	box-shadow:
 		0 1px 0 rgba(0,0,0,0.8),
 		0 0 0 3px rgba(0,0,0,0.09);

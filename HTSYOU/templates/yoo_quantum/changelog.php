@@ -14,6 +14,9 @@ die('Restricted access');
 Changelog
 ------------
 
+1.0.13
+# Fixed form styling
+
 1.0.12
 # Fixed Searchbox loader image
 

@@ -456,10 +456,9 @@ div.grid-h .mod-line { background: url(../images/module_line_equal.png) 0 0 repe
 
 /* Buttons (Needed for System Markup) */
 a.button-more,
-form.box button,
-form.short button,
-form.box input[type="button"],
-form.box input.button {
+form.style button,
+form.style input[type="button"],
+form.style input.button {
 	background: #F0F0F0 url(../images/button_more.png) 0 0 repeat-x;
 	-moz-box-shadow:
 		inset 0 1px 0 rgba(255,255,255,1.0),
@@ -478,10 +477,9 @@ form.box input.button {
 }
 
 a.button-more:hover,
-form.box button:hover,
-form.short button:hover,
-form.box input[type="button"]:hover,
-form.box input.button:hover {
+form.style button:hover,
+form.style input[type="button"]:hover,
+form.style input.button:hover {
 	background-position: 0 -100px;
 	background-color: #363636;
 	-moz-box-shadow:
@@ -498,10 +496,9 @@ form.box input.button:hover {
 }
 
 a.button-more:active,
-form.box button:active,
-form.short button:active,
-form.box input[type="button"]:active,
-form.box input.button:active {
+form.style button:active,
+form.style input[type="button"]:active,
+form.style input.button:active {
 	background-position: 0 -200px;
 	background-color: #757575;
 	-moz-box-shadow:
@@ -637,20 +634,14 @@ hr.dotted { background: url(../images/tools/line_dotted.png) 0 0 repeat-x; }
 }
 
 /* Forms (Needed for System Markup) */
-form.box fieldset,
-form.short fieldset { border: 1px solid #dfdfdf; }
+form.box fieldset { border: 1px solid #dfdfdf; }
 
-form.box fieldset legend,
-form.short fieldset legend { color: #999; }
+form.box fieldset legend { color: #999; }
 
-form.box input[type="text"],
-form.short input[type="text"],
-form.box input[type="password"],
-form.short input[type="password"],
-form.box select,
-form.short select,
-form.box textarea,
-form.short textarea {
+form.style input[type="text"],
+form.style input[type="password"],
+form.style select,
+form.style textarea {
 	border: 1px solid #d3d3d3;
 	background: #fff;
 	-moz-box-shadow:
@@ -669,14 +660,10 @@ form.short textarea {
 	text-shadow: 0 1px 0 rgba(255,255,255,1.0);
 }
 
-form.box input[type="text"]:focus,
-form.short input[type="text"]:focus,
-form.box input[type="password"]:focus,
-form.short input[type="password"]:focus,
-form.box select:focus,
-form.short select:focus,
-form.box textarea:focus,
-form.short textarea:focus {
+form.style input[type="text"]:focus,
+form.style input[type="password"]:focus,
+form.style select:focus,
+form.style textarea:focus {
 	border-color: #cacaca;
 	background-color: #fefefe;
 	-moz-box-shadow:
@@ -925,4 +912,3 @@ img.frame:hover {
 .comments-list > article { border-top: 1px solid rgba(0,0,0,0.09); }
 
 .comments-list .meta { color: #777; }
-
